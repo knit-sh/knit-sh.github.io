@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Setup &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/setup';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/setup.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Resources" href="resources.html" />
+    <link rel="prev" title="Types" href="types.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/setup.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/setup.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Setup</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-setup">Register a setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-setup-functions-thin">Keep setup functions thin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-setup-s-environment">Declare a setup’s environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depend-on-a-setup">Depend on a setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#provide-the-default-setup">Provide the default setup</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
+<p>Defining and provisioning software environments.</p>
+<section id="register-a-setup">
+<span id="stitch-register-a-setup"></span><h2>Register a setup<a class="headerlink" href="#register-a-setup" title="Link to this heading">#</a></h2>
+<p><em>Register a setup that builds and installs software into its own prefix.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code> to declare a <em>setup</em>: a reproducible software
+environment that Knit builds once and reuses. The setup function installs
+everything it needs under <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code> — the private directory Knit
+creates for it — so commands that depend on the setup find the software on
+their <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
+_juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
+<span class="w">    </span><span class="c1"># cmake and libpng are on PATH / LD_LIBRARY_PATH. Everything we install goes</span>
+<span class="w">    </span><span class="c1"># under KNIT_SETUP_PREFIX --- the private directory Knit created for this setup.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>ref
+<span class="w">    </span><span class="nv">ref</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"ref"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span><span class="s2">"https://github.com/knit-sh/julia-fractal-example.git"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span>
+<span class="w">    </span>git<span class="w"> </span>-C<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>checkout<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ref</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Configure, build, and install into the setup prefix. No MPI is present in</span>
+<span class="w">    </span><span class="c1"># the environment, so CMake builds the serial binary. RPATH_USE_LINK_PATH</span>
+<span class="w">    </span><span class="c1"># bakes the libpng location into the binary so it also runs on a machine with</span>
+<span class="w">    </span><span class="c1"># no system libpng.</span>
+<span class="w">    </span>cmake<span class="w"> </span>-S<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>-B<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON
+<span class="w">    </span>cmake<span class="w"> </span>--build<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+<span class="w">    </span>cmake<span class="w"> </span>--install<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+
+<span class="w">    </span><span class="c1"># Put the installed binary on the PATH of every command that depends on this</span>
+<span class="w">    </span><span class="c1"># setup. knit_setup_env_prepend records a composable line, so each dependent</span>
+<span class="w">    </span><span class="c1"># command keeps its own PATH and gains this entry.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
+<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
+_juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
+<span class="w">    </span><span class="c1"># cmake and libpng are on PATH / LD_LIBRARY_PATH. Everything we install goes</span>
+<span class="w">    </span><span class="c1"># under KNIT_SETUP_PREFIX --- the private directory Knit created for this setup.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>ref
+<span class="w">    </span><span class="nv">ref</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"ref"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span><span class="s2">"https://github.com/knit-sh/julia-fractal-example.git"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span>
+<span class="w">    </span>git<span class="w"> </span>-C<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>checkout<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ref</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Configure, build, and install into the setup prefix. No MPI is present in</span>
+<span class="w">    </span><span class="c1"># the environment, so CMake builds the serial binary. RPATH_USE_LINK_PATH</span>
+<span class="w">    </span><span class="c1"># bakes the libpng location into the binary so it also runs on a machine with</span>
+<span class="w">    </span><span class="c1"># no system libpng.</span>
+<span class="w">    </span>cmake<span class="w"> </span>-S<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>-B<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON
+<span class="w">    </span>cmake<span class="w"> </span>--build<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+<span class="w">    </span>cmake<span class="w"> </span>--install<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+
+<span class="w">    </span><span class="c1"># Put the installed binary on the PATH of every command that depends on this</span>
+<span class="w">    </span><span class="c1"># setup. knit_setup_env_prepend records a composable line, so each dependent</span>
+<span class="w">    </span><span class="c1"># command keeps its own PATH and gains this entry.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="keep-setup-functions-thin">
+<span id="stitch-keep-setups-thin"></span><h2>Keep setup functions thin<a class="headerlink" href="#keep-setup-functions-thin" title="Link to this heading">#</a></h2>
+<p><em>Delegate dependency installation to a package manager and keep the setup body minimal.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span></code></p>
+<p>A setup body should do as little as possible. Every command it runs by hand —
+cloning a repository, <code class="docutils literal notranslate"><span class="pre">./configure</span></code>, <code class="docutils literal notranslate"><span class="pre">make</span></code>, downloading a tarball — is one
+more thing a reproducer has to trust to behave identically on a different machine,
+and one more thing knit cannot capture as provenance. The more the body does, the
+less reproducible the setup.</p>
+<p>Prefer declaring dependencies with <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> (or a full
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code> manifest) and letting Spack build them. Spack pins
+versions, compilers, and variants, records a concrete lockfile (captured as a
+provenance output on the setup’s table), and reuses already-built packages across
+setups — far more reproducible than an imperative build script. In the ideal
+case the body is <em>empty</em>: everything the experiment needs is a Spack spec, so the
+setup is just a list of specs.</p>
+<p>When your own program is not yet a Spack package — as in the julia-fractal
+example, whose setup clones the source and builds it with CMake by hand — the
+most reproducible path is to write a small Spack package for it (a <code class="docutils literal notranslate"><span class="pre">package.py</span></code>
+in a custom repo) and add it to the specs. The hand-written clone/configure/build
+steps then become one more spec that Spack builds, versions, and locks like any
+other dependency, and the setup body shrinks to nothing.</p>
+<p>Keep in the body only what genuinely cannot be a package: writing a config or
+params file, declaring an environment variable with <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span></code>, or
+creating a directory under <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>.</p>
+</section>
+<section id="declare-a-setup-s-environment">
+<span id="stitch-declare-a-setup-environment"></span><h2>Declare a setup’s environment<a class="headerlink" href="#declare-a-setup-s-environment" title="Link to this heading">#</a></h2>
+<p><em>Declare environment changes a setup passes to dependent commands, composably.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_setup_env_prepend</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_setup_env_append</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_setup_env_unset</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_setup_activate_line</span></code></p>
+<p>A setup does not export its environment by taking a snapshot of the build shell.
+Instead the setup body <em>declares</em> each environment change, and Knit records it as
+a line in the setup’s <code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code>. Every command that depends on the setup
+sources that file, so it runs with exactly what the setup declared — nothing
+more.</p>
+<p>Each function changes the build shell now <strong>and</strong> records a composable line:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span> <span class="pre">VAR</span> <span class="pre">value</span></code> — set a variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_setup_env_prepend</span> <span class="pre">VAR</span> <span class="pre">entry</span></code> / <code class="docutils literal notranslate"><span class="pre">knit_setup_env_append</span> <span class="pre">VAR</span> <span class="pre">entry</span></code> —
+add one entry to a colon-separated search path such as <code class="docutils literal notranslate"><span class="pre">PATH</span></code>. The recorded
+line keeps the <code class="docutils literal notranslate"><span class="pre">${VAR}</span></code> reference literal, so a dependent command extends its
+<strong>own</strong> <code class="docutils literal notranslate"><span class="pre">PATH</span></code> instead of overwriting it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_setup_env_unset</span> <span class="pre">VAR</span></code> — remove a variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_setup_activate_line</span> <span class="pre">'line'</span></code> — record a verbatim line (for example a
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>). It runs in declaration order, so it can build on a variable
+set above it.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"toolenv"</span><span class="w"> </span><span class="s2">"Declare a composable software environment."</span>
+_toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Each call changes THIS build shell now and records one composable line in</span>
+<span class="w">    </span><span class="c1"># &lt;setup&gt;/.activate.sh for every dependent command to replay.</span>
+
+<span class="w">    </span><span class="c1"># Set a plain variable.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TOOL_GREETING<span class="w"> </span><span class="s2">"hello"</span>
+
+<span class="w">    </span><span class="c1"># Prepend to PATH. The recorded line keeps ${PATH} literal, so a dependent</span>
+<span class="w">    </span><span class="c1"># job adds this entry to its OWN PATH instead of overwriting it.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+
+<span class="w">    </span><span class="c1"># Append to a search path. Empty-safe: no leading separator on an empty var.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_append</span><span class="w"> </span>TOOL_DATA_PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/share"</span>
+
+<span class="w">    </span><span class="c1"># Remove a variable from every dependent command's environment.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_unset</span><span class="w"> </span>TOOL_LEGACY
+
+<span class="w">    </span><span class="c1"># Record a verbatim line. It runs in declaration order, so it can build on a</span>
+<span class="w">    </span><span class="c1"># variable set above.</span>
+<span class="w">    </span><span class="nb">knit_setup_activate_line</span><span class="w"> </span><span class="s1">'export TOOL_BANNER="${TOOL_GREETING}-from-setup"'</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"toolenv"</span><span class="w"> </span>_toolenv_setup<span class="w"> </span><span class="s2">"Declare a composable software environment."</span>
+_toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Each call changes THIS build shell now and records one composable line in</span>
+<span class="w">    </span><span class="c1"># &lt;setup&gt;/.activate.sh for every dependent command to replay.</span>
+
+<span class="w">    </span><span class="c1"># Set a plain variable.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TOOL_GREETING<span class="w"> </span><span class="s2">"hello"</span>
+
+<span class="w">    </span><span class="c1"># Prepend to PATH. The recorded line keeps ${PATH} literal, so a dependent</span>
+<span class="w">    </span><span class="c1"># job adds this entry to its OWN PATH instead of overwriting it.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+
+<span class="w">    </span><span class="c1"># Append to a search path. Empty-safe: no leading separator on an empty var.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_append</span><span class="w"> </span>TOOL_DATA_PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/share"</span>
+
+<span class="w">    </span><span class="c1"># Remove a variable from every dependent command's environment.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_unset</span><span class="w"> </span>TOOL_LEGACY
+
+<span class="w">    </span><span class="c1"># Record a verbatim line. It runs in declaration order, so it can build on a</span>
+<span class="w">    </span><span class="c1"># variable set above.</span>
+<span class="w">    </span><span class="nb">knit_setup_activate_line</span><span class="w"> </span><span class="s1">'export TOOL_BANNER="${TOOL_GREETING}-from-setup"'</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A dependent command reads the composed environment with no extra work:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
+<span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w">      </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
+_probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The setup's environment is already composed onto this job's own shell: its</span>
+<span class="w">    </span><span class="c1"># variables are set and its PATH entry is prepended to the job's own PATH.</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"greeting"</span><span class="w">   </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_GREETING</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"banner"</span><span class="w">     </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_BANNER</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"data_path"</span><span class="w">  </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_DATA_PATH</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"legacy"</span><span class="w">     </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_LEGACY</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"path"</span><span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span>_probe<span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
+<span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w">      </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
+_probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The setup's environment is already composed onto this job's own shell: its</span>
+<span class="w">    </span><span class="c1"># variables are set and its PATH entry is prepended to the job's own PATH.</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"greeting"</span><span class="w">   </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_GREETING</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"banner"</span><span class="w">     </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_BANNER</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"data_path"</span><span class="w">  </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_DATA_PATH</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"legacy"</span><span class="w">     </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOOL_LEGACY</span><span class="k">:-</span><span class="p">&lt;unset&gt;</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"path"</span><span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">PATH</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="depend-on-a-setup">
+<span id="stitch-depend-on-a-setup"></span><h2>Depend on a setup<a class="headerlink" href="#depend-on-a-setup" title="Link to this heading">#</a></h2>
+<p><em>Bind a command to a setup so it runs inside that software environment.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code></p>
+<p>Declare <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code> right after registering a command (or job) to bind it
+to a setup. Before the command’s body runs, Knit activates that setup’s
+environment — its <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, libraries, and any Spack packages — so the
+command finds the software the setup installed.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="build-an-mpi-environment-and-provide-a-launcher">
+<span id="stitch-mpi-setup-launcher"></span><h2>Build an MPI environment and provide a launcher<a class="headerlink" href="#build-an-mpi-environment-and-provide-a-launcher" title="Link to this heading">#</a></h2>
+<p><em>Ask Spack for an MPI provider in a setup and expose it as the run launcher.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code></p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">mpi</span></code> (or a concrete provider like <code class="docutils literal notranslate"><span class="pre">mpich</span></code> or <code class="docutils literal notranslate"><span class="pre">openmpi</span></code>) to a setup’s
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> so Spack provisions an MPI implementation as part of the
+environment. Calling <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code> then advertises that Spack-built
+MPI as the launcher, so <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> can place ranks even on a machine that has no
+MPI of its own:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
+<span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
+<span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
+<span class="c1"># nothing left to build.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nd">@provides_launcher</span>
+_mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
+<span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
+<span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
+<span class="c1"># nothing left to build.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span>_mpienv_setup<span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
+<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nb">knit_provides_launcher</span>
+_mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because knit activates the Spack environment before the setup body runs, the MPI
+compilers and launcher (<code class="docutils literal notranslate"><span class="pre">mpicc</span></code> / <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>) are already on <code class="docutils literal notranslate"><span class="pre">PATH</span></code> — the
+body here has nothing left to do. In a real setup this is exactly where the
+environment pays off: a downstream build (say a CMake <code class="docutils literal notranslate"><span class="pre">find_package(MPI)</span></code>) now
+finds the Spack MPI and produces a parallel binary, with no MPI-specific logic in
+the setup itself.</p>
+<p>The provided launcher is detected once at setup-build time and frozen into the
+setup’s <code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code> (recorded as the <code class="docutils literal notranslate"><span class="pre">__mpi_launcher__</span></code> provenance output).
+It sits <em>below</em> a machine’s own launcher in precedence, so a profile’s launcher
+still wins when one exists; it only fills the gap on a machine that offers none.</p>
+</section>
+<section id="provide-the-default-setup">
+<span id="stitch-provide-default-setup"></span><h2>Provide the default setup<a class="headerlink" href="#provide-the-default-setup" title="Link to this heading">#</a></h2>
+<p><em>Understand the builtin default setup that jobs adopt, and how to opt out.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_without_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_job</span></code></p>
+<p>Bootstrap auto-instantiates a builtin <code class="docutils literal notranslate"><span class="pre">default</span></code> setup that carries only the
+platform activation (the profile’s modules and environment, if any). A job that
+declares neither <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code> nor <code class="docutils literal notranslate"><span class="pre">knit_without_setup</span></code> runs inside this
+default setup automatically, so it inherits the platform environment with no
+boilerplate:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that declares NEITHER @with_setup NOR @without_setup adopts the</span>
+<span class="c1"># builtin "default" setup automatically, inheriting the platform environment.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"adopt"</span><span class="w"> </span><span class="s2">"Runs in the builtin default setup."</span>
+_adopt<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that declares NEITHER @with_setup NOR @without_setup adopts the</span>
+<span class="c1"># builtin "default" setup automatically, inheriting the platform environment.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"adopt"</span><span class="w"> </span>_adopt<span class="w"> </span><span class="s2">"Runs in the builtin default setup."</span>
+_adopt<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To run a job with no setup at all — no setup directory and no platform
+activation — opt out with <code class="docutils literal notranslate"><span class="pre">knit_without_setup</span></code> (mutually exclusive with
+<code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code>):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @without_setup makes a job run with no setup at all: no setup directory and</span>
+<span class="c1"># no platform activation. It is mutually exclusive with @with_setup.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"optout"</span><span class="w"> </span><span class="s2">"Runs with no setup."</span>
+<span class="nd">@without_setup</span>
+_optout<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @without_setup makes a job run with no setup at all: no setup directory and</span>
+<span class="c1"># no platform activation. It is mutually exclusive with @with_setup.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"optout"</span><span class="w"> </span>_optout<span class="w"> </span><span class="s2">"Runs with no setup."</span>
+<span class="nb">knit_without_setup</span>
+_optout<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The default setup is a setup type like any other, so a command can also require
+it explicitly by name:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any command (not just jobs) can require the default setup explicitly, exactly</span>
+<span class="c1"># like a named setup type.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Requires the builtin default setup."</span>
+<span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"default"</span>
+_report<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any command (not just jobs) can require the default setup explicitly, exactly</span>
+<span class="c1"># like a named setup type.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Requires the builtin default setup."</span>
+<span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"default"</span>
+_report<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>_report_marker<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Only jobs adopt the default setup implicitly; a plain command is setup-less
+unless it declares <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code>, so on a plain command
+<code class="docutils literal notranslate"><span class="pre">knit_without_setup</span></code> is a no-op. The default setup is materialized at bootstrap,
+but you can (re)build a named copy of any setup type with the <code class="docutils literal notranslate"><span class="pre">setup</span></code>
+dispatcher:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>setup<span class="w"> </span>--name<span class="w"> </span>default<span class="w"> </span>--<span class="w"> </span>default
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="types.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Types</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="resources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resources</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-setup">Register a setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-setup-functions-thin">Keep setup functions thin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-setup-s-environment">Declare a setup’s environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depend-on-a-setup">Depend on a setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#provide-the-default-setup">Provide the default setup</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

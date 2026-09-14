@@ -1,0 +1,1002 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Parameters &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/parameters';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/parameters.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Types" href="types.html" />
+    <link rel="prev" title="Commands" href="commands.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/parameters.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/parameters.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parameters</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-required-parameter">Add a required parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pass-opaque-trailing-arguments">Pass opaque trailing arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-args-in-a-plain-function">Validate args in a plain function</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="parameters">
+<h1>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h1>
+<p>Declaring parameters, flags, extras, and reusable parameter sets.</p>
+<section id="add-a-required-parameter">
+<span id="stitch-required-parameter"></span><h2>Add a required parameter<a class="headerlink" href="#add-a-required-parameter" title="Link to this heading">#</a></h2>
+<p><em>Declare a parameter the caller must supply and read it in the body.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_required</span> <span class="pre">&lt;name:type&gt;</span> <span class="pre">&lt;description&gt;</span></code>, placed between
+<code class="docutils literal notranslate"><span class="pre">knit_register</span></code> and <code class="docutils literal notranslate"><span class="pre">knit_done</span></code>, declares a parameter the caller must supply
+as <code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">value</span></code>. The body reads it back with <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A required parameter must be supplied; the body reads it with knit_get_parameter.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"greet"</span><span class="w"> </span><span class="s2">"Greet someone."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
+_greet<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>name
+<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello </span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A required parameter must be supplied; the body reads it with knit_get_parameter.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"greet"</span><span class="w"> </span>_greet<span class="w"> </span><span class="s2">"Greet someone."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
+_greet<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>name
+<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello </span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The type annotation is <strong>required</strong> — there is no default type, so <code class="docutils literal notranslate"><span class="pre">name</span></code> alone
+is rejected and you must write <code class="docutils literal notranslate"><span class="pre">name:string</span></code>, <code class="docutils literal notranslate"><span class="pre">width:integer</span></code>, and so on (see
+the Types category for the full list). <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> prints
+the value, accepting both <code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">value</span></code> and <code class="docutils literal notranslate"><span class="pre">--name=value</span></code>.</p>
+</section>
+<section id="positional-arguments">
+<span id="stitch-positional-arguments"></span><h2>Positional arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h2>
+<p><em>Why Knit has no positional parameters, and what to write instead.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code></p>
+<p>Knit deliberately has <strong>no positional parameters</strong>: every value is passed by name
+(<code class="docutils literal notranslate"><span class="pre">--width</span> <span class="pre">3</span></code>), never by position (<code class="docutils literal notranslate"><span class="pre">box</span> <span class="pre">3</span> <span class="pre">4</span></code>). This is a design choice, not a
+limitation — forcing callers to name every argument keeps experiment scripts
+explicit and self-documenting, and rules out the classic positional mistakes of
+swapping two arguments or silently dropping one.</p>
+<p>A bare token where a command name would go is treated as a subcommand, so
+<code class="docutils literal notranslate"><span class="pre">box</span> <span class="pre">3</span> <span class="pre">4</span></code> fails with an <em>“Unknown command”</em> error rather than being quietly
+misread as <code class="docutils literal notranslate"><span class="pre">--width</span> <span class="pre">3</span> <span class="pre">--height</span> <span class="pre">4</span></code>. Write <code class="docutils literal notranslate"><span class="pre">box</span> <span class="pre">--width</span> <span class="pre">3</span> <span class="pre">--height</span> <span class="pre">4</span></code> instead:
+the order no longer matters, and a forgotten argument is reported as a missing
+required parameter rather than shifting every value by one.</p>
+</section>
+<section id="optional-parameters-and-flags">
+<span id="stitch-optional-parameters-and-flags"></span><h2>Optional parameters and flags<a class="headerlink" href="#optional-parameters-and-flags" title="Link to this heading">#</a></h2>
+<p><em>Give a parameter a default, or declare a boolean flag.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_flag</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_optional</span> <span class="pre">&lt;name:type&gt;</span> <span class="pre">&lt;default&gt;</span> <span class="pre">&lt;description&gt;</span></code> declares a parameter
+that falls back to a default when omitted. <code class="docutils literal notranslate"><span class="pre">knit_with_flag</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;description&gt;</span></code>
+declares a boolean flag that is either present or not:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An optional parameter has a default; a flag is either present or not and reads</span>
+<span class="c1"># back as "true"/"false".</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"shout"</span><span class="w"> </span><span class="s2">"Greet someone, optionally louder."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"World"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
+<span class="nd">@with_flag</span><span class="w"> </span><span class="s2">"excited"</span><span class="w"> </span><span class="s2">"Add an exclamation mark."</span>
+_shout<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>name<span class="w"> </span>excited<span class="w"> </span>greeting
+<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">excited</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"excited"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">greeting</span><span class="o">=</span><span class="s2">"Hello </span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">excited</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">greeting</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">greeting</span><span class="si">}</span><span class="s2">!"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">greeting</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An optional parameter has a default; a flag is either present or not and reads</span>
+<span class="c1"># back as "true"/"false".</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"shout"</span><span class="w"> </span>_shout<span class="w"> </span><span class="s2">"Greet someone, optionally louder."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"World"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
+<span class="nb">knit_with_flag</span><span class="w"> </span><span class="s2">"excited"</span><span class="w"> </span><span class="s2">"Add an exclamation mark."</span>
+_shout<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>name<span class="w"> </span>excited<span class="w"> </span>greeting
+<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">excited</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"excited"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">greeting</span><span class="o">=</span><span class="s2">"Hello </span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">excited</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">greeting</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">greeting</span><span class="si">}</span><span class="s2">!"</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">greeting</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As with <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, the type annotation is mandatory (<code class="docutils literal notranslate"><span class="pre">name:string</span></code>,
+<code class="docutils literal notranslate"><span class="pre">count:integer</span></code>, …). A flag is implicitly boolean, so it takes no type; it reads
+back through <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code> as the string <code class="docutils literal notranslate"><span class="pre">true</span></code> (when the flag was
+passed) or <code class="docutils literal notranslate"><span class="pre">false</span></code> (when it was not), so test it with <code class="docutils literal notranslate"><span class="pre">[[</span> <span class="pre">&quot;${flag}&quot;</span> <span class="pre">==</span> <span class="pre">&quot;true&quot;</span>
+<span class="pre">]]</span></code>.</p>
+</section>
+<section id="default-a-parameter-from-the-environment">
+<span id="stitch-env-default-parameter"></span><h2>Default a parameter from the environment<a class="headerlink" href="#default-a-parameter-from-the-environment" title="Link to this heading">#</a></h2>
+<p><em>Fall back to an environment variable when a parameter is omitted.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code></p>
+<p>Write an optional parameter’s default as <code class="docutils literal notranslate"><span class="pre">ENV[NAME]</span></code> to fall back to the
+<code class="docutils literal notranslate"><span class="pre">NAME</span></code> environment variable when the caller does not pass the parameter (empty
+when <code class="docutils literal notranslate"><span class="pre">NAME</span></code> is unset):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An "ENV[NAME]" default falls back to the NAME environment variable when the</span>
+<span class="c1"># parameter is not passed (empty if NAME is unset). Resolved when the parameter</span>
+<span class="c1"># is filled in, so a job picks up a value exported by its setup.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"roll"</span><span class="w"> </span><span class="s2">"Print the random seed in use."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"seed:integer"</span><span class="w"> </span><span class="s2">"ENV[SEED]"</span><span class="w"> </span><span class="s2">"Random seed."</span>
+_roll<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"seed=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"seed"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An "ENV[NAME]" default falls back to the NAME environment variable when the</span>
+<span class="c1"># parameter is not passed (empty if NAME is unset). Resolved when the parameter</span>
+<span class="c1"># is filled in, so a job picks up a value exported by its setup.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"roll"</span><span class="w"> </span>_roll<span class="w"> </span><span class="s2">"Print the random seed in use."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"seed:integer"</span><span class="w"> </span><span class="s2">"ENV[SEED]"</span><span class="w"> </span><span class="s2">"Random seed."</span>
+_roll<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"seed=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"seed"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fallback is resolved when the parameter is filled in, not at registration, so
+a job picks up a value exported by its setup’s environment. An explicit <code class="docutils literal notranslate"><span class="pre">--seed</span></code>
+on the command line always wins over the environment, so <code class="docutils literal notranslate"><span class="pre">./exp.sh</span> <span class="pre">roll</span> <span class="pre">--seed</span>
+<span class="pre">42</span></code> and <code class="docutils literal notranslate"><span class="pre">SEED=42</span> <span class="pre">./exp.sh</span> <span class="pre">roll</span></code> are equivalent — the flag is just a way to set
+the same value inline.</p>
+</section>
+<section id="reuse-parameters-with-a-parameter-set">
+<span id="stitch-reuse-parameters-parameter-set"></span><h2>Reuse parameters with a parameter set<a class="headerlink" href="#reuse-parameters-with-a-parameter-set" title="Link to this heading">#</a></h2>
+<p><em>Declare a group of parameters once and import it into many commands.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code></p>
+<p>When several commands share the same parameters, declare them once in a named
+parameter set and import the set wherever you need it. A set is opened with
+<code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code>, populated with the usual <code class="docutils literal notranslate"><span class="pre">knit_with_*</span></code> calls, and
+closed with <code class="docutils literal notranslate"><span class="pre">knit_done</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
+<span class="nd">@parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w"> </span><span class="s2">"Grid height."</span>
+<span class="nd">@done</span>
+
+<span class="c1"># ...then import it into any command with @with_parameter_set.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"area"</span><span class="w"> </span><span class="s2">"Compute a grid area."</span>
+<span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
+_area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="k">))</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
+<span class="nb">knit_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w"> </span><span class="s2">"Grid height."</span>
+<span class="nb">knit_done</span>
+
+<span class="c1"># ...then import it into any command with @with_parameter_set.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"area"</span><span class="w"> </span>_area<span class="w"> </span><span class="s2">"Compute a grid area."</span>
+<span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
+_area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="k">))</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set</span> <span class="pre">&lt;name&gt;</span></code> copies the set’s parameters into the command
+being registered; call it as many times as you like. A parameter from the set
+that collides with one already declared on the command is a fatal error.</p>
+</section>
+<section id="import-only-some-parameters-of-a-set">
+<span id="stitch-import-only-some-parameters"></span><h2>Import only some parameters of a set<a class="headerlink" href="#import-only-some-parameters-of-a-set" title="Link to this heading">#</a></h2>
+<p><em>Import just a few of a parameter set’s parameters with –only.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code></p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set</span></code> imports every parameter a set declares.
+Pass <code class="docutils literal notranslate"><span class="pre">--only</span></code> with a comma-separated allow-list to import just those
+parameters and leave the rest behind:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
+<span class="c1"># left out.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span><span class="s2">"Report just the grid width."</span>
+<span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span>--only<span class="w"> </span><span class="s2">"width"</span>
+_width_only<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
+<span class="c1"># left out.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span>_width_only<span class="w"> </span><span class="s2">"Report just the grid width."</span>
+<span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span>--only<span class="w"> </span><span class="s2">"width"</span>
+_width_only<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Every name in the list must exist in the set, else the call is fatal — this
+catches a typo that would otherwise silently import the whole set.</p>
+</section>
+<section id="exclude-parameters-when-importing-a-set">
+<span id="stitch-exclude-parameters-from-a-set"></span><h2>Exclude parameters when importing a set<a class="headerlink" href="#exclude-parameters-when-importing-a-set" title="Link to this heading">#</a></h2>
+<p><em>Import a parameter set minus a few parameters, freeing those names to re-declare.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code></p>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">--exclude</span></code> with a comma-separated deny-list to import every parameter of
+a set but the named ones. Excluding a name also frees it, so the command can
+declare it itself with a different kind or default — here a parameter that is
+required in the set becomes optional on this command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
+<span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
+<span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span>--exclude<span class="w"> </span><span class="s2">"height"</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Grid height (defaults to 1)."</span>
+_flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="k">))</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
+<span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span>_flat_area<span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
+<span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span>--exclude<span class="w"> </span><span class="s2">"height"</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Grid height (defaults to 1)."</span>
+_flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="k">$((</span><span class="w"> </span><span class="nv">width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="k">))</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Every excluded name must exist in the set, else the call is fatal.
+<code class="docutils literal notranslate"><span class="pre">--exclude</span></code> and <code class="docutils literal notranslate"><span class="pre">--only</span></code> are mutually exclusive.</p>
+</section>
+<section id="pass-opaque-trailing-arguments">
+<span id="stitch-pass-trailing-arguments"></span><h2>Pass opaque trailing arguments<a class="headerlink" href="#pass-opaque-trailing-arguments" title="Link to this heading">#</a></h2>
+<p><em>Accept arbitrary arguments after – and read them in the body.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_extra</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code></p>
+<p>To let a command accept arbitrary arguments after <code class="docutils literal notranslate"><span class="pre">--</span></code> (for example to forward
+them to another program), document them with <code class="docutils literal notranslate"><span class="pre">knit_with_extra</span></code> and read them in
+the body starting at <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
+<span class="c1"># starting at knit_extra_index.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
+<span class="nd">@with_extra</span><span class="w"> </span><span class="s2">"The arguments to echo."</span>
+_forward<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span><span class="w"> </span>extra_index<span class="w"> </span>extra
+<span class="w">    </span><span class="nv">extra_index</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_extra_index</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">extra</span><span class="o">=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]:</span><span class="nv">extra_index</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">extra</span><span class="p">[*]</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
+<span class="c1"># starting at knit_extra_index.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span>_forward<span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
+<span class="nb">knit_with_extra</span><span class="w"> </span><span class="s2">"The arguments to echo."</span>
+_forward<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span><span class="w"> </span>extra_index<span class="w"> </span>extra
+<span class="w">    </span><span class="nv">extra_index</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_extra_index</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">extra</span><span class="o">=(</span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]:</span><span class="nv">extra_index</span><span class="si">}</span><span class="s2">"</span><span class="o">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">extra</span><span class="p">[*]</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code> returns the index of the first argument after <code class="docutils literal notranslate"><span class="pre">--</span></code> (or the
+argument count when there is no <code class="docutils literal notranslate"><span class="pre">--</span></code>), so <code class="docutils literal notranslate"><span class="pre">&quot;${args[&#64;]:extra_index}&quot;</span></code> is
+exactly the trailing arguments. They are passed through verbatim and are not
+validated against the command’s declared parameters.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use trailing arguments sparingly. Unlike declared parameters, they are not
+broken out into their own database columns — they are recorded as one opaque
+blob — so you cannot cleanly filter or group runs by them afterwards. When a
+value has a known meaning, prefer a named parameter with <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>
+/ <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code> so it lands in its own column.</p>
+</div>
+</section>
+<section id="validate-args-in-a-plain-function">
+<span id="stitch-validate-plain-function-args"></span><h2>Validate args in a plain function<a class="headerlink" href="#validate-args-in-a-plain-function" title="Link to this heading">#</a></h2>
+<p><em>Reject unexpected arguments in a helper that is not a registered command.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_check_arguments</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code></p>
+<p>Registered commands validate their arguments automatically, but a plain helper
+that parses its own <code class="docutils literal notranslate"><span class="pre">&quot;$&#64;&quot;</span></code> does not. <code class="docutils literal notranslate"><span class="pre">knit_check_arguments</span> <span class="pre">&lt;options&gt;</span> <span class="pre">&lt;flags&gt;</span>
+<span class="pre">&quot;$&#64;&quot;</span></code> gives such a helper the same check: the first list names options that take
+a value, the second names flags, and it returns 1 on the first unexpected
+argument (logging an error attributed to the caller):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
+<span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
+<span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
+_render<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span>
+<span class="w">    </span><span class="nb">knit_check_arguments</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"verbose"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"size=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render at a given size."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"size:integer"</span><span class="w"> </span><span class="s2">"8"</span><span class="w"> </span><span class="s2">"Image size."</span>
+_render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>_render<span class="w"> </span>--size<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
+<span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
+<span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
+_render<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span>
+<span class="w">    </span><span class="nb">knit_check_arguments</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"verbose"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"size=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_cmd<span class="w"> </span><span class="s2">"Render at a given size."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"size:integer"</span><span class="w"> </span><span class="s2">"8"</span><span class="w"> </span><span class="s2">"Image size."</span>
+_render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>_render<span class="w"> </span>--size<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Names use hyphens or underscores interchangeably, and everything from a literal
+<code class="docutils literal notranslate"><span class="pre">--</span></code> onwards is treated as extra and left unchecked.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="commands.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Commands</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="types.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Types</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-required-parameter">Add a required parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pass-opaque-trailing-arguments">Pass opaque trailing arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-args-in-a-plain-function">Validate args in a plain function</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

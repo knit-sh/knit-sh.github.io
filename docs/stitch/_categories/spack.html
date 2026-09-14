@@ -1,0 +1,880 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Spack &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/spack';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/spack.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Jobs" href="jobs.html" />
+    <link rel="prev" title="Resources" href="resources.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/spack.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/spack.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Spack</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-a-setup-s-spack-specs">Pin a setup’s Spack specs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-full-spack-manifest">Use a full Spack manifest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-spack-directly">Run Spack directly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolate-spack-from-your-personal-config">Isolate Spack from your personal config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="spack">
+<h1>Spack<a class="headerlink" href="#spack" title="Link to this heading">#</a></h1>
+<p>Working with Spack environments and package specs.</p>
+<section id="pin-a-setup-s-spack-specs">
+<span id="stitch-pin-spack-specs"></span><h2>Pin a setup’s Spack specs<a class="headerlink" href="#pin-a-setup-s-spack-specs" title="Link to this heading">#</a></h2>
+<p><em>List the Spack packages a setup needs and let knit build them.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code></p>
+<p>For the common “just install these packages” case, list the Spack specs a setup
+needs with <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>. Knit synthesizes a minimal <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code>
+and, before the setup body runs, installs the specs into a Spack environment and
+activates it — so the tools are on <code class="docutils literal notranslate"><span class="pre">PATH</span></code> / <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> when you build
+into <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>. The Spack it uses is knit’s own, installed under
+<code class="docutils literal notranslate"><span class="pre">.knit/</span></code> and isolated from any Spack you have on the machine (see <em>Run Spack
+directly</em> and <em>Isolate Spack from your personal config</em>); declaring a
+Spack-backed setup makes <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> provision that Spack automatically:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
+_juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
+<span class="w">    </span><span class="c1"># cmake and libpng are on PATH / LD_LIBRARY_PATH. Everything we install goes</span>
+<span class="w">    </span><span class="c1"># under KNIT_SETUP_PREFIX --- the private directory Knit created for this setup.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>ref
+<span class="w">    </span><span class="nv">ref</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"ref"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span><span class="s2">"https://github.com/knit-sh/julia-fractal-example.git"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span>
+<span class="w">    </span>git<span class="w"> </span>-C<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>checkout<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ref</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Configure, build, and install into the setup prefix. No MPI is present in</span>
+<span class="w">    </span><span class="c1"># the environment, so CMake builds the serial binary. RPATH_USE_LINK_PATH</span>
+<span class="w">    </span><span class="c1"># bakes the libpng location into the binary so it also runs on a machine with</span>
+<span class="w">    </span><span class="c1"># no system libpng.</span>
+<span class="w">    </span>cmake<span class="w"> </span>-S<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>-B<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON
+<span class="w">    </span>cmake<span class="w"> </span>--build<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+<span class="w">    </span>cmake<span class="w"> </span>--install<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+
+<span class="w">    </span><span class="c1"># Put the installed binary on the PATH of every command that depends on this</span>
+<span class="w">    </span><span class="c1"># setup. knit_setup_env_prepend records a composable line, so each dependent</span>
+<span class="w">    </span><span class="c1"># command keeps its own PATH and gains this entry.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
+<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
+_juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
+<span class="w">    </span><span class="c1"># cmake and libpng are on PATH / LD_LIBRARY_PATH. Everything we install goes</span>
+<span class="w">    </span><span class="c1"># under KNIT_SETUP_PREFIX --- the private directory Knit created for this setup.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>ref
+<span class="w">    </span><span class="nv">ref</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"ref"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span><span class="s2">"https://github.com/knit-sh/julia-fractal-example.git"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span>
+<span class="w">    </span>git<span class="w"> </span>-C<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>checkout<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ref</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Configure, build, and install into the setup prefix. No MPI is present in</span>
+<span class="w">    </span><span class="c1"># the environment, so CMake builds the serial binary. RPATH_USE_LINK_PATH</span>
+<span class="w">    </span><span class="c1"># bakes the libpng location into the binary so it also runs on a machine with</span>
+<span class="w">    </span><span class="c1"># no system libpng.</span>
+<span class="w">    </span>cmake<span class="w"> </span>-S<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/src"</span><span class="w"> </span>-B<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON
+<span class="w">    </span>cmake<span class="w"> </span>--build<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+<span class="w">    </span>cmake<span class="w"> </span>--install<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/build"</span>
+
+<span class="w">    </span><span class="c1"># Put the installed binary on the PATH of every command that depends on this</span>
+<span class="w">    </span><span class="c1"># setup. knit_setup_env_prepend records a composable line, so each dependent</span>
+<span class="w">    </span><span class="c1"># command keeps its own PATH and gains this entry.</span>
+<span class="w">    </span><span class="nb">knit_setup_env_prepend</span><span class="w"> </span>PATH<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">/bin"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each argument is a full Spack spec, so you can pin versions and variants the same
+way you would on the <code class="docutils literal notranslate"><span class="pre">spack</span> <span class="pre">install</span></code> command line (for example
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span> <span class="pre">&quot;hdf5&#64;1.14</span> <span class="pre">+mpi&quot;</span> <span class="pre">&quot;fftw&quot;</span></code>). The concrete manifest and
+lockfile are captured as provenance outputs on the setup’s table. For finer
+control over the environment, use a full manifest with <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>
+instead.</p>
+</section>
+<section id="use-a-full-spack-manifest">
+<span id="stitch-use-spack-manifest"></span><h2>Use a full Spack manifest<a class="headerlink" href="#use-a-full-spack-manifest" title="Link to this heading">#</a></h2>
+<p><em>Describe a setup’s Spack environment with a complete spack.yaml.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code></p>
+<p>When you need full control over the environment — versions, variants,
+compilers, views, package preferences — describe it with a complete
+<code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code> manifest via <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>. Point it at a file checked in
+next to the experiment:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Point @with_spack_env at a spack.yaml checked in next to the experiment.</span>
+<span class="c1"># The manifest gives full control (versions, variants, compilers, views).</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"libs"</span><span class="w"> </span><span class="s2">"Build dependencies from a spack.yaml."</span>
+<span class="nd">@with_spack_env</span><span class="w"> </span><span class="s2">"spack.yaml"</span>
+_libs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># cmake/hdf5/... from the manifest are on PATH here; build into the prefix.</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Point @with_spack_env at a spack.yaml checked in next to the experiment.</span>
+<span class="c1"># The manifest gives full control (versions, variants, compilers, views).</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"libs"</span><span class="w"> </span>_libs_setup<span class="w"> </span><span class="s2">"Build dependencies from a spack.yaml."</span>
+<span class="nb">knit_with_spack_env</span><span class="w"> </span><span class="s2">"spack.yaml"</span>
+_libs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># cmake/hdf5/... from the manifest are on PATH here; build into the prefix.</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, when the manifest is short and specific to the experiment, inline it with a
+here-doc (any redirected stdin works). The manifest is read at registration time,
+so it must actually be redirected — an interactive terminal or an empty manifest
+is rejected rather than left to block:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or inline the manifest with a here-doc when it is short and experiment-specific.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"libs-inline"</span><span class="w"> </span><span class="s2">"Build deps from an inline manifest."</span>
+<span class="nd">@with_spack_env</span><span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="s">spack:</span>
+<span class="s">  specs:</span>
+<span class="s">    - hdf5@1.14 +mpi</span>
+<span class="s">    - fftw</span>
+<span class="s">  view: true</span>
+<span class="s">EOF</span>
+_libs_inline_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or inline the manifest with a here-doc when it is short and experiment-specific.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"libs-inline"</span><span class="w"> </span>_libs_inline_setup<span class="w"> </span><span class="s2">"Build deps from an inline manifest."</span>
+<span class="nb">knit_with_spack_env</span><span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="s">spack:</span>
+<span class="s">  specs:</span>
+<span class="s">    - hdf5@1.14 +mpi</span>
+<span class="s">    - fftw</span>
+<span class="s">  view: true</span>
+<span class="s">EOF</span>
+_libs_inline_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A setup may declare at most one Spack environment, and <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code> is
+mutually exclusive with the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> sugar (which funnels through
+it). As with specs, the concrete manifest and lockfile are captured as provenance
+outputs on the setup’s table. The Spack itself is knit’s own, installed under
+<code class="docutils literal notranslate"><span class="pre">.knit/</span></code> at <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> time — declaring any Spack-backed setup makes
+bootstrap detect that the experiment needs Spack and provision it, and
+<code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--spack</span></code> provisions (and pins) it explicitly.</p>
+</section>
+<section id="build-an-mpi-environment-and-provide-a-launcher">
+<h2>Build an MPI environment and provide a launcher<a class="headerlink" href="#build-an-mpi-environment-and-provide-a-launcher" title="Link to this heading">#</a></h2>
+<p><em>Ask Spack for an MPI provider in a setup and expose it as the run launcher.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code></p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">mpi</span></code> (or a concrete provider like <code class="docutils literal notranslate"><span class="pre">mpich</span></code> or <code class="docutils literal notranslate"><span class="pre">openmpi</span></code>) to a setup’s
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> so Spack provisions an MPI implementation as part of the
+environment. Calling <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code> then advertises that Spack-built
+MPI as the launcher, so <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> can place ranks even on a machine that has no
+MPI of its own:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
+<span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
+<span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
+<span class="c1"># nothing left to build.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nd">@provides_launcher</span>
+_mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
+<span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
+<span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
+<span class="c1"># nothing left to build.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span>_mpienv_setup<span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
+<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nb">knit_provides_launcher</span>
+_mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because knit activates the Spack environment before the setup body runs, the MPI
+compilers and launcher (<code class="docutils literal notranslate"><span class="pre">mpicc</span></code> / <code class="docutils literal notranslate"><span class="pre">mpirun</span></code>) are already on <code class="docutils literal notranslate"><span class="pre">PATH</span></code> — the
+body here has nothing left to do. In a real setup this is exactly where the
+environment pays off: a downstream build (say a CMake <code class="docutils literal notranslate"><span class="pre">find_package(MPI)</span></code>) now
+finds the Spack MPI and produces a parallel binary, with no MPI-specific logic in
+the setup itself.</p>
+<p>The provided launcher is detected once at setup-build time and frozen into the
+setup’s <code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code> (recorded as the <code class="docutils literal notranslate"><span class="pre">__mpi_launcher__</span></code> provenance output).
+It sits <em>below</em> a machine’s own launcher in precedence, so a profile’s launcher
+still wins when one exists; it only fills the gap on a machine that offers none.</p>
+</section>
+<section id="run-spack-directly">
+<span id="stitch-run-spack-directly"></span><h2>Run Spack directly<a class="headerlink" href="#run-spack-directly" title="Link to this heading">#</a></h2>
+<p><em>Drive the experiment’s private Spack with the knit spack wrapper.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">spack</span></code>, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span></code> is a thin wrapper that forwards every argument verbatim to the
+experiment’s private Spack, so you can inspect and drive it exactly as you would a
+system Spack — without it leaking onto your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>find<span class="w">            </span><span class="c1"># what is installed</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>spec<span class="w"> </span>zlib<span class="w">       </span><span class="c1"># how a spec would concretize</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>--help<span class="w">          </span><span class="c1"># Spack's own help, forwarded</span>
+</pre></div>
+</div>
+<p>Because the wrapper forwards <code class="docutils literal notranslate"><span class="pre">--help</span></code> too, <code class="docutils literal notranslate"><span class="pre">./exp.sh</span> <span class="pre">spack</span> <span class="pre">--help</span></code> shows
+Spack’s help rather than knit’s. The private Spack is provisioned automatically
+the first time a setup declares a Spack environment; run <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span></code> before any
+such setup and it fails with a hint to bootstrap with <code class="docutils literal notranslate"><span class="pre">--spack</span></code> (or to add a
+Spack-backed setup). To provision it eagerly and pin its version at bootstrap,
+see the <em>Pin the Spack version</em> recipe in the Bootstrap category.</p>
+</section>
+<section id="isolate-spack-from-your-personal-config">
+<span id="stitch-isolate-spack-config"></span><h2>Isolate Spack from your personal config<a class="headerlink" href="#isolate-spack-from-your-personal-config" title="Link to this heading">#</a></h2>
+<p><em>Knit’s Spack ignores ~/.spack and site config so the environment stays reproducible.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">spack</span></code></p>
+<p>The Spack that knit provisions is deliberately walled off from your personal and
+site-wide Spack configuration, so an experiment concretizes the same way no matter
+whose machine or account it runs on. Knit exports two environment variables for
+its Spack:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SPACK_DISABLE_LOCAL_CONFIG=true</span></code> — Spack ignores both the system scope and
+your <code class="docutils literal notranslate"><span class="pre">~/.spack</span></code> user scope.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SPACK_USER_CONFIG_PATH</span></code> pointing at a directory inside the experiment
+(<code class="docutils literal notranslate"><span class="pre">.knit/.spack</span></code>) — any user-scope config Spack reads or writes lives with
+the experiment, not in your home directory.</p></li>
+</ul>
+<p>The upshot is that what the experiment builds is determined only by the
+specs/manifest in the script plus knit’s own config under <code class="docutils literal notranslate"><span class="pre">.knit</span></code> — both of
+which travel with the experiment — so a stray package preference, mirror, or
+compiler default in <code class="docutils literal notranslate"><span class="pre">~/.spack</span></code> can neither leak into nor silently change the
+build. To customize the environment, put the settings in the manifest (see <em>Use a
+full Spack manifest</em>) or edit knit’s own scope with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span> <span class="pre">config</span></code>, rather
+than in <code class="docutils literal notranslate"><span class="pre">~/.spack</span></code>.</p>
+</section>
+<section id="pin-the-spack-version">
+<h2>Pin the Spack version<a class="headerlink" href="#pin-the-spack-version" title="Link to this heading">#</a></h2>
+<p><em>Provision a specific Spack (and package repo) git ref at bootstrap.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p>Knit provisions a private Spack <strong>automatically</strong> the first time a setup declares
+a Spack environment, defaulting to the latest Spack release. Pass <code class="docutils literal notranslate"><span class="pre">--spack</span></code> to
+pin a specific Spack git ref (a tag, branch, or commit) instead, and
+<code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> to pin the package repository ref:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--spack<span class="w"> </span>v0.22.1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--spack-packages<span class="w"> </span>v2024.11.0
+</pre></div>
+</div>
+<p>Both take a git ref as their value; an empty value (the default) uses the latest
+release. Passing <code class="docutils literal notranslate"><span class="pre">--spack</span></code> also forces Spack to be provisioned now rather than
+lazily on first use.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="resources.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Resources</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="jobs.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Jobs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-a-setup-s-spack-specs">Pin a setup’s Spack specs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-full-spack-manifest">Use a full Spack manifest</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-spack-directly">Run Spack directly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolate-spack-from-your-personal-config">Isolate Spack from your personal config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

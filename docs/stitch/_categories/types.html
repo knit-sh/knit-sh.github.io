@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Types &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/types';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/types.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setup" href="setup.html" />
+    <link rel="prev" title="Parameters" href="parameters.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/types.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/types.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Types</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-annotate-a-parameter">Type-annotate a parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-and-use-an-enum">Define and use an enum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-a-file-or-directory-parameter">Checksum a file or directory parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-knit-types-map-to-sql-columns">How knit types map to SQL columns</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="types">
+<h1>Types<a class="headerlink" href="#types" title="Link to this heading">#</a></h1>
+<p>Annotating parameters with types and defining enums.</p>
+<section id="type-annotate-a-parameter">
+<span id="stitch-type-annotate-parameter"></span><h2>Type-annotate a parameter<a class="headerlink" href="#type-annotate-a-parameter" title="Link to this heading">#</a></h2>
+<p><em>Give a parameter a type so knit validates its value automatically.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_type_check</span></code></p>
+<p>Every parameter carries a <code class="docutils literal notranslate"><span class="pre">name:type</span></code> annotation. The type is not just
+documentation: knit validates the value against it before the body runs and
+rejects a mismatch with a clear error. The type also chooses the parameter’s
+database column affinity (<code class="docutils literal notranslate"><span class="pre">integer</span></code> → <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>, <code class="docutils literal notranslate"><span class="pre">real</span></code> → <code class="docutils literal notranslate"><span class="pre">REAL</span></code>,
+everything else → <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ":type" on a parameter is enforced: knit rejects a value that does not match</span>
+<span class="c1"># the type before the body runs (and the type also picks the database column type).</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"resize"</span><span class="w"> </span><span class="s2">"Resize an image to a width and scale factor."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Target width in pixels."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"factor:real"</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w"> </span><span class="s2">"Scale factor applied to the width."</span>
+_resize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"width=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2"> factor=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"factor"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ":type" on a parameter is enforced: knit rejects a value that does not match</span>
+<span class="c1"># the type before the body runs (and the type also picks the database column type).</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"resize"</span><span class="w"> </span>_resize<span class="w"> </span><span class="s2">"Resize an image to a width and scale factor."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Target width in pixels."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"factor:real"</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w"> </span><span class="s2">"Scale factor applied to the width."</span>
+_resize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"width=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2"> factor=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"factor"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">resize</span> <span class="pre">--width</span> <span class="pre">big</span></code> fails with <em>Parameter –width of “resize” expects
+a value of type “integer” (got “big”)</em> — the body never runs. The built-in types
+are <code class="docutils literal notranslate"><span class="pre">integer</span></code>, <code class="docutils literal notranslate"><span class="pre">real</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">file</span></code>,
+<code class="docutils literal notranslate"><span class="pre">directory</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, and <code class="docutils literal notranslate"><span class="pre">uuid</span></code>, plus
+the aliases <code class="docutils literal notranslate"><span class="pre">int</span></code> (→ <code class="docutils literal notranslate"><span class="pre">integer</span></code>), <code class="docutils literal notranslate"><span class="pre">float</span></code>/<code class="docutils literal notranslate"><span class="pre">double</span></code> (→ <code class="docutils literal notranslate"><span class="pre">real</span></code>), <code class="docutils literal notranslate"><span class="pre">bool</span></code>
+(→ <code class="docutils literal notranslate"><span class="pre">boolean</span></code>), and <code class="docutils literal notranslate"><span class="pre">dir</span></code> (→ <code class="docutils literal notranslate"><span class="pre">directory</span></code>). A flag declared with
+<code class="docutils literal notranslate"><span class="pre">knit_with_flag</span></code> is implicitly <code class="docutils literal notranslate"><span class="pre">boolean</span></code> and takes no annotation. A <code class="docutils literal notranslate"><span class="pre">file</span></code>
+or <code class="docutils literal notranslate"><span class="pre">directory</span></code> parameter is also checked for existence at runtime and, by
+default, fingerprinted with a content checksum (see <em>Checksum a file or directory
+parameter</em>).</p>
+<p>When a value does <em>not</em> come from a declared parameter — a computed value, an
+environment variable, or a trailing argument — validate it yourself with
+<code class="docutils literal notranslate"><span class="pre">knit_type_check</span> <span class="pre">&lt;type&gt;</span> <span class="pre">&lt;value&gt;</span></code>, which returns success (0) or failure (1):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># knit_type_check &lt;type&gt; &lt;value&gt; validates a value by hand (returns 0/1). Use it</span>
+<span class="c1"># for values that are not declared parameters -- a computed value, an environment</span>
+<span class="c1"># variable, or a trailing argument.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"budget"</span><span class="w"> </span><span class="s2">"Report whether a budget looks like a number."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"amount:string"</span><span class="w"> </span><span class="s2">"The amount to inspect."</span>
+_budget<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>amount
+<span class="w">    </span><span class="nv">amount</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"amount"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">knit_type_check</span><span class="w"> </span><span class="s2">"real"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2"> is a number"</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2"> is not a number"</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># knit_type_check &lt;type&gt; &lt;value&gt; validates a value by hand (returns 0/1). Use it</span>
+<span class="c1"># for values that are not declared parameters -- a computed value, an environment</span>
+<span class="c1"># variable, or a trailing argument.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"budget"</span><span class="w"> </span>_budget<span class="w"> </span><span class="s2">"Report whether a budget looks like a number."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"amount:string"</span><span class="w"> </span><span class="s2">"The amount to inspect."</span>
+_budget<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>amount
+<span class="w">    </span><span class="nv">amount</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"amount"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">knit_type_check</span><span class="w"> </span><span class="s2">"real"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2"> is a number"</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">amount</span><span class="si">}</span><span class="s2"> is not a number"</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-and-use-an-enum">
+<span id="stitch-define-and-use-enum"></span><h2>Define and use an enum<a class="headerlink" href="#define-and-use-an-enum" title="Link to this heading">#</a></h2>
+<p><em>Restrict a parameter to a fixed set of values with a custom enum type.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_enum</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_enum_values</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code></p>
+<p>To restrict a parameter to a fixed set of values, define an enum with
+<code class="docutils literal notranslate"><span class="pre">knit_enum</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;...</span></code> and then use its name as a parameter type.
+Knit validates the value against the allowed set for you, exactly as it does for
+the built-in types.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an enum once, then use its name as a parameter type. Knit validates the</span>
+<span class="c1"># value against the allowed set and lists the accepted values on error.</span>
+<span class="nd">@enum</span><span class="w"> </span><span class="s2">"format"</span><span class="w"> </span><span class="s2">"png"</span><span class="w"> </span><span class="s2">"jpeg"</span><span class="w"> </span><span class="s2">"webp"</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"convert"</span><span class="w"> </span><span class="s2">"Convert an image to another format."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"to:format"</span><span class="w"> </span><span class="s2">"Target format (one of: </span><span class="k">$(</span><span class="nb">knit_enum_values</span><span class="w"> </span><span class="s2">"format"</span><span class="w"> </span><span class="s2">", "</span><span class="k">)</span><span class="s2">)."</span>
+_convert<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"converting to </span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"to"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an enum once, then use its name as a parameter type. Knit validates the</span>
+<span class="c1"># value against the allowed set and lists the accepted values on error.</span>
+<span class="nb">knit_enum</span><span class="w"> </span><span class="s2">"format"</span><span class="w"> </span><span class="s2">"png"</span><span class="w"> </span><span class="s2">"jpeg"</span><span class="w"> </span><span class="s2">"webp"</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"convert"</span><span class="w"> </span>_convert<span class="w"> </span><span class="s2">"Convert an image to another format."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"to:format"</span><span class="w"> </span><span class="s2">"Target format (one of: </span><span class="k">$(</span><span class="nb">knit_enum_values</span><span class="w"> </span><span class="s2">"format"</span><span class="w"> </span><span class="s2">", "</span><span class="k">)</span><span class="s2">)."</span>
+_convert<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"converting to </span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"to"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">to:format</span></code> reads as “a parameter named <code class="docutils literal notranslate"><span class="pre">to</span></code> of the enum type
+<code class="docutils literal notranslate"><span class="pre">format</span></code>”. Calling <code class="docutils literal notranslate"><span class="pre">convert</span> <span class="pre">--to</span> <span class="pre">gif</span></code> fails with <em>Parameter –to of
+“convert” expects one of: png, jpeg, webp (got “gif”)</em> — the error lists the
+accepted values in the order they were defined. <code class="docutils literal notranslate"><span class="pre">knit_enum_values</span> <span class="pre">&lt;name&gt;</span></code>
+prints an enum’s values (one per line, or joined by a separator when you pass
+one, as in the parameter description above), which is handy for building help
+text or looping over the choices.</p>
+</section>
+<section id="checksum-a-file-or-directory-parameter">
+<span id="stitch-checksum-a-file-parameter"></span><h2>Checksum a file or directory parameter<a class="headerlink" href="#checksum-a-file-or-directory-parameter" title="Link to this heading">#</a></h2>
+<p><em>Record the path and a sha256 content checksum of a file/directory input or output, and opt out with –no-checksum.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code></p>
+<p>A parameter or output typed <code class="docutils literal notranslate"><span class="pre">file</span></code> or <code class="docutils literal notranslate"><span class="pre">directory</span></code> (alias <code class="docutils literal notranslate"><span class="pre">dir</span></code>) is more
+than a string: knit checks it exists at runtime and, by default, fingerprints its
+content with a sha256. Declare them as usual — no extra call is needed:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A file/directory parameter is checked for existence and, unless declared</span>
+<span class="c1"># --no-checksum, fingerprinted: knit records the path AND a sha256 of the content</span>
+<span class="c1"># in a companion &lt;name&gt;_checksum column. An input is hashed before the body runs</span>
+<span class="c1"># (the digest reflects the artifact as consumed); an output after it returns.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
+<span class="nd">@with_table</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+_report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
+<span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>work
+<span class="w">    </span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">input</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span>work/lines.txt
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"workdir"</span><span class="w"> </span><span class="s2">"work"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'lines=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>work/lines.txt<span class="k">)</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span>summary.txt
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"summary"</span><span class="w"> </span><span class="s2">"summary.txt"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A file/directory parameter is checked for existence and, unless declared</span>
+<span class="c1"># --no-checksum, fingerprinted: knit records the path AND a sha256 of the content</span>
+<span class="c1"># in a companion &lt;name&gt;_checksum column. An input is hashed before the body runs</span>
+<span class="c1"># (the digest reflects the artifact as consumed); an output after it returns.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
+<span class="nb">knit_with_table</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+_report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
+<span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>work
+<span class="w">    </span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">input</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span>work/lines.txt
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"workdir"</span><span class="w"> </span><span class="s2">"work"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'lines=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>work/lines.txt<span class="k">)</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span>summary.txt
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"summary"</span><span class="w"> </span><span class="s2">"summary.txt"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code> in place, each such parameter records <strong>two</strong> columns:
+the path (<code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">summary</span></code>, <code class="docutils literal notranslate"><span class="pre">workdir</span></code>) and, next to it, a companion
+<code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_checksum</span></code> holding <code class="docutils literal notranslate"><span class="pre">sha256:&lt;hex&gt;</span></code>. So <code class="docutils literal notranslate"><span class="pre">report</span> <span class="pre">--input</span> <span class="pre">data.txt</span></code>
+leaves a row whose <code class="docutils literal notranslate"><span class="pre">input</span></code> is <code class="docutils literal notranslate"><span class="pre">data.txt</span></code> and whose <code class="docutils literal notranslate"><span class="pre">input_checksum</span></code> is the
+digest of that file’s bytes.</p>
+<p>The digest is computed off the timed path and reflects the artifact as used: an
+<strong>input</strong> is hashed before the body runs, an <strong>output</strong> after it returns. A
+<code class="docutils literal notranslate"><span class="pre">directory</span></code> is hashed recursively over its structure and contents. Existence is
+enforced by direction: a missing required input is fatal before the body runs; a
+declared output missing on a successful completion is an error.</p>
+<p>Append <code class="docutils literal notranslate"><span class="pre">--no-checksum</span></code> to record the path only, skipping the hash — useful for a
+large or volatile artifact whose content you do not want to fingerprint (here the
+<code class="docutils literal notranslate"><span class="pre">workdir</span></code> scratch tree). Such a declaration has no <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;_checksum</span></code> column,
+but existence is still checked. <code class="docutils literal notranslate"><span class="pre">--no-checksum</span></code> on a non-file/directory type is
+a declaration error.</p>
+</section>
+<section id="how-knit-types-map-to-sql-columns">
+<h2>How knit types map to SQL columns<a class="headerlink" href="#how-knit-types-map-to-sql-columns" title="Link to this heading">#</a></h2>
+<p><em>A recorded column’s SQL affinity follows its knit type — integer to INTEGER, real to REAL, everything else to TEXT.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code></p>
+<p>When a command declares a table (see <em>Record invocations in a table</em>), knit
+derives each column’s SQL type from the knit type of the parameter, flag, or
+output it records. The mapping is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> (alias <code class="docutils literal notranslate"><span class="pre">int</span></code>) → <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> (aliases <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>) → <code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></li>
+<li><p><strong>everything else</strong> → <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> — including <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>,
+<code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, <code class="docutils literal notranslate"><span class="pre">uuid</span></code>,
+and any enum you define.</p></li>
+</ul>
+<p>Only <code class="docutils literal notranslate"><span class="pre">integer</span></code> and <code class="docutils literal notranslate"><span class="pre">real</span></code> get a numeric affinity, so numeric comparison and
+aggregation (<code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>) work as expected on those columns.
+Everything else is stored verbatim as text — a <code class="docutils literal notranslate"><span class="pre">boolean</span></code> is the string
+<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, and a <code class="docutils literal notranslate"><span class="pre">date</span></code>/<code class="docutils literal notranslate"><span class="pre">datetime</span></code> is its literal string — so
+compare those as text or with SQLite’s date functions.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> column knit adds first is always <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> (a uuid). Because the
+mapping is by type, annotating a parameter or output well (see <em>Type-annotate a
+parameter</em>) is what gives you a well-typed column: the <code class="docutils literal notranslate"><span class="pre">add</span></code> command in
+<em>Record invocations in a table</em> declares <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and a <code class="docutils literal notranslate"><span class="pre">total</span></code> output
+all as <code class="docutils literal notranslate"><span class="pre">integer</span></code>, so those three columns are <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code> and their sums are
+numeric.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="parameters.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Parameters</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="setup.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-annotate-a-parameter">Type-annotate a parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-and-use-an-enum">Define and use an enum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-a-file-or-directory-parameter">Checksum a file or directory parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-knit-types-map-to-sql-columns">How knit types map to SQL columns</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

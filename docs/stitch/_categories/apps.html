@@ -1,0 +1,884 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Apps &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/apps';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/apps.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Recording" href="recording.html" />
+    <link rel="prev" title="Jobs" href="jobs.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/apps.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/apps.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Apps</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-an-mpi-app">Register an MPI app</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-a-rank-s-place-in-the-mpi-world">Read a rank’s place in the MPI world</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-an-app-from-a-job">Launch an app from a job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-process-placement">Control process placement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-launcher-backend">Pick a launcher backend</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="apps">
+<h1>Apps<a class="headerlink" href="#apps" title="Link to this heading">#</a></h1>
+<p>Launching MPI applications across a job’s allocation with knit run.</p>
+<section id="register-an-mpi-app">
+<span id="stitch-register-an-mpi-app"></span><h2>Register an MPI app<a class="headerlink" href="#register-an-mpi-app" title="Link to this heading">#</a></h2>
+<p><em>Declare an app with knit_register_app; its body runs once per MPI rank, and knit records outputs from rank 0 only.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_app</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code></p>
+<p>An <strong>app</strong> is the unit <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> launches across an MPI world: knit starts one
+copy of its body per rank. Register it with <code class="docutils literal notranslate"><span class="pre">knit_register_app</span></code> — it takes
+parameters, types, and outputs exactly like a job or a plain command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"c-re:real"</span><span class="w">        </span><span class="s2">"-0.8"</span><span class="w">   </span><span class="s2">"Real part of the Julia constant c."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"c-im:real"</span><span class="w">        </span><span class="s2">"0.156"</span><span class="w">  </span><span class="s2">"Imaginary part of the Julia constant c."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"max-iter:integer"</span><span class="w"> </span><span class="s2">"1000"</span><span class="w">   </span><span class="s2">"Maximum iterations per pixel."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"colormap:string"</span><span class="w">  </span><span class="s2">"fire"</span><span class="w">   </span><span class="s2">"Palette: grayscale | fire | ocean."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"output:string"</span><span class="w">             </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">      </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+_render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_re</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-re"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_im</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-im"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">max_iter</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"max-iter"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">colormap</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"colormap"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"output"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># This body runs on EVERY rank: knit run launched one copy per rank, and</span>
+<span class="w">    </span><span class="c1"># julia-fractal --- called as a child, not exec'd --- inherits the launcher's</span>
+<span class="w">    </span><span class="c1"># MPI environment, so the copies form one MPI world and split the image. Only</span>
+<span class="w">    </span><span class="c1"># rank 0 writes the PNG and prints the inside= line.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="k">$(</span>julia-fractal<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">height</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_re</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_im</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">max_iter</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">output</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">colormap</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Record the metric. Knit records outputs only from rank 0 (it suppresses</span>
+<span class="w">    </span><span class="c1"># recording on the other ranks), so this single knit_output writes one row no</span>
+<span class="w">    </span><span class="c1"># matter how many ranks ran. KNIT_MPI_RANK / KNIT_MPI_SIZE / KNIT_MPI_LOCAL_RANK</span>
+<span class="w">    </span><span class="c1"># are available too if a body needs to branch on its own rank.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>inside
+<span class="w">    </span><span class="nv">inside</span><span class="o">=</span><span class="k">$(</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/.*inside=\([0-9]*\).*/\1/p'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"inside"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">inside</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_app<span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"c-re:real"</span><span class="w">        </span><span class="s2">"-0.8"</span><span class="w">   </span><span class="s2">"Real part of the Julia constant c."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"c-im:real"</span><span class="w">        </span><span class="s2">"0.156"</span><span class="w">  </span><span class="s2">"Imaginary part of the Julia constant c."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"max-iter:integer"</span><span class="w"> </span><span class="s2">"1000"</span><span class="w">   </span><span class="s2">"Maximum iterations per pixel."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"colormap:string"</span><span class="w">  </span><span class="s2">"fire"</span><span class="w">   </span><span class="s2">"Palette: grayscale | fire | ocean."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"output:string"</span><span class="w">             </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">      </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+_render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_re</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-re"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_im</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-im"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">max_iter</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"max-iter"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">colormap</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"colormap"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">output</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"output"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># This body runs on EVERY rank: knit run launched one copy per rank, and</span>
+<span class="w">    </span><span class="c1"># julia-fractal --- called as a child, not exec'd --- inherits the launcher's</span>
+<span class="w">    </span><span class="c1"># MPI environment, so the copies form one MPI world and split the image. Only</span>
+<span class="w">    </span><span class="c1"># rank 0 writes the PNG and prints the inside= line.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="k">$(</span>julia-fractal<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">height</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_re</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_im</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">max_iter</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">output</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">colormap</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Record the metric. Knit records outputs only from rank 0 (it suppresses</span>
+<span class="w">    </span><span class="c1"># recording on the other ranks), so this single knit_output writes one row no</span>
+<span class="w">    </span><span class="c1"># matter how many ranks ran. KNIT_MPI_RANK / KNIT_MPI_SIZE / KNIT_MPI_LOCAL_RANK</span>
+<span class="w">    </span><span class="c1"># are available too if a body needs to branch on its own rank.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>inside
+<span class="w">    </span><span class="nv">inside</span><span class="o">=</span><span class="k">$(</span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">'s/.*inside=\([0-9]*\).*/\1/p'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1<span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"inside"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">inside</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The body above runs on <strong>every rank</strong>. It calls <code class="docutils literal notranslate"><span class="pre">julia-fractal</span></code> as a child
+process (not <code class="docutils literal notranslate"><span class="pre">exec</span></code>), so that child inherits the launcher’s MPI environment and
+the copies join one <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> and split the work. A body that needs to
+branch on its own rank reads the environment knit normalizes for it — see
+<em>Read a rank’s place in the MPI world</em>.</p>
+<p>Recording is automatic but <strong>rank-0 only</strong>: knit suppresses row and output
+recording on every rank but rank 0, so a single <code class="docutils literal notranslate"><span class="pre">knit_output</span></code> (see the
+<code class="docutils literal notranslate"><span class="pre">inside</span></code> metric above) writes one row no matter how many ranks ran. You do not
+need to guard it with a rank check.</p>
+<p>An app is not submitted directly — a job launches it with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> (see
+<em>Launch an app from a job</em>).</p>
+</section>
+<section id="read-a-rank-s-place-in-the-mpi-world">
+<span id="stitch-read-the-mpi-environment"></span><h2>Read a rank’s place in the MPI world<a class="headerlink" href="#read-a-rank-s-place-in-the-mpi-world" title="Link to this heading">#</a></h2>
+<p><em>An app body branches on its own rank via the normalized KNIT_MPI_RANK, KNIT_MPI_SIZE, and KNIT_MPI_LOCAL_RANK.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_SIZE</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code></p>
+<p>An app body runs once per rank. When it needs to know <em>which</em> rank it is — to
+split work, or to let one rank do something the others don’t — it reads the
+three environment variables knit exports into every rank:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code> — this rank’s index in <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code> (0-based).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_SIZE</span></code> — the total number of ranks in <code class="docutils literal notranslate"><span class="pre">MPI_COMM_WORLD</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code> — this rank’s index among the ranks on its own node.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_MPI_RANK</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'world has %s ranks\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_MPI_SIZE</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p>Knit fills these from whichever launcher actually ran — Open MPI
+(<code class="docutils literal notranslate"><span class="pre">OMPI_COMM_WORLD_*</span></code>), MPICH/Hydra (<code class="docutils literal notranslate"><span class="pre">PMI_*</span></code>), Slurm (<code class="docutils literal notranslate"><span class="pre">SLURM_PROCID</span></code> /
+<code class="docutils literal notranslate"><span class="pre">SLURM_NTASKS</span></code> / <code class="docutils literal notranslate"><span class="pre">SLURM_LOCALID</span></code>), PALS (<code class="docutils literal notranslate"><span class="pre">PALS_*</span></code>), and so on. Reading the
+normalized <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_*</span></code> names means the same app body works unchanged across
+backends, instead of hard-coding one launcher’s variables.</p>
+<p>On a laptop (the <code class="docutils literal notranslate"><span class="pre">none</span></code> launcher, a single process) <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">KNIT_MPI_SIZE</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>, so a body
+written against these variables still runs correctly with no launcher at all.</p>
+<p>You rarely need to guard <code class="docutils literal notranslate"><span class="pre">knit_output</span></code> with a rank check: knit already records
+only from rank 0 (see <em>Register an MPI app</em>). These variables are for the app’s
+<em>own</em> logic — deciding which slice of the problem each rank computes.</p>
+</section>
+<section id="launch-an-app-from-a-job">
+<span id="stitch-launch-an-app-from-a-job"></span><h2>Launch an app from a job<a class="headerlink" href="#launch-an-app-from-a-job" title="Link to this heading">#</a></h2>
+<p><em>Call knit run –procs N – &lt;app&gt; from a job body to launch an app across the job’s allocation.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_app</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_job_nodecount</span></code></p>
+<p>Apps are launched from inside a <strong>job</strong> body with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code>. The job holds the
+scheduler allocation; <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> places the app’s ranks across it:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
+<span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"c-re:real"</span><span class="w">        </span><span class="s2">"-0.8"</span><span class="w">   </span><span class="s2">"Real part of the Julia constant c."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"c-im:real"</span><span class="w">        </span><span class="s2">"0.156"</span><span class="w">  </span><span class="s2">"Imaginary part of the Julia constant c."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"max-iter:integer"</span><span class="w"> </span><span class="s2">"1000"</span><span class="w">   </span><span class="s2">"Maximum iterations per pixel."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"colormap:string"</span><span class="w">  </span><span class="s2">"fire"</span><span class="w">   </span><span class="s2">"Palette: grayscale | fire | ocean."</span>
+_julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_re</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-re"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_im</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-im"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">max_iter</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"max-iter"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">colormap</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"colormap"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">png</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/fractal.png"</span>
+
+<span class="w">    </span><span class="c1"># Report where the scheduler placed this job.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'The job is running on hosts: %s\n'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span>--separator<span class="w"> </span><span class="s1">', '</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Was (Step 4): julia-fractal "${width}" ... "${png}" "${colormap}"</span>
+<span class="w">    </span><span class="c1"># Now: launch the render app instead of running the binary here, with one rank</span>
+<span class="w">    </span><span class="c1"># per allocated node. knit_job_nodecount is 1 on a laptop, so this runs</span>
+<span class="w">    </span><span class="c1"># anywhere; on a cluster it scales with the nodes the job was given (submit</span>
+<span class="w">    </span><span class="c1"># --nodes N). The values we used to pass positionally become named parameters.</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_nodecount</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--width<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--height<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">height</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--c-re<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_re</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--c-im<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_im</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-iter<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">max_iter</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--colormap<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">colormap</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
+<span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"c-re:real"</span><span class="w">        </span><span class="s2">"-0.8"</span><span class="w">   </span><span class="s2">"Real part of the Julia constant c."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"c-im:real"</span><span class="w">        </span><span class="s2">"0.156"</span><span class="w">  </span><span class="s2">"Imaginary part of the Julia constant c."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"max-iter:integer"</span><span class="w"> </span><span class="s2">"1000"</span><span class="w">   </span><span class="s2">"Maximum iterations per pixel."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"colormap:string"</span><span class="w">  </span><span class="s2">"fire"</span><span class="w">   </span><span class="s2">"Palette: grayscale | fire | ocean."</span>
+_julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
+<span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">height</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"height"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_re</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-re"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">c_im</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"c-im"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">max_iter</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"max-iter"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nv">colormap</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"colormap"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">png</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/fractal.png"</span>
+
+<span class="w">    </span><span class="c1"># Report where the scheduler placed this job.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'The job is running on hosts: %s\n'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span>--separator<span class="w"> </span><span class="s1">', '</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># Was (Step 4): julia-fractal "${width}" ... "${png}" "${colormap}"</span>
+<span class="w">    </span><span class="c1"># Now: launch the render app instead of running the binary here, with one rank</span>
+<span class="w">    </span><span class="c1"># per allocated node. knit_job_nodecount is 1 on a laptop, so this runs</span>
+<span class="w">    </span><span class="c1"># anywhere; on a cluster it scales with the nodes the job was given (submit</span>
+<span class="w">    </span><span class="c1"># --nodes N). The values we used to pass positionally become named parameters.</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_nodecount</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--width<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--height<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">height</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--c-re<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_re</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--c-im<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">c_im</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-iter<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">max_iter</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--colormap<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">colormap</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The launch line is the last statement of the job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_nodecount</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--width<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">width</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p>Everything before the <code class="docutils literal notranslate"><span class="pre">--</span></code> configures the launch (how many ranks, where);
+everything after names the app and its own parameters. Deriving <code class="docutils literal notranslate"><span class="pre">--procs</span></code> from
+<code class="docutils literal notranslate"><span class="pre">knit_job_nodecount</span></code> makes the same body scale: it is <code class="docutils literal notranslate"><span class="pre">1</span></code> on a laptop (one
+local rank, no MPI needed) and grows to the node count on a cluster, set by
+<code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">--nodes</span> <span class="pre">N</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> records the launch as a row in the <code class="docutils literal notranslate"><span class="pre">runs</span></code> table — the resolved
+placement and the app name travel with it — and it must run <strong>inside a job</strong>
+(it reads the surrounding job’s allocation). See <em>Control process placement</em> to
+pin ranks precisely and <em>Pick a launcher backend</em> to choose the launcher.</p>
+</section>
+<section id="control-process-placement">
+<span id="stitch-control-process-placement"></span><h2>Control process placement<a class="headerlink" href="#control-process-placement" title="Link to this heading">#</a></h2>
+<p><em>Shape how knit run places ranks with –procs, –procs-per-node, –hostnames, and per-rank CPU/GPU binding options.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">run</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> takes a set of placement options, all before the <code class="docutils literal notranslate"><span class="pre">--</span></code>. Give as few
+or as many as you like: knit fills the rest from the job’s allocation and the
+machine’s per-node core count.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="m">32</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">8</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p><strong>How many ranks and where:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--procs</span></code> — total number of ranks. If omitted, knit uses one rank per
+allocated core (per-node core count × nodes), or one rank per node when the
+core count is unknown.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--procs-per-node</span></code> — ranks per node. If omitted, the launcher’s default
+distribution applies; <code class="docutils literal notranslate"><span class="pre">--procs</span></code> and <code class="docutils literal notranslate"><span class="pre">--procs-per-node</span></code> must be consistent
+with the node count (<code class="docutils literal notranslate"><span class="pre">--procs</span></code> divisible by <code class="docutils literal notranslate"><span class="pre">--procs-per-node</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--hostnames</span></code> — a comma-separated subset of the job’s allocated hosts to
+place on. Each must be one of the job’s hosts (see <code class="docutils literal notranslate"><span class="pre">knit_job_hostnames</span></code>);
+useful to run on part of a larger allocation.</p></li>
+</ul>
+<p><strong>Per-rank CPU and GPU binding</strong> (all optional, best-effort — each is
+translated to the chosen launcher’s native flag, and a backend with no
+equivalent warns and skips rather than failing):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-proc</span></code> — hardware threads reserved per rank.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--bind</span></code> — CPU binding policy. Knit normalizes the vocabulary
+<code class="docutils literal notranslate"><span class="pre">none</span> <span class="pre">|</span> <span class="pre">core</span> <span class="pre">|</span> <span class="pre">socket</span> <span class="pre">|</span> <span class="pre">numa</span> <span class="pre">|</span> <span class="pre">thread</span></code> to each launcher’s spelling; any other
+value is passed through verbatim.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-proc</span></code> — GPUs reserved per rank.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gpu-bind</span></code> — GPU binding policy, passed through to the launcher.</p></li>
+</ul>
+<p>The resolved placement is recorded with the run, so a run’s records show exactly
+how its ranks were laid out. For anything a flag doesn’t cover, pass launcher
+arguments verbatim (see <em>Pick a launcher backend</em>).</p>
+</section>
+<section id="pick-a-launcher-backend">
+<span id="stitch-pick-a-launcher-backend"></span><h2>Pick a launcher backend<a class="headerlink" href="#pick-a-launcher-backend" title="Link to this heading">#</a></h2>
+<p><em>Override the launcher knit run uses with –launcher, and pass launcher-native flags with –launcher-args.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> selects a launcher automatically — the one detected at bootstrap
+or set with <code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--launcher</span></code> (see <em>Select the MPI launcher</em>). Override it
+for a single launch with <code class="docutils literal notranslate"><span class="pre">--launcher</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--launcher<span class="w"> </span>openmpi<span class="w"> </span>--procs<span class="w"> </span><span class="m">16</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p>The supported backends are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code> — no launcher; runs the app as a single rank-0 process (rejects
+<code class="docutils literal notranslate"><span class="pre">--procs</span></code> &gt; 1 and remote hosts). This is the laptop default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openmpi</span></code> / <code class="docutils literal notranslate"><span class="pre">mpich</span></code> — MPI-native launchers (<code class="docutils literal notranslate"><span class="pre">mpirun</span></code> / <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slurm</span></code> / <code class="docutils literal notranslate"><span class="pre">pbs</span></code> / <code class="docutils literal notranslate"><span class="pre">pals</span></code> / <code class="docutils literal notranslate"><span class="pre">flux</span></code> — the scheduler’s own launcher
+(<code class="docutils literal notranslate"><span class="pre">srun</span></code>, PBS <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, PALS <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, <code class="docutils literal notranslate"><span class="pre">flux</span> <span class="pre">run</span></code>), which reads the
+allocation natively.</p></li>
+</ul>
+<p>Knit translates <code class="docutils literal notranslate"><span class="pre">--procs</span></code>, <code class="docutils literal notranslate"><span class="pre">--procs-per-node</span></code>, <code class="docutils literal notranslate"><span class="pre">--hostnames</span></code>, and the
+binding options into each backend’s native flags. When a flag isn’t covered, or
+you need a launcher option knit doesn’t model, pass it through verbatim with
+<code class="docutils literal notranslate"><span class="pre">--launcher-args</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--launcher<span class="w"> </span>openmpi<span class="w"> </span>--procs<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--launcher-args<span class="w"> </span><span class="s2">"--map-by socket --report-bindings"</span><span class="w"> </span>--<span class="w"> </span>render<span class="w"> </span>--output<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">png</span><span class="si">}</span><span class="s2">"</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--launcher-args</span></code> is the escape hatch: its contents are appended to the
+launcher command line unchanged, after the flags knit generates.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="jobs.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Jobs</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="recording.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Recording</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-an-mpi-app">Register an MPI app</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-a-rank-s-place-in-the-mpi-world">Read a rank’s place in the MPI world</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-an-app-from-a-job">Launch an app from a job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-process-placement">Control process placement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-launcher-backend">Pick a launcher backend</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

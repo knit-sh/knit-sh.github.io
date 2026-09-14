@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Results &amp; artifacts &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4e232474" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/artifacts';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/artifacts.html" />
+    <link rel="icon" href="../../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Provenance" href="provenance.html" />
+    <link rel="prev" title="Recording" href="recording.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recording.html">Recording</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Fstitch/_categories/artifacts.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/stitch/_categories/artifacts.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Results & artifacts</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-an-output-as-the-result">Mark an output as the result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-and-bind-an-artifact">Declare and bind an artifact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fan-out-a-variadic-output">Fan out a variadic output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-or-copy-an-artifact-into-place">Link or copy an artifact into place</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-an-artifact-back-to-its-producer">Trace an artifact back to its producer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walk-an-artifact-s-full-lineage">Walk an artifact’s full lineage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-an-artifact-kind">Declare an artifact kind</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consume-an-artifact-by-kind">Consume an artifact by kind</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consume-many-artifacts-with-a-glob">Consume many artifacts with a glob</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discover-and-merge-a-fan-out">Discover and merge a fan-out</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="results-artifacts">
+<h1>Results &amp; artifacts<a class="headerlink" href="#results-artifacts" title="Link to this heading">#</a></h1>
+<p>Marking the headline result of a command and declaring the files it produces as exportable artifacts.</p>
+<section id="mark-an-output-as-the-result">
+<h2>Mark an output as the result<a class="headerlink" href="#mark-an-output-as-the-result" title="Link to this heading">#</a></h2>
+<p><em>Flag the output that is what the experiment was for with –result, so knit describe highlights it.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code></p>
+<p>A command may record several outputs, but usually one of them is <em>the</em> result —
+what the experiment was for. Append <code class="docutils literal notranslate"><span class="pre">--result</span></code> to its <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code>
+declaration to say so:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">  </span><span class="s2">"An intermediate note (not a result)."</span>
+<span class="nd">@with_table</span>
+_measure<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>x
+<span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"x"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"square"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w">        </span><span class="c1"># the headline value result</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"note"</span><span class="w">   </span><span class="s2">"squared x=</span><span class="si">${</span><span class="nv">x</span><span class="si">}</span><span class="s2">"</span><span class="w">      </span><span class="c1"># recorded, but not a result</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'square=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span>_measure<span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">  </span><span class="s2">"An intermediate note (not a result)."</span>
+<span class="nb">knit_with_table</span>
+_measure<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>x
+<span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"x"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"square"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w">        </span><span class="c1"># the headline value result</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"note"</span><span class="w">   </span><span class="s2">"squared x=</span><span class="si">${</span><span class="nv">x</span><span class="si">}</span><span class="s2">"</span><span class="w">      </span><span class="c1"># recorded, but not a result</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'square=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--result</span></code> is orthogonal to the output’s type and to recording: it is valid on
+<strong>any</strong> output (a scalar such as <code class="docutils literal notranslate"><span class="pre">square</span></code> here, or a <code class="docutils literal notranslate"><span class="pre">file</span></code> / <code class="docutils literal notranslate"><span class="pre">directory</span></code>),
+and it changes no value and moves no file. It is a declaration-time marker only,
+so <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">describe</span></code> can surface it: the flagged output carries a <code class="docutils literal notranslate"><span class="pre">result</span></code> tag
+in the human and Markdown views and a <code class="docutils literal notranslate"><span class="pre">&quot;result&quot;:</span> <span class="pre">true</span></code> field in the JSON and
+YAML views (see <em>Describe the command tree</em>). An unflagged output such as
+<code class="docutils literal notranslate"><span class="pre">note</span></code> reports <code class="docutils literal notranslate"><span class="pre">result</span></code> false.</p>
+<p>Set the value from the body with <code class="docutils literal notranslate"><span class="pre">knit_output</span></code> exactly as for any output (see
+<em>Emit outputs from a command</em>); the flag lives on the declaration, not the
+emission. For a file or directory you also want packaged for export, declare it
+with <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span> <span class="pre">...</span> <span class="pre">--result</span></code> instead (see <em>Declare and bind an
+artifact</em>).</p>
+</section>
+<section id="declare-and-bind-an-artifact">
+<span id="stitch-declare-and-bind-an-artifact"></span><h2>Declare and bind an artifact<a class="headerlink" href="#declare-and-bind-an-artifact" title="Link to this heading">#</a></h2>
+<p><em>Declare a produced file with knit_with_output_artifact, write it under knit_artifact_dir, then bind it with knit_artifact.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code></p>
+<p>An <strong>artifact</strong> is a file or directory a command produces that you want kept for
+export — a dataset, a plot, a captured config. Declare it with
+<code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span> <span class="pre">&quot;name:type&quot;</span> <span class="pre">&quot;description&quot;</span></code> (the type must be <code class="docutils literal notranslate"><span class="pre">file</span></code> or
+<code class="docutils literal notranslate"><span class="pre">directory</span></code>), write it under the artifacts root reported by
+<code class="docutils literal notranslate"><span class="pre">knit_artifact_dir</span></code>, then bind it from the body with <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span><span class="s2">"Write a data table as an artifact."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"How many rows were written."</span><span class="w"> </span>--result
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"table:file"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_artifact_dir is the artifacts/ root: write into it, then declare.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'i,i2\n1,1\n2,4\n3,9\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"table.csv"</span><span class="w">          </span><span class="c1"># already inside artifacts/</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w">   </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"3"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span>_tabulate<span class="w"> </span><span class="s2">"Write a data table as an artifact."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"How many rows were written."</span><span class="w"> </span>--result
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"table:file"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_artifact_dir is the artifacts/ root: write into it, then declare.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'i,i2\n1,1\n2,4\n3,9\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"table.csv"</span><span class="w">          </span><span class="c1"># already inside artifacts/</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w">   </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"3"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;linked-path&gt;</span></code> you bind is always <strong>inside</strong> the artifacts root, given
+relative to it (<code class="docutils literal notranslate"><span class="pre">table.csv</span></code>) or as an absolute path within it; a path outside
+the root is fatal. knit records the artifact’s value as that
+<strong>artifacts-relative</strong> path, so the database holds no absolute machine path and
+the record stays relocatable. Add <code class="docutils literal notranslate"><span class="pre">--result</span></code> (as on <code class="docutils literal notranslate"><span class="pre">table</span></code> here) to mark the
+artifact as the headline result too (see <em>Mark an output as the result</em>). To
+give the artifact a semantic <em>kind</em> — so a consumer can require <em>a CSV table</em>
+rather than merely <em>a file</em> — register the kind first and name it here (see
+<em>Declare an artifact kind</em>).</p>
+<p>knit records each artifact as one row in the framework-owned <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> table
+— its <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, content <code class="docutils literal notranslate"><span class="pre">checksum</span></code>, and <code class="docutils literal notranslate"><span class="pre">result</span></code> flag
+— <strong>not</strong> as a column of the producing command’s own table, and links that row
+to the producing invocation with a <code class="docutils literal notranslate"><span class="pre">produced</span></code> provenance edge. The content
+digest is <strong>always</strong> recorded (there is no <code class="docutils literal notranslate"><span class="pre">--no-checksum</span></code> opt-out for an
+artifact). Because each artifact is its own node, <em>which invocation produced this
+file?</em> is a reverse walk of the <code class="docutils literal notranslate"><span class="pre">produced</span></code> edge (see <em>Trace an artifact back to
+its producer</em>), and <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">describe</span></code> lists artifacts in a dedicated Artifacts
+section, separate from the value outputs. The entry must exist and match its
+declared type when you bind it. Artifacts are <strong>write-once</strong>: binding the same
+path twice is fatal, so a command re-run that produces a fixed-named artifact
+needs a distinct <code class="docutils literal notranslate"><span class="pre">&lt;linked-path&gt;</span></code> per run. To create the entry from a file that
+lives elsewhere, use the <code class="docutils literal notranslate"><span class="pre">--link-from</span></code> / <code class="docutils literal notranslate"><span class="pre">--copy-from</span></code> shortcuts (see <em>Link
+or copy an artifact into place</em>).</p>
+</section>
+<section id="fan-out-a-variadic-output">
+<span id="stitch-fan-out-a-variadic-output"></span><h2>Fan out a variadic output<a class="headerlink" href="#fan-out-a-variadic-output" title="Link to this heading">#</a></h2>
+<p><em>Declare a *-quantified output artifact and bind the same name many times, so one command produces a whole collection.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact_dir</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code></p>
+<p>A scalar artifact binds once. Add a <code class="docutils literal notranslate"><span class="pre">*</span></code> (zero or more) or <code class="docutils literal notranslate"><span class="pre">+</span></code> (one or more)
+to the kind and the name becomes a <strong>collection</strong>: the body may bind it any
+number of times, and each binding is its own <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> row with its own
+<code class="docutils literal notranslate"><span class="pre">produced</span></code> edge. Use it when one run scatters a whole set of files — shards,
+frames, per-seed outputs — that you do not know the count of up front:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
+<span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
+<span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
+<span class="c1"># nothing.) Here one run scatters `n` CSV shards under the artifacts root.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"shard"</span><span class="w"> </span><span class="s2">"Fan out a range into several CSV shards."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"3"</span><span class="w"> </span><span class="s2">"How many shards to write."</span>
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile*"</span><span class="w"> </span><span class="s2">"The CSV shards (zero or more)."</span>
+<span class="nd">@with_table</span>
+_shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n<span class="w"> </span>out<span class="w"> </span>i
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>n<span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'id,sq\n%d,%d\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span>
+<span class="w">        </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span><span class="w">    </span><span class="c1"># bind one member of the collection</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s shard(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
+<span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
+<span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
+<span class="c1"># nothing.) Here one run scatters `n` CSV shards under the artifacts root.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"shard"</span><span class="w"> </span>_shard<span class="w"> </span><span class="s2">"Fan out a range into several CSV shards."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"3"</span><span class="w"> </span><span class="s2">"How many shards to write."</span>
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile*"</span><span class="w"> </span><span class="s2">"The CSV shards (zero or more)."</span>
+<span class="nb">knit_with_table</span>
+_shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n<span class="w"> </span>out<span class="w"> </span>i
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>n<span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'id,sq\n%d,%d\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span>
+<span class="w">        </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span><span class="w">    </span><span class="c1"># bind one member of the collection</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s shard(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The quantifier is the only difference from a scalar declaration. <code class="docutils literal notranslate"><span class="pre">*</span></code> accepts an
+empty fan-out (a run that produced nothing is not an error); <code class="docutils literal notranslate"><span class="pre">+</span></code> requires at
+least one binding and is fatal after the body if none was made, so it states <em>at
+least one of these must exist</em>. The write-once rule is unchanged: each member
+still needs a distinct artifacts-relative path (here <code class="docutils literal notranslate"><span class="pre">shard-${i}.csv</span></code>), so a
+loop that reuses one path is rejected. Every member is recorded exactly as a
+scalar artifact is — same <code class="docutils literal notranslate"><span class="pre">path</span></code>/<code class="docutils literal notranslate"><span class="pre">name</span></code>/<code class="docutils literal notranslate"><span class="pre">kind</span></code>/<code class="docutils literal notranslate"><span class="pre">checksum</span></code> columns, same
+<code class="docutils literal notranslate"><span class="pre">produced</span></code> edge — so the collection needs no special handling to trace,
+remove, or query; it is simply several artifact rows sharing one declared name.
+Consume the whole set at once with a variadic input (see <em>Consume many artifacts
+with a glob</em>).</p>
+</section>
+<section id="link-or-copy-an-artifact-into-place">
+<span id="stitch-link-or-copy-an-artifact"></span><h2>Link or copy an artifact into place<a class="headerlink" href="#link-or-copy-an-artifact-into-place" title="Link to this heading">#</a></h2>
+<p><em>Create an artifact from a file elsewhere with knit_artifact –copy-from (snapshot) or –link-from (reference in place).</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code></p>
+<p>When the bytes you want as an artifact already live somewhere else, let
+<code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code> place the entry for you instead of writing it under the
+artifacts root by hand. <code class="docutils literal notranslate"><span class="pre">--copy-from</span></code> snapshots the source into <code class="docutils literal notranslate"><span class="pre">artifacts/</span></code>;
+<code class="docutils literal notranslate"><span class="pre">--link-from</span></code> references it in place through an absolute-target symlink:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"collect"</span><span class="w"> </span><span class="s2">"Bind artifacts by copy and by reference."</span>
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"figure:file"</span><span class="w">  </span><span class="s2">"A small file, copied in for durability."</span>
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"dataset:file"</span><span class="w"> </span><span class="s2">"A large file, referenced in place."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_collect<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># --copy-from: snapshot a file into artifacts/ (missing parents are created).</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'a small figure\n'</span><span class="w"> </span>&gt;<span class="w"> </span>figure.svg
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"figure"</span><span class="w"> </span><span class="s2">"figure.svg"</span><span class="w"> </span>--copy-from<span class="w"> </span>figure.svg
+
+<span class="w">    </span><span class="c1"># --link-from: a big file on a fast filesystem is referenced by an</span>
+<span class="w">    </span><span class="c1"># absolute-target symlink (no copy); its content is still checksummed.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'big dataset bytes\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/big.dat"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"dataset"</span><span class="w"> </span><span class="s2">"dataset.dat"</span><span class="w"> </span>--link-from<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/big.dat"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'collected\n'</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"collect"</span><span class="w"> </span>_collect<span class="w"> </span><span class="s2">"Bind artifacts by copy and by reference."</span>
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"figure:file"</span><span class="w">  </span><span class="s2">"A small file, copied in for durability."</span>
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"dataset:file"</span><span class="w"> </span><span class="s2">"A large file, referenced in place."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_collect<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># --copy-from: snapshot a file into artifacts/ (missing parents are created).</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'a small figure\n'</span><span class="w"> </span>&gt;<span class="w"> </span>figure.svg
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"figure"</span><span class="w"> </span><span class="s2">"figure.svg"</span><span class="w"> </span>--copy-from<span class="w"> </span>figure.svg
+
+<span class="w">    </span><span class="c1"># --link-from: a big file on a fast filesystem is referenced by an</span>
+<span class="w">    </span><span class="c1"># absolute-target symlink (no copy); its content is still checksummed.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'big dataset bytes\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/big.dat"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"dataset"</span><span class="w"> </span><span class="s2">"dataset.dat"</span><span class="w"> </span>--link-from<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">/big.dat"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'collected\n'</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Choose by cost and durability. <code class="docutils literal notranslate"><span class="pre">--copy-from</span></code> does <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-r</span></code>, so the artifact is
+a self-contained copy — right for a small file you want to keep even if the
+original moves. <code class="docutils literal notranslate"><span class="pre">--link-from</span></code> makes a symlink whose target is resolved to an
+absolute path, so a large file on a fast filesystem is referenced at zero copy
+cost and stays where it is; a later export dereferences the link and streams the
+real content into the archive.</p>
+<p>Both shortcuts create any missing parent directories inside <code class="docutils literal notranslate"><span class="pre">artifacts/</span></code> and
+<strong>never overwrite</strong> an existing on-disk entry (artifacts are write-once); the
+source <code class="docutils literal notranslate"><span class="pre">&lt;real-path&gt;</span></code> must exist, and the two shortcuts are mutually exclusive.
+Either way the entry then goes through the same existence, type, and checksum path
+as a hand-placed one: the digest is taken from the <strong>resolved target</strong> (following
+the symlink, recursing into a directory), so a linked artifact is checksummed as
+if it were physically present. It is recorded exactly like a hand-placed artifact — an <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> row whose
+<code class="docutils literal notranslate"><span class="pre">path</span></code> is the artifacts-relative <code class="docutils literal notranslate"><span class="pre">&lt;linked-path&gt;</span></code> (see <em>Declare and bind an
+artifact</em>).</p>
+</section>
+<section id="trace-an-artifact-back-to-its-producer">
+<h2>Trace an artifact back to its producer<a class="headerlink" href="#trace-an-artifact-back-to-its-producer" title="Link to this heading">#</a></h2>
+<p><em>Recover which invocation produced a file by walking the produced edge from its artifacts row back to the producing command.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">query:graph</span></code>, <code class="docutils literal notranslate"><span class="pre">query:sql</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code></p>
+<p>Each artifact is recorded as one row in the <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> table (its <code class="docutils literal notranslate"><span class="pre">path</span></code>,
+<code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">checksum</span></code>, and <code class="docutils literal notranslate"><span class="pre">result</span></code>), linked to the invocation that
+made it by a <code class="docutils literal notranslate"><span class="pre">produced</span></code> provenance edge — <strong>not</strong> as a column of the
+producing command’s own table (see <em>Declare and bind an artifact</em>). So <em>which
+invocation produced this file?</em> is a reverse walk of that edge, keyed on the
+artifacts-relative <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">graph</span></code> the walk is a Cypher match. The producing node needs no
+label — read the producer off the edge, so the same query works no matter which
+command made the file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>graph<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"MATCH (t)-[e:produced]-&gt;(a:artifacts)</span>
+<span class="go">       WHERE a.path = 'table.csv'</span>
+<span class="go">       RETURN e.source_name, e.source_id"</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">e.source_name</span></code> is the producing command and <code class="docutils literal notranslate"><span class="pre">e.source_id</span></code> is its invocation
+id, which joins back to that command’s own recorded row for the rest of the
+provenance (its parameters, its <code class="docutils literal notranslate"><span class="pre">call</span></code> edge to a parent, and so on).</p>
+<p>The same lookup in <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">sql</span></code> joins the <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> row to the
+<code class="docutils literal notranslate"><span class="pre">__provenance__</span></code> edge on the artifact id:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT p.source_name, p.source_id</span>
+<span class="go">       FROM artifacts a</span>
+<span class="go">       JOIN __provenance__ p ON p.target_id = a.id AND p.edge_type = 'produced'</span>
+<span class="go">      WHERE a.path = 'table.csv'"</span>
+</pre></div>
+</div>
+<p>Both directions are open: forward (<code class="docutils literal notranslate"><span class="pre">RETURN</span> <span class="pre">a.path</span></code> for a given producer, or a
+join the other way) lists every file an invocation produced. See <em>Query the
+provenance graph</em> for the Cypher subset and <em>Run raw SQL</em> for the shared
+<code class="docutils literal notranslate"><span class="pre">--format</span></code> / <code class="docutils literal notranslate"><span class="pre">--header</span></code> options.</p>
+</section>
+<section id="walk-an-artifact-s-full-lineage">
+<h2>Walk an artifact’s full lineage<a class="headerlink" href="#walk-an-artifact-s-full-lineage" title="Link to this heading">#</a></h2>
+<p><em>Walk producer –produced–&gt; artifact –used_by–&gt; consumer in one query by joining the two provenance edges on the artifact’s row.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">query:graph</span></code>, <code class="docutils literal notranslate"><span class="pre">query:sql</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code></p>
+<p>An artifact sits between the command that made it and the commands that read it.
+The producer leaves a <code class="docutils literal notranslate"><span class="pre">produced</span></code> edge into the artifact’s row (see <em>Trace an
+artifact back to its producer</em>); each consumer leaves a <code class="docutils literal notranslate"><span class="pre">used_by</span></code> edge out of
+it (see <em>Consume an artifact by kind</em>). Because both edges meet at the same
+<code class="docutils literal notranslate"><span class="pre">artifacts</span></code> node, one query walks the whole chain <code class="docutils literal notranslate"><span class="pre">producer</span> <span class="pre">--produced--&gt;</span>
+<span class="pre">artifact</span> <span class="pre">--used_by--&gt;</span> <span class="pre">consumer</span></code>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">graph</span></code> the chain is a single Cypher path through the artifact node,
+keyed on its artifacts-relative <code class="docutils literal notranslate"><span class="pre">path</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>graph<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"MATCH (p)-[pr:produced]-&gt;(a:artifacts)-[ub:used_by]-&gt;(c)</span>
+<span class="go">       WHERE a.path = 'table.csv'</span>
+<span class="go">       RETURN pr.source_name, a.kind, ub.target_name"</span>
+</pre></div>
+</div>
+<p>The producing and consuming nodes need no label — name them off the edges
+(<code class="docutils literal notranslate"><span class="pre">pr.source_name</span></code>, <code class="docutils literal notranslate"><span class="pre">ub.target_name</span></code>), so the same query works whatever
+commands sit at the ends. To list <em>everything</em> that read a given artifact, keep
+only the <code class="docutils literal notranslate"><span class="pre">used_by</span></code> half (<code class="docutils literal notranslate"><span class="pre">RETURN</span> <span class="pre">ub.target_name</span></code>); to list every artifact a
+command consumed, match the <code class="docutils literal notranslate"><span class="pre">used_by</span></code> edge into it.</p>
+<p>The same walk in <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">sql</span></code> joins the two <code class="docutils literal notranslate"><span class="pre">__provenance__</span></code> edges to the
+<code class="docutils literal notranslate"><span class="pre">artifacts</span></code> row on the artifact id:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT pr.source_name AS producer, ub.target_name AS consumer</span>
+<span class="go">       FROM artifacts a</span>
+<span class="go">       JOIN __provenance__ pr ON pr.target_id = a.id AND pr.edge_type = 'produced'</span>
+<span class="go">       JOIN __provenance__ ub ON ub.source_id = a.id AND ub.edge_type = 'used_by'</span>
+<span class="go">      WHERE a.path = 'table.csv'"</span>
+</pre></div>
+</div>
+<p>See <em>Query the provenance graph</em> for the Cypher subset and <em>Run raw SQL</em> for the
+shared <code class="docutils literal notranslate"><span class="pre">--format</span></code> / <code class="docutils literal notranslate"><span class="pre">--header</span></code> options.</p>
+</section>
+<section id="declare-an-artifact-kind">
+<span id="stitch-declare-an-artifact-kind"></span><h2>Declare an artifact kind<a class="headerlink" href="#declare-an-artifact-kind" title="Link to this heading">#</a></h2>
+<p><em>Give an artifact a semantic kind with knit_register_artifact, then produce it by naming the kind in knit_with_output_artifact.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code></p>
+<p>An artifact’s <strong>type</strong> is its physical form — <code class="docutils literal notranslate"><span class="pre">file</span></code> or <code class="docutils literal notranslate"><span class="pre">directory</span></code>. Its
+<strong>kind</strong> is what it <em>means</em>: a CSV table, a checkpoint, a mesh. A kind is a
+semantic label backed by exactly one physical type, so a consumer can require <em>a
+CSV table</em> rather than merely <em>a file</em>. Declare a kind once at the top level with
+<code class="docutils literal notranslate"><span class="pre">knit_register_artifact</span> <span class="pre">&quot;kind:type&quot;</span> <span class="pre">&quot;description&quot;</span></code>, then a producer names the
+kind in place of the bare physical type:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A kind is a semantic label for an artifact, backed by exactly one physical</span>
+<span class="c1"># type (file or directory). Declare it once at the top level; a producer then</span>
+<span class="c1"># names the kind in place of the bare physical type.</span>
+<span class="nd">@artifact</span><span class="w"> </span><span class="s2">"csvfile:file"</span><span class="w"> </span><span class="s2">"A tabulated result in CSV format."</span>
+
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span><span class="s2">"Write a data table as a csvfile artifact."</span>
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"table:csvfile"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_artifact_dir is the artifacts/ root: write into it, then bind.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'i,i2\n1,1\n2,4\n3,9\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"table.csv"</span><span class="w">          </span><span class="c1"># recorded with kind=csvfile</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A kind is a semantic label for an artifact, backed by exactly one physical</span>
+<span class="c1"># type (file or directory). Declare it once at the top level; a producer then</span>
+<span class="c1"># names the kind in place of the bare physical type.</span>
+<span class="nb">knit_register_artifact</span><span class="w"> </span><span class="s2">"csvfile:file"</span><span class="w"> </span><span class="s2">"A tabulated result in CSV format."</span>
+
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span>_tabulate<span class="w"> </span><span class="s2">"Write a data table as a csvfile artifact."</span>
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"table:csvfile"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_artifact_dir is the artifacts/ root: write into it, then bind.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>out
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'i,i2\n1,1\n2,4\n3,9\n'</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="w">    </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"table.csv"</span><span class="w">          </span><span class="c1"># recorded with kind=csvfile</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/table.csv"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">directory</span></code>, and the <code class="docutils literal notranslate"><span class="pre">dir</span></code> alias are <strong>builtin</strong> kinds — they are
+their own physical type and need no declaration, so <code class="docutils literal notranslate"><span class="pre">&quot;table:file&quot;</span></code> keeps
+working unchanged (see <em>Declare and bind an artifact</em>). A named kind is declared
+once; redefining any kind (a builtin included) is fatal, and the physical
+<code class="docutils literal notranslate"><span class="pre">type</span></code> must itself be <code class="docutils literal notranslate"><span class="pre">file</span></code> or <code class="docutils literal notranslate"><span class="pre">directory</span></code>.</p>
+<p>The kind is recorded in the <code class="docutils literal notranslate"><span class="pre">kind</span></code> column of the framework-owned <code class="docutils literal notranslate"><span class="pre">artifacts</span></code>
+table, next to the physical <code class="docutils literal notranslate"><span class="pre">type</span></code>; a bare <code class="docutils literal notranslate"><span class="pre">table:file</span></code> records
+<code class="docutils literal notranslate"><span class="pre">type=file,</span> <span class="pre">kind=file</span></code>, while <code class="docutils literal notranslate"><span class="pre">table:csvfile</span></code> records <code class="docutils literal notranslate"><span class="pre">type=file,</span>
+<span class="pre">kind=csvfile</span></code>. <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">describe</span></code> shows the kind (not the bare type) for a
+declared output artifact. The kind is the contract a consumer checks against —
+see <em>Consume an artifact by kind</em>.</p>
+</section>
+<section id="consume-an-artifact-by-kind">
+<span id="stitch-consume-an-input-artifact"></span><h2>Consume an artifact by kind<a class="headerlink" href="#consume-an-artifact-by-kind" title="Link to this heading">#</a></h2>
+<p><em>Require a produced artifact of a given kind with knit_with_input_artifact, resolve it with knit_input_artifact_path, and record a used_by edge.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_path</span></code></p>
+<p>A command consumes an artifact another command produced by declaring
+<code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span> <span class="pre">&quot;name:kind&quot;</span> <span class="pre">&quot;description&quot;</span></code>. This registers a required
+string parameter whose value is the <strong>artifacts-relative path</strong> of a recorded
+artifact of that kind. In the body, <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_path</span></code> resolves that
+path to the on-disk file:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A consumer requires an artifact of a given kind. The parameter value is the</span>
+<span class="c1"># artifacts-relative path of a recorded artifact; Knit resolves it, refuses a</span>
+<span class="c1"># missing artifact or a kind mismatch, and --- with --verify-checksum ---</span>
+<span class="c1"># re-hashes the bytes and refuses a table that changed since it was produced.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"summarize"</span><span class="w"> </span><span class="s2">"Consume a csvfile artifact and count its data rows."</span>
+<span class="nd">@with_input_artifact</span><span class="w"> </span><span class="s2">"table:csvfile"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the CSV to read."</span><span class="w"> </span>--verify-checksum
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of data rows in the consumed table."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_summarize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Resolve the recorded artifacts-relative path to the on-disk file.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv<span class="w"> </span>rows
+<span class="w">    </span><span class="nv">csv</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_input_artifact_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>table<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">rows</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">csv</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">       </span><span class="c1"># one header line; the rest are data</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">rows</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'summarize: %s data rows\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">rows</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A consumer requires an artifact of a given kind. The parameter value is the</span>
+<span class="c1"># artifacts-relative path of a recorded artifact; Knit resolves it, refuses a</span>
+<span class="c1"># missing artifact or a kind mismatch, and --- with --verify-checksum ---</span>
+<span class="c1"># re-hashes the bytes and refuses a table that changed since it was produced.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"summarize"</span><span class="w"> </span>_summarize<span class="w"> </span><span class="s2">"Consume a csvfile artifact and count its data rows."</span>
+<span class="nb">knit_with_input_artifact</span><span class="w"> </span><span class="s2">"table:csvfile"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the CSV to read."</span><span class="w"> </span>--verify-checksum
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of data rows in the consumed table."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_summarize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Resolve the recorded artifacts-relative path to the on-disk file.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv<span class="w"> </span>rows
+<span class="w">    </span><span class="nv">csv</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_input_artifact_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>table<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">rows</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">csv</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">       </span><span class="c1"># one header line; the rest are data</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">rows</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'summarize: %s data rows\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">rows</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before the body runs, Knit resolves the path to its <code class="docutils literal notranslate"><span class="pre">artifacts</span></code> row and refuses
+the run when the value is empty, when no artifact is recorded at that path, or
+when the recorded artifact’s kind is not the required one — so the body never
+sees the wrong kind of input. Add <code class="docutils literal notranslate"><span class="pre">--verify-checksum</span></code> (as here) to also re-hash
+the bytes and refuse a run when the artifact changed since it was produced; the
+digest recorded at production time is the reference. The kind must be registered
+(builtin or via <em>Declare an artifact kind</em>).</p>
+<p>Consuming an artifact records a <code class="docutils literal notranslate"><span class="pre">used_by</span></code> provenance edge <strong>from the artifact’s
+row to the consuming invocation</strong>, the mirror of the <code class="docutils literal notranslate"><span class="pre">produced</span></code> edge the
+producer left. Together they complete the lineage <code class="docutils literal notranslate"><span class="pre">producer</span> <span class="pre">--produced--&gt;</span> <span class="pre">artifact</span>
+<span class="pre">--used_by--&gt;</span> <span class="pre">consumer</span></code>, which a single query walks end to end (see <em>Walk an
+artifact’s full lineage</em>). A plain file input that is <em>not</em> a recorded artifact
+takes a bare path parameter instead and leaves no edge — reach for
+<code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span></code> only when the input is a tracked artifact whose
+lineage you want.</p>
+</section>
+<section id="consume-many-artifacts-with-a-glob">
+<span id="stitch-consume-many-artifacts-with-a-glob"></span><h2>Consume many artifacts with a glob<a class="headerlink" href="#consume-many-artifacts-with-a-glob" title="Link to this heading">#</a></h2>
+<p><em>Declare a +/</em> input artifact and read every member with knit_input_artifact_paths, passing a comma list or a glob.*</p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_paths</span></code></p>
+<p>A <code class="docutils literal notranslate"><span class="pre">*</span></code> (zero or more) or <code class="docutils literal notranslate"><span class="pre">+</span></code> (one or more) on an <strong>input</strong> artifact lets one
+parameter stand for a whole set. Its argument is a comma-separated list of
+artifacts-relative paths, and any element holding a glob metacharacter
+(<code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span></code>) is expanded against the artifacts root — so a single
+<code class="docutils literal notranslate"><span class="pre">--shards</span> <span class="pre">'shard-*.csv'</span></code> gathers a whole fan-out. <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_paths</span></code>
+fills a bash array with the resolved on-disk paths, in order, de-duplicated:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
+<span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
+<span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
+<span class="c1"># `--shards 'shard-*.csv'` gathers the whole fan-out. knit_input_artifact_paths</span>
+<span class="c1"># fills a bash array with the resolved on-disk paths, in order, de-duplicated.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"merge"</span><span class="w"> </span><span class="s2">"Merge every shard matched by a glob into one row count."</span>
+<span class="nd">@with_input_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile+"</span><span class="w"> </span><span class="s2">"Artifacts-relative glob of the shards to merge (one or more)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Total data rows across the merged shards."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">paths</span><span class="o">=()</span>
+<span class="w">    </span><span class="nb">knit_input_artifact_paths</span><span class="w"> </span>paths<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">total</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>p
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">total</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">     </span><span class="c1"># drop each shard's header line</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'merged %s shard(s), %s data row(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${#</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
+<span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
+<span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
+<span class="c1"># `--shards 'shard-*.csv'` gathers the whole fan-out. knit_input_artifact_paths</span>
+<span class="c1"># fills a bash array with the resolved on-disk paths, in order, de-duplicated.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"merge"</span><span class="w"> </span>_merge<span class="w"> </span><span class="s2">"Merge every shard matched by a glob into one row count."</span>
+<span class="nb">knit_with_input_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile+"</span><span class="w"> </span><span class="s2">"Artifacts-relative glob of the shards to merge (one or more)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Total data rows across the merged shards."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">paths</span><span class="o">=()</span>
+<span class="w">    </span><span class="nb">knit_input_artifact_paths</span><span class="w"> </span>paths<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">total</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>p
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">total</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">     </span><span class="c1"># drop each shard's header line</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'merged %s shard(s), %s data row(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${#</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Every resolved member is validated before the body runs — containment,
+existence, and recorded kind (plus the checksum with <code class="docutils literal notranslate"><span class="pre">--verify-checksum</span></code>) —
+and the first bad element is fatal and names itself, so the body never sees a
+partial or wrong-kind set. <code class="docutils literal notranslate"><span class="pre">+</span></code> refuses an empty result (the parameter is
+required, and a glob matching nothing is fatal); <code class="docutils literal notranslate"><span class="pre">*</span></code> accepts it (the parameter
+is optional and defaults to empty, and the array simply comes back empty). Quote
+the glob so your shell does not expand it before Knit does. The consumer’s own
+row stores the <strong>raw</strong> argument you passed (the pattern), while one <code class="docutils literal notranslate"><span class="pre">used_by</span></code>
+edge is recorded per resolved member — so the lineage carries the concrete set,
+not the pattern. For a single artifact, use the scalar <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_path</span></code>
+instead (see <em>Consume an artifact by kind</em>).</p>
+</section>
+<section id="discover-and-merge-a-fan-out">
+<span id="stitch-discover-and-merge-artifacts"></span><h2>Discover and merge a fan-out<a class="headerlink" href="#discover-and-merge-a-fan-out" title="Link to this heading">#</a></h2>
+<p><em>Pair a *-output producer with a +/</em> -input consumer so one command scatters many artifacts and the next gathers them by glob.*</p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_input_artifact_paths</span></code></p>
+<p>Variadic artifacts compose into a <strong>discover-and-merge</strong> pattern across two
+commands: a producer fans out a <code class="docutils literal notranslate"><span class="pre">*</span></code> collection, and a consumer gathers the
+whole set through a <code class="docutils literal notranslate"><span class="pre">+</span></code> input with one glob argument — without either side
+hard-coding how many members there are. The producer binds one collection name
+per member:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
+<span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
+<span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
+<span class="c1"># nothing.) Here one run scatters `n` CSV shards under the artifacts root.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"shard"</span><span class="w"> </span><span class="s2">"Fan out a range into several CSV shards."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"3"</span><span class="w"> </span><span class="s2">"How many shards to write."</span>
+<span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile*"</span><span class="w"> </span><span class="s2">"The CSV shards (zero or more)."</span>
+<span class="nd">@with_table</span>
+_shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n<span class="w"> </span>out<span class="w"> </span>i
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>n<span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'id,sq\n%d,%d\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span>
+<span class="w">        </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span><span class="w">    </span><span class="c1"># bind one member of the collection</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s shard(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
+<span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
+<span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
+<span class="c1"># nothing.) Here one run scatters `n` CSV shards under the artifacts root.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"shard"</span><span class="w"> </span>_shard<span class="w"> </span><span class="s2">"Fan out a range into several CSV shards."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"3"</span><span class="w"> </span><span class="s2">"How many shards to write."</span>
+<span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile*"</span><span class="w"> </span><span class="s2">"The CSV shards (zero or more)."</span>
+<span class="nb">knit_with_table</span>
+_shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n<span class="w"> </span>out<span class="w"> </span>i
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_artifact_dir</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>n<span class="p">;</span><span class="w"> </span>i++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'id,sq\n%d,%d\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">/shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span>
+<span class="w">        </span><span class="nb">knit_artifact</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"shard-</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">.csv"</span><span class="w">    </span><span class="c1"># bind one member of the collection</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'wrote %s shard(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The consumer discovers them with a glob and merges what it finds:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
+<span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
+<span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
+<span class="c1"># `--shards 'shard-*.csv'` gathers the whole fan-out. knit_input_artifact_paths</span>
+<span class="c1"># fills a bash array with the resolved on-disk paths, in order, de-duplicated.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"merge"</span><span class="w"> </span><span class="s2">"Merge every shard matched by a glob into one row count."</span>
+<span class="nd">@with_input_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile+"</span><span class="w"> </span><span class="s2">"Artifacts-relative glob of the shards to merge (one or more)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Total data rows across the merged shards."</span><span class="w"> </span>--result
+<span class="nd">@with_table</span>
+_merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">paths</span><span class="o">=()</span>
+<span class="w">    </span><span class="nb">knit_input_artifact_paths</span><span class="w"> </span>paths<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">total</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>p
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">total</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">     </span><span class="c1"># drop each shard's header line</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'merged %s shard(s), %s data row(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${#</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
+<span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
+<span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
+<span class="c1"># `--shards 'shard-*.csv'` gathers the whole fan-out. knit_input_artifact_paths</span>
+<span class="c1"># fills a bash array with the resolved on-disk paths, in order, de-duplicated.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"merge"</span><span class="w"> </span>_merge<span class="w"> </span><span class="s2">"Merge every shard matched by a glob into one row count."</span>
+<span class="nb">knit_with_input_artifact</span><span class="w"> </span><span class="s2">"shards:csvfile+"</span><span class="w"> </span><span class="s2">"Artifacts-relative glob of the shards to merge (one or more)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Total data rows across the merged shards."</span><span class="w"> </span>--result
+<span class="nb">knit_with_table</span>
+_merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">paths</span><span class="o">=()</span>
+<span class="w">    </span><span class="nb">knit_input_artifact_paths</span><span class="w"> </span>paths<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"shards"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">total</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>p
+<span class="w">    </span><span class="k">for</span><span class="w"> </span>p<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">total</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">$(</span>wc<span class="w"> </span>-l<span class="w"> </span>&lt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">p</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">))</span><span class="w">     </span><span class="c1"># drop each shard's header line</span>
+<span class="w">    </span><span class="k">done</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"rows"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'merged %s shard(s), %s data row(s)\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${#</span><span class="nv">paths</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">total</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run them in sequence — <code class="docutils literal notranslate"><span class="pre">shard</span> <span class="pre">--n</span> <span class="pre">3</span></code> then <code class="docutils literal notranslate"><span class="pre">merge</span> <span class="pre">--shards</span> <span class="pre">'shard-*.csv'</span></code>
+— and the glob resolves to whatever the fan-out produced. The provenance keeps
+each member distinct on both sides: the producer leaves one <code class="docutils literal notranslate"><span class="pre">produced</span></code> edge per
+bound member, and the consume leaves one <code class="docutils literal notranslate"><span class="pre">used_by</span></code> edge per resolved member, so
+the lineage <code class="docutils literal notranslate"><span class="pre">producer</span> <span class="pre">--produced--&gt;</span> <span class="pre">member</span> <span class="pre">--used_by--&gt;</span> <span class="pre">consumer</span></code> holds for
+every file in the set. One join over the two edge kinds recovers the whole group,
+and <em>what merged this shard?</em> or <em>which shards fed this merge?</em> are the two ends
+of that same walk (see <em>Walk an artifact’s full lineage</em>). This scales a sweep
+without a fixed member count: add more shards and the same glob gathers them.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="recording.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Recording</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="provenance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Provenance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-an-output-as-the-result">Mark an output as the result</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-and-bind-an-artifact">Declare and bind an artifact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fan-out-a-variadic-output">Fan out a variadic output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#link-or-copy-an-artifact-into-place">Link or copy an artifact into place</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trace-an-artifact-back-to-its-producer">Trace an artifact back to its producer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walk-an-artifact-s-full-lineage">Walk an artifact’s full lineage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-an-artifact-kind">Declare an artifact kind</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consume-an-artifact-by-kind">Consume an artifact by kind</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consume-many-artifacts-with-a-glob">Consume many artifacts with a glob</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discover-and-merge-a-fan-out">Discover and merge a fan-out</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
