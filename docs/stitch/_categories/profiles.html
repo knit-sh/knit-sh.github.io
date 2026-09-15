@@ -666,7 +666,10 @@ for whole-node placement (<code class="docutils literal notranslate"><span class
 readable from a script with <code class="docutils literal notranslate"><span class="pre">knit_get_profile_field</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">modules</span></code> — environment modules to <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> before anything runs, so
 setups and jobs start from the machine’s supported programming environment
-(here <code class="docutils literal notranslate"><span class="pre">PrgEnv-gnu</span></code>).</p></li>
+(here <code class="docutils literal notranslate"><span class="pre">PrgEnv-gnu</span></code>). Two companion fields adjust the module setup:
+<code class="docutils literal notranslate"><span class="pre">module_purge</span></code> (<code class="docutils literal notranslate"><span class="pre">true</span></code> emits a <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code> first) and <code class="docutils literal notranslate"><span class="pre">module_use</span></code>
+(a list of paths, each turned into <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span> <span class="pre">&lt;path&gt;</span></code> before the load, to
+prepend a site module tree such as <code class="docutils literal notranslate"><span class="pre">/soft/modulefiles</span></code> to <code class="docutils literal notranslate"><span class="pre">MODULEPATH</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">spack</span></code> — Spack configuration merged into every Spack environment knit
 builds. Its keys are Spack config sections (<code class="docutils literal notranslate"><span class="pre">packages</span></code> here); knit writes them
 back verbatim, so this is just Spack config. Polaris registers the vendor MPI
