@@ -657,7 +657,9 @@ profile still resolves by name.</p></li>
 knit uses to write directives and submit; <code class="docutils literal notranslate"><span class="pre">command</span></code> is the submit binary;
 <code class="docutils literal notranslate"><span class="pre">default_queue</span></code> and <code class="docutils literal notranslate"><span class="pre">default_args</span></code> become the experiment’s defaults; and
 <code class="docutils literal notranslate"><span class="pre">queues</span></code> records each queue’s node/walltime bounds so <code class="docutils literal notranslate"><span class="pre">submit</span></code> can validate
-a request against the queue before it reaches the scheduler.</p></li>
+a request against the queue before it reaches the scheduler. Setting
+<code class="docutils literal notranslate"><span class="pre">default_queue</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> (or passing <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">--queue</span> <span class="pre">auto</span></code>) makes knit
+choose the first queue in <code class="docutils literal notranslate"><span class="pre">queues</span></code> whose bounds accept the job.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">launcher</span></code> — how MPI ranks are launched. <code class="docutils literal notranslate"><span class="pre">type</span></code> (<code class="docutils literal notranslate"><span class="pre">pals</span></code>) picks the
 launcher backend for <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code>, and <code class="docutils literal notranslate"><span class="pre">command</span></code> is its binary
 (<code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>).</p></li>

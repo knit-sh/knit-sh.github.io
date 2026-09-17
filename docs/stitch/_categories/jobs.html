@@ -668,6 +668,21 @@ profile’s default queue.</p></li>
 <p>After that, a bare <code class="docutils literal notranslate"><span class="pre">submit</span></code> uses those values, and the options above are only
 for overriding them on a single run. The resolved values are written into the
 batch script’s directives and recorded with the job.</p>
+<p>Let knit pick the queue with <code class="docutils literal notranslate"><span class="pre">--queue</span> <span class="pre">auto</span></code>: it walks the machine profile’s
+declared queues in order and selects the first whose node and walltime bounds
+accept the job as you specified it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--queue<span class="w"> </span>auto<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--walltime<span class="w"> </span><span class="m">02</span>:00:00<span class="w"> </span>--<span class="w"> </span>julia
+</pre></div>
+</div>
+<p>Selection uses only what you asked for — the node count, and the walltime only
+when you gave one — and resolves to a concrete queue that is recorded with the
+job (never the literal <code class="docutils literal notranslate"><span class="pre">auto</span></code>). If no declared queue fits, <code class="docutils literal notranslate"><span class="pre">submit</span></code> stops with
+a per-queue explanation instead of letting the scheduler reject the request. Make
+it the default for every submission by storing it at bootstrap, or by setting
+<code class="docutils literal notranslate"><span class="pre">default_queue</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> in the machine profile:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span>--default-queue<span class="w"> </span>auto
+</pre></div>
+</div>
 </section>
 <section id="find-the-job-s-hosts-and-node-count">
 <span id="stitch-job-hosts-and-nodes"></span><h2>Find the job’s hosts and node count<a class="headerlink" href="#find-the-job-s-hosts-and-node-count" title="Link to this heading">#</a></h2>

@@ -1413,6 +1413,9 @@ Functions
 .. doxygenfunction:: _knit_sched_hostfile
    :project: knit
 
+.. doxygenfunction:: _knit_sched_pick_queue
+   :project: knit
+
 .. doxygenfunction:: _knit_sched_profile_field
    :project: knit
 
@@ -1546,6 +1549,12 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_pbs_wait
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_SCHED_PBS_REGISTER_GRACE_POLLS
    :project: knit
 
 sched_slurm.sh
