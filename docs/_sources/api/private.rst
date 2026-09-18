@@ -84,6 +84,9 @@ Functions
 .. doxygenfunction:: _knit_run_checksum_outputs
    :project: knit
 
+.. doxygenfunction:: _knit_run_delete_row
+   :project: knit
+
 .. doxygenfunction:: _knit_run_normalize_mpi_env
    :project: knit
 

@@ -479,6 +479,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run"><code class="docutils literal notranslate"><span class="pre">_knit_run()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_checksum_inputs"><code class="docutils literal notranslate"><span class="pre">_knit_run_checksum_inputs()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_checksum_outputs"><code class="docutils literal notranslate"><span class="pre">_knit_run_checksum_outputs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_delete_row"><code class="docutils literal notranslate"><span class="pre">_knit_run_delete_row()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_normalize_mpi_env"><code class="docutils literal notranslate"><span class="pre">_knit_run_normalize_mpi_env()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_resolve_placement"><code class="docutils literal notranslate"><span class="pre">_knit_run_resolve_placement()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_worker"><code class="docutils literal notranslate"><span class="pre">_knit_run_worker()</span></code></a></li>
@@ -1582,6 +1583,19 @@ compatibility guarantee.</p>
 <li><p><strong>subcmd</strong> -- <strong>[in]</strong> Mangled app command name (run:&lt;app&gt;). </p></li>
 <li><p><strong>app_name</strong> -- <strong>[in]</strong> The app name (its table is named after it). </p></li>
 <li><p><strong>run_uuid</strong> -- <strong>[in]</strong> This run's UUID (source of the provenance edge to the row). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_run_delete_row">
+<span class="target" id="app_8sh_1ae2158cf95941011ab3ac2ac82b7e5fae"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_run_delete_row</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_run_delete_row" title="Link to this definition">#</a><br /></dt>
+<dd><p>Remove a runs-table row (and any provenance edge referencing it) that was eagerly recorded before launch but must not survive. The <code class="docutils literal notranslate"><span class="pre">run</span></code> dispatcher records the runs row up front so even a failed launch leaves a trace; when the launched app opted out of recording a failed invocation (knit_no_record_on_failure) and the run then fails, that trace would dangle (the app's per-app row and the &quot;run -&gt; run:&lt;app&gt;&quot; edge were never written), so it is removed here. Best-effort and bootstrap-gated: with no database there is nothing to remove. Mirrors _knit_submit_cleanup_rejected (minus the job directory and alias a run does not have).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uuid</strong> -- <strong>[in]</strong> The run's UUID (its runs-row id and the edge's target_id). </p></li>
 </ul>
 </dd>
 </dl>
@@ -8508,6 +8522,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run"><code class="docutils literal notranslate"><span class="pre">_knit_run()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_checksum_inputs"><code class="docutils literal notranslate"><span class="pre">_knit_run_checksum_inputs()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_checksum_outputs"><code class="docutils literal notranslate"><span class="pre">_knit_run_checksum_outputs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_delete_row"><code class="docutils literal notranslate"><span class="pre">_knit_run_delete_row()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_normalize_mpi_env"><code class="docutils literal notranslate"><span class="pre">_knit_run_normalize_mpi_env()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_resolve_placement"><code class="docutils literal notranslate"><span class="pre">_knit_run_resolve_placement()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_run_worker"><code class="docutils literal notranslate"><span class="pre">_knit_run_worker()</span></code></a></li>
