@@ -453,7 +453,10 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-a-file-or-directory-parameter">Checksum a file or directory parameter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-knit-types-map-to-sql-columns">How knit types map to SQL columns</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-an-output-as-the-result">Mark an output as the result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-it-to-one-kind">Scope it to one kind</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -822,9 +825,28 @@ pass <code class="docutils literal notranslate"><span class="pre">--from-root</s
 erased too (see <em>Erase a whole lineage with –from-root</em>). There is no per-code
 selector: <code class="docutils literal notranslate"><span class="pre">--failed</span></code> means any non-zero code. To remove by a specific code,
 write the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> yourself and pass the ids to <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">&lt;kind&gt;</span> <span class="pre">--id</span></code>.</p>
+<section id="scope-it-to-one-kind">
+<h3>Scope it to one kind<a class="headerlink" href="#scope-it-to-one-kind" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--failed</span></code> is also a filter on each row-kind subcommand, where it <strong>composes</strong>
+with the selector. On its own it means every failed one of that kind; with a
+selector it narrows to the failed rows the selector chose (an AND):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span><span class="nb">command</span><span class="w"> </span>--failed<span class="w">                 </span><span class="c1"># every failed plain command</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span>setup<span class="w"> </span>--failed<span class="w"> </span>--type<span class="w"> </span>buildenv<span class="w">   </span><span class="c1"># failed buildenv setups only</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span>run<span class="w"> </span>--failed<span class="w"> </span>--from-root<span class="w"> </span>--yes<span class="w">    </span><span class="c1"># failed runs and their jobs</span>
+</pre></div>
+</div>
+<p>So failures are prunable one kind at a time instead of all at once. A failed
+<code class="docutils literal notranslate"><span class="pre">setup</span></code> / <code class="docutils literal notranslate"><span class="pre">resource</span></code> / <code class="docutils literal notranslate"><span class="pre">command</span></code> is a row of that kind with a non-zero
+status; a failed <code class="docutils literal notranslate"><span class="pre">job</span></code> or <code class="docutils literal notranslate"><span class="pre">run</span></code> is one whose <strong>body</strong> returned non-zero (a job
+that tolerated a failed run inside it did itself succeed, so it is not a failed
+job — reach the run with <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">run</span> <span class="pre">--failed</span></code>). A selector that matches
+nothing is still an error, but a selection that simply contains no failures is a
+quiet “nothing to erase”. <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">artifact</span></code> has no <code class="docutils literal notranslate"><span class="pre">--failed</span></code>: an artifact is
+produced, not invoked, so it has no exit status.</p>
 <p>A command marked <code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure</span></code> is the exception: it records no row
 on failure, so it has no <code class="docutils literal notranslate"><span class="pre">__exit_status__</span></code> column and never appears in the
 <code class="docutils literal notranslate"><span class="pre">--failed</span></code> set.</p>
+</section>
 </section>
 </section>
 
@@ -880,7 +902,10 @@ on failure, so it has no <code class="docutils literal notranslate"><span class=
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checksum-a-file-or-directory-parameter">Checksum a file or directory parameter</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-knit-types-map-to-sql-columns">How knit types map to SQL columns</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mark-an-output-as-the-result">Mark an output as the result</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-it-to-one-kind">Scope it to one kind</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

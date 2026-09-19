@@ -1218,6 +1218,9 @@ remove.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_remove_append_failed_ids
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_append_ids
    :project: knit
 
@@ -1239,6 +1242,9 @@ Functions
 .. doxygenfunction:: _knit_remove_confirm
    :project: knit
 
+.. doxygenfunction:: _knit_remove_declare_failed_flag
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_declare_flags
    :project: knit
 
@@ -1257,6 +1263,12 @@ Functions
 .. doxygenfunction:: _knit_remove_failed_ids
    :project: knit
 
+.. doxygenfunction:: _knit_remove_failed_ids_body_mapped
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_failed_ids_of_kind
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_filesystem
    :project: knit
 
@@ -1269,6 +1281,9 @@ Functions
 .. doxygenfunction:: _knit_remove_instance_names
    :project: knit
 
+.. doxygenfunction:: _knit_remove_intersect
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_map_ids
    :project: knit
 
@@ -1276,6 +1291,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_print_report
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_registry_tables_of_kind
    :project: knit
 
 .. doxygenfunction:: _knit_remove_report_left
