@@ -90,6 +90,9 @@ Functions
 .. doxygenfunction:: _knit_run_normalize_mpi_env
    :project: knit
 
+.. doxygenfunction:: _knit_run_record_exit_status
+   :project: knit
+
 .. doxygenfunction:: _knit_run_resolve_placement
    :project: knit
 
@@ -351,6 +354,9 @@ Functions
 .. doxygenfunction:: _knit_checksum_stash_from_env
    :project: knit
 
+.. doxygenfunction:: _knit_checksum_target_exists
+   :project: knit
+
 .. doxygenfunction:: _knit_command_check_usable
    :project: knit
 
@@ -501,6 +507,9 @@ Functions
 .. doxygenfunction:: _knit_usable_before_bootstrap_validate
    :project: knit
 
+.. doxygenfunction:: _knit_without_exit_status
+   :project: knit
+
 .. doxygenfunction:: _knit_wrapper_reject_declaration
    :project: knit
 
@@ -528,6 +537,9 @@ Variables
 .. doxygenvariable:: _KNIT_INVOCATION_END_TIME
    :project: knit
 
+.. doxygenvariable:: _KNIT_INVOCATION_EXIT_STATUS
+   :project: knit
+
 .. doxygenvariable:: _KNIT_INVOCATION_RAW_ARGS
    :project: knit
 
@@ -553,6 +565,9 @@ Functions
 ~~~~~~~~~
 
 .. doxygenfunction:: _knit_db_check_table
+   :project: knit
+
+.. doxygenfunction:: _knit_db_command_has_exit_status
    :project: knit
 
 .. doxygenfunction:: _knit_db_create_table
@@ -1236,6 +1251,12 @@ Functions
 .. doxygenfunction:: _knit_remove_dispatch
    :project: knit
 
+.. doxygenfunction:: _knit_remove_erase_selection
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_failed_ids
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_filesystem
    :project: knit
 
@@ -1294,6 +1315,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_tables_of_kind
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_toplevel
    :project: knit
 
 resource.sh

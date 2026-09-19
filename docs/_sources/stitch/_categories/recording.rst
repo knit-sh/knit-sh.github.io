@@ -55,3 +55,12 @@ Mark an output as the result
 **APIs:** ``knit_with_output``, ``knit_output``
 
 .. include:: /stitch/recipes/mark-an-output-as-the-result.rst
+
+Find and erase failed invocations
+---------------------------------
+
+*Record each command's exit status in __exit_status__, query which invocations failed, and prune them all at once with remove --failed.*
+
+**APIs:** ``knit_with_table``, ``knit_no_record_on_failure``, ``remove``
+
+.. include:: /stitch/recipes/erase-failed-invocations.rst

@@ -453,6 +453,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erase-a-whole-lineage-with-from-root">Erase a whole lineage with –from-root</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-the-artifacts-while-pruning-provenance">Keep the artifacts while pruning provenance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-the-records-only-keep-every-file">Remove the records only, keep every file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a></li>
 </ul>
             </nav>
         </div>
@@ -627,6 +628,82 @@ both, <code class="docutils literal notranslate"><span class="pre">--keep-files<
 they will not be re-checksummed, exported, or found by a provenance walk.
 <code class="docutils literal notranslate"><span class="pre">--keep-files</span></code> discards the record while leaving the bytes untouched.</p>
 </section>
+<section id="find-and-erase-failed-invocations">
+<span id="stitch-erase-failed-invocations"></span><h2>Find and erase failed invocations<a class="headerlink" href="#find-and-erase-failed-invocations" title="Link to this heading">#</a></h2>
+<p><em>Record each command’s exit status in __exit_status__, query which invocations failed, and prune them all at once with remove –failed.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code></p>
+<p>Every recorded command also records its <strong>exit status</strong>. A command that declares
+a table (<code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code>) and is not marked <code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure</span></code>
+gets a reserved <code class="docutils literal notranslate"><span class="pre">__exit_status__</span></code> column, written on every invocation: <code class="docutils literal notranslate"><span class="pre">0</span></code> on
+success, the non-zero code on failure. A failed command keeps its row — and any
+output or artifact it produced before failing — so a failure deep in a chain
+stays queryable instead of vanishing:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command that records a row and may fail. Because it declares a table and is</span>
+<span class="c1"># NOT @no_record_on_failure, knit adds a reserved __exit_status__ column and</span>
+<span class="c1"># records it on every invocation: 0 on success, the non-zero code on failure. A</span>
+<span class="c1"># failed row stays in the database (with any output it produced) so you can query</span>
+<span class="c1"># what failed, and prune it later with `remove --failed`.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"boom"</span><span class="w"> </span><span class="s2">"Fail when --code is non-zero, so a failed row is recorded."</span>
+<span class="nd">@with_table</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"code:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Exit code to return."</span>
+_boom<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>code<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command that records a row and may fail. Because it declares a table and is</span>
+<span class="c1"># NOT @no_record_on_failure, knit adds a reserved __exit_status__ column and</span>
+<span class="c1"># records it on every invocation: 0 on success, the non-zero code on failure. A</span>
+<span class="c1"># failed row stays in the database (with any output it produced) so you can query</span>
+<span class="c1"># what failed, and prune it later with `remove --failed`.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"boom"</span><span class="w"> </span>_boom<span class="w"> </span><span class="s2">"Fail when --code is non-zero, so a failed row is recorded."</span>
+<span class="nb">knit_with_table</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"code:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Exit code to return."</span>
+_boom<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>code<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because the row survives, you can ask the database which invocation failed, and
+with which parameters — exactly what you need to diagnose it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT id, code, __exit_status__ FROM boom WHERE __exit_status__ &lt;&gt; 0"</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__exit_status__</span></code> is an ordinary column: it shows up in <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">db</span> <span class="pre">show</span></code>,
+<code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">query</span></code>, and the <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">describe</span></code> schema view like any other. <code class="docutils literal notranslate"><span class="pre">NULL</span></code>
+(an outcome not yet known) and a row back-filled by migration are both “unknown”
+and count as neither success nor failure.</p>
+<p>To clean up, <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">--failed</span></code> selects <strong>every</strong> invocation with a non-zero
+exit status at once, across every table that carries the column:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span>--failed<span class="w"> </span>--dry-run<span class="w">              </span><span class="c1"># preview the failed set</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span>--failed<span class="w"> </span>--yes<span class="w">                  </span><span class="c1"># erase the failed rows</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>remove<span class="w"> </span>--failed<span class="w"> </span>--from-root<span class="w"> </span>--yes<span class="w">      </span><span class="c1"># erase the jobs that contain them too</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--failed</span></code> uses the same closure and guards as every <code class="docutils literal notranslate"><span class="pre">remove</span></code> subcommand. On
+its own it erases the failed rows, but a <strong>failed callee whose caller is kept</strong> is
+refused — a failed run inside a job that stays, for instance — with a hint to
+pass <code class="docutils literal notranslate"><span class="pre">--from-root</span></code>, which widens to the whole lineage so the enclosing job is
+erased too (see <em>Erase a whole lineage with –from-root</em>). There is no per-code
+selector: <code class="docutils literal notranslate"><span class="pre">--failed</span></code> means any non-zero code. To remove by a specific code,
+write the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> yourself and pass the ids to <code class="docutils literal notranslate"><span class="pre">remove</span> <span class="pre">&lt;kind&gt;</span> <span class="pre">--id</span></code>.</p>
+<p>A command marked <code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure</span></code> is the exception: it records no row
+on failure, so it has no <code class="docutils literal notranslate"><span class="pre">__exit_status__</span></code> column and never appears in the
+<code class="docutils literal notranslate"><span class="pre">--failed</span></code> set.</p>
+</section>
 </section>
 
 
@@ -681,6 +758,7 @@ they will not be re-checksummed, exported, or found by a provenance walk.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#erase-a-whole-lineage-with-from-root">Erase a whole lineage with –from-root</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-the-artifacts-while-pruning-provenance">Keep the artifacts while pruning provenance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-the-records-only-keep-every-file">Remove the records only, keep every file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-erase-failed-invocations">Find and erase failed invocations</a></li>
 </ul>
   </nav></div>
 

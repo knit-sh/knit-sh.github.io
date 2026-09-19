@@ -57,3 +57,14 @@ Remove the records only, keep every file
 **APIs:** ``remove:job``, ``remove:artifact``
 
 .. include:: /stitch/recipes/keep-files-database-only-removal.rst
+
+.. _stitch-erase-failed-invocations:
+
+Find and erase failed invocations
+---------------------------------
+
+*Record each command's exit status in __exit_status__, query which invocations failed, and prune them all at once with remove --failed.*
+
+**APIs:** ``knit_with_table``, ``knit_no_record_on_failure``, ``remove``
+
+.. include:: /stitch/recipes/erase-failed-invocations.rst
