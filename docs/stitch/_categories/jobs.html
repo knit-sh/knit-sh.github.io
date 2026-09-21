@@ -460,6 +460,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-or-resubmit-a-job">Cancel or resubmit a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-job-instead-of-submitting-it">Prepare a job instead of submitting it</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a></li>
 </ul>
             </nav>
@@ -1054,9 +1055,63 @@ fill-the-queue loop can drain a group and stop on its own:</p>
 <span class="k">while</span><span class="w"> </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>next<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--wait<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>:<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
 </div>
+<p>To drain a whole batch without writing that loop — with concurrency throttling,
+a release cap, and optional background execution — use <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> (see
+<em>Drain a prepared batch with submit drain</em>).</p>
 <p>Releasing advances the row <code class="docutils literal notranslate"><span class="pre">prepared</span> <span class="pre">-&gt;</span> <span class="pre">submitted</span> <span class="pre">-&gt;</span> <span class="pre">running</span> <span class="pre">-&gt;</span> <span class="pre">completed</span></code> (or
 <code class="docutils literal notranslate"><span class="pre">killed</span></code>); the id never changes, so the job you prepared and the job that ran
 are the same recorded artifact.</p>
+</section>
+<section id="drain-a-prepared-batch-with-submit-drain">
+<span id="stitch-drain-prepared-jobs"></span><h2>Drain a prepared batch with submit drain<a class="headerlink" href="#drain-a-prepared-batch-with-submit-drain" title="Link to this heading">#</a></h2>
+<p><em>Release a whole prepared batch in one command, throttled to N jobs at once, optionally in the background.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code></p>
+<p>Once a batch is prepared (see <em>Prepare a job instead of submitting it</em>), you
+could release it by hand with a loop over <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code> (see <em>Release prepared
+jobs</em>). <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> wraps that loop as one command: it releases prepared
+jobs — optionally filtered by <code class="docutils literal notranslate"><span class="pre">--type</span></code> (job name) or <code class="docutils literal notranslate"><span class="pre">--group</span></code> — until the
+matching queue is empty.</p>
+<p>How fast they go out is set by <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code>:</p>
+<ul class="simple">
+<li><p><strong>1</strong> (the default) releases one job, waits for it, then releases the next —
+serial;</p></li>
+<li><p><strong>N &gt; 1</strong> keeps at most <code class="docutils literal notranslate"><span class="pre">N</span></code> jobs alive in the scheduler at once, releasing the
+next whenever a slot frees — a queue filler that never floods the scheduler;</p></li>
+<li><p><strong>0</strong> releases every matching job back to back without waiting.</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+<span class="go">Released 12 job(s): 12 completed, 0 failed.</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--count</span> <span class="pre">N</span></code> releases at most <code class="docutils literal notranslate"><span class="pre">N</span></code> jobs this run; <code class="docutils literal notranslate"><span class="pre">--stop-on-failure</span></code> stops
+releasing new jobs once one fails — a job whose body exits non-zero (state
+<code class="docutils literal notranslate"><span class="pre">failed</span></code>) or that is killed (cancel / OOM / walltime) — while in-flight jobs
+still finish, and drain exits non-zero when any released job failed.
+<code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> lists what <em>would</em> be released, in order, without claiming
+anything, and <code class="docutils literal notranslate"><span class="pre">--json-summary</span></code> prints a machine-readable object to stdout:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--dry-run
+<span class="go">018f9c3a-7b2e-7c41-9d0a-1f2e3d4c5b6a  sim  [sweep]</span>
+<span class="go">018f9c3a-8c3f-7d52-ae1b-2f3e4d5c6b7c  sim  [sweep]</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--json-summary
+<span class="go">{"released":2,"completed":2,"failed":0,"drained":true,"stopped":false,"dry_run":false}</span>
+</pre></div>
+</div>
+<p>Draining a large batch can take a while, so <code class="docutils literal notranslate"><span class="pre">--detached</span></code> runs the whole loop in
+the background and returns at once — pick the backend with <code class="docutils literal notranslate"><span class="pre">--detach-backend</span></code>
+(<code class="docutils literal notranslate"><span class="pre">auto</span></code> tries <code class="docutils literal notranslate"><span class="pre">tmux</span></code>, then <code class="docutils literal notranslate"><span class="pre">screen</span></code>, then <code class="docutils literal notranslate"><span class="pre">nohup</span></code>). Output is always
+written to a log, and drain prints how to reattach, follow it, and stop it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span><span class="w"> </span>--detached
+<span class="go">Draining in the background (tmux session "knit-drain-20260921-142530").</span>
+<span class="go">  Reattach: tmux attach -t knit-drain-20260921-142530</span>
+<span class="go">  Log:      tail -f .knit/drain/knit-drain-20260921-142530.log</span>
+<span class="go">  Stop:     tmux kill-session -t knit-drain-20260921-142530</span>
+</pre></div>
+</div>
+<p>Stopping the session stops <em>further</em> releases; jobs already handed to the
+scheduler keep running (use <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">cancel</span></code> for those). Like <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code>,
+draining records nothing of its own — each release advances an existing
+<code class="docutils literal notranslate"><span class="pre">jobs</span></code> row — so the jobs you prepared and the jobs that ran are the same
+recorded rows.</p>
 </section>
 <section id="prepare-many-jobs-from-a-plan">
 <span id="stitch-prepare-from-a-plan"></span><h2>Prepare many jobs from a plan<a class="headerlink" href="#prepare-many-jobs-from-a-plan" title="Link to this heading">#</a></h2>
@@ -1184,6 +1239,7 @@ order — see <em>Release prepared jobs</em>.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-or-resubmit-a-job">Cancel or resubmit a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-job-instead-of-submitting-it">Prepare a job instead of submitting it</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a></li>
 </ul>
   </nav></div>

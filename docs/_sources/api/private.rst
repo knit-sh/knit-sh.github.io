@@ -819,6 +819,57 @@ Variables
 .. doxygenvariable:: _KNIT_DETECTED_NODE_NCPUS
    :project: knit
 
+drain.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_drain_child_argv
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_detach
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_detach_backend
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_detach_message
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_dry_run
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_dry_run_json
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_emit_json
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_launch_argv
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_nolimit
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_pool
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_pool_worker
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_release_next
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_report
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_serial
+   :project: knit
+
+.. doxygenfunction:: _knit_drain_spawn
+   :project: knit
+
 global.sh
 ---------
 
@@ -838,6 +889,9 @@ Variables
    :project: knit
 
 .. doxygenvariable:: _KNIT_IS_BOOTSTRAPPING
+   :project: knit
+
+.. doxygenvariable:: _KNIT_SCRIPT_PATH
    :project: knit
 
 job.sh

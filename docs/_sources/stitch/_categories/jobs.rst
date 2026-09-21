@@ -135,6 +135,17 @@ Release prepared jobs
 
 .. include:: /stitch/recipes/release-prepared-jobs.rst
 
+.. _stitch-drain-prepared-jobs:
+
+Drain a prepared batch with submit drain
+----------------------------------------
+
+*Release a whole prepared batch in one command, throttled to N jobs at once, optionally in the background.*
+
+**APIs:** ``submit:drain``
+
+.. include:: /stitch/recipes/drain-prepared-jobs.rst
+
 .. _stitch-prepare-from-a-plan:
 
 Prepare many jobs from a plan
