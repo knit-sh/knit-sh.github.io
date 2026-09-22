@@ -1147,7 +1147,11 @@ omitted. Each entry is prepared as if you had run <code class="docutils literal 
 (a per-entry <code class="docutils literal notranslate"><span class="pre">group</span></code>, or a <code class="docutils literal notranslate"><span class="pre">--group</span></code> on the command line, overrides it).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">defaults</span></code> (optional object) — a field map merged <strong>under</strong> every entry, so
 an explicit field on the entry wins. Applies to concrete entries and to every
-matrix combination.</p></li>
+matrix combination. The <code class="docutils literal notranslate"><span class="pre">args</span></code> object is deep-merged: an entry (or a matrix
+combination) overrides only the arguments it names and keeps the rest of
+<code class="docutils literal notranslate"><span class="pre">defaults.args</span></code>, so you can sweep one argument in a matrix while sharing the
+others through <code class="docutils literal notranslate"><span class="pre">defaults.args</span></code>. (An <code class="docutils literal notranslate"><span class="pre">args</span></code> given as a raw-token <strong>array</strong>
+takes full control and does not merge with <code class="docutils literal notranslate"><span class="pre">defaults.args</span></code>.)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">jobs</span></code> (required array) — the entries to prepare. Each element is <strong>either</strong>
 a concrete entry <strong>or</strong> a <code class="docutils literal notranslate"><span class="pre">matrix</span></code> block.</p></li>
 </ul>
