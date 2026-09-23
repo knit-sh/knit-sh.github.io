@@ -12,6 +12,9 @@ ai.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_ai_ask
+   :project: knit
+
 .. doxygenfunction:: _knit_ai_chat_request
    :project: knit
 
@@ -21,10 +24,28 @@ Functions
 .. doxygenfunction:: _knit_ai_describe_summary
    :project: knit
 
+.. doxygenfunction:: _knit_ai_discover
+   :project: knit
+
 .. doxygenfunction:: _knit_ai_dispatch_tool
    :project: knit
 
+.. doxygenfunction:: _knit_ai_extract_query
+   :project: knit
+
 .. doxygenfunction:: _knit_ai_loop
+   :project: knit
+
+.. doxygenfunction:: _knit_ai_query
+   :project: knit
+
+.. doxygenfunction:: _knit_ai_query_loop
+   :project: knit
+
+.. doxygenfunction:: _knit_ai_query_mode_args
+   :project: knit
+
+.. doxygenfunction:: _knit_ai_query_system_prompt
    :project: knit
 
 .. doxygenfunction:: _knit_ai_resolve_config
@@ -394,6 +415,12 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_decl_flag_present
+   :project: knit
+
+.. doxygenfunction:: _knit_discover_ancestors
+   :project: knit
+
+.. doxygenfunction:: _knit_ensure_discovered
    :project: knit
 
 .. doxygenfunction:: _knit_execute_after_commands
@@ -948,6 +975,60 @@ Variables
 .. doxygenvariable:: _KNIT_JOBS_TABLE
    :project: knit
 
+job_cli.sh
+----------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_job_cancel
+   :project: knit
+
+.. doxygenfunction:: _knit_job_dir
+   :project: knit
+
+.. doxygenfunction:: _knit_job_discover
+   :project: knit
+
+.. doxygenfunction:: _knit_job_follow_file
+   :project: knit
+
+.. doxygenfunction:: _knit_job_in_clause
+   :project: knit
+
+.. doxygenfunction:: _knit_job_list
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reconstruct_args_from_db_row
+   :project: knit
+
+.. doxygenfunction:: _knit_job_resubmit
+   :project: knit
+
+.. doxygenfunction:: _knit_job_show
+   :project: knit
+
+.. doxygenfunction:: _knit_job_show_file
+   :project: knit
+
+.. doxygenfunction:: _knit_job_show_script
+   :project: knit
+
+.. doxygenfunction:: _knit_job_show_stderr
+   :project: knit
+
+.. doxygenfunction:: _knit_job_show_stdout
+   :project: knit
+
+.. doxygenfunction:: _knit_job_state_is_terminal
+   :project: knit
+
+.. doxygenfunction:: _knit_job_status
+   :project: knit
+
+.. doxygenfunction:: _knit_job_wait
+   :project: knit
+
 launch.sh
 ---------
 
@@ -1092,6 +1173,9 @@ Functions
 Variables
 ~~~~~~~~~
 
+.. doxygenvariable:: _KNIT_LOG_LEVELS
+   :project: knit
+
 .. doxygenvariable:: _KNIT_TRACE_FILE
    :project: knit
 
@@ -1102,6 +1186,33 @@ Variables
 ~~~~~~~~~
 
 .. doxygenvariable:: _KNIT_JUMP_TO_DIR
+   :project: knit
+
+metadata.sh
+-----------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_metadata_discover
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_get
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_is_json
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_load
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_render_value
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_show
+   :project: knit
+
+.. doxygenfunction:: _knit_metadata_store
    :project: knit
 
 prepare.sh
@@ -1242,6 +1353,18 @@ Functions
 .. doxygenfunction:: _knit_query_annotate_catalog
    :project: knit
 
+.. doxygenfunction:: _knit_query_build_lens_preamble
+   :project: knit
+
+.. doxygenfunction:: _knit_query_build_names
+   :project: knit
+
+.. doxygenfunction:: _knit_query_build_schema
+   :project: knit
+
+.. doxygenfunction:: _knit_query_catalog
+   :project: knit
+
 .. doxygenfunction:: _knit_query_catalog_columns
    :project: knit
 
@@ -1260,10 +1383,40 @@ Functions
 .. doxygenfunction:: _knit_query_catalog_produce
    :project: knit
 
+.. doxygenfunction:: _knit_query_cleanup_tmps
+   :project: knit
+
+.. doxygenfunction:: _knit_query_column_types
+   :project: knit
+
+.. doxygenfunction:: _knit_query_discover
+   :project: knit
+
+.. doxygenfunction:: _knit_query_exec_over_lens
+   :project: knit
+
+.. doxygenfunction:: _knit_query_graph
+   :project: knit
+
+.. doxygenfunction:: _knit_query_lens_schema
+   :project: knit
+
 .. doxygenfunction:: _knit_query_read_output_opts
    :project: knit
 
+.. doxygenfunction:: _knit_query_resolve_extra
+   :project: knit
+
+.. doxygenfunction:: _knit_query_run_normalized
+   :project: knit
+
+.. doxygenfunction:: _knit_query_sql
+   :project: knit
+
 .. doxygenfunction:: _knit_query_table_alias
+   :project: knit
+
+.. doxygenfunction:: _knit_query_warn_fingerprint_mismatch
    :project: knit
 
 remove.sh
@@ -1276,6 +1429,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_append_ids
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_artifact
    :project: knit
 
 .. doxygenfunction:: _knit_remove_build_report
@@ -1293,6 +1449,9 @@ Functions
 .. doxygenfunction:: _knit_remove_closure_from_root
    :project: knit
 
+.. doxygenfunction:: _knit_remove_command
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_confirm
    :project: knit
 
@@ -1306,6 +1465,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_delete_rows
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_discover
    :project: knit
 
 .. doxygenfunction:: _knit_remove_dispatch
@@ -1336,6 +1498,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_intersect
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_job
    :project: knit
 
 .. doxygenfunction:: _knit_remove_map_ids
@@ -1374,6 +1539,9 @@ Functions
 .. doxygenfunction:: _knit_remove_resolve_selection
    :project: knit
 
+.. doxygenfunction:: _knit_remove_resource
+   :project: knit
+
 .. doxygenfunction:: _knit_remove_rm_artifact
    :project: knit
 
@@ -1381,6 +1549,12 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_remove_row_value
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_run
+   :project: knit
+
+.. doxygenfunction:: _knit_remove_setup
    :project: knit
 
 .. doxygenfunction:: _knit_remove_table_kind
@@ -1471,6 +1645,9 @@ Functions
 ~~~~~~~~~
 
 .. doxygenfunction:: _knit_bundle_rocrate_generate
+   :project: knit
+
+.. doxygenfunction:: _knit_export_discover
    :project: knit
 
 .. doxygenfunction:: _knit_export_rocrate
@@ -1832,6 +2009,9 @@ skills.sh
 
 Functions
 ~~~~~~~~~
+
+.. doxygenfunction:: _knit_skills_discover
+   :project: knit
 
 .. doxygenfunction:: _knit_skills_download
    :project: knit

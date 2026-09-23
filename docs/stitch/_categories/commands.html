@@ -452,6 +452,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-command">Register a command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-program-description">Set the program description</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nest-subcommands">Nest subcommands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-subcommands-lazily">Register subcommands lazily</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-dispatcher-command">Add a dispatcher command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hide-or-gate-a-command">Hide or gate a command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#highlight-a-command-in-help">Highlight a command in –help</a></li>
@@ -609,6 +610,91 @@ _say_goodbye<span class="o">()</span><span class="w"> </span><span class="o">{</
 <p>Nesting can go deeper (<code class="docutils literal notranslate"><span class="pre">say:hello:loudly</span></code> → <code class="docutils literal notranslate"><span class="pre">say</span> <span class="pre">hello</span> <span class="pre">loudly</span></code>); each parent
 level is registered the same way.</p>
 </section>
+<section id="register-subcommands-lazily">
+<span id="stitch-lazy-subcommand-discovery"></span><h2>Register subcommands lazily<a class="headerlink" href="#register-subcommands-lazily" title="Link to this heading">#</a></h2>
+<p><em>Defer a subtree’s registration until a subcommand is first reached.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_discovery</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_empty</span></code></p>
+<p>Registering a command declares its parameters, table, and callbacks up front. For
+a parent with many subcommands, most runs never touch most of that subtree, so the
+work is wasted. <code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_discovery</span></code> defers it: name a <em>discovery
+function</em> on the parent, and knit calls it at most once — only when a subcommand
+is actually reached (resolved on the command line, listed in the parent’s
+<code class="docutils literal notranslate"><span class="pre">--help</span></code>, or walked by <code class="docutils literal notranslate"><span class="pre">describe</span></code>).</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a larger subtree, register the children lazily. Attach a discovery function</span>
+<span class="c1"># to the parent with @with_subcommand_discovery: knit calls it at most once, the</span>
+<span class="c1"># first time a subcommand of "widget" is reached (resolved, listed in --help, or</span>
+<span class="c1"># walked by describe), so sourcing the script never builds the subtree up front.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"widget"</span><span class="w"> </span><span class="s2">"Work with widgets."</span>
+<span class="nd">@empty</span>
+<span class="nd">@with_subcommand_discovery</span><span class="w"> </span>_widget_discover
+<span class="nd">@done</span>
+
+<span class="c1"># The discovery function registers the immediate subcommands with the usual</span>
+<span class="c1"># calls. It runs in the main shell (never a subshell) and receives the parent's</span>
+<span class="c1"># display name as $1 (unused here).</span>
+_widget_discover<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nd">@command</span><span class="w"> </span><span class="s2">"widget:list"</span><span class="w"> </span><span class="s2">"List widgets."</span>
+<span class="w">    </span>_widget_list<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"widget-a widget-b"</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="nd">@done</span>
+
+<span class="w">    </span><span class="nd">@command</span><span class="w"> </span><span class="s2">"widget:make"</span><span class="w"> </span><span class="s2">"Make a widget."</span>
+<span class="w">    </span><span class="nd">@with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Widget name."</span>
+<span class="w">    </span>_widget_make<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"made </span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="nd">@done</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a larger subtree, register the children lazily. Attach a discovery function</span>
+<span class="c1"># to the parent with @with_subcommand_discovery: knit calls it at most once, the</span>
+<span class="c1"># first time a subcommand of "widget" is reached (resolved, listed in --help, or</span>
+<span class="c1"># walked by describe), so sourcing the script never builds the subtree up front.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"widget"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"Work with widgets."</span>
+<span class="nb">knit_with_subcommand_discovery</span><span class="w"> </span>_widget_discover
+<span class="nb">knit_done</span>
+
+<span class="c1"># The discovery function registers the immediate subcommands with the usual</span>
+<span class="c1"># calls. It runs in the main shell (never a subshell) and receives the parent's</span>
+<span class="c1"># display name as $1 (unused here).</span>
+_widget_discover<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"widget:list"</span><span class="w"> </span>_widget_list<span class="w"> </span><span class="s2">"List widgets."</span>
+<span class="w">    </span>_widget_list<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"widget-a widget-b"</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="nb">knit_done</span>
+
+<span class="w">    </span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"widget:make"</span><span class="w"> </span>_widget_make<span class="w"> </span><span class="s2">"Make a widget."</span>
+<span class="w">    </span><span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Widget name."</span>
+<span class="w">    </span>_widget_make<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"made </span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"name"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">    </span><span class="nb">knit_done</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The discovery function registers the parent’s immediate subcommands with the
+usual <code class="docutils literal notranslate"><span class="pre">knit_register</span> <span class="pre">...</span> <span class="pre">knit_done</span></code> calls. It runs in the main shell (never a
+subshell), so the registrations take effect, and it receives the parent’s display
+name as <code class="docutils literal notranslate"><span class="pre">$1</span></code>. Keep it fast and side-effect free — registration only —
+because it runs on the resolution and help paths.</p>
+<p>Until the function runs, the parent exists but its subtree does not: <code class="docutils literal notranslate"><span class="pre">widget</span></code>
+appears in the top-level <code class="docutils literal notranslate"><span class="pre">--help</span></code>, while <code class="docutils literal notranslate"><span class="pre">widget</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">widget</span> <span class="pre">make</span></code> are
+built only when first needed. A subcommand it registers may itself declare a
+discovery function, so deeper levels stay lazy too.</p>
+</section>
 <section id="add-a-dispatcher-command">
 <span id="stitch-add-a-dispatcher"></span><h2>Add a dispatcher command<a class="headerlink" href="#add-a-dispatcher-command" title="Link to this heading">#</a></h2>
 <p><em>Forward the trailing arguments to a target the command resolves itself.</em></p>
@@ -620,8 +706,8 @@ setup, job, or app name after <code class="docutils literal notranslate"><span c
 <code class="docutils literal notranslate"><span class="pre">--help</span></code> usage line to <code class="docutils literal notranslate"><span class="pre">cmd</span> <span class="pre">[OPTIONS]</span> <span class="pre">--</span> <span class="pre">&lt;target&gt;</span> <span class="pre">[OPTIONS]</span></code> and allows the
 trailing arguments), and the body reads them with <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A dispatcher forwards everything after "--" to a target it looks up itself.</span>
 <span class="c1"># @with_dispatch changes the --help usage line to "tool [OPTIONS] -- &lt;tool&gt;"</span>
@@ -638,8 +724,8 @@ _run_tool<span class="o">()</span><span class="w"> </span><span class="o">{</spa
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A dispatcher forwards everything after "--" to a target it looks up itself.</span>
 <span class="c1"># @with_dispatch changes the --help usage line to "tool [OPTIONS] -- &lt;tool&gt;"</span>
@@ -668,8 +754,8 @@ _run_tool<span class="o">()</span><span class="w"> </span><span class="o">{</spa
 invokable; <code class="docutils literal notranslate"><span class="pre">knit_usable_if</span></code> blocks a command from running unless a predicate
 holds, showing its description as the error otherwise:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide a command from --help. It stays fully invokable.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"internal"</span><span class="w"> </span><span class="s2">"Internal helper."</span>
@@ -694,8 +780,8 @@ _danger_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide a command from --help. It stays fully invokable.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"internal"</span><span class="w"> </span>_internal_cmd<span class="w"> </span><span class="s2">"Internal helper."</span>
@@ -742,8 +828,8 @@ returns 0 or non-zero.</p>
 purely cosmetic: it never affects whether the command runs, its provenance, or how
 <code class="docutils literal notranslate"><span class="pre">describe</span></code> sees it.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bold a command's name in --help when a predicate holds and output is a</span>
 <span class="c1"># terminal. Purely cosmetic: it never affects whether the command runs.</span>
@@ -759,8 +845,8 @@ _featured_cmd<span class="o">()</span><span class="w"> </span><span class="o">{<
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bold a command's name in --help when a predicate holds and output is a</span>
 <span class="c1"># terminal. Purely cosmetic: it never affects whether the command runs.</span>
@@ -838,6 +924,7 @@ command.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-command">Register a command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-program-description">Set the program description</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nest-subcommands">Nest subcommands</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-subcommands-lazily">Register subcommands lazily</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-dispatcher-command">Add a dispatcher command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hide-or-gate-a-command">Hide or gate a command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#highlight-a-command-in-help">Highlight a command in –help</a></li>

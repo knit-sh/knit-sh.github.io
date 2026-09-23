@@ -522,6 +522,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_setup"><code class="docutils literal notranslate"><span class="pre">knit_with_setup()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_spack_env"><code class="docutils literal notranslate"><span class="pre">knit_with_spack_env()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_spack_specs"><code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_discovery"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_discovery()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_title"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_title()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_table"><code class="docutils literal notranslate"><span class="pre">knit_with_table()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_url"><code class="docutils literal notranslate"><span class="pre">knit_with_url()</span></code></a></li>
@@ -1791,6 +1792,19 @@ knit_done
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_with_subcommand_discovery">
+<span class="target" id="cli_8sh_1a8efee042500dd83a8bd103d0ab077c41"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_subcommand_discovery</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_subcommand_discovery" title="Link to this definition">#</a><br /></dt>
+<dd><p>Name a discovery function for the command currently being registered. The command's subcommands are then registered lazily: instead of running their &quot;knit_register ... knit_done&quot; blocks at load time, the framework calls the named function at most once, and only when it must know the command's subcommands (the resolver reaches for a subcommand, &quot;--help&quot; lists them, or &quot;describe&quot; walks into the command). This keeps &quot;source knit.sh&quot; and every command start cheaper by not building command subtrees a run never touches.</p>
+<p>The named function registers the command's immediate subcommands, each as a full &quot;knit_register ... knit_done&quot; block. It runs in the main shell (never a subshell) and receives the parent command's display name as its first argument. It must be fast and side-effect free (registration only): it runs on the resolution and help paths, which must stay cheap.</p>
+<p>State stored on the command:<ul class="simple">
+<li><p><em>KNIT_CMD</em>&lt;cmd&gt;<em>subcommand_discovery : the function name.</em></p></li>
+<li><p><em>_KNIT_CMD</em>&lt;cmd&gt;_discovered : &quot;true&quot; after the function has run.</p></li>
+</ul>
+</p>
+<p>Must be called between a knit_register* call and knit_done. It is not valid on a wrapper (knit_register_wrapper), which forwards its arguments verbatim and has no subcommands. A command may name at most one discovery function; a second call is fatal. The function name must be a non-empty token; its existence is checked when it is called (it may be defined after this decorator). </p>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_with_subcommand_title">
 <span class="target" id="cli_8sh_1a83d658f40ba74a6b2073a708deb4d827"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_subcommand_title</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_subcommand_title" title="Link to this definition">#</a><br /></dt>
 <dd><p>Change the title of subcommands for the command being registered (default subcommand name is &quot;Subcommands&quot;). This is the title displayed when calling --help. </p>
@@ -2046,6 +2060,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_setup"><code class="docutils literal notranslate"><span class="pre">knit_with_setup()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_spack_env"><code class="docutils literal notranslate"><span class="pre">knit_with_spack_env()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_spack_specs"><code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_discovery"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_discovery()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_title"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_title()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_table"><code class="docutils literal notranslate"><span class="pre">knit_with_table()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_url"><code class="docutils literal notranslate"><span class="pre">knit_with_url()</span></code></a></li>

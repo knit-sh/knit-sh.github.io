@@ -47,6 +47,17 @@ Nest subcommands
 
 .. include:: /stitch/recipes/nest-subcommands.rst
 
+.. _stitch-lazy-subcommand-discovery:
+
+Register subcommands lazily
+---------------------------
+
+*Defer a subtree's registration until a subcommand is first reached.*
+
+**APIs:** ``knit_with_subcommand_discovery``, ``knit_register``, ``knit_empty``
+
+.. include:: /stitch/recipes/lazy-subcommand-discovery.rst
+
 .. _stitch-add-a-dispatcher:
 
 Add a dispatcher command

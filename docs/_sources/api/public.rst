@@ -227,6 +227,9 @@ Functions
 .. doxygenfunction:: knit_with_spack_specs
    :project: knit
 
+.. doxygenfunction:: knit_with_subcommand_discovery
+   :project: knit
+
 .. doxygenfunction:: knit_with_subcommand_title
    :project: knit
 
