@@ -783,21 +783,15 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-sh">drain.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_child_argv"><code class="docutils literal notranslate"><span class="pre">_knit_drain_child_argv()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach_backend"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach_backend()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach_message"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach_message()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_dry_run"><code class="docutils literal notranslate"><span class="pre">_knit_drain_dry_run()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_dry_run_json"><code class="docutils literal notranslate"><span class="pre">_knit_drain_dry_run_json()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_emit_json"><code class="docutils literal notranslate"><span class="pre">_knit_drain_emit_json()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_launch_argv"><code class="docutils literal notranslate"><span class="pre">_knit_drain_launch_argv()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_nolimit"><code class="docutils literal notranslate"><span class="pre">_knit_drain_nolimit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_pool"><code class="docutils literal notranslate"><span class="pre">_knit_drain_pool()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_pool_worker"><code class="docutils literal notranslate"><span class="pre">_knit_drain_pool_worker()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_release_next"><code class="docutils literal notranslate"><span class="pre">_knit_drain_release_next()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_report"><code class="docutils literal notranslate"><span class="pre">_knit_drain_report()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_serial"><code class="docutils literal notranslate"><span class="pre">_knit_drain_serial()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_spawn"><code class="docutils literal notranslate"><span class="pre">_knit_drain_spawn()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -4877,77 +4871,6 @@ compatibility guarantee.</p>
 <section id="id17">
 <h3>Functions<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_child_argv">
-<span class="target" id="drain_8sh_1a318734dcb81b1f228c41d73681c3353b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_child_argv</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_child_argv" title="Link to this definition">#</a><br /></dt>
-<dd><p>Build the argv that the detached session runs: the experiment re-executed as <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> with the same filters and pacing, but WITHOUT the detach options (so the child runs the loop in the foreground inside the session). The experiment path is _KNIT_SCRIPT_PATH (resolved at load).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array variable to fill with the argv. </p></li>
-<li><p><strong>type</strong> -- <strong>[in]</strong> Job-type filter, or &quot;&quot;. </p></li>
-<li><p><strong>group</strong> -- <strong>[in]</strong> Group filter, or &quot;&quot;. </p></li>
-<li><p><strong>max_inflight</strong> -- <strong>[in]</strong> Concurrency level. </p></li>
-<li><p><strong>count</strong> -- <strong>[in]</strong> Release cap, or &quot;&quot;. </p></li>
-<li><p><strong>stop_on_failure</strong> -- <strong>[in]</strong> &quot;true&quot;/&quot;false&quot;. </p></li>
-<li><p><strong>json_summary</strong> -- <strong>[in]</strong> &quot;true&quot;/&quot;false&quot;. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_detach">
-<span class="target" id="drain_8sh_1afb670b4be55052f214803ecb3f9a7c46"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_detach</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_detach" title="Link to this definition">#</a><br /></dt>
-<dd><p>Run the drain loop in a detached background session and return immediately. Resolves the backend, warns when the nohup backend cannot honor an explicit --session, ensures the log directory exists, rebuilds the child command (with the detach options stripped) and its backend launch argv, spawns it, and prints how to reattach / follow / stop it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>backend_req</strong> -- <strong>[in]</strong> Requested backend (&quot;auto&quot;/&quot;tmux&quot;/&quot;screen&quot;/&quot;nohup&quot;). </p></li>
-<li><p><strong>session</strong> -- <strong>[in]</strong> Resolved session name. </p></li>
-<li><p><strong>session_explicit</strong> -- <strong>[in]</strong> &quot;true&quot; when the user set --session. </p></li>
-<li><p><strong>log</strong> -- <strong>[in]</strong> Resolved log path. </p></li>
-<li><p><strong>type</strong> -- <strong>[in]</strong> Job-type filter, or &quot;&quot;. </p></li>
-<li><p><strong>group</strong> -- <strong>[in]</strong> Group filter, or &quot;&quot;. </p></li>
-<li><p><strong>max_inflight</strong> -- <strong>[in]</strong> Concurrency level. </p></li>
-<li><p><strong>count</strong> -- <strong>[in]</strong> Release cap, or &quot;&quot;. </p></li>
-<li><p><strong>stop_on_failure</strong> -- <strong>[in]</strong> &quot;true&quot;/&quot;false&quot;. </p></li>
-<li><p><strong>json_summary</strong> -- <strong>[in]</strong> &quot;true&quot;/&quot;false&quot;. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_detach_backend">
-<span class="target" id="drain_8sh_1a025d2b39acde5bc1824e8dcae57ea66a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_detach_backend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_detach_backend" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve the detach backend to use. &quot;auto&quot; prefers tmux, then screen, then nohup (nohup is part of coreutils, so it is the always-available fallback). A named backend (tmux / screen / nohup) that is not installed is a fatal error, and an unrecognized value is fatal too. Presence is probed through _knit_command_path so it can be stubbed in tests.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to receive the resolved backend. </p></li>
-<li><p><strong>requested</strong> -- <strong>[in]</strong> &quot;auto&quot;, &quot;tmux&quot;, &quot;screen&quot;, or &quot;nohup&quot;. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_detach_message">
-<span class="target" id="drain_8sh_1aba6bec8b4d5fdc3ffb2087b02a55079f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_detach_message</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_detach_message" title="Link to this definition">#</a><br /></dt>
-<dd><p>Print how to reattach to, follow, and stop the detached drain, to stderr. tmux and screen have a reattachable session; the nohup backend has only a PID.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>backend</strong> -- <strong>[in]</strong> &quot;tmux&quot;, &quot;screen&quot;, or &quot;nohup&quot;. </p></li>
-<li><p><strong>session</strong> -- <strong>[in]</strong> Session name (tmux/screen). </p></li>
-<li><p><strong>log</strong> -- <strong>[in]</strong> Path the output is written to. </p></li>
-<li><p><strong>pid</strong> -- <strong>[in]</strong> Background PID (nohup backend). </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_drain_dry_run">
 <span class="target" id="drain_8sh_1a6fc109589b0f39fe125dc6c3be5cf00c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_dry_run</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_dry_run" title="Link to this definition">#</a><br /></dt>
 <dd><p>List the prepared jobs that would be released, in release order, without claiming or releasing anything. The peek mirrors _knit_prepare_claim_next: the same state='prepared' filter (plus optional job / group), the same ORDER BY id ASC, and --count applied as a LIMIT. It is a read-only SELECT (no write lock), so it never advances a job's state. Each matching job prints as &quot;&lt;uuid&gt;  &lt;job&gt;&quot; (with &quot;  [&lt;group&gt;]&quot; appended when the job has a group); with json_summary the peeked list is printed as JSON instead. A count of matches is reported to stderr.</p>
@@ -4989,23 +4912,6 @@ compatibility guarantee.</p>
 <li><p><strong>failed</strong> -- <strong>[in]</strong> Number that failed (&quot;&quot; in no-limit). </p></li>
 <li><p><strong>drained</strong> -- <strong>[in]</strong> &quot;true&quot; when the prepared queue was emptied. </p></li>
 <li><p><strong>stopped</strong> -- <strong>[in]</strong> &quot;true&quot; when a failure halted the drain early. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_launch_argv">
-<span class="target" id="drain_8sh_1ac8d70f4f2d14ab416d26419c7ff87a8d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_launch_argv</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_launch_argv" title="Link to this definition">#</a><br /></dt>
-<dd><p>Build the argv that actually starts the detached session for the given backend, given the (already q-escaped) child command string. tmux and screen run the child through a shell and tee its output to the log, and close their session when the child exits. The nohup backend runs the child under setsid (or nohup when setsid is absent) with output redirected to the log; the caller backgrounds it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array variable to fill with the argv. </p></li>
-<li><p><strong>backend</strong> -- <strong>[in]</strong> &quot;tmux&quot;, &quot;screen&quot;, or &quot;nohup&quot;. </p></li>
-<li><p><strong>session</strong> -- <strong>[in]</strong> Session name (tmux/screen). </p></li>
-<li><p><strong>log</strong> -- <strong>[in]</strong> Path the output is written to. </p></li>
-<li><p><strong>child_str</strong> -- <strong>[in]</strong> The q-escaped child command string. </p></li>
 </ul>
 </dd>
 </dl>
@@ -5102,20 +5008,6 @@ compatibility guarantee.</p>
 <li><p><strong>count</strong> -- <strong>[in]</strong> Maximum jobs to release, or &quot;&quot; for no cap. </p></li>
 <li><p><strong>json_summary</strong> -- <strong>[in]</strong> &quot;true&quot; to also print the JSON summary to stdout. </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> Filter arguments forwarded to _knit_drain_release_next. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_drain_spawn">
-<span class="target" id="drain_8sh_1a1dbdbaaf1711187698367fe146da547b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_spawn</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_spawn" title="Link to this definition">#</a><br /></dt>
-<dd><p>Start the detached session. For the nohup backend the command is backgrounded, detached from this shell's stdio, and its PID is printed (for the &quot;Stop&quot; hint); for tmux / screen the command returns immediately on its own. Factored out so tests can stub the actual spawn.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>backend</strong> -- <strong>[in]</strong> &quot;tmux&quot;, &quot;screen&quot;, or &quot;nohup&quot;. </p></li>
-<li><p><strong>...</strong> -- <strong>[in]</strong> The launch argv to execute. </p></li>
 </ul>
 </dd>
 </dl>
@@ -10103,21 +9995,15 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-sh">drain.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_child_argv"><code class="docutils literal notranslate"><span class="pre">_knit_drain_child_argv()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach_backend"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach_backend()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_detach_message"><code class="docutils literal notranslate"><span class="pre">_knit_drain_detach_message()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_dry_run"><code class="docutils literal notranslate"><span class="pre">_knit_drain_dry_run()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_dry_run_json"><code class="docutils literal notranslate"><span class="pre">_knit_drain_dry_run_json()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_emit_json"><code class="docutils literal notranslate"><span class="pre">_knit_drain_emit_json()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_launch_argv"><code class="docutils literal notranslate"><span class="pre">_knit_drain_launch_argv()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_nolimit"><code class="docutils literal notranslate"><span class="pre">_knit_drain_nolimit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_pool"><code class="docutils literal notranslate"><span class="pre">_knit_drain_pool()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_pool_worker"><code class="docutils literal notranslate"><span class="pre">_knit_drain_pool_worker()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_release_next"><code class="docutils literal notranslate"><span class="pre">_knit_drain_release_next()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_report"><code class="docutils literal notranslate"><span class="pre">_knit_drain_report()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_serial"><code class="docutils literal notranslate"><span class="pre">_knit_drain_serial()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_spawn"><code class="docutils literal notranslate"><span class="pre">_knit_drain_spawn()</span></code></a></li>
 </ul>
 </li>
 </ul>

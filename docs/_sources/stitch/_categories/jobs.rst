@@ -140,7 +140,7 @@ Release prepared jobs
 Drain a prepared batch with submit drain
 ----------------------------------------
 
-*Release a whole prepared batch in one command, throttled to N jobs at once, optionally in the background.*
+*Release a whole prepared batch in one command, throttled to N jobs at once.*
 
 **APIs:** ``submit:drain``
 
