@@ -600,6 +600,9 @@ Functions
 .. doxygenfunction:: _knit_db_create_table
    :project: knit
 
+.. doxygenfunction:: _knit_db_ensure_table
+   :project: knit
+
 .. doxygenfunction:: _knit_db_migrate_table
    :project: knit
 
@@ -610,9 +613,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_db_sql_ident
-   :project: knit
-
-.. doxygenfunction:: _knit_db_type_default
    :project: knit
 
 .. doxygenfunction:: _knit_db_update_row

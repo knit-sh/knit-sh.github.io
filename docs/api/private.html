@@ -681,11 +681,11 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_check_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_check_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_command_has_exit_status"><code class="docutils literal notranslate"><span class="pre">_knit_db_command_has_exit_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_create_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_create_table()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_ensure_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_migrate_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_migrate_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_record_invocation"><code class="docutils literal notranslate"><span class="pre">_knit_db_record_invocation()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_setup_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_setup_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_sql_ident"><code class="docutils literal notranslate"><span class="pre">_knit_db_sql_ident()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_type_default"><code class="docutils literal notranslate"><span class="pre">_knit_db_type_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_update_row"><code class="docutils literal notranslate"><span class="pre">_knit_db_update_row()</span></code></a></li>
 </ul>
 </li>
@@ -3810,7 +3810,8 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_db_check_table">
 <span class="target" id="db_8sh_1a685d832929719bb0550fd3fd9391b393"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_check_table</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_check_table" title="Link to this definition">#</a><br /></dt>
-<dd><p>Check whether a table exists in the Knit database and matches the given column specifications exactly (count, names, types, and order). Returns 0 if the table exists and matches, 1 if the table does not exist, or 2 if the table exists but the schema differs from what was specified.</p>
+<dd><p>Check whether a table exists and already carries every declared column. Returns 0 if the table exists and every desired column is present, 1 if the table does not exist, or 2 if the table exists but is missing one or more of the desired columns.</p>
+<p>The match is a superset test: columns present in the table but absent from the desired specification (e.g. a parameter later removed from the command) are ignored, and so are column order and column type. Migration is additive only (see _knit_db_migrate_table), so a present column of any type is treated as satisfying the specification and never triggers a change.</p>
 <p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_knit_db_check_table</span> <span class="s2">"runs"</span> <span class="s2">"id:uuid"</span> <span class="s2">"duration:real"</span>
 <span class="c1"># returns 0, 1, or 2</span>
 </pre></div>
@@ -3824,7 +3825,7 @@ compatibility guarantee.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>0 if the table matches, 1 if absent, 2 if schema differs. </p>
+<dd class="field-even"><p>0 if every desired column is present, 1 if absent, 2 if any is missing. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -3864,11 +3865,25 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_db_ensure_table">
+<span class="target" id="db_8sh_1a054d280e07fe4868d7315a05cb1b8f29"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_ensure_table</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_ensure_table" title="Link to this definition">#</a><br /></dt>
+<dd><p>Ensure a table exists and carries every column in the given &quot;name:type&quot; specification: create it if absent, add any missing columns if present, or do nothing if it is already a superset of the specification. This is the shared create-or-migrate step used by _knit_db_setup_table for both wrapper and ordinary command tables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table_name</strong> -- <strong>[in]</strong> Name of the table to ensure. </p></li>
+<li><p><strong>...specs</strong> -- <strong>[in]</strong> One or more &quot;name:type&quot; specifications. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_db_migrate_table">
 <span class="target" id="db_8sh_1ab0d39034447fd0d34158cb4e44c682a2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_migrate_table</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_migrate_table" title="Link to this definition">#</a><br /></dt>
-<dd><p>Migrate an existing table to a new column schema. Each column specification may be &quot;name:type&quot; (for columns that already exist or are being retyped) or &quot;name:type=default&quot; (required for columns not present in the current schema, so that existing rows can be back-filled with the given default value). Columns absent from the new spec are dropped. Column names are normalized (hyphens converted to underscores). If the current schema already matches the desired schema the function returns 0 without touching the database.</p>
-<p>The default value is always treated as a SQL string literal; SQLite's type affinity coercion handles integer/real columns correctly.</p>
-<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_knit_db_migrate_table</span> <span class="s2">"runs"</span> <span class="s2">"id:uuid"</span> <span class="s2">"count:integer=0"</span> <span class="s2">"label:string"</span>
+<dd><p>Migrate an existing table so it carries every declared column. Migration is additive only: each desired &quot;name:type&quot; column that the table does not already have is appended with &quot;ALTER TABLE ... ADD COLUMN&quot;. A column already present is left untouched (its type is never changed), and a column present in the table but absent from the specification (e.g. a parameter later removed from the command) is kept, preserving the values recorded for it. Column names are normalized (hyphens converted to underscores).</p>
+<p>A newly added column carries no SQL default: existing rows read NULL for it (the run predates the column) and a future row that does not record the column is NULL too, rather than a stale copy of some default value. Dropping a column is never automatic; that is an explicit, separate operation.</p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_knit_db_migrate_table</span> <span class="s2">"runs"</span> <span class="s2">"id:uuid"</span> <span class="s2">"count:integer"</span> <span class="s2">"label:string"</span>
 </pre></div>
 </div>
 </p>
@@ -3876,7 +3891,7 @@ compatibility guarantee.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>table_name</strong> -- <strong>[in]</strong> Name of the table to migrate. </p></li>
-<li><p><strong>...specs</strong> -- <strong>[in]</strong> One or more &quot;name:type&quot; or &quot;name:type=default&quot; specs. </p></li>
+<li><p><strong>...specs</strong> -- <strong>[in]</strong> One or more &quot;name:type&quot; specifications. </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -3912,14 +3927,8 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_db_setup_table">
 <span class="target" id="db_8sh_1a2191a85999a921a58963cf47d93492e1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_setup_table</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_setup_table" title="Link to this definition">#</a><br /></dt>
-<dd><p>Done callback installed by knit_with_table. Inspects the registered parameters, flags, and outputs of the command and ensures the database table matches that schema — creating it if absent or migrating it if the schema has changed.</p>
-<p>Column order: &quot;id&quot; (uuid) first, the reserved &quot;__exit_status__&quot; column (unless the command opted out, see _knit_db_command_has_exit_status), then required parameters, optional parameters, flags, and outputs, each group sorted alphabetically.</p>
-<p>For migration defaults:<ul class="simple">
-<li><p>Optional parameters use their declared default value.</p></li>
-<li><p>Outputs use their declared default value.</p></li>
-<li><p>Required parameters and flags use a type-based default (0, false, or &quot;&quot;).</p></li>
-</ul>
-</p>
+<dd><p>Done callback installed by knit_with_table. Inspects the registered parameters, flags, and outputs of the command and ensures the database table carries a column for each — creating the table if absent or adding any missing columns if the schema has grown.</p>
+<p>Column order at creation: &quot;id&quot; (uuid) first, the reserved &quot;__exit_status__&quot; column (unless the command opted out, see _knit_db_command_has_exit_status), then required parameters, optional parameters, flags, and outputs, each group sorted alphabetically. Migration is additive only (see _knit_db_migrate_table): a later-added column lands at the end of the table, and a column for a parameter that was removed from the command is kept, so physical column order need not match this declared order over the life of a table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -3944,26 +3953,6 @@ compatibility guarantee.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the quoted identifier. </p></li>
 <li><p><strong>name</strong> -- <strong>[in]</strong> Identifier to quote. </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_db_type_default">
-<span class="target" id="db_8sh_1ab725ae546c5262700dcb5033f04567e7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_type_default</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_type_default" title="Link to this definition">#</a><br /></dt>
-<dd><p>Return a sensible default value string for a given Knit type. Used when migrating a table to provide a back-fill value for newly added columns that do not have a user-supplied default.</p>
-<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="n">d</span><span class="p">;</span> <span class="n">_knit_db_type_default</span> <span class="n">d</span> <span class="s2">"integer"</span>  <span class="c1"># d == 0</span>
-<span class="n">local</span> <span class="n">d</span><span class="p">;</span> <span class="n">_knit_db_type_default</span> <span class="n">d</span> <span class="s2">"boolean"</span>  <span class="c1"># d == false</span>
-<span class="n">local</span> <span class="n">d</span><span class="p">;</span> <span class="n">_knit_db_type_default</span> <span class="n">d</span> <span class="s2">"string"</span>   <span class="c1"># d == (empty)</span>
-</pre></div>
-</div>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the default value. </p></li>
-<li><p><strong>type</strong> -- <strong>[in]</strong> Knit type name or alias. </p></li>
 </ul>
 </dd>
 </dl>
@@ -9893,11 +9882,11 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_check_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_check_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_command_has_exit_status"><code class="docutils literal notranslate"><span class="pre">_knit_db_command_has_exit_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_create_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_create_table()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_ensure_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_migrate_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_migrate_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_record_invocation"><code class="docutils literal notranslate"><span class="pre">_knit_db_record_invocation()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_setup_table"><code class="docutils literal notranslate"><span class="pre">_knit_db_setup_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_sql_ident"><code class="docutils literal notranslate"><span class="pre">_knit_db_sql_ident()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_type_default"><code class="docutils literal notranslate"><span class="pre">_knit_db_type_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_update_row"><code class="docutils literal notranslate"><span class="pre">_knit_db_update_row()</span></code></a></li>
 </ul>
 </li>
