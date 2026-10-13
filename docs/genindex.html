@@ -235,6 +235,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/query.html">Query</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/ai.html">AI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stitch/_categories/plugins.html">Plugins</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/introspection.html">Introspection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/agent.html">Agent skills</a></li>
 </ul>
@@ -536,8 +537,6 @@
 </li>
       <li><a href="api/private.html#c._knit_bundle">_knit_bundle (C function)</a>
 </li>
-      <li><a href="api/private.html#c._knit_bundle_auto_require">_knit_bundle_auto_require (C function)</a>
-</li>
       <li><a href="api/private.html#c._KNIT_BUNDLE_AUTO_REQUIRES">_KNIT_BUNDLE_AUTO_REQUIRES (C var)</a>
 </li>
       <li><a href="api/private.html#c._knit_bundle_collect">_knit_bundle_collect (C function)</a>
@@ -622,11 +621,15 @@
 </li>
       <li><a href="api/private.html#c._knit_command_mangle">_knit_command_mangle (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_command_marker_var">_knit_command_marker_var (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_command_path">_knit_command_path (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_command_with_space">_knit_command_with_space (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_COMMANDS">_KNIT_COMMANDS (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_CURRENT_ENUM">_KNIT_CURRENT_ENUM (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_DATABASE">_KNIT_DATABASE (C var)</a>
 </li>
@@ -850,6 +853,16 @@
 </li>
       <li><a href="api/private.html#c._knit_format_option_alternatives">_knit_format_option_alternatives (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_framed_run">_knit_framed_run (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_github_api">_knit_github_api (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_github_download">_knit_github_download (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_github_resolve_commit">_knit_github_resolve_commit (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_github_resolve_commit_light">_knit_github_resolve_commit_light (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_has_user_setup">_knit_has_user_setup (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_help_render_entry">_knit_help_render_entry (C function)</a>
@@ -1006,8 +1019,6 @@
 </li>
       <li><a href="api/private.html#c._knit_metadata_show">_knit_metadata_show (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_metadata_store">_knit_metadata_store (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_MODULE_INIT_CANDIDATES">_KNIT_MODULE_INIT_CANDIDATES (C var)</a>
@@ -1028,11 +1039,75 @@
 </li>
       <li><a href="api/private.html#c._knit_param_default">_knit_param_default (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_param_description">_knit_param_description (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_param_type">_knit_param_type (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_PARAMETER_SETS">_KNIT_PARAMETER_SETS (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_bootstrap">_knit_plugin_bootstrap (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_CACHE_ROOT">_KNIT_PLUGIN_CACHE_ROOT (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_CHECKSUM">_KNIT_PLUGIN_CHECKSUM (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_CNF_INSTALLED">_KNIT_PLUGIN_CNF_INSTALLED (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_COMMITS">_KNIT_PLUGIN_COMMITS (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_defer">_knit_plugin_defer (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_DEFERRED">_KNIT_PLUGIN_DEFERRED (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_ensure_table">_knit_plugin_ensure_table (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_fetch">_knit_plugin_fetch (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_IMPORT_STACK">_KNIT_PLUGIN_IMPORT_STACK (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_IMPORTED_BY">_KNIT_PLUGIN_IMPORTED_BY (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_install_cnf_net">_knit_plugin_install_cnf_net (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_lock_get">_knit_plugin_lock_get (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_lock_set">_knit_plugin_lock_set (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_LOCKFILE">_KNIT_PLUGIN_LOCKFILE (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_materialize">_knit_plugin_materialize (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_ORDER">_KNIT_PLUGIN_ORDER (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_parse_spec">_knit_plugin_parse_spec (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_print_deferred_footer">_knit_plugin_print_deferred_footer (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_record_row">_knit_plugin_record_row (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_REFS">_KNIT_PLUGIN_REFS (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_resolve_commit">_knit_plugin_resolve_commit (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_SPEC">_KNIT_PLUGIN_SPEC (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_TABLE">_KNIT_PLUGIN_TABLE (C var)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PLUGIN_TABLE_ENSURED">_KNIT_PLUGIN_TABLE_ENSURED (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_write_lockfile">_knit_plugin_write_lockfile (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugins_discover">_knit_plugins_discover (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugins_list">_knit_plugins_list (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugins_lock">_knit_plugins_lock (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugins_show">_knit_plugins_show (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugins_table_exists">_knit_plugins_table_exists (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_PREFIX">_KNIT_PREFIX (C var)</a>
 </li>
@@ -1097,8 +1172,6 @@
       <li><a href="api/private.html#c._knit_pset_filter_build">_knit_pset_filter_build (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_pset_import_skip">_knit_pset_import_skip (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_push_done_cb">_knit_push_done_cb (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_query_annotate_catalog">_knit_query_annotate_catalog (C function)</a>
 </li>
@@ -1264,6 +1337,8 @@
 </li>
       <li><a href="api/private.html#c._knit_reserve_name">_knit_reserve_name (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_resolve_command_tokens">_knit_resolve_command_tokens (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_resolve_default">_knit_resolve_default (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_resolve_experiment_path">_knit_resolve_experiment_path (C function)</a>
@@ -1321,10 +1396,6 @@
       <li><a href="api/private.html#c._KNIT_ROOT_COMMANDS">_KNIT_ROOT_COMMANDS (C var)</a>
 </li>
       <li><a href="api/private.html#c._knit_run">_knit_run (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_run_after">_knit_run_after (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_run_before">_knit_run_before (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_run_checksum_inputs">_knit_run_checksum_inputs (C function)</a>
 </li>
@@ -1438,6 +1509,8 @@
 </li>
       <li><a href="api/private.html#c._knit_sched_write_jobscript">_knit_sched_write_jobscript (C function)</a>
 </li>
+      <li><a href="api/private.html#c._KNIT_SCRIPT_ARGV">_KNIT_SCRIPT_ARGV (C var)</a>
+</li>
       <li><a href="api/private.html#c._KNIT_SCRIPT_PATH">_KNIT_SCRIPT_PATH (C var)</a>
 </li>
       <li><a href="api/private.html#c._knit_set_add">_knit_set_add (C function)</a>
@@ -1504,6 +1577,8 @@
 </li>
       <li><a href="api/private.html#c._knit_shorthand_generate">_knit_shorthand_generate (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_shorthand_opted_out">_knit_shorthand_opted_out (C function)</a>
+</li>
       <li><a href="api/private.html#c._KNIT_SHORTHAND_PASSTHROUGH">_KNIT_SHORTHAND_PASSTHROUGH (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_SKILLS_DEFAULT_REF">_KNIT_SKILLS_DEFAULT_REF (C var)</a>
@@ -1520,8 +1595,6 @@
 </li>
       <li><a href="api/private.html#c._knit_spack">_knit_spack (C function)</a>
 </li>
-      <li><a href="api/private.html#c._knit_spack_download">_knit_spack_download (C function)</a>
-</li>
       <li><a href="api/private.html#c._knit_spack_ensure_provisioned">_knit_spack_ensure_provisioned (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_spack_env_install">_knit_spack_env_install (C function)</a>
@@ -1530,10 +1603,6 @@
 </li>
       <li><a href="api/private.html#c._knit_spack_exec">_knit_spack_exec (C function)</a>
 </li>
-      <li><a href="api/private.html#c._knit_spack_framed_run">_knit_spack_framed_run (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_github_api">_knit_spack_github_api (C function)</a>
-</li>
       <li><a href="api/private.html#c._knit_spack_install">_knit_spack_install (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_spack_latest_release">_knit_spack_latest_release (C function)</a>
@@ -1541,8 +1610,6 @@
       <li><a href="api/private.html#c._KNIT_SPACK_PACKAGES_ROOT">_KNIT_SPACK_PACKAGES_ROOT (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_SPACK_REQUIRED">_KNIT_SPACK_REQUIRED (C var)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_resolve_commit">_knit_spack_resolve_commit (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_SPACK_ROOT">_KNIT_SPACK_ROOT (C var)</a>
 </li>
@@ -1606,8 +1673,6 @@
 </li>
       <li><a href="api/private.html#c._knit_without_exit_status">_knit_without_exit_status (C function)</a>
 </li>
-      <li><a href="api/private.html#c._knit_wrapper_reject_declaration">_knit_wrapper_reject_declaration (C function)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -1616,17 +1681,35 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit">knit (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_add_command_note">knit_add_command_note (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_artifact">knit_artifact (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_artifact_dir">knit_artifact_dir (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_as">knit_as (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_bundle_auto_require">knit_bundle_auto_require (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_bundle_requires">knit_bundle_requires (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_check_arguments">knit_check_arguments (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_check_subcommand_args">knit_check_subcommand_args (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_check_subcommand_exists">knit_check_subcommand_exists (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_command_has_marker">knit_command_has_marker (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_command_run_after">knit_command_run_after (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_command_run_before">knit_command_run_before (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_command_set_marker">knit_command_set_marker (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_critical">knit_critical (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_current_command">knit_current_command (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_debug">knit_debug (C function)</a>
 </li>
@@ -1634,11 +1717,17 @@
 </li>
       <li><a href="api/public.html#c.knit_empty">knit_empty (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_ensure_subcommand_exists">knit_ensure_subcommand_exists (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_enum">knit_enum (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_enum_value">knit_enum_value (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_enum_values">knit_enum_values (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_error">knit_error (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_extend">knit_extend (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_extra_index">knit_extra_index (C function)</a>
 </li>
@@ -1659,6 +1748,8 @@
       <li><a href="api/public.html#c.knit_highlight_if">knit_highlight_if (C function)</a>
 </li>
       <li><a href="api/public.html#c.KNIT_IGNORE_CHECKSUM">KNIT_IGNORE_CHECKSUM (C var)</a>
+</li>
+      <li><a href="api/public.html#c.knit_import">knit_import (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_info">knit_info (C function)</a>
 </li>
@@ -1694,7 +1785,13 @@
 </li>
       <li><a href="api/public.html#c.knit_popd">knit_popd (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_prefix">knit_prefix (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_provides_launcher">knit_provides_launcher (C function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/public.html#c.knit_push_done_cb">knit_push_done_cb (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_pushd">knit_pushd (C function)</a>
 </li>
@@ -1704,21 +1801,29 @@
 </li>
       <li><a href="api/public.html#c.knit_register_artifact">knit_register_artifact (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_register_job">knit_register_job (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_register_resource">knit_register_resource (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_register_setup">knit_register_setup (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_register_shorthand">knit_register_shorthand (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_register_wrapper">knit_register_wrapper (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_reject_if_wrapper">knit_reject_if_wrapper (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_resolve_subcommand">knit_resolve_subcommand (C function)</a>
 </li>
       <li><a href="api/public.html#c.KNIT_RESOURCE_EXPECTED_CHECKSUM">KNIT_RESOURCE_EXPECTED_CHECKSUM (C var)</a>
 </li>
       <li><a href="api/public.html#c.knit_resource_path">knit_resource_path (C function)</a>
 </li>
       <li><a href="api/public.html#c.KNIT_RESOURCE_PREFIX">KNIT_RESOURCE_PREFIX (C var)</a>
+</li>
+      <li><a href="api/public.html#c.knit_run_after">knit_run_after (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_run_before">knit_run_before (C function)</a>
 </li>
       <li><a href="api/public.html#c.KNIT_SCRIPT_NAME">KNIT_SCRIPT_NAME (C var)</a>
 </li>

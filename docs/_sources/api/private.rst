@@ -279,9 +279,6 @@ Functions
 .. doxygenfunction:: _knit_bundle
    :project: knit
 
-.. doxygenfunction:: _knit_bundle_auto_require
-   :project: knit
-
 .. doxygenfunction:: _knit_bundle_collect
    :project: knit
 
@@ -411,6 +408,9 @@ Functions
 .. doxygenfunction:: _knit_command_mangle
    :project: knit
 
+.. doxygenfunction:: _knit_command_marker_var
+   :project: knit
+
 .. doxygenfunction:: _knit_command_with_space
    :project: knit
 
@@ -492,9 +492,6 @@ Functions
 .. doxygenfunction:: _knit_pset_import_skip
    :project: knit
 
-.. doxygenfunction:: _knit_push_done_cb
-   :project: knit
-
 .. doxygenfunction:: _knit_record_invocation
    :project: knit
 
@@ -513,6 +510,9 @@ Functions
 .. doxygenfunction:: _knit_reserve_name
    :project: knit
 
+.. doxygenfunction:: _knit_resolve_command_tokens
+   :project: knit
+
 .. doxygenfunction:: _knit_resolve_default
    :project: knit
 
@@ -522,12 +522,6 @@ Functions
 .. doxygenfunction:: _knit_resolve_source_context
    :project: knit
 
-.. doxygenfunction:: _knit_run_after
-   :project: knit
-
-.. doxygenfunction:: _knit_run_before
-   :project: knit
-
 .. doxygenfunction:: _knit_set_row_id
    :project: knit
 
@@ -535,9 +529,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_without_exit_status
-   :project: knit
-
-.. doxygenfunction:: _knit_wrapper_reject_declaration
    :project: knit
 
 Variables
@@ -879,6 +870,33 @@ Functions
 .. doxygenfunction:: _knit_drain_serial
    :project: knit
 
+frame.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_framed_run
+   :project: knit
+
+github.sh
+---------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_github_api
+   :project: knit
+
+.. doxygenfunction:: _knit_github_download
+   :project: knit
+
+.. doxygenfunction:: _knit_github_resolve_commit
+   :project: knit
+
+.. doxygenfunction:: _knit_github_resolve_commit_light
+   :project: knit
+
 global.sh
 ---------
 
@@ -898,6 +916,9 @@ Variables
    :project: knit
 
 .. doxygenvariable:: _KNIT_IS_BOOTSTRAPPING
+   :project: knit
+
+.. doxygenvariable:: _KNIT_SCRIPT_ARGV
    :project: knit
 
 .. doxygenvariable:: _KNIT_SCRIPT_PATH
@@ -1195,6 +1216,108 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_metadata_store
+   :project: knit
+
+plugin.sh
+---------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_plugin_bootstrap
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_defer
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_ensure_table
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_fetch
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_install_cnf_net
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_lock_get
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_lock_set
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_materialize
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_parse_spec
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_print_deferred_footer
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_record_row
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_resolve_commit
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_write_lockfile
+   :project: knit
+
+.. doxygenfunction:: _knit_plugins_discover
+   :project: knit
+
+.. doxygenfunction:: _knit_plugins_list
+   :project: knit
+
+.. doxygenfunction:: _knit_plugins_lock
+   :project: knit
+
+.. doxygenfunction:: _knit_plugins_show
+   :project: knit
+
+.. doxygenfunction:: _knit_plugins_table_exists
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_PLUGIN_CACHE_ROOT
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_CHECKSUM
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_CNF_INSTALLED
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_COMMITS
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_DEFERRED
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_IMPORTED_BY
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_IMPORT_STACK
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_LOCKFILE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_ORDER
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_REFS
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_SPEC
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_TABLE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PLUGIN_TABLE_ENSURED
    :project: knit
 
 prepare.sh
@@ -1977,6 +2100,9 @@ Functions
 .. doxygenfunction:: _knit_shorthand_generate
    :project: knit
 
+.. doxygenfunction:: _knit_shorthand_opted_out
+   :project: knit
+
 Variables
 ~~~~~~~~~
 
@@ -2034,9 +2160,6 @@ Functions
 .. doxygenfunction:: _knit_spack
    :project: knit
 
-.. doxygenfunction:: _knit_spack_download
-   :project: knit
-
 .. doxygenfunction:: _knit_spack_ensure_provisioned
    :project: knit
 
@@ -2046,19 +2169,10 @@ Functions
 .. doxygenfunction:: _knit_spack_exec
    :project: knit
 
-.. doxygenfunction:: _knit_spack_framed_run
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_github_api
-   :project: knit
-
 .. doxygenfunction:: _knit_spack_install
    :project: knit
 
 .. doxygenfunction:: _knit_spack_latest_release
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_resolve_commit
    :project: knit
 
 .. doxygenfunction:: _knit_spack_write_repos_yaml
@@ -2140,6 +2254,9 @@ Variables
    :project: knit
 
 .. doxygenvariable:: _KNIT_BUILTIN_TYPES
+   :project: knit
+
+.. doxygenvariable:: _KNIT_CURRENT_ENUM
    :project: knit
 
 .. doxygenvariable:: _KNIT_ENUMS

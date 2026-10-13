@@ -11,6 +11,9 @@ Functions
 .. doxygenfunction:: knit
    :project: knit
 
+.. doxygenfunction:: knit_add_command_note
+   :project: knit
+
 .. doxygenfunction:: knit_artifact
    :project: knit
 
@@ -20,13 +23,37 @@ Functions
 .. doxygenfunction:: knit_as
    :project: knit
 
+.. doxygenfunction:: knit_bundle_auto_require
+   :project: knit
+
 .. doxygenfunction:: knit_bundle_requires
    :project: knit
 
 .. doxygenfunction:: knit_check_arguments
    :project: knit
 
+.. doxygenfunction:: knit_check_subcommand_args
+   :project: knit
+
+.. doxygenfunction:: knit_check_subcommand_exists
+   :project: knit
+
+.. doxygenfunction:: knit_command_has_marker
+   :project: knit
+
+.. doxygenfunction:: knit_command_run_after
+   :project: knit
+
+.. doxygenfunction:: knit_command_run_before
+   :project: knit
+
+.. doxygenfunction:: knit_command_set_marker
+   :project: knit
+
 .. doxygenfunction:: knit_critical
+   :project: knit
+
+.. doxygenfunction:: knit_current_command
    :project: knit
 
 .. doxygenfunction:: knit_debug
@@ -38,13 +65,22 @@ Functions
 .. doxygenfunction:: knit_empty
    :project: knit
 
+.. doxygenfunction:: knit_ensure_subcommand_exists
+   :project: knit
+
 .. doxygenfunction:: knit_enum
+   :project: knit
+
+.. doxygenfunction:: knit_enum_value
    :project: knit
 
 .. doxygenfunction:: knit_enum_values
    :project: knit
 
 .. doxygenfunction:: knit_error
+   :project: knit
+
+.. doxygenfunction:: knit_extend
    :project: knit
 
 .. doxygenfunction:: knit_extra_index
@@ -72,6 +108,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_highlight_if
+   :project: knit
+
+.. doxygenfunction:: knit_import
    :project: knit
 
 .. doxygenfunction:: knit_info
@@ -110,7 +149,13 @@ Functions
 .. doxygenfunction:: knit_popd
    :project: knit
 
+.. doxygenfunction:: knit_prefix
+   :project: knit
+
 .. doxygenfunction:: knit_provides_launcher
+   :project: knit
+
+.. doxygenfunction:: knit_push_done_cb
    :project: knit
 
 .. doxygenfunction:: knit_pushd
@@ -134,10 +179,25 @@ Functions
 .. doxygenfunction:: knit_register_setup
    :project: knit
 
+.. doxygenfunction:: knit_register_shorthand
+   :project: knit
+
 .. doxygenfunction:: knit_register_wrapper
    :project: knit
 
+.. doxygenfunction:: knit_reject_if_wrapper
+   :project: knit
+
+.. doxygenfunction:: knit_resolve_subcommand
+   :project: knit
+
 .. doxygenfunction:: knit_resource_path
+   :project: knit
+
+.. doxygenfunction:: knit_run_after
+   :project: knit
+
+.. doxygenfunction:: knit_run_before
    :project: knit
 
 .. doxygenfunction:: knit_set_program_description
