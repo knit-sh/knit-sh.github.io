@@ -662,6 +662,8 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_COMMAND"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_COMMAND</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_START_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_START_TIME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_ARGS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_CMD"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_CMD</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_END_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_END_TIME</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_EXIT_STATUS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_EXIT_STATUS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_RAW_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_RAW_ARGS</span></code></a></li>
@@ -3776,6 +3778,18 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._KNIT_EXECUTING_START_TIME">
 <span class="target" id="cli_8sh_1a68f3a488419f95e45aab544ea0226b14"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_EXECUTING_START_TIME</span></span></span><a class="headerlink" href="#c._KNIT_EXECUTING_START_TIME" title="Link to this definition">#</a><br /></dt>
 <dd><p>Stack of start timestamps, parallel to _KNIT_EXECUTING_COMMAND: entry i holds the epoch seconds captured when frame i was pushed (before its body ran). _knit_record_invocation reads the top entry as the call edge's start_time and pairs it with an end_time captured at record time (after the body and after-callbacks), so an invocation's duration is a plain subtraction. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_INVOCATION_ARGS">
+<span class="target" id="cli_8sh_1a23f41a74295e5f38778e6dbcacac9e03"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_INVOCATION_ARGS</span></span></span><a class="headerlink" href="#c._KNIT_INVOCATION_ARGS" title="Link to this definition">#</a><br /></dt>
+<dd><p>The editable, EXPANDED argument list (defaults and flag values spliced in) of the command whose before-callbacks are currently running. The invoker publishes it just before the before-callback phase of a normal command and reads any edit back into the args it then passes to the body (and records), so a before-callback can edit what the body sees via knit_set_invocation_args / knit_set_parameter. Saved and restored around every invocation so a nested command does not corrupt an enclosing edit; empty outside a before-callback. Distinct from _KNIT_INVOCATION_RAW_ARGS (the raw, pre-expansion, read-only tokens). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_INVOCATION_CMD">
+<span class="target" id="cli_8sh_1ab58d5f4550ab1c3851c9f8cef3589f57"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_INVOCATION_CMD</span></span></span><a class="headerlink" href="#c._KNIT_INVOCATION_CMD" title="Link to this definition">#</a><br /></dt>
+<dd><p>The mangled name of the command whose before-callbacks are currently running, published alongside _KNIT_INVOCATION_ARGS. knit_set_parameter reads it to validate that a name is a declared parameter of that command. Empty outside a (non-wrapper) command's before-callback phase. </p>
 </dd></dl>
 
 <dl class="c var">
@@ -10237,6 +10251,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_COMMAND"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_COMMAND</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_START_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_START_TIME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_ARGS</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_CMD"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_CMD</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_END_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_END_TIME</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_EXIT_STATUS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_EXIT_STATUS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_RAW_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_RAW_ARGS</span></code></a></li>

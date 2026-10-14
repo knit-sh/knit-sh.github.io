@@ -50,6 +50,9 @@ Functions
 .. doxygenfunction:: knit_command_set_marker
    :project: knit
 
+.. doxygenfunction:: knit_copy_function
+   :project: knit
+
 .. doxygenfunction:: knit_critical
    :project: knit
 
@@ -90,6 +93,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_framed
+   :project: knit
+
+.. doxygenfunction:: knit_get_invocation_args
    :project: knit
 
 .. doxygenfunction:: knit_get_parameter
@@ -188,6 +194,9 @@ Functions
 .. doxygenfunction:: knit_reject_if_wrapper
    :project: knit
 
+.. doxygenfunction:: knit_rename_function
+   :project: knit
+
 .. doxygenfunction:: knit_resolve_subcommand
    :project: knit
 
@@ -198,6 +207,12 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_run_before
+   :project: knit
+
+.. doxygenfunction:: knit_set_invocation_args
+   :project: knit
+
+.. doxygenfunction:: knit_set_parameter
    :project: knit
 
 .. doxygenfunction:: knit_set_program_description

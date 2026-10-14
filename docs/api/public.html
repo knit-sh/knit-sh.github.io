@@ -464,6 +464,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_after"><code class="docutils literal notranslate"><span class="pre">knit_command_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_before"><code class="docutils literal notranslate"><span class="pre">knit_command_run_before()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_set_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_set_marker()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_copy_function"><code class="docutils literal notranslate"><span class="pre">knit_copy_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_critical"><code class="docutils literal notranslate"><span class="pre">knit_critical()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_current_command"><code class="docutils literal notranslate"><span class="pre">knit_current_command()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_debug"><code class="docutils literal notranslate"><span class="pre">knit_debug()</span></code></a></li>
@@ -478,6 +479,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extra_index"><code class="docutils literal notranslate"><span class="pre">knit_extra_index()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_fatal"><code class="docutils literal notranslate"><span class="pre">knit_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed"><code class="docutils literal notranslate"><span class="pre">knit_framed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_get_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_parameter"><code class="docutils literal notranslate"><span class="pre">knit_get_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
@@ -510,10 +512,13 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_shorthand"><code class="docutils literal notranslate"><span class="pre">knit_register_shorthand()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_wrapper"><code class="docutils literal notranslate"><span class="pre">knit_register_wrapper()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_reject_if_wrapper"><code class="docutils literal notranslate"><span class="pre">knit_reject_if_wrapper()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_rename_function"><code class="docutils literal notranslate"><span class="pre">knit_rename_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resolve_subcommand"><code class="docutils literal notranslate"><span class="pre">knit_resolve_subcommand()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resource_path"><code class="docutils literal notranslate"><span class="pre">knit_resource_path()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_after"><code class="docutils literal notranslate"><span class="pre">knit_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_before"><code class="docutils literal notranslate"><span class="pre">knit_run_before()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_set_invocation_args()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_parameter"><code class="docutils literal notranslate"><span class="pre">knit_set_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_program_description"><code class="docutils literal notranslate"><span class="pre">knit_set_program_description()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_setup_activate_line"><code class="docutils literal notranslate"><span class="pre">knit_setup_activate_line()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_setup_env_append"><code class="docutils literal notranslate"><span class="pre">knit_setup_env_append()</span></code></a></li>
@@ -812,6 +817,24 @@ remain backwards compatible across releases.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_copy_function">
+<span class="target" id="cli_8sh_1ae38ab2529e7603cd3096bb5a493bd7cf"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_copy_function</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_copy_function" title="Link to this definition">#</a><br /></dt>
+<dd><p>Define a function &lt;new&gt; with the same body as an existing function &lt;old&gt;, leaving &lt;old&gt; in place. This is the canonical way for a plugin to preserve a function before overriding it — e.g. to save a built-in decorator under a new name, then redefine the original to wrap it: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">knit_copy_function</span> <span class="n">knit_with_optional</span> <span class="n">knit_orig_with_optional</span>
+<span class="n">knit_with_optional</span><span class="p">()</span> <span class="p">{</span> <span class="o">...</span><span class="p">;</span> <span class="n">knit_orig_with_optional</span> <span class="s2">"$@"</span><span class="p">;</span> <span class="o">...</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+ Fatal when &lt;old&gt; is not a defined function. An existing &lt;new&gt; is overwritten.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old</strong> -- <strong>[in]</strong> Name of the function to copy from (must be defined). </p></li>
+<li><p><strong>new</strong> -- <strong>[in]</strong> Name of the function to define. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_critical">
 <span class="target" id="log_8sh_1a2de73f22f617710ed4b5dcad3b88badc"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_critical</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_critical" title="Link to this definition">#</a><br /></dt>
 <dd><p>Logging function for critical-level messages. Works like echo but will only print if the logging level was set to &quot;critical&quot;.</p>
@@ -1018,6 +1041,19 @@ local extra=("${args[@]:extra_index}")
 <li><p><strong>--text-color</strong> -- <strong>[in]</strong> Foreground color of the text inside the frame (key in _KNIT_COLORS). </p></li>
 <li><p><strong>--text-bg-color</strong> -- <strong>[in]</strong> Background color of the text inside the frame (key in _KNIT_COLORS). </p></li>
 <li><p><strong>--log-level</strong> -- <strong>[in]</strong> Minimum log level required to display the frame (trace, debug, info, warning, error, critical). If KNIT_LOG_LEVEL is above this level, stdin is drained silently and nothing is output. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_get_invocation_args">
+<span class="target" id="cli_8sh_1a4479ff1a13f8c07afd8c3384d7b67069"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_get_invocation_args</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_get_invocation_args" title="Link to this definition">#</a><br /></dt>
+<dd><p>Copy the current command's pending (expanded) argument list into the caller's array. Meant for a before-callback: it returns exactly the invocation args, with no offset to track (unlike the callback's own &quot;$&#64;&quot;, which is prefixed by the arguments the callback was registered with), and it reflects edits a previous before-callback made. Returns an empty list outside a before-callback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args_out</strong> -- <strong>[out]</strong> Name of the array to fill with the invocation args. </p></li>
 </ul>
 </dd>
 </dl>
@@ -1514,6 +1550,20 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_rename_function">
+<span class="target" id="cli_8sh_1a5edb95de3ff00aa89ecc6b1ac2723d32"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_rename_function</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_rename_function" title="Link to this definition">#</a><br /></dt>
+<dd><p>Copy an existing function &lt;old&gt; to &lt;new&gt;, then remove &lt;old&gt;. Like knit_copy_function but moves the function out of the way entirely rather than leaving a second copy behind. Fatal when &lt;old&gt; is not a defined function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old</strong> -- <strong>[in]</strong> Name of the function to rename (must be defined). </p></li>
+<li><p><strong>new</strong> -- <strong>[in]</strong> New name for the function. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_resolve_subcommand">
 <span class="target" id="cli_8sh_1a4f1895a209080d73aa60c4c61c4b5d6f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_resolve_subcommand</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_resolve_subcommand" title="Link to this definition">#</a><br /></dt>
 <dd><p>Resolve a sequence of command-name tokens to the mangled command name and the count of tokens consumed, running lazy subcommand discovery as a side effect. Shares the invoker's resolution semantics exactly (greedy non-&quot;--&quot; tokens, stop at the first option or wrapper). Fatal when the tokens name no command; use knit_check_subcommand_exists first for a non-fatal test.</p>
@@ -1568,6 +1618,34 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 </pre></div>
 </div>
 </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_set_invocation_args">
+<span class="target" id="cli_8sh_1a03b3b5e97fbac3a7a7a16f9e52dea384"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_set_invocation_args</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_set_invocation_args" title="Link to this definition">#</a><br /></dt>
+<dd><p>Replace the pending (expanded) argument list of the command whose before-callbacks are running; the body and the recorded row then see the new list. The power-user escape hatch behind knit_set_parameter — the caller owns the whole list and it is NOT re-validated (edits land after the argument and --when checks). Fatal when there is no invocation in progress (i.e. not called from a non-wrapper command's before-callback).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> The new argument tokens. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_set_parameter">
+<span class="target" id="cli_8sh_1a459c8a2a9d2c38eb84f4407652e57b06"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_set_parameter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_set_parameter" title="Link to this definition">#</a><br /></dt>
+<dd><p>Set (or override) one declared parameter of the command whose before-callbacks are running, editing the pending argument list in place: the body and the recorded row then see the new value. This is the ergonomic way to inject a value — e.g. a plugin filling a parameter from its own source. The name must be a declared required/optional parameter or flag of the command (fatal otherwise) and the value must match its type (checked with the standard type validator). An existing occurrence is replaced; an absent one is appended. Fatal outside a command's before-callback.</p>
+<p>Note: like knit_set_invocation_args, the injection happens AFTER the required- argument and --when checks, so an injected value is not re-checked against those (only its type is).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> -- <strong>[in]</strong> Parameter name (hyphens and underscores interchangeable). </p></li>
+<li><p><strong>value</strong> -- <strong>[in]</strong> Value to set. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -2322,6 +2400,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_after"><code class="docutils literal notranslate"><span class="pre">knit_command_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_before"><code class="docutils literal notranslate"><span class="pre">knit_command_run_before()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_set_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_set_marker()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_copy_function"><code class="docutils literal notranslate"><span class="pre">knit_copy_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_critical"><code class="docutils literal notranslate"><span class="pre">knit_critical()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_current_command"><code class="docutils literal notranslate"><span class="pre">knit_current_command()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_debug"><code class="docutils literal notranslate"><span class="pre">knit_debug()</span></code></a></li>
@@ -2336,6 +2415,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extra_index"><code class="docutils literal notranslate"><span class="pre">knit_extra_index()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_fatal"><code class="docutils literal notranslate"><span class="pre">knit_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed"><code class="docutils literal notranslate"><span class="pre">knit_framed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_get_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_parameter"><code class="docutils literal notranslate"><span class="pre">knit_get_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
@@ -2368,10 +2448,13 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_shorthand"><code class="docutils literal notranslate"><span class="pre">knit_register_shorthand()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_wrapper"><code class="docutils literal notranslate"><span class="pre">knit_register_wrapper()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_reject_if_wrapper"><code class="docutils literal notranslate"><span class="pre">knit_reject_if_wrapper()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_rename_function"><code class="docutils literal notranslate"><span class="pre">knit_rename_function()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resolve_subcommand"><code class="docutils literal notranslate"><span class="pre">knit_resolve_subcommand()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resource_path"><code class="docutils literal notranslate"><span class="pre">knit_resource_path()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_after"><code class="docutils literal notranslate"><span class="pre">knit_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_before"><code class="docutils literal notranslate"><span class="pre">knit_run_before()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_set_invocation_args()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_parameter"><code class="docutils literal notranslate"><span class="pre">knit_set_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_program_description"><code class="docutils literal notranslate"><span class="pre">knit_set_program_description()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_setup_activate_line"><code class="docutils literal notranslate"><span class="pre">knit_setup_activate_line()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_setup_env_append"><code class="docutils literal notranslate"><span class="pre">knit_setup_env_append()</span></code></a></li>

@@ -552,6 +552,12 @@ Variables
 .. doxygenvariable:: _KNIT_EXECUTING_START_TIME
    :project: knit
 
+.. doxygenvariable:: _KNIT_INVOCATION_ARGS
+   :project: knit
+
+.. doxygenvariable:: _KNIT_INVOCATION_CMD
+   :project: knit
+
 .. doxygenvariable:: _KNIT_INVOCATION_END_TIME
    :project: knit
 
