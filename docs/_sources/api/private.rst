@@ -876,6 +876,57 @@ Functions
 .. doxygenfunction:: _knit_drain_serial
    :project: knit
 
+env.sh
+------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_env_env_built
+   :project: knit
+
+.. doxygenfunction:: _knit_env_is_registered
+   :project: knit
+
+.. doxygenfunction:: _knit_env_need_provision
+   :project: knit
+
+.. doxygenfunction:: _knit_env_option_names
+   :project: knit
+
+.. doxygenfunction:: _knit_env_provision_all
+   :project: knit
+
+.. doxygenfunction:: _knit_env_provision_one
+   :project: knit
+
+.. doxygenfunction:: _knit_env_require_context
+   :project: knit
+
+.. doxygenfunction:: _knit_env_setup_after_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_env_setup_before_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_env_update_all
+   :project: knit
+
+.. doxygenfunction:: _knit_env_update_one
+   :project: knit
+
+.. doxygenfunction:: _knit_env_with_env
+   :project: knit
+
+.. doxygenfunction:: _knit_env_with_specs
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_ENV_MANAGERS
+   :project: knit
+
 frame.sh
 --------
 
@@ -2067,12 +2118,6 @@ Functions
 .. doxygenfunction:: _knit_setup_source_platform
    :project: knit
 
-.. doxygenfunction:: _knit_setup_spack_env_after_cb
-   :project: knit
-
-.. doxygenfunction:: _knit_setup_spack_env_before_cb
-   :project: knit
-
 .. doxygenfunction:: _knit_setup_validate_var
    :project: knit
 
@@ -2151,25 +2196,7 @@ spack.sh
 Functions
 ~~~~~~~~~
 
-.. doxygenfunction:: _knit_bootstrap_need_spack
-   :project: knit
-
-.. doxygenfunction:: _knit_bootstrap_spack
-   :project: knit
-
-.. doxygenfunction:: _knit_bootstrap_spack_env_built
-   :project: knit
-
-.. doxygenfunction:: _knit_bootstrap_update_spack
-   :project: knit
-
-.. doxygenfunction:: _knit_spack
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_ensure_provisioned
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_env_install
+.. doxygenfunction:: _knit_spack_activation
    :project: knit
 
 .. doxygenfunction:: _knit_spack_exec
@@ -2178,7 +2205,16 @@ Functions
 .. doxygenfunction:: _knit_spack_install
    :project: knit
 
+.. doxygenfunction:: _knit_spack_install_env
+   :project: knit
+
 .. doxygenfunction:: _knit_spack_latest_release
+   :project: knit
+
+.. doxygenfunction:: _knit_spack_provision
+   :project: knit
+
+.. doxygenfunction:: _knit_spack_specs_to_manifest
    :project: knit
 
 .. doxygenfunction:: _knit_spack_write_repos_yaml
@@ -2191,9 +2227,6 @@ Variables
    :project: knit
 
 .. doxygenvariable:: _KNIT_SPACK_PACKAGES_ROOT
-   :project: knit
-
-.. doxygenvariable:: _KNIT_SPACK_REQUIRED
    :project: knit
 
 .. doxygenvariable:: _KNIT_SPACK_ROOT

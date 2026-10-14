@@ -80,6 +80,30 @@ Functions
 .. doxygenfunction:: knit_enum_values
    :project: knit
 
+.. doxygenfunction:: knit_env_activate
+   :project: knit
+
+.. doxygenfunction:: knit_env_done
+   :project: knit
+
+.. doxygenfunction:: knit_env_ensure_provisioned
+   :project: knit
+
+.. doxygenfunction:: knit_env_install
+   :project: knit
+
+.. doxygenfunction:: knit_env_lockfile
+   :project: knit
+
+.. doxygenfunction:: knit_env_manifest
+   :project: knit
+
+.. doxygenfunction:: knit_env_provision
+   :project: knit
+
+.. doxygenfunction:: knit_env_specs
+   :project: knit
+
 .. doxygenfunction:: knit_error
    :project: knit
 
@@ -174,6 +198,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_register_artifact
+   :project: knit
+
+.. doxygenfunction:: knit_register_env_manager
    :project: knit
 
 .. doxygenfunction:: knit_register_job
@@ -294,12 +321,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_with_setup
-   :project: knit
-
-.. doxygenfunction:: knit_with_spack_env
-   :project: knit
-
-.. doxygenfunction:: knit_with_spack_specs
    :project: knit
 
 .. doxygenfunction:: knit_with_subcommand_discovery
