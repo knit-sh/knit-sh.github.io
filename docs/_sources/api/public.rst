@@ -137,6 +137,9 @@ Functions
 .. doxygenfunction:: knit_github_download
    :project: knit
 
+.. doxygenfunction:: knit_github_download_asset
+   :project: knit
+
 .. doxygenfunction:: knit_github_resolve_commit
    :project: knit
 

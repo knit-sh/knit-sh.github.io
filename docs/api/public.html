@@ -493,6 +493,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_api"><code class="docutils literal notranslate"><span class="pre">knit_github_api()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download"><code class="docutils literal notranslate"><span class="pre">knit_github_download()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download_asset"><code class="docutils literal notranslate"><span class="pre">knit_github_download_asset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_resolve_commit"><code class="docutils literal notranslate"><span class="pre">knit_github_resolve_commit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if()</span></code></a></li>
@@ -1244,6 +1245,25 @@ local extra=("${args[@]:extra_index}")
 <li><p><strong>repo</strong> -- <strong>[in]</strong> Repository name under that owner. </p></li>
 <li><p><strong>dest</strong> -- <strong>[in]</strong> Destination directory. </p></li>
 <li><p><strong>sha</strong> -- <strong>[in]</strong> Commit SHA to download. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_github_download_asset">
+<span class="target" id="github_8sh_1adf292578080e11f0de2d1b2da9b4e05d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_github_download_asset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_github_download_asset" title="Link to this definition">#</a><br /></dt>
+<dd><p>Download one published asset of a GitHub release to a destination file, compute its sha256, and return the digest by nameref. The stable release-asset URL (releases/download/&lt;tag&gt;/&lt;asset&gt;) is built directly, so no API call is needed once the tag and asset name are known. Uses curl (as the other GitHub helpers do) so knit needs no git, and frames the transfer with knit_framed_run (shown live at trace level). Release assets are public, so no token is sent.</p>
+<p>This complements knit_github_download, which fetches a repository <em>source</em> archive by commit. A tool shipped as a prebuilt per-platform release binary (for example uv) is fetched with this function instead. The destination is a file (the asset verbatim); the caller unpacks it as the asset format requires, since a release asset may be a tarball, a zip, or a raw binary. The tag should name an immutable published release so the download is reproducible; pair the returned digest with a recorded checksum to pin the asset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sha256_out</strong> -- <strong>[out]</strong> Nameref that receives the asset's sha256 hex digest. </p></li>
+<li><p><strong>org</strong> -- <strong>[in]</strong> Repository owner (organization or user). </p></li>
+<li><p><strong>repo</strong> -- <strong>[in]</strong> Repository name under that owner. </p></li>
+<li><p><strong>tag</strong> -- <strong>[in]</strong> Release tag the asset belongs to (e.g. &quot;0.5.0&quot;). </p></li>
+<li><p><strong>asset</strong> -- <strong>[in]</strong> Asset filename (e.g. &quot;uv-x86_64-unknown-linux-gnu.tar.gz&quot;). </p></li>
+<li><p><strong>dest</strong> -- <strong>[in]</strong> Destination file path for the downloaded asset. </p></li>
 </ul>
 </dd>
 </dl>
@@ -2576,6 +2596,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_api"><code class="docutils literal notranslate"><span class="pre">knit_github_api()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download"><code class="docutils literal notranslate"><span class="pre">knit_github_download()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download_asset"><code class="docutils literal notranslate"><span class="pre">knit_github_download_asset()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_resolve_commit"><code class="docutils literal notranslate"><span class="pre">knit_github_resolve_commit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if()</span></code></a></li>
