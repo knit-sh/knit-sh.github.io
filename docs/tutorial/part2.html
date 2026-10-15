@@ -591,7 +591,7 @@ Long form</label><div class="sd-tab-content docutils">
 <span class="c1"># on-disk path with knit_resource_path.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal with MPI from fetched source."</span>
 <span class="hll"><span class="nb">knit_with_resource</span><span class="w"> </span><span class="s2">"src:julia_code"</span><span class="w"> </span><span class="s2">"Name of the fetched julia-fractal source to build."</span>
-</span><span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
+</span><span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
 <span class="nb">knit_provides_launcher</span>
 _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># A fetched instance is read-only, so we build OUT of source --- a separate</span>
@@ -1568,8 +1568,9 @@ derivable:</p>
 <li><p><strong>Embedded by default:</strong> the code (<code class="docutils literal notranslate"><span class="pre">exp.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">knit.sh</span></code>), the provenance
 database (a pruned <code class="docutils literal notranslate"><span class="pre">.knit/knit.db</span></code> — just the database, not the provisioned
 tooling around it), the job logs and scripts, the setup manifests
-(<code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code> and the <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code> / <code class="docutils literal notranslate"><span class="pre">spack.lock</span></code> that pin the
-environment), and the declared artifacts (<code class="docutils literal notranslate"><span class="pre">inside.csv</span></code> and the images).</p></li>
+(<code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code> and, from the setup’s environment manager, the <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code>
+/ <code class="docutils literal notranslate"><span class="pre">spack.lock</span></code> the Spack plugin wrote to pin the environment), and the
+declared artifacts (<code class="docutils literal notranslate"><span class="pre">inside.csv</span></code> and the images).</p></li>
 <li><p><strong>Referenced, not embedded:</strong> the built Spack environment and the provisioned
 <code class="docutils literal notranslate"><span class="pre">.knit/spack</span></code>, <code class="docutils literal notranslate"><span class="pre">.knit/sqlite</span></code>, <code class="docutils literal notranslate"><span class="pre">.knit/jq</span></code> toolchain (gigabytes,
 regenerable), and the fetched <code class="docutils literal notranslate"><span class="pre">julia_code</span></code> git resource (re-fetchable from the
@@ -1689,6 +1690,9 @@ Shorthand</label><div class="sd-tab-content docutils">
 <span class="c1"># during development.</span>
 
 <span class="nb">source</span><span class="w"> </span>knit.sh
+
+<span class="c1"># Spack is provided by a plugin. Import it before using its setup directives.</span>
+<span class="nb">knit_import</span><span class="w"> </span>spack
 
 <span class="nb">knit_set_program_description</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal."</span>
 
@@ -1879,6 +1883,9 @@ Long form</label><div class="sd-tab-content docutils">
 
 <span class="nb">source</span><span class="w"> </span>knit.sh
 
+<span class="c1"># Spack is provided by a plugin. Import it before using its setup directives.</span>
+<span class="nb">knit_import</span><span class="w"> </span>spack
+
 <span class="nb">knit_set_program_description</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal."</span>
 
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
@@ -1896,7 +1903,7 @@ Long form</label><div class="sd-tab-content docutils">
 <span class="c1"># dependencies; on a machine with no launcher of its own, the setup provides one.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal with MPI from fetched source."</span>
 <span class="nb">knit_with_resource</span><span class="w"> </span><span class="s2">"src:julia_code"</span><span class="w"> </span><span class="s2">"Name of the fetched julia-fractal source to build."</span>
-<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
 <span class="nb">knit_provides_launcher</span>
 _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>src

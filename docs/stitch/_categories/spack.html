@@ -468,18 +468,21 @@
                   
   <section id="spack">
 <h1>Spack<a class="headerlink" href="#spack" title="Link to this heading">#</a></h1>
-<p>Working with Spack environments and package specs.</p>
+<p>Working with Spack environments and package specs, via the Spack environment-manager plugin (knit_import spack).</p>
 <section id="pin-a-setup-s-spack-specs">
 <span id="stitch-pin-spack-specs"></span><h2>Pin a setup’s Spack specs<a class="headerlink" href="#pin-a-setup-s-spack-specs" title="Link to this heading">#</a></h2>
 <p><em>List the Spack packages a setup needs and let knit build them.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code></p>
+<p>Spack is a Knit <strong>plugin</strong>: import it once with <code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code> just after
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code>, and the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_*</span></code> setup directives become
+available.</p>
 <p>For the common “just install these packages” case, list the Spack specs a setup
 needs with <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>. Knit synthesizes a minimal <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code>
 and, before the setup body runs, installs the specs into a Spack environment and
 activates it — so the tools are on <code class="docutils literal notranslate"><span class="pre">PATH</span></code> / <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> when you build
-into <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>. The Spack it uses is knit’s own, installed under
-<code class="docutils literal notranslate"><span class="pre">.knit/</span></code> and isolated from any Spack you have on the machine (see <em>Run Spack
-directly</em> and <em>Isolate Spack from your personal config</em>); declaring a
+into <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>. The Spack the plugin uses is Knit’s own, installed
+under <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> and isolated from any Spack you have on the machine (see <em>Run
+Spack directly</em> and <em>Isolate Spack from your personal config</em>); declaring a
 Spack-backed setup makes <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> provision that Spack automatically:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -522,7 +525,7 @@ _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
-<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
 _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
@@ -566,6 +569,9 @@ instead.</p>
 <span id="stitch-use-spack-manifest"></span><h2>Use a full Spack manifest<a class="headerlink" href="#use-a-full-spack-manifest" title="Link to this heading">#</a></h2>
 <p><em>Describe a setup’s Spack environment with a complete spack.yaml.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code></p>
+<p>Spack is a Knit <strong>plugin</strong>: import it once with <code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code> just after
+<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code>, and the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_*</span></code> setup directives become
+available.</p>
 <p>When you need full control over the environment — versions, variants,
 compilers, views, package preferences — describe it with a complete
 <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code> manifest via <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>. Point it at a file checked in
@@ -592,7 +598,7 @@ Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Point @with_spack_env at a spack.yaml checked in next to the experiment.</span>
 <span class="c1"># The manifest gives full control (versions, variants, compilers, views).</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"libs"</span><span class="w"> </span>_libs_setup<span class="w"> </span><span class="s2">"Build dependencies from a spack.yaml."</span>
-<span class="nb">knit_with_spack_env</span><span class="w"> </span><span class="s2">"spack.yaml"</span>
+<span class="nd">@with_spack_env</span><span class="w"> </span><span class="s2">"spack.yaml"</span>
 _libs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># cmake/hdf5/... from the manifest are on PATH here; build into the prefix.</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
@@ -631,7 +637,7 @@ _libs_inline_setup<span class="o">()</span><span class="w"> </span><span class="
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Or inline the manifest with a here-doc when it is short and experiment-specific.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"libs-inline"</span><span class="w"> </span>_libs_inline_setup<span class="w"> </span><span class="s2">"Build deps from an inline manifest."</span>
-<span class="nb">knit_with_spack_env</span><span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
+<span class="nd">@with_spack_env</span><span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
 <span class="s">spack:</span>
 <span class="s">  specs:</span>
 <span class="s">    - hdf5@1.14 +mpi</span>
@@ -649,15 +655,18 @@ _libs_inline_setup<span class="o">()</span><span class="w"> </span><span class="
 <p>A setup may declare at most one Spack environment, and <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code> is
 mutually exclusive with the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> sugar (which funnels through
 it). As with specs, the concrete manifest and lockfile are captured as provenance
-outputs on the setup’s table. The Spack itself is knit’s own, installed under
-<code class="docutils literal notranslate"><span class="pre">.knit/</span></code> at <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> time — declaring any Spack-backed setup makes
-bootstrap detect that the experiment needs Spack and provision it, and
-<code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--spack</span></code> provisions (and pins) it explicitly.</p>
+outputs on the setup’s table. The Spack itself is the plugin’s own, installed
+under <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> at <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> time — declaring any Spack-backed setup makes
+bootstrap detect that the experiment needs Spack and provision it, and the
+plugin’s <code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--spack</span></code> option provisions (and pins) it explicitly.</p>
 </section>
 <section id="build-an-mpi-environment-and-provide-a-launcher">
 <h2>Build an MPI environment and provide a launcher<a class="headerlink" href="#build-an-mpi-environment-and-provide-a-launcher" title="Link to this heading">#</a></h2>
 <p><em>Ask Spack for an MPI provider in a setup and expose it as the run launcher.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> comes from the Spack <strong>plugin</strong> — <code class="docutils literal notranslate"><span class="pre">knit_import</span>
+<span class="pre">spack</span></code> just after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code> makes it available; <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code>
+is part of Knit’s core.</p>
 <p>Add <code class="docutils literal notranslate"><span class="pre">mpi</span></code> (or a concrete provider like <code class="docutils literal notranslate"><span class="pre">mpich</span></code> or <code class="docutils literal notranslate"><span class="pre">openmpi</span></code>) to a setup’s
 <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> so Spack provisions an MPI implementation as part of the
 environment. Calling <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code> then advertises that Spack-built
@@ -689,7 +698,7 @@ Long form</label><div class="sd-tab-content docutils">
 <span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
 <span class="c1"># nothing left to build.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span>_mpienv_setup<span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
-<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
 <span class="nb">knit_provides_launcher</span>
 _mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
@@ -714,9 +723,10 @@ still wins when one exists; it only fills the gap on a machine that offers none.
 <span id="stitch-run-spack-directly"></span><h2>Run Spack directly<a class="headerlink" href="#run-spack-directly" title="Link to this heading">#</a></h2>
 <p><em>Drive the experiment’s private Spack with the knit spack wrapper.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">spack</span></code>, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span></code> is a thin wrapper that forwards every argument verbatim to the
-experiment’s private Spack, so you can inspect and drive it exactly as you would a
-system Spack — without it leaking onto your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">spack</span></code> command comes from the Spack <strong>plugin</strong> — <code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code>
+just after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code> adds it. It is a thin wrapper that forwards every
+argument verbatim to the experiment’s private Spack, so you can inspect and drive
+it exactly as you would a system Spack — without it leaking onto your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>find<span class="w">            </span><span class="c1"># what is installed</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>spec<span class="w"> </span>zlib<span class="w">       </span><span class="c1"># how a spec would concretize</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>spack<span class="w"> </span>--help<span class="w">          </span><span class="c1"># Spack's own help, forwarded</span>
@@ -724,19 +734,19 @@ system Spack — without it leaking onto your <code class="docutils literal notr
 </div>
 <p>Because the wrapper forwards <code class="docutils literal notranslate"><span class="pre">--help</span></code> too, <code class="docutils literal notranslate"><span class="pre">./exp.sh</span> <span class="pre">spack</span> <span class="pre">--help</span></code> shows
 Spack’s help rather than knit’s. The private Spack is provisioned automatically
-the first time a setup declares a Spack environment; run <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span></code> before any
-such setup and it fails with a hint to bootstrap with <code class="docutils literal notranslate"><span class="pre">--spack</span></code> (or to add a
-Spack-backed setup). To provision it eagerly and pin its version at bootstrap,
-see the <em>Pin the Spack version</em> recipe in the Bootstrap category.</p>
+the first time a setup declares a Spack environment; run <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">spack</span></code> before
+Spack is provisioned and it fails with a hint to run <code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--spack</span></code> first.
+To provision it eagerly and pin its version at bootstrap, see the <em>Pin the Spack
+version</em> recipe in the Bootstrap category.</p>
 </section>
 <section id="isolate-spack-from-your-personal-config">
 <span id="stitch-isolate-spack-config"></span><h2>Isolate Spack from your personal config<a class="headerlink" href="#isolate-spack-from-your-personal-config" title="Link to this heading">#</a></h2>
 <p><em>Knit’s Spack ignores ~/.spack and site config so the environment stays reproducible.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">spack</span></code></p>
-<p>The Spack that knit provisions is deliberately walled off from your personal and
-site-wide Spack configuration, so an experiment concretizes the same way no matter
-whose machine or account it runs on. Knit exports two environment variables for
-its Spack:</p>
+<p>The Spack the plugin provisions (after <code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code>) is deliberately
+walled off from your personal and site-wide Spack configuration, so an experiment
+concretizes the same way no matter whose machine or account it runs on. The plugin
+exports two environment variables for its Spack:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">SPACK_DISABLE_LOCAL_CONFIG=true</span></code> — Spack ignores both the system scope and
 your <code class="docutils literal notranslate"><span class="pre">~/.spack</span></code> user scope.</p></li>
@@ -756,10 +766,13 @@ than in <code class="docutils literal notranslate"><span class="pre">~/.spack</s
 <h2>Pin the Spack version<a class="headerlink" href="#pin-the-spack-version" title="Link to this heading">#</a></h2>
 <p><em>Provision a specific Spack (and package repo) git ref at bootstrap.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
-<p>Knit provisions a private Spack <strong>automatically</strong> the first time a setup declares
-a Spack environment, defaulting to the latest Spack release. Pass <code class="docutils literal notranslate"><span class="pre">--spack</span></code> to
-pin a specific Spack git ref (a tag, branch, or commit) instead, and
-<code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> to pin the package repository ref:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--spack</span></code> and <code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> are added to <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> by the Spack
+<strong>plugin</strong>, so they appear once the experiment imports it with <code class="docutils literal notranslate"><span class="pre">knit_import</span>
+<span class="pre">spack</span></code> (just after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code>).</p>
+<p>The plugin provisions a private Spack <strong>automatically</strong> the first time a setup
+declares a Spack environment, defaulting to the latest Spack release. Pass
+<code class="docutils literal notranslate"><span class="pre">--spack</span></code> to pin a specific Spack git ref (a tag, branch, or commit) instead,
+and <code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> to pin the package repository ref:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--spack<span class="w"> </span>v0.22.1<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--spack-packages<span class="w"> </span>v2024.11.0

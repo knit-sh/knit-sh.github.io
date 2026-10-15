@@ -587,10 +587,13 @@ detection.</p>
 <span id="stitch-bootstrap-pin-spack"></span><h2>Pin the Spack version<a class="headerlink" href="#pin-the-spack-version" title="Link to this heading">#</a></h2>
 <p><em>Provision a specific Spack (and package repo) git ref at bootstrap.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
-<p>Knit provisions a private Spack <strong>automatically</strong> the first time a setup declares
-a Spack environment, defaulting to the latest Spack release. Pass <code class="docutils literal notranslate"><span class="pre">--spack</span></code> to
-pin a specific Spack git ref (a tag, branch, or commit) instead, and
-<code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> to pin the package repository ref:</p>
+<p><code class="docutils literal notranslate"><span class="pre">--spack</span></code> and <code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> are added to <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> by the Spack
+<strong>plugin</strong>, so they appear once the experiment imports it with <code class="docutils literal notranslate"><span class="pre">knit_import</span>
+<span class="pre">spack</span></code> (just after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code>).</p>
+<p>The plugin provisions a private Spack <strong>automatically</strong> the first time a setup
+declares a Spack environment, defaulting to the latest Spack release. Pass
+<code class="docutils literal notranslate"><span class="pre">--spack</span></code> to pin a specific Spack git ref (a tag, branch, or commit) instead,
+and <code class="docutils literal notranslate"><span class="pre">--spack-packages</span></code> to pin the package repository ref:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--spack<span class="w"> </span>v0.22.1<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--spack-packages<span class="w"> </span>v2024.11.0

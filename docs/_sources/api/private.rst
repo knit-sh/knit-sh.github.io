@@ -885,6 +885,9 @@ Functions
 .. doxygenfunction:: _knit_env_env_built
    :project: knit
 
+.. doxygenfunction:: _knit_env_is_manager_shorthand
+   :project: knit
+
 .. doxygenfunction:: _knit_env_is_registered
    :project: knit
 
@@ -898,6 +901,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_env_provision_one
+   :project: knit
+
+.. doxygenfunction:: _knit_env_register_shorthands
    :project: knit
 
 .. doxygenfunction:: _knit_env_require_context
@@ -927,29 +933,11 @@ Variables
 .. doxygenvariable:: _KNIT_ENV_MANAGERS
    :project: knit
 
-frame.sh
---------
-
-Functions
-~~~~~~~~~
-
-.. doxygenfunction:: _knit_framed_run
-   :project: knit
-
 github.sh
 ---------
 
 Functions
 ~~~~~~~~~
-
-.. doxygenfunction:: _knit_github_api
-   :project: knit
-
-.. doxygenfunction:: _knit_github_download
-   :project: knit
-
-.. doxygenfunction:: _knit_github_resolve_commit
-   :project: knit
 
 .. doxygenfunction:: _knit_github_resolve_commit_light
    :project: knit
@@ -2188,48 +2176,6 @@ Variables
    :project: knit
 
 .. doxygenvariable:: _KNIT_SKILLS_REPO
-   :project: knit
-
-spack.sh
---------
-
-Functions
-~~~~~~~~~
-
-.. doxygenfunction:: _knit_spack_activation
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_exec
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_install
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_install_env
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_latest_release
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_provision
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_specs_to_manifest
-   :project: knit
-
-.. doxygenfunction:: _knit_spack_write_repos_yaml
-   :project: knit
-
-Variables
-~~~~~~~~~
-
-.. doxygenvariable:: _KNIT_SPACK_ENV_SOURCED
-   :project: knit
-
-.. doxygenvariable:: _KNIT_SPACK_PACKAGES_ROOT
-   :project: knit
-
-.. doxygenvariable:: _KNIT_SPACK_ROOT
    :project: knit
 
 sqlite.sh

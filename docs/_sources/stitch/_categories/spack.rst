@@ -1,7 +1,7 @@
 Spack
 =====
 
-Working with Spack environments and package specs.
+Working with Spack environments and package specs, via the Spack environment-manager plugin (knit_import spack).
 
 .. _stitch-pin-spack-specs:
 

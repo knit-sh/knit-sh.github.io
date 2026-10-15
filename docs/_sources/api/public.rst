@@ -119,6 +119,9 @@ Functions
 .. doxygenfunction:: knit_framed
    :project: knit
 
+.. doxygenfunction:: knit_framed_run
+   :project: knit
+
 .. doxygenfunction:: knit_get_invocation_args
    :project: knit
 
@@ -126,6 +129,15 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_get_profile_field
+   :project: knit
+
+.. doxygenfunction:: knit_github_api
+   :project: knit
+
+.. doxygenfunction:: knit_github_download
+   :project: knit
+
+.. doxygenfunction:: knit_github_resolve_commit
    :project: knit
 
 .. doxygenfunction:: knit_hidden

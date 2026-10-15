@@ -495,6 +495,10 @@ as a branch resolves to a commit on the first bootstrap and is frozen in
 <code class="docutils literal notranslate"><span class="pre">knit-plugins.lock</span></code>, so a later run and a fresh checkout use the same code.
 Bootstrap also records each plugin in the <code class="docutils literal notranslate"><span class="pre">plugins</span></code> table and materializes its
 pinned tree under <code class="docutils literal notranslate"><span class="pre">.knit/plugins/</span></code> for a self-contained experiment directory.</p>
+<p>The worked example throughout this guide is the Spack <strong>environment manager</strong>,
+imported with <code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code>: it adds the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_*</span></code> setup
+directives, the <code class="docutils literal notranslate"><span class="pre">spack</span></code> command, and the <code class="docutils literal notranslate"><span class="pre">--spack</span></code> bootstrap options. See the
+<em>Spack</em> category for what it provides.</p>
 </section>
 <section id="author-a-decorator">
 <span id="stitch-author-a-decorator"></span><h2>Author a decorator<a class="headerlink" href="#author-a-decorator" title="Link to this heading">#</a></h2>

@@ -487,9 +487,13 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extra_index"><code class="docutils literal notranslate"><span class="pre">knit_extra_index()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_fatal"><code class="docutils literal notranslate"><span class="pre">knit_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed"><code class="docutils literal notranslate"><span class="pre">knit_framed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed_run"><code class="docutils literal notranslate"><span class="pre">knit_framed_run()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_get_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_parameter"><code class="docutils literal notranslate"><span class="pre">knit_get_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_api"><code class="docutils literal notranslate"><span class="pre">knit_github_api()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download"><code class="docutils literal notranslate"><span class="pre">knit_github_download()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_resolve_commit"><code class="docutils literal notranslate"><span class="pre">knit_github_resolve_commit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if_not_usable"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if_not_usable()</span></code></a></li>
@@ -683,7 +687,7 @@ remain backwards compatible across releases.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_bundle_auto_require">
 <span class="target" id="bundle_8sh_1a4f05ac3affb10396fe1fd476d9ff947e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_bundle_auto_require</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_bundle_auto_require" title="Link to this definition">#</a><br /></dt>
-<dd><p>Record a path that Knit adds to the bundle on the experiment's behalf (see _KNIT_BUNDLE_AUTO_REQUIRES). Called by a decorator — the built-in knit_with_spack_env in its file form, or a plugin-authored one — rather than directly by the experiment (which uses knit_bundle_requires). Like knit_bundle_requires it stores the string verbatim and MUST NOT touch the filesystem, so it stays safe when the experiment script is re-sourced on a compute node during job re-entry.</p>
+<dd><p>Record a path that Knit adds to the bundle on the experiment's behalf (see <em>KNIT_BUNDLE_AUTO_REQUIRES). Called by a decorator — a generated knit_with</em>&lt;nm&gt;_env directive in its file form (e.g. the built-in knit_with_spack_env), or a plugin-authored one — rather than directly by the experiment (which uses knit_bundle_requires). Like knit_bundle_requires it stores the string verbatim and MUST NOT touch the filesystem, so it stays safe when the experiment script is re-sourced on a compute node during job re-entry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1154,6 +1158,23 @@ local extra=("${args[@]:extra_index}")
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_framed_run">
+<span class="target" id="frame_8sh_1a333815a2900502f8d26dc8164555a231"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_framed_run</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_framed_run" title="Link to this definition">#</a><br /></dt>
+<dd><p>Run a command with its combined stdout/stderr written to _KNIT_TRACE_FILE and, when KNIT_LOG_LEVEL is trace, also displayed live in a 10-line frame. Returns the exit status of the command. Used by every subsystem that provisions or fetches over the network (Spack provisioning, plugin import, knit_github_download); public so a plugin can frame its own long steps the same way.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> -- <strong>[in]</strong> Title shown on the frame's top border. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> Command and arguments to execute. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The exit status of the command. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_get_invocation_args">
 <span class="target" id="cli_8sh_1a4479ff1a13f8c07afd8c3384d7b67069"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_get_invocation_args</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_get_invocation_args" title="Link to this definition">#</a><br /></dt>
 <dd><p>Copy the current command's pending (expanded) argument list into the caller's array. Meant for a before-callback: it returns exactly the invocation args, with no offset to track (unlike the callback's own &quot;$&#64;&quot;, which is prefixed by the arguments the callback was registered with), and it reflects edits a previous before-callback made. Returns an empty list outside a before-callback.</p>
@@ -1190,6 +1211,58 @@ local extra=("${args[@]:extra_index}")
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>jq_path</strong> -- <strong>[in]</strong> jq path expression, e.g. '.scheduler.type'. </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_github_api">
+<span class="target" id="github_8sh_1a081f11bdb7eee430cda1afda17957f9a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_github_api</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_github_api" title="Link to this definition">#</a><br /></dt>
+<dd><p>Fetch a GitHub REST API URL and print the response body. When GITHUB_TOKEN or GH_TOKEN is set, the request is authenticated: the anonymous api.github.com limit is 60 requests per hour per address, shared by every process behind that address, so continuous-integration runners exhaust it and knit sees an error body instead of JSON. An authenticated request uses the far higher per-token limit. curl also retries a few times so a transient network error does not abort the caller, and &quot;-f&quot; makes an HTTP error status a clean failure (empty output) instead of a non-JSON body that would confuse the caller's parser. Public so a plugin can query the API (for example to resolve the latest release of a tool it provisions).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> -- <strong>[in]</strong> The api.github.com URL to fetch. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Prints the response body; non-zero on a hard failure or HTTP error. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_github_download">
+<span class="target" id="github_8sh_1a676386807af06ccd8a6ce1bd4b79a686"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_github_download</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_github_download" title="Link to this definition">#</a><br /></dt>
+<dd><p>Download a GitHub repository at a specific commit as a tarball, compute the tarball's sha256, and extract it into the destination directory. Uses curl and tar (as the sqlite/jq provisioning does) so knit has no git dependency. GitHub serves any commit at archive/&lt;sha&gt;.tar.gz, whose single top-level &quot;&lt;repo&gt;-&lt;sha&gt;/&quot; directory is stripped so files land directly in the destination.</p>
+<p>The download and extraction are framed with knit_framed_run (shown live when the log level is trace). The commit should be an exact SHA (see knit_github_resolve_commit) so the download is reproducible. This is public so a plugin that provisions a tool from GitHub reuses the same no-git path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sha256_out</strong> -- <strong>[out]</strong> Nameref that receives the tarball's sha256 hex digest. </p></li>
+<li><p><strong>org</strong> -- <strong>[in]</strong> Repository owner (organization or user). </p></li>
+<li><p><strong>repo</strong> -- <strong>[in]</strong> Repository name under that owner. </p></li>
+<li><p><strong>dest</strong> -- <strong>[in]</strong> Destination directory. </p></li>
+<li><p><strong>sha</strong> -- <strong>[in]</strong> Commit SHA to download. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_github_resolve_commit">
+<span class="target" id="github_8sh_1a72a04e16cc4999b150d09a10ce2248fb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_github_resolve_commit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_github_resolve_commit" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve a ref (tag, branch, or commit SHA) to its exact commit SHA via the GitHub API. Resolving upstream gives a single download path (the archive URL takes a SHA) and the exact commit for provenance, without needing git. Public so a plugin pins a moving ref it provisions to an exact commit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>org</strong> -- <strong>[in]</strong> Repository owner (organization or user). </p></li>
+<li><p><strong>repo</strong> -- <strong>[in]</strong> Repository name under that owner. </p></li>
+<li><p><strong>ref</strong> -- <strong>[in]</strong> Tag, branch, or commit SHA to resolve. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Prints the commit SHA; fatal if it cannot be resolved. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -1240,7 +1313,8 @@ local extra=("${args[@]:extra_index}")
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_import">
 <span class="target" id="plugin_8sh_1a270f36b90f15b45d701606eaeff197e8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_import</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_import" title="Link to this definition">#</a><br /></dt>
-<dd><p>Import a plugin: resolve its spec to an exact commit, ensure that commit's code is present in the content-addressed cache (sourcing from cache when present, fetching it otherwise), and source its plugin.sh so its commands and decorators become available. Call it at the top of the experiment, after &quot;source knit.sh&quot; and before any use of what the plugin provides.</p>
+<dd><p>Import a plugin: resolve its spec to an exact commit, ensure that commit's code is available, and source its plugin.sh so its commands and decorators become available. Call it at the top of the experiment, after &quot;source knit.sh&quot; and before any use of what the plugin provides.</p>
+<p>Once the experiment is bootstrapped the code is sourced from the pinned tree under &quot;.knit/plugins/&lt;id&gt;/&lt;commit&gt;/&quot; — so a re-run, and a submitted job that re-enters the experiment on a compute node sharing .knit, need no network and no personal cache. Only when that tree is absent is the commit fetched into the shared &quot;$HOME/.cache&quot; staging area and (when bootstrapped) copied under .knit; before bootstrap, with no .knit yet, the import is sourced from the cache.</p>
 <p>A plugin is sourced once per canonical id (&quot;&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;&quot;); a repeated import of the same id dedups. Importing the same id at two different explicit refs is a fatal version conflict. A plugin's own plugin.sh may call knit_import for its dependencies; because sourcing is synchronous, a dependency is fully sourced before the dependent continues.</p>
 <p>Resolution prefers a lockfile pin, so a fresh checkout resolves deterministically even before bootstrap; a mutable ref resolved for the first time is written back to the lockfile. When the plugin's code cannot be obtained (offline, with no cached commit and no pin), the import is deferred rather than fatal: it is recorded for the describe/--help footer and a command_not_found safety net keeps the experiment source loading.</p>
 <p><div class="admonition seealso">
@@ -2496,9 +2570,13 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extra_index"><code class="docutils literal notranslate"><span class="pre">knit_extra_index()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_fatal"><code class="docutils literal notranslate"><span class="pre">knit_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed"><code class="docutils literal notranslate"><span class="pre">knit_framed()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_framed_run"><code class="docutils literal notranslate"><span class="pre">knit_framed_run()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_get_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_parameter"><code class="docutils literal notranslate"><span class="pre">knit_get_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_get_profile_field"><code class="docutils literal notranslate"><span class="pre">knit_get_profile_field()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_api"><code class="docutils literal notranslate"><span class="pre">knit_github_api()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_download"><code class="docutils literal notranslate"><span class="pre">knit_github_download()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_github_resolve_commit"><code class="docutils literal notranslate"><span class="pre">knit_github_resolve_commit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden"><code class="docutils literal notranslate"><span class="pre">knit_hidden()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_hidden_if_not_usable"><code class="docutils literal notranslate"><span class="pre">knit_hidden_if_not_usable()</span></code></a></li>

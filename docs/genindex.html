@@ -815,6 +815,8 @@
 </li>
       <li><a href="api/private.html#c._knit_env_env_built">_knit_env_env_built (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_env_is_manager_shorthand">_knit_env_is_manager_shorthand (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_env_is_registered">_knit_env_is_registered (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_ENV_MANAGERS">_KNIT_ENV_MANAGERS (C var)</a>
@@ -826,6 +828,8 @@
       <li><a href="api/private.html#c._knit_env_provision_all">_knit_env_provision_all (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_env_provision_one">_knit_env_provision_one (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_env_register_shorthands">_knit_env_register_shorthands (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_env_require_context">_knit_env_require_context (C function)</a>
 </li>
@@ -872,14 +876,6 @@
       <li><a href="api/private.html#c._knit_find_flag">_knit_find_flag (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_format_option_alternatives">_knit_format_option_alternatives (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_framed_run">_knit_framed_run (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_github_api">_knit_github_api (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_github_download">_knit_github_download (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_github_resolve_commit">_knit_github_resolve_commit (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_github_resolve_commit_light">_knit_github_resolve_commit_light (C function)</a>
 </li>
@@ -1041,6 +1037,8 @@
 </li>
       <li><a href="api/private.html#c._knit_metadata_render_value">_knit_metadata_render_value (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_metadata_show">_knit_metadata_show (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_metadata_store">_knit_metadata_store (C function)</a>
@@ -1049,8 +1047,6 @@
 </li>
       <li><a href="api/private.html#c._knit_name_is_valid">_knit_name_is_valid (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_name_normalize">_knit_name_normalize (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_output_artifact_quantifier">_knit_output_artifact_quantifier (C function)</a>
@@ -1613,28 +1609,6 @@
 </li>
       <li><a href="api/private.html#c._KNIT_SKILLS_REPO">_KNIT_SKILLS_REPO (C var)</a>
 </li>
-      <li><a href="api/private.html#c._knit_spack_activation">_knit_spack_activation (C function)</a>
-</li>
-      <li><a href="api/private.html#c._KNIT_SPACK_ENV_SOURCED">_KNIT_SPACK_ENV_SOURCED (C var)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_exec">_knit_spack_exec (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_install">_knit_spack_install (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_install_env">_knit_spack_install_env (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_latest_release">_knit_spack_latest_release (C function)</a>
-</li>
-      <li><a href="api/private.html#c._KNIT_SPACK_PACKAGES_ROOT">_KNIT_SPACK_PACKAGES_ROOT (C var)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_provision">_knit_spack_provision (C function)</a>
-</li>
-      <li><a href="api/private.html#c._KNIT_SPACK_ROOT">_KNIT_SPACK_ROOT (C var)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_specs_to_manifest">_knit_spack_specs_to_manifest (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_spack_write_repos_yaml">_knit_spack_write_repos_yaml (C function)</a>
-</li>
       <li><a href="api/private.html#c._KNIT_SQLITE_EXE">_KNIT_SQLITE_EXE (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_SQLITE_SOURCE_NAME">_KNIT_SQLITE_SOURCE_NAME (C var)</a>
@@ -1773,11 +1747,19 @@
 </li>
       <li><a href="api/public.html#c.knit_framed">knit_framed (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_framed_run">knit_framed_run (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_get_invocation_args">knit_get_invocation_args (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_get_parameter">knit_get_parameter (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_get_profile_field">knit_get_profile_field (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_github_api">knit_github_api (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_github_download">knit_github_download (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_github_resolve_commit">knit_github_resolve_commit (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_hidden">knit_hidden (C function)</a>
 </li>
@@ -1817,12 +1799,12 @@
 </li>
       <li><a href="api/public.html#c.knit_no_record_on_failure">knit_no_record_on_failure (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_output">knit_output (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_parameter_set">knit_parameter_set (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_platform_name">knit_platform_name (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_popd">knit_popd (C function)</a>

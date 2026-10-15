@@ -478,6 +478,15 @@ environment that Knit builds once and reuses. The setup function installs
 everything it needs under <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code> — the private directory Knit
 creates for it — so commands that depend on the setup find the software on
 their <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>A setup can lean on an <strong>environment manager</strong> for that software: a plugin that
+provisions and activates an environment for the setup, so the body does not build
+every dependency by hand. Spack is the first such manager — import it with
+<code class="docutils literal notranslate"><span class="pre">knit_import</span> <span class="pre">spack</span></code> — and a setup names its needs through the manager’s
+directive, generically <code class="docutils literal notranslate"><span class="pre">knit_with_&lt;manager&gt;_env</span></code> (for Spack,
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code> or the <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> shorthand). The setup
+below asks Spack for <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and <code class="docutils literal notranslate"><span class="pre">libpng</span></code>, then builds and installs the
+program into <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>; see the <em>Spack</em> recipes for the manager
+details.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
@@ -519,7 +528,7 @@ _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
-<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
 _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># The Spack environment declared above is already built and activated here, so</span>
@@ -739,6 +748,9 @@ Long form</label><div class="sd-tab-content docutils">
 <span id="stitch-mpi-setup-launcher"></span><h2>Build an MPI environment and provide a launcher<a class="headerlink" href="#build-an-mpi-environment-and-provide-a-launcher" title="Link to this heading">#</a></h2>
 <p><em>Ask Spack for an MPI provider in a setup and expose it as the run launcher.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_register_setup</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> comes from the Spack <strong>plugin</strong> — <code class="docutils literal notranslate"><span class="pre">knit_import</span>
+<span class="pre">spack</span></code> just after <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">knit.sh</span></code> makes it available; <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code>
+is part of Knit’s core.</p>
 <p>Add <code class="docutils literal notranslate"><span class="pre">mpi</span></code> (or a concrete provider like <code class="docutils literal notranslate"><span class="pre">mpich</span></code> or <code class="docutils literal notranslate"><span class="pre">openmpi</span></code>) to a setup’s
 <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> so Spack provisions an MPI implementation as part of the
 environment. Calling <code class="docutils literal notranslate"><span class="pre">knit_provides_launcher</span></code> then advertises that Spack-built
@@ -770,7 +782,7 @@ Long form</label><div class="sd-tab-content docutils">
 <span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
 <span class="c1"># nothing left to build.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mpienv"</span><span class="w"> </span>_mpienv_setup<span class="w"> </span><span class="s2">"Provide an MPI implementation via Spack."</span>
-<span class="nb">knit_with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"mpich"</span>
 <span class="nb">knit_provides_launcher</span>
 _mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span>:<span class="w"> </span><span class="c1"># nothing to do: Spack already installed and activated MPICH</span>
