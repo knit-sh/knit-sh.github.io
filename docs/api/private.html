@@ -615,6 +615,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_marker_var"><code class="docutils literal notranslate"><span class="pre">_knit_command_marker_var()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_with_space"><code class="docutils literal notranslate"><span class="pre">_knit_command_with_space()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_decl_flag_present"><code class="docutils literal notranslate"><span class="pre">_knit_decl_flag_present()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_declare_domain"><code class="docutils literal notranslate"><span class="pre">_knit_declare_domain()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_discover_ancestors"><code class="docutils literal notranslate"><span class="pre">_knit_discover_ancestors()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_ensure_discovered"><code class="docutils literal notranslate"><span class="pre">_knit_ensure_discovered()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_execute_after_commands"><code class="docutils literal notranslate"><span class="pre">_knit_execute_after_commands()</span></code></a></li>
@@ -726,6 +727,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_outputs"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_outputs()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_param"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_param()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_space"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_space()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_str"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_str()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_markdown"><code class="docutils literal notranslate"><span class="pre">_knit_describe_markdown()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_md_artifacts"><code class="docutils literal notranslate"><span class="pre">_knit_describe_md_artifacts()</span></code></a></li>
@@ -737,6 +739,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_md_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_md_params()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_read_filters"><code class="docutils literal notranslate"><span class="pre">_knit_describe_read_filters()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_should_emit"><code class="docutils literal notranslate"><span class="pre">_knit_describe_should_emit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_space_note"><code class="docutils literal notranslate"><span class="pre">_knit_describe_space_note()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_visible"><code class="docutils literal notranslate"><span class="pre">_knit_describe_visible()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_artifact"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_artifact()</span></code></a></li>
@@ -748,6 +751,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_param"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_param()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_params()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_scalar"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_scalar()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_space"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_space()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Variables</a><ul class="nav section-nav flex-column">
@@ -1343,8 +1347,25 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-sh">search.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_group_forward"><code class="docutils literal notranslate"><span class="pre">_knit_search_group_forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_is_descriptor"><code class="docutils literal notranslate"><span class="pre">_knit_search_is_descriptor()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_job_terminal_status"><code class="docutils literal notranslate"><span class="pre">_knit_search_job_terminal_status()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_launch"><code class="docutils literal notranslate"><span class="pre">_knit_search_launch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_app"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_app()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_finish"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_finish()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_job"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_job()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_parse_literal"><code class="docutils literal notranslate"><span class="pre">_knit_search_parse_literal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_resolve_fill"><code class="docutils literal notranslate"><span class="pre">_knit_search_resolve_fill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_validate_descriptor"><code class="docutils literal notranslate"><span class="pre">_knit_search_validate_descriptor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_add"><code class="docutils literal notranslate"><span class="pre">_knit_set_add()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_array"><code class="docutils literal notranslate"><span class="pre">_knit_set_array()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_exists"><code class="docutils literal notranslate"><span class="pre">_knit_set_exists()</span></code></a></li>
@@ -1357,7 +1378,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sh">setup.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup_path"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_experiment_root"><code class="docutils literal notranslate"><span class="pre">_knit_experiment_root()</span></code></a></li>
@@ -1385,7 +1406,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_validate_instance_name"><code class="docutils literal notranslate"><span class="pre">_knit_validate_instance_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUPS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUPS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUP_ACTIVATE_LINES"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUP_ACTIVATE_LINES</span></code></a></li>
 </ul>
@@ -1393,13 +1414,13 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorthand-sh">shorthand.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_find_function"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_find_function()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_generate"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_opted_out"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_opted_out()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_EXTRACTOR"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_PASSTHROUGH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_PASSTHROUGH</span></code></a></li>
 </ul>
@@ -1407,14 +1428,14 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-sh">skills.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_discover"><code class="docutils literal notranslate"><span class="pre">_knit_skills_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_download"><code class="docutils literal notranslate"><span class="pre">_knit_skills_download()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_install"><code class="docutils literal notranslate"><span class="pre">_knit_skills_install()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_link_claude"><code class="docutils literal notranslate"><span class="pre">_knit_skills_link_claude()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_REPO"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_REPO</span></code></a></li>
 </ul>
@@ -1422,7 +1443,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
@@ -1432,7 +1453,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -1441,7 +1462,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -1449,7 +1470,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>
@@ -3149,6 +3170,22 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_declare_domain">
+<span class="target" id="cli_8sh_1aca9dd5d4c2ed06c06ef025f0bcbe4c34"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_declare_domain</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_declare_domain" title="Link to this definition">#</a><br /></dt>
+<dd><p>Record the search domain declared for a parameter by the &quot;--domain &lt;descriptor&gt;&quot; flag (and its companion &quot;--log&quot; scale hint) on knit_with_required / knit_with_optional. The raw descriptor token and the log flag are stored verbatim under the parameter's own namespace (${ns}_2_&lt;param&gt;_domain and _domain_log), beside the description/type/default fields. The descriptor is only parsed and validated against the parameter type later, on demand, by the parameter-space accessors — so registration does not pay to parse every parameter's domain. A cheap shape check rejects a gross typo here; a parameter with no &quot;--domain&quot; stores nothing, and &quot;--log&quot; with no &quot;--domain&quot; is a fatal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ns</strong> -- <strong>[in]</strong> Parameter namespace prefix (e.g. &quot;_KNIT_CMD_&lt;cmd&gt;&quot;). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Normalized parameter name. </p></li>
+<li><p><strong>log</strong> -- <strong>[in]</strong> &quot;true&quot; when the --log scale hint was given, otherwise &quot;false&quot;. </p></li>
+<li><p><strong>domain</strong> -- <strong>[in]</strong> The descriptor token, or empty when --domain was not given. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_discover_ancestors">
 <span class="target" id="cli_8sh_1a016144b86356681020687f2b7c883f7f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_discover_ancestors</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_discover_ancestors" title="Link to this definition">#</a><br /></dt>
 <dd><p>Ensure lazy subcommand discovery has run for every ancestor of a command, so the command resolves even when it arrives as a single pre-mangled (or colon) token rather than as separate tokens. The per-token resolver walk (_knit_invoke_command) already discovers along a separate-token path; this is the fallback for an internal caller that passes a whole command name in one argument, e.g. _knit_invoke_command &quot;job__1__show__1__stdout&quot;.</p>
@@ -4449,6 +4486,21 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_describe_json_space">
+<span class="target" id="describe_8sh_1a83e6bcf8696586754634e2e6cbfc09da"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_json_space</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_json_space" title="Link to this definition">#</a><br /></dt>
+<dd><p>Render a parameter's declared search domain as a JSON object (value: no leading indent; the closing brace is printed at the given indent). The object mirrors knit_parameter_space_json's shape — kind, type, lo, hi, step, glob (strings), log (boolean), and values (array of strings) — but is hand-built with the describe JSON helpers so it respects the pretty/compact whitespace and needs no jq. Reads the domain through knit_parameter_space (parse + validate on read).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Normalized parameter name. </p></li>
+<li><p><strong>indent</strong> -- <strong>[in]</strong> Indentation of the object's closing brace. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_describe_json_str">
 <span class="target" id="describe_8sh_1a5fa2d8c83b51798c31e4eeedee3d29d6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_json_str</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_json_str" title="Link to this definition">#</a><br /></dt>
 <dd><p>Return a value as a quoted, escaped JSON string literal.</p>
@@ -4600,6 +4652,21 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_describe_space_note">
+<span class="target" id="describe_8sh_1a729c66ab96235504bf6d6f4f7ffafae0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_space_note</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_space_note" title="Link to this definition">#</a><br /></dt>
+<dd><p>Build the compact search-domain note for a parameter in the textual formats: &quot;range [lo,hi]&quot; (plus &quot; step S&quot; and/or &quot; log&quot; when set), &quot;values {a,b,c}&quot;, or &quot;glob &lt;pattern&gt;&quot;. Returns the empty string when the parameter declares no domain. The declared domain is read through knit_parameter_space, which parses and validates it, so an invalid declared domain is fatal here (on read).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the note. </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Normalized parameter name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_describe_visible">
 <span class="target" id="describe_8sh_1a305eb1ae1a6db3c16090a86892a14e01"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_visible</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_visible" title="Link to this definition">#</a><br /></dt>
 <dd><p>Return success if a command passes the hidden/builtin filters, independent of any &quot;--only&quot; selection: hidden commands are dropped unless &quot;--include-hidden&quot; is set, and builtin commands are dropped when &quot;--exclude-builtins&quot; is set.</p>
@@ -4736,6 +4803,21 @@ compatibility guarantee.</p>
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the rendered scalar. </p></li>
 <li><p><strong>value</strong> -- <strong>[in]</strong> String value to render. </p></li>
 <li><p><strong>cont_indent</strong> -- <strong>[in]</strong> Indentation prepended to each line of a block scalar. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_describe_yaml_space">
+<span class="target" id="describe_8sh_1ab0b2f7e8dcc2da255ccae8e9958d4002"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_yaml_space</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_yaml_space" title="Link to this definition">#</a><br /></dt>
+<dd><p>Render a parameter's declared search domain as a nested YAML &quot;space:&quot; mapping, mirroring the JSON shape (kind, type, lo, hi, step, glob, log, values). The &quot;space:&quot; key is printed at key_indent; its members two spaces deeper. Reads the domain through knit_parameter_space (parse + validate on read).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Normalized parameter name. </p></li>
+<li><p><strong>key_indent</strong> -- <strong>[in]</strong> Indentation of the &quot;space:&quot; key. </p></li>
 </ul>
 </dd>
 </dl>
@@ -9398,10 +9480,228 @@ If the function has a return type:
 
 </section>
 </section>
-<section id="set-sh">
-<h2>set.sh<a class="headerlink" href="#set-sh" title="Link to this heading">#</a></h2>
+<section id="search-sh">
+<h2>search.sh<a class="headerlink" href="#search-sh" title="Link to this heading">#</a></h2>
 <section id="id61">
 <h3>Functions<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_group_forward">
+<span class="target" id="search_8sh_1a0e2f2d5c3bca79ef7762a53704750a54"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_group_forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_group_forward" title="Link to this definition">#</a><br /></dt>
+<dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; token, before its &quot;--&quot;. The line is left unchanged when the group is empty or the line is not a submit line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges). The parent row itself records the group automatically, since a proposer declares --group as an ordinary optional parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_argv</strong> -- <strong>[inout]</strong> Name of the array holding the downstream argv. </p></li>
+<li><p><strong>group</strong> -- <strong>[in]</strong> The campaign group label (empty to leave the line unchanged). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_is_descriptor">
+<span class="target" id="search_8sh_1af9f4225c4bdc6b12e8e029bff5e0d237"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_is_descriptor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_is_descriptor" title="Link to this definition">#</a><br /></dt>
+<dd><p>Cheap shape check: return 0 if a token has the form of a domain descriptor (a non-empty &quot;{...}&quot;, &quot;[...]&quot;, &quot;&#64;glob:...&quot;, or &quot;&#64;file:...&quot;), 1 otherwise. This is the fork-free gate used at declaration time to reject a gross typo without a full parse; it does not check the internal well-formedness of a range or the type x kind rules (those are the parser's and validator's job, on demand).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> -- <strong>[in]</strong> The token to check. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the token looks like a descriptor, 1 otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_job_terminal_status">
+<span class="target" id="search_8sh_1adc065ccd0f91749da1dbfe9bac6e5b6d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_job_terminal_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_job_terminal_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Read a job trial's terminal status from the jobs table, by row id. Returns 0 and sets the output to &quot;completed&quot; (the job finished cleanly) or &quot;failed&quot; (the job ended in any other terminal state, &quot;failed&quot; or &quot;killed&quot;); returns 1 and clears the output while the job is not yet terminal (no row, &quot;submitted&quot;, or &quot;running&quot;), so the loop keeps polling. The state column is written compute-side by the job before/after callbacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The terminal status (&quot;completed&quot; or &quot;failed&quot;). </p></li>
+<li><p><strong>uuid</strong> -- <strong>[in]</strong> The job's row id (its UUID). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the job reached a terminal state, 1 otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_launch">
+<span class="target" id="search_8sh_1aa2c1b990431d5fd08348d0f1c42d3e2d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_launch</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_launch" title="Link to this definition">#</a><br /></dt>
+<dd><p>Launch one tracked trial: invoke a fully-substituted downstream knit command line in-process, through the normal entry path, and return the child's recorded row id by nameref. The downstream line is one of:</p>
+<p>submit ... -- &lt;job&gt; ... a job submission run ... -- &lt;app&gt; ... a run &lt;command&gt; ... a plain command</p>
+<p>The engine stays opaque to the line: it forwards every argument verbatim to _knit_invoke_command (the same path <a class="reference internal" href="public.html#main_8sh_1a66cdaae46f212a9ccc867633243785e1"><span class="std std-ref">knit()</span></a> uses), so a dispatcher such as submit or run parses its own options and the target its parameters. The invocation runs in-process, inside the calling proposer's frame, so knit's existing recording writes the provenance &quot;call&quot; edge parent -&gt; child by itself; the search core adds no edge type and no provenance hook.</p>
+<p>The child's row id is read from _KNIT_LAST_ROW_ID, which the recorder sets to each recorded invocation's id. It is empty when the child records no row (the experiment is not bootstrapped, or recording is disabled). The function returns the downstream line's own exit status, so a caller (the search loop) can see a plain command's or an app run's success or failure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The child invocation's recorded row id (empty if none). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The downstream knit command line (command and its arguments). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The exit status of the downstream invocation. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_loop">
+<span class="target" id="search_8sh_1ae13c947c653fa44dc6eea3a9ea1626e8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_loop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_loop" title="Link to this definition">#</a><br /></dt>
+<dd><p>The shared search loop: drive a proposer over a budget of trials, keeping up to --parallel in flight, launching each through _knit_search_launch and detecting completion by the chosen mode. It owns budget accounting, in-flight tracking, completion detection, and routing a finished trial's outcome to the proposer; the proposer (the ask/observe callbacks) owns which assignment runs next and the failure policy, and an optional collector owns the objective read. Both proposers (the cartesian sweep and the Ax plugin) reuse this one loop.</p>
+<p>The proposer is two callbacks. ask yields the next trial, returning the proposer's opaque tag and the fully-substituted downstream command line (the argv _knit_search_launch runs); it returns non-zero when it has no more trials. observe is told each finished trial's tag, child row id, terminal status, and objective, and returns non-zero to abort the campaign (how a failure maps to an abort is the proposer's policy). The optional collector reads one finished child's objective; it runs only when given.</p>
+<p>Completion detection has two modes: &quot;job&quot; polls the jobs table state column (ordinary submissions, possibly many queued at once); &quot;app&quot; reaps backgrounded &quot;knit run&quot; children with &quot;wait -n&quot;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> Options: --mode &lt;job|app&gt; (required), --ask &lt;fn&gt; (required), --observe &lt;fn&gt; (required), --collect &lt;fn&gt; (optional), --parallel &lt;K&gt; (default 1), --budget &lt;N&gt; (default unbounded), --poll &lt;seconds&gt; (job mode, default _KNIT_SCHED_POLL_INTERVAL). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 on a completed campaign, 1 when the proposer aborted it. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_loop_app">
+<span class="target" id="search_8sh_1ae30ec2bfc07b93a38b5836af58d7a817"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_loop_app</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_loop_app" title="Link to this definition">#</a><br /></dt>
+<dd><p>The app-mode search loop: launch each trial's blocking &quot;knit run&quot; in the background and detect completion by reaping the next finished child with &quot;wait -n&quot;. Keeps up to &lt;parallel&gt; runs in flight and launches at most &lt;budget&gt; in total (empty budget means the proposer's ask exhaustion is the only limit). Each background child writes its recorded row id to a temporary file and exits with the run's own status, so the loop learns both after the reap.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parallel</strong> -- <strong>[in]</strong> Maximum runs in flight at once (&gt;= 1). </p></li>
+<li><p><strong>budget</strong> -- <strong>[in]</strong> Maximum trials to launch (empty for unbounded). </p></li>
+<li><p><strong>ask_fn</strong> -- <strong>[in]</strong> Proposer ask callback (ask_fn &lt;tag-out&gt; &lt;argv-out&gt;; returns 1 when exhausted). </p></li>
+<li><p><strong>observe_fn</strong> -- <strong>[in]</strong> Proposer observe callback (see _knit_search_loop_finish). </p></li>
+<li><p><strong>collect_fn</strong> -- <strong>[in]</strong> Optional collector callback (empty to skip). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 on a completed campaign, 1 when the proposer aborted it. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_loop_finish">
+<span class="target" id="search_8sh_1ac7939886e4ae71ba9d4e16d89ad1e154"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_loop_finish</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_loop_finish" title="Link to this definition">#</a><br /></dt>
+<dd><p>Handle one finished trial: read its objective through the optional collector, then hand the outcome to the proposer's observe callback. The collector runs only when a collector function was given (the proposer wants the objective); the search core owns no reporting surface. The observe callback decides, by its return value, whether the campaign continues (0) or aborts (non-zero), so the failure policy stays proposer-specific (sweep &quot;stop&quot; aborts; sweep &quot;continue&quot; and BO &quot;ignore&quot;/&quot;penalize&quot; continue).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>observe_fn</strong> -- <strong>[in]</strong> The proposer's observe callback (observe_fn &lt;tag&gt; &lt;uuid&gt; &lt;status&gt; &lt;objective&gt;). </p></li>
+<li><p><strong>collect_fn</strong> -- <strong>[in]</strong> The optional collector callback (collect_fn &lt;out&gt; &lt;uuid&gt;), or empty to skip the objective read. </p></li>
+<li><p><strong>tag</strong> -- <strong>[in]</strong> The proposer's opaque key for this trial (from ask). </p></li>
+<li><p><strong>uuid</strong> -- <strong>[in]</strong> The trial child's recorded row id. </p></li>
+<li><p><strong>status</strong> -- <strong>[in]</strong> The trial's terminal status (&quot;completed&quot; or &quot;failed&quot;). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 to continue the campaign, non-zero to abort it (observe's verdict). </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_loop_job">
+<span class="target" id="search_8sh_1a0dc2d148800db5955199536e728c1d67"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_loop_job</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_loop_job" title="Link to this definition">#</a><br /></dt>
+<dd><p>The job-mode search loop: launch each trial as an ordinary submission and detect completion by polling the jobs table state column. Keeps up to &lt;parallel&gt; trials in flight and launches at most &lt;budget&gt; in total (empty budget means the proposer's ask exhaustion is the only limit). Between polls, when no trial finished, it waits &lt;poll&gt; seconds (through the overridable &quot;sleep&quot;, so a test can drive it deterministically).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parallel</strong> -- <strong>[in]</strong> Maximum trials in flight at once (&gt;= 1). </p></li>
+<li><p><strong>budget</strong> -- <strong>[in]</strong> Maximum trials to launch (empty for unbounded). </p></li>
+<li><p><strong>poll</strong> -- <strong>[in]</strong> Seconds to wait between polls when nothing finished. </p></li>
+<li><p><strong>ask_fn</strong> -- <strong>[in]</strong> Proposer ask callback (ask_fn &lt;tag-out&gt; &lt;argv-out&gt;; returns 1 when exhausted). </p></li>
+<li><p><strong>observe_fn</strong> -- <strong>[in]</strong> Proposer observe callback (see _knit_search_loop_finish). </p></li>
+<li><p><strong>collect_fn</strong> -- <strong>[in]</strong> Optional collector callback (empty to skip). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 on a completed campaign, 1 when the proposer aborted it. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_parse_literal">
+<span class="target" id="search_8sh_1aef0d6b2bc1ac16f03a8f5253653f9dda"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_parse_literal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_parse_literal" title="Link to this definition">#</a><br /></dt>
+<dd><p>Parse one domain descriptor token into its structured form. The same grammar is used for a declared &quot;--domain&quot; value and for a sweep call-site token, so this is the single parser for both. The caller MUST declare the first output as an associative array (declare -A) and the second as an ordinary array.</p>
+<p>Keys that do not apply to the parsed kind are set to the empty string. A &quot;&#64;glob:&quot; pattern is stored verbatim (its expansion to a list happens later, at use time); a &quot;&#64;file:&quot; path is read now, one value per line. A malformed or unrecognised token is fatal.</p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="o">-</span><span class="n">A</span> <span class="n">desc</span><span class="p">;</span> <span class="n">local</span> <span class="n">values</span>
+<span class="n">_knit_search_parse_literal</span> <span class="n">desc</span> <span class="n">values</span> <span class="s1">'[1..10:2]'</span>   <span class="c1"># desc[kind]=range, lo=1, hi=10, step=2</span>
+<span class="n">_knit_search_parse_literal</span> <span class="n">desc</span> <span class="n">values</span> <span class="s1">'{a,b,c}'</span>     <span class="c1"># desc[kind]=list, values=(a b c)</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Associative array to receive the descriptor scalars: keys kind (list|range|glob), lo, hi, step, glob. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Indexed array to receive the list values (empty unless kind=list). </p></li>
+<li><p><strong>token</strong> -- <strong>[in]</strong> The descriptor token to parse. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_resolve_fill">
+<span class="target" id="search_8sh_1a22f3cb1858edcc31d0acdbb8432fd8b9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_resolve_fill</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_resolve_fill" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve, for one parameter, whether it varies in the campaign and from where. This is the shared &quot;Which parameters vary&quot; rule that both proposers reuse (each sets only its own default --fill); it does NOT read or enumerate a declared domain (how a varying parameter's domain is used -- enumerate or sample -- stays with the proposer, as does the enumerability check). The result is one of:</p>
+<p>explicit the call site carries a concrete value or a set literal for this parameter, so the proposer uses what the line already says; sweep vary this parameter from its declared domain; default leave this parameter at its default value.</p>
+<p>The precedence (highest first): an explicit value/token always wins; then a per-parameter &#64;sweep / &#64;default token; then the --fill policy for an otherwise unspecified parameter. Under --fill sweep an unspecified parameter varies only when it has a declared domain -- a parameter with no declared domain stays at its default under either policy (it is never &quot;the space&quot;). The per-parameter token classification (explicit / sweep / default / unspecified) comes from the proposer's own call-site scan; this helper only applies the precedence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The resolution (&quot;explicit&quot;, &quot;sweep&quot;, or &quot;default&quot;). </p></li>
+<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy for an unspecified parameter (&quot;default&quot; or &quot;sweep&quot;). </p></li>
+<li><p><strong>token</strong> -- <strong>[in]</strong> How the call site referenced this parameter: &quot;explicit&quot; (a concrete value or set literal), &quot;sweep&quot; (&#64;sweep), &quot;default&quot; (&#64;default), or &quot;unspecified&quot; (nothing). </p></li>
+<li><p><strong>has_domain</strong> -- <strong>[in]</strong> &quot;true&quot; if the parameter has a declared domain, else &quot;false&quot;. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_search_validate_descriptor">
+<span class="target" id="search_8sh_1ab01ef896051a768298d1f15ea25c41ce"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_validate_descriptor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_validate_descriptor" title="Link to this definition">#</a><br /></dt>
+<dd><p>Validate a parsed descriptor against a parameter's declared type, applying the type x kind rules. Fatals on any violation (the same hard-stop behaviour as the other declaration-time checks):</p>
+<p><ul class="simple">
+<li><p>a range needs an integer or real parameter; each bound and the step must be a valid value of that type;</p></li>
+<li><p>a glob needs a string parameter;</p></li>
+<li><p>a list is allowed for any type, and every value must be valid for it (an enum list thus restricts the enum to the named subset; a boolean list must be true/false);</p></li>
+<li><p>the --log scale hint applies only to a real range.</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_desc</strong> -- <strong>[in]</strong> Name of the associative array holding the descriptor scalars (as produced by _knit_search_parse_literal). </p></li>
+<li><p><strong>__knit_values</strong> -- <strong>[in]</strong> Name of the indexed array holding the list values. </p></li>
+<li><p><strong>type</strong> -- <strong>[in]</strong> The parameter's declared type (name or alias). </p></li>
+<li><p><strong>log</strong> -- <strong>[in]</strong> Whether the --log scale hint was given (&quot;true&quot; to enable). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the descriptor is valid (otherwise fatal). </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="set-sh">
+<h2>set.sh<a class="headerlink" href="#set-sh" title="Link to this heading">#</a></h2>
+<section id="id62">
+<h3>Functions<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_set_add">
 <span class="target" id="set_8sh_1a2b6d1b4fa9002237212dbefcec1ae248"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_set_add</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_set_add" title="Link to this definition">#</a><br /></dt>
@@ -9536,8 +9836,8 @@ If the function has a return type:
 </section>
 <section id="setup-sh">
 <h2>setup.sh<a class="headerlink" href="#setup-sh" title="Link to this heading">#</a></h2>
-<section id="id62">
-<h3>Functions<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
+<section id="id63">
+<h3>Functions<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_default_setup">
 <span class="target" id="setup_8sh_1a8093e2e96610d7c32dccbb44ae8c3cd8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_default_setup</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_default_setup" title="Link to this definition">#</a><br /></dt>
@@ -9816,8 +10116,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id63">
-<h3>Variables<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
+<section id="id64">
+<h3>Variables<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SETUPS">
 <span class="target" id="setup_8sh_1a43ee8f81c4413999ad6951777811f9e3"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SETUPS</span></span></span><a class="headerlink" href="#c._KNIT_SETUPS" title="Link to this definition">#</a><br /></dt>
@@ -9834,8 +10134,8 @@ If the function has a return type:
 </section>
 <section id="shorthand-sh">
 <h2>shorthand.sh<a class="headerlink" href="#shorthand-sh" title="Link to this heading">#</a></h2>
-<section id="id64">
-<h3>Functions<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
+<section id="id65">
+<h3>Functions<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_shorthand_find_function">
 <span class="target" id="shorthand_8sh_1a9a0d4e717e3e46d919cf2742d95a0cd1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_shorthand_find_function</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_shorthand_find_function" title="Link to this definition">#</a><br /></dt>
@@ -9884,8 +10184,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id65">
-<h3>Variables<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
+<section id="id66">
+<h3>Variables<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SHORTHAND_EXTRACTOR">
 <span class="target" id="shorthand_8sh_1a99914115f39b183232da54c985860c93"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></span></span><a class="headerlink" href="#c._KNIT_SHORTHAND_EXTRACTOR" title="Link to this definition">#</a><br /></dt>
@@ -9905,8 +10205,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="skills-sh">
 <h2>skills.sh<a class="headerlink" href="#skills-sh" title="Link to this heading">#</a></h2>
-<section id="id66">
-<h3>Functions<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
+<section id="id67">
+<h3>Functions<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_skills_discover">
 <span class="target" id="skills_8sh_1ae46559491498d08be5ad2adc7a4b803c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_skills_discover</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_skills_discover" title="Link to this definition">#</a><br /></dt>
@@ -9942,8 +10242,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id67">
-<h3>Variables<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
+<section id="id68">
+<h3>Variables<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SKILLS_DEFAULT_REF">
 <span class="target" id="skills_8sh_1a87f3bf7498471039412cce1607935fb3"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></span></span><a class="headerlink" href="#c._KNIT_SKILLS_DEFAULT_REF" title="Link to this definition">#</a><br /></dt>
@@ -9960,8 +10260,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="sqlite-sh">
 <h2>sqlite.sh<a class="headerlink" href="#sqlite-sh" title="Link to this heading">#</a></h2>
-<section id="id68">
-<h3>Variables<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
+<section id="id69">
+<h3>Variables<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_DATABASE">
 <span class="target" id="sqlite_8sh_1af498484bceec4fae190d38e860cd2583"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DATABASE</span></span></span><a class="headerlink" href="#c._KNIT_DATABASE" title="Link to this definition">#</a><br /></dt>
@@ -9990,8 +10290,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="str-sh">
 <h2>str.sh<a class="headerlink" href="#str-sh" title="Link to this heading">#</a></h2>
-<section id="id69">
-<h3>Functions<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
+<section id="id70">
+<h3>Functions<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_str_hyphens_to_underscores">
 <span class="target" id="str_8sh_1aafa3bd09e773bdbab4ccdcb21e89f41d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_str_hyphens_to_underscores</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_str_hyphens_to_underscores" title="Link to this definition">#</a><br /></dt>
@@ -10037,8 +10337,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="types-sh">
 <h2>types.sh<a class="headerlink" href="#types-sh" title="Link to this heading">#</a></h2>
-<section id="id70">
-<h3>Functions<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
+<section id="id71">
+<h3>Functions<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_type_check_date">
 <span class="target" id="types_8sh_1a1844efaa185a89f7fff643ac540fe347"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_type_check_date</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_type_check_date" title="Link to this definition">#</a><br /></dt>
@@ -10135,8 +10435,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id71">
-<h3>Variables<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
+<section id="id72">
+<h3>Variables<a class="headerlink" href="#id72" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_BUILTIN_ENUMS">
 <span class="target" id="types_8sh_1a72c663ad65459a4883adc93673379806"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_BUILTIN_ENUMS</span></span></span><a class="headerlink" href="#c._KNIT_BUILTIN_ENUMS" title="Link to this definition">#</a><br /></dt>
@@ -10382,6 +10682,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_marker_var"><code class="docutils literal notranslate"><span class="pre">_knit_command_marker_var()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_with_space"><code class="docutils literal notranslate"><span class="pre">_knit_command_with_space()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_decl_flag_present"><code class="docutils literal notranslate"><span class="pre">_knit_decl_flag_present()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_declare_domain"><code class="docutils literal notranslate"><span class="pre">_knit_declare_domain()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_discover_ancestors"><code class="docutils literal notranslate"><span class="pre">_knit_discover_ancestors()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_ensure_discovered"><code class="docutils literal notranslate"><span class="pre">_knit_ensure_discovered()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_execute_after_commands"><code class="docutils literal notranslate"><span class="pre">_knit_execute_after_commands()</span></code></a></li>
@@ -10493,6 +10794,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_outputs"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_outputs()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_param"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_param()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_space"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_space()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_json_str"><code class="docutils literal notranslate"><span class="pre">_knit_describe_json_str()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_markdown"><code class="docutils literal notranslate"><span class="pre">_knit_describe_markdown()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_md_artifacts"><code class="docutils literal notranslate"><span class="pre">_knit_describe_md_artifacts()</span></code></a></li>
@@ -10504,6 +10806,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_md_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_md_params()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_read_filters"><code class="docutils literal notranslate"><span class="pre">_knit_describe_read_filters()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_should_emit"><code class="docutils literal notranslate"><span class="pre">_knit_describe_should_emit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_space_note"><code class="docutils literal notranslate"><span class="pre">_knit_describe_space_note()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_visible"><code class="docutils literal notranslate"><span class="pre">_knit_describe_visible()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_artifact"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_artifact()</span></code></a></li>
@@ -10515,6 +10818,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_param"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_param()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_params"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_params()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_scalar"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_scalar()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_yaml_space"><code class="docutils literal notranslate"><span class="pre">_knit_describe_yaml_space()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Variables</a><ul class="nav section-nav flex-column">
@@ -11110,8 +11414,25 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-sh">search.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_group_forward"><code class="docutils literal notranslate"><span class="pre">_knit_search_group_forward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_is_descriptor"><code class="docutils literal notranslate"><span class="pre">_knit_search_is_descriptor()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_job_terminal_status"><code class="docutils literal notranslate"><span class="pre">_knit_search_job_terminal_status()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_launch"><code class="docutils literal notranslate"><span class="pre">_knit_search_launch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_app"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_app()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_finish"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_finish()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_loop_job"><code class="docutils literal notranslate"><span class="pre">_knit_search_loop_job()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_parse_literal"><code class="docutils literal notranslate"><span class="pre">_knit_search_parse_literal()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_resolve_fill"><code class="docutils literal notranslate"><span class="pre">_knit_search_resolve_fill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_search_validate_descriptor"><code class="docutils literal notranslate"><span class="pre">_knit_search_validate_descriptor()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_add"><code class="docutils literal notranslate"><span class="pre">_knit_set_add()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_array"><code class="docutils literal notranslate"><span class="pre">_knit_set_array()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_exists"><code class="docutils literal notranslate"><span class="pre">_knit_set_exists()</span></code></a></li>
@@ -11124,7 +11445,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sh">setup.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup_path"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_experiment_root"><code class="docutils literal notranslate"><span class="pre">_knit_experiment_root()</span></code></a></li>
@@ -11152,7 +11473,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_validate_instance_name"><code class="docutils literal notranslate"><span class="pre">_knit_validate_instance_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUPS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUPS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUP_ACTIVATE_LINES"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUP_ACTIVATE_LINES</span></code></a></li>
 </ul>
@@ -11160,13 +11481,13 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorthand-sh">shorthand.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_find_function"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_find_function()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_generate"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_opted_out"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_opted_out()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_EXTRACTOR"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_PASSTHROUGH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_PASSTHROUGH</span></code></a></li>
 </ul>
@@ -11174,14 +11495,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-sh">skills.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_discover"><code class="docutils literal notranslate"><span class="pre">_knit_skills_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_download"><code class="docutils literal notranslate"><span class="pre">_knit_skills_download()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_install"><code class="docutils literal notranslate"><span class="pre">_knit_skills_install()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_link_claude"><code class="docutils literal notranslate"><span class="pre">_knit_skills_link_claude()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_REPO"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_REPO</span></code></a></li>
 </ul>
@@ -11189,7 +11510,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
@@ -11199,7 +11520,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -11208,7 +11529,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -11216,7 +11537,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>

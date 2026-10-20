@@ -417,6 +417,9 @@ Functions
 .. doxygenfunction:: _knit_decl_flag_present
    :project: knit
 
+.. doxygenfunction:: _knit_declare_domain
+   :project: knit
+
 .. doxygenfunction:: _knit_discover_ancestors
    :project: knit
 
@@ -714,6 +717,9 @@ Functions
 .. doxygenfunction:: _knit_describe_json_params
    :project: knit
 
+.. doxygenfunction:: _knit_describe_json_space
+   :project: knit
+
 .. doxygenfunction:: _knit_describe_json_str
    :project: knit
 
@@ -747,6 +753,9 @@ Functions
 .. doxygenfunction:: _knit_describe_should_emit
    :project: knit
 
+.. doxygenfunction:: _knit_describe_space_note
+   :project: knit
+
 .. doxygenfunction:: _knit_describe_visible
    :project: knit
 
@@ -778,6 +787,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_describe_yaml_scalar
+   :project: knit
+
+.. doxygenfunction:: _knit_describe_yaml_space
    :project: knit
 
 Variables
@@ -2074,6 +2086,45 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_slurm_wait
+   :project: knit
+
+search.sh
+---------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_search_group_forward
+   :project: knit
+
+.. doxygenfunction:: _knit_search_is_descriptor
+   :project: knit
+
+.. doxygenfunction:: _knit_search_job_terminal_status
+   :project: knit
+
+.. doxygenfunction:: _knit_search_launch
+   :project: knit
+
+.. doxygenfunction:: _knit_search_loop
+   :project: knit
+
+.. doxygenfunction:: _knit_search_loop_app
+   :project: knit
+
+.. doxygenfunction:: _knit_search_loop_finish
+   :project: knit
+
+.. doxygenfunction:: _knit_search_loop_job
+   :project: knit
+
+.. doxygenfunction:: _knit_search_parse_literal
+   :project: knit
+
+.. doxygenfunction:: _knit_search_resolve_fill
+   :project: knit
+
+.. doxygenfunction:: _knit_search_validate_descriptor
    :project: knit
 
 set.sh

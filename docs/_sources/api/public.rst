@@ -41,6 +41,9 @@ Functions
 .. doxygenfunction:: knit_command_has_marker
    :project: knit
 
+.. doxygenfunction:: knit_command_parameters
+   :project: knit
+
 .. doxygenfunction:: knit_command_run_after
    :project: knit
 
@@ -186,6 +189,15 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_parameter_set
+   :project: knit
+
+.. doxygenfunction:: knit_parameter_space
+   :project: knit
+
+.. doxygenfunction:: knit_parameter_space_json
+   :project: knit
+
+.. doxygenfunction:: knit_parameter_type
    :project: knit
 
 .. doxygenfunction:: knit_platform_name

@@ -461,6 +461,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_check_subcommand_args"><code class="docutils literal notranslate"><span class="pre">knit_check_subcommand_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_check_subcommand_exists"><code class="docutils literal notranslate"><span class="pre">knit_check_subcommand_exists()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_has_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_has_marker()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_parameters"><code class="docutils literal notranslate"><span class="pre">knit_command_parameters()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_after"><code class="docutils literal notranslate"><span class="pre">knit_command_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_before"><code class="docutils literal notranslate"><span class="pre">knit_command_run_before()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_set_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_set_marker()</span></code></a></li>
@@ -510,6 +511,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_no_record_on_failure"><code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output"><code class="docutils literal notranslate"><span class="pre">knit_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_parameter_set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_space"><code class="docutils literal notranslate"><span class="pre">knit_parameter_space()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_space_json"><code class="docutils literal notranslate"><span class="pre">knit_parameter_space_json()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_type"><code class="docutils literal notranslate"><span class="pre">knit_parameter_type()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_platform_name"><code class="docutils literal notranslate"><span class="pre">knit_platform_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_popd"><code class="docutils literal notranslate"><span class="pre">knit_popd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_prefix"><code class="docutils literal notranslate"><span class="pre">knit_prefix()</span></code></a></li>
@@ -778,6 +782,20 @@ remain backwards compatible across releases.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> -- <strong>[in]</strong> The marker name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_command_parameters">
+<span class="target" id="cli_8sh_1a72c60c29d6116ef0ea9e6ce67465c9fd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_command_parameters</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_command_parameters" title="Link to this definition">#</a><br /></dt>
+<dd><p>Public accessor listing a command's parameter names (normalized), in declaration order: required first, then optional, then flags. This is the stable surface the search proposers use to discover which parameters a command has, instead of iterating the <em>KNIT_CMD</em>&lt;cmd&gt;_{required,optional,flags} sets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array variable to populate. </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Command to list (the mangled/registered name). </p></li>
 </ul>
 </dd>
 </dl>
@@ -1496,6 +1514,66 @@ for csv in "${tables[@]}"; do cat "${csv}" &gt;&gt; combined.csv; done
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_parameter_space">
+<span class="target" id="search_8sh_1a2283b555a19791935723373b23519056"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_parameter_space</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_parameter_space" title="Link to this definition">#</a><br /></dt>
+<dd><p>Public accessor for a command parameter's declared search domain, returned in structured form. This is the lazy parse+validate point: it reads the raw descriptor stored at declaration (the &lt;ns&gt;<em>2</em>_domain token and its _domain_log flag), parses it with the shared grammar, and validates it against the parameter's declared type (so a type x kind error surfaces here, on first read, not at declaration). The parameter name is normalized (hyphen or underscore spelling). Returns status 1 with all outputs cleared when the parameter has no declared domain.</p>
+<p>The output arguments come first, in the order kind, type, lo, hi, values, step, log, glob; then the command and parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Domain kind (&quot;list&quot;, &quot;range&quot;, or &quot;glob&quot;). </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> The parameter's declared type. </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Range lower bound (empty unless kind=range). </p></li>
+<li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Range upper bound (empty unless kind=range). </p></li>
+<li><p><strong>__knit_ret5</strong> -- <strong>[out]</strong> Array of list values (empty unless kind=list). </p></li>
+<li><p><strong>__knit_ret6</strong> -- <strong>[out]</strong> Range step (empty when unset or kind!=range). </p></li>
+<li><p><strong>__knit_ret7</strong> -- <strong>[out]</strong> Log-scale flag (&quot;true&quot;/&quot;false&quot;). </p></li>
+<li><p><strong>__knit_ret8</strong> -- <strong>[out]</strong> Glob pattern (empty unless kind=glob). </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Command the parameter belongs to (the mangled/registered name). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Parameter name (hyphen or underscore spelling). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the parameter has a declared domain, 1 otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_parameter_space_json">
+<span class="target" id="search_8sh_1a5a38b2dde038d95cbb10494018a0d576"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_parameter_space_json</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_parameter_space_json" title="Link to this definition">#</a><br /></dt>
+<dd><p><p>Print a command parameter's declared search domain as a compact JSON object (one fork), or the literal &quot;null&quot; when the parameter has no declared domain. The object has the keys kind, type, lo, hi, step, glob (strings), log (boolean), and values (array of strings). A convenient read for &quot;describe</p>
+<p>--space&quot; and the Bayesian-optimization plugin. Like knit_parameter_space, it parses and validates on read, so an invalid declared domain is fatal here.</p>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Command the parameter belongs to (the mangled/registered name). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Parameter name (hyphen or underscore spelling). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_parameter_type">
+<span class="target" id="cli_8sh_1a30a02a7d405fc2147311cfb58a143472"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_parameter_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_parameter_type" title="Link to this definition">#</a><br /></dt>
+<dd><p>Public accessor for the declared type of a command's parameter. The parameter name is normalized (hyphens and underscores are interchangeable). Returns the empty string and status 1 when the command has no such parameter. This is the stable surface the search proposers (and any plugin) use instead of reaching into the <em>KNIT_CMD</em>&lt;cmd&gt;<em>2</em>_type internals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the type. </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Command the parameter belongs to (the mangled/registered name). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Parameter name (hyphen or underscore spelling). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the parameter exists, 1 otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_platform_name">
 <span class="target" id="profile_8sh_1add54a1ed3d56c7458d59eae3dc1992e9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_platform_name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_platform_name" title="Link to this definition">#</a><br /></dt>
 <dd><p>Print the platform name recorded for the bootstrapped experiment (the &quot;__platform__&quot; metadata key). This is the value of bootstrap's --platform option, or, when that was omitted and a --profile was given, the profile's own &quot;name&quot; field (e.g. &quot;anl/polaris&quot;). Prints an empty string when no platform was recorded. </p>
@@ -2192,6 +2270,8 @@ knit_done
 <li><p><strong>description</strong> -- <strong>[in]</strong> Description of the parameter. </p></li>
 <li><p><strong>--when</strong> -- <strong>[in]</strong> Optional boolean constraint expression (jq syntax referring to the command's other parameters); the parameter only applies when the expression evaluates to true. </p></li>
 <li><p><strong>--no-checksum</strong> -- <strong>[in]</strong> Optional flag; for a file/directory parameter, disable the content checksum and its companion column. </p></li>
+<li><p><strong>--domain</strong> -- <strong>[in]</strong> Optional search domain descriptor (&quot;{a,b,c}&quot;, &quot;[lo..hi]&quot;, &quot;[lo..hi:step]&quot;, &quot;&#64;glob:&lt;pat&gt;&quot;, or &quot;&#64;file:&lt;path&gt;&quot;; quote it). Its shape is checked here and the token is stored verbatim; it is parsed and validated against the parameter type on demand, when the parameter-sweep or Bayesian-optimization search proposer reads it. </p></li>
+<li><p><strong>--log</strong> -- <strong>[in]</strong> Optional flag; for a real &quot;--domain [lo..hi]&quot;, mark the range as log-scale (used by the optimization proposer, ignored by the sweep). </p></li>
 </ul>
 </dd>
 </dl>
@@ -2320,6 +2400,8 @@ knit_done
 <li><p><strong>description</strong> -- <strong>[in]</strong> Description of the parameter. </p></li>
 <li><p><strong>--when</strong> -- <strong>[in]</strong> Optional boolean constraint expression (jq syntax referring to the command's other parameters); the parameter only applies when the expression evaluates to true. </p></li>
 <li><p><strong>--no-checksum</strong> -- <strong>[in]</strong> Optional flag; for a file/directory parameter, disable the content checksum and its companion column. </p></li>
+<li><p><strong>--domain</strong> -- <strong>[in]</strong> Optional search domain descriptor (&quot;{a,b,c}&quot;, &quot;[lo..hi]&quot;, &quot;[lo..hi:step]&quot;, &quot;&#64;glob:&lt;pat&gt;&quot;, or &quot;&#64;file:&lt;path&gt;&quot;; quote it). Its shape is checked here and the token is stored verbatim; it is parsed and validated against the parameter type on demand, when the parameter-sweep or Bayesian-optimization search proposer reads it. </p></li>
+<li><p><strong>--log</strong> -- <strong>[in]</strong> Optional flag; for a real &quot;--domain [lo..hi]&quot;, mark the range as log-scale (used by the optimization proposer, ignored by the sweep). </p></li>
 </ul>
 </dd>
 </dl>
@@ -2595,6 +2677,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_check_subcommand_args"><code class="docutils literal notranslate"><span class="pre">knit_check_subcommand_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_check_subcommand_exists"><code class="docutils literal notranslate"><span class="pre">knit_check_subcommand_exists()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_has_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_has_marker()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_parameters"><code class="docutils literal notranslate"><span class="pre">knit_command_parameters()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_after"><code class="docutils literal notranslate"><span class="pre">knit_command_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_run_before"><code class="docutils literal notranslate"><span class="pre">knit_command_run_before()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_command_set_marker"><code class="docutils literal notranslate"><span class="pre">knit_command_set_marker()</span></code></a></li>
@@ -2644,6 +2727,9 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_no_record_on_failure"><code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output"><code class="docutils literal notranslate"><span class="pre">knit_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_parameter_set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_space"><code class="docutils literal notranslate"><span class="pre">knit_parameter_space()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_space_json"><code class="docutils literal notranslate"><span class="pre">knit_parameter_space_json()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_type"><code class="docutils literal notranslate"><span class="pre">knit_parameter_type()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_platform_name"><code class="docutils literal notranslate"><span class="pre">knit_platform_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_popd"><code class="docutils literal notranslate"><span class="pre">knit_popd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_prefix"><code class="docutils literal notranslate"><span class="pre">knit_prefix()</span></code></a></li>

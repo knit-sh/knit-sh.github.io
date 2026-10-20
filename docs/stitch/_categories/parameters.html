@@ -453,6 +453,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional arguments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>
@@ -631,6 +632,69 @@ on the command line always wins over the environment, so <code class="docutils l
 <span class="pre">42</span></code> and <code class="docutils literal notranslate"><span class="pre">SEED=42</span> <span class="pre">./exp.sh</span> <span class="pre">roll</span></code> are equivalent — the flag is just a way to set
 the same value inline.</p>
 </section>
+<section id="declare-a-parameter-s-search-domain">
+<span id="stitch-declare-a-search-domain"></span><h2>Declare a parameter’s search domain<a class="headerlink" href="#declare-a-parameter-s-search-domain" title="Link to this heading">#</a></h2>
+<p><em>Attach a value set or range to a parameter with –domain for sweeps and optimization.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_parameter_space_json</span></code></p>
+<p>A tunable parameter can carry a <strong>search domain</strong> — the set or range of values
+a parameter sweep or a Bayesian-optimization run may explore. Declare it with
+<code class="docutils literal notranslate"><span class="pre">--domain</span> <span class="pre">&lt;descriptor&gt;</span></code> on <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code> / <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>,
+quoting the descriptor so the shell does not brace-expand it:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare each tunable parameter's search domain with --domain. Quote the</span>
+<span class="c1"># descriptor: the shell would otherwise brace-expand {a,b,c}. --log marks a real</span>
+<span class="c1"># range as log-scaled (a hint a Bayesian-optimization proposer reads; a sweep</span>
+<span class="c1"># ignores it). The domain is validated against the parameter's type the first</span>
+<span class="c1"># time it is read, not at registration.</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span><span class="s2">"Train a model over a search space."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">        </span><span class="s2">"0.01"</span><span class="w"> </span><span class="s2">"Learning rate."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[1e-5..1.0]'</span><span class="w"> </span>--log
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"batch:integer"</span><span class="w">  </span><span class="s2">"32"</span><span class="w">   </span><span class="s2">"Batch size."</span><span class="w">    </span>--domain<span class="w"> </span><span class="s1">'{16,32,64,128}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"layers:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w">    </span><span class="s2">"Hidden layers."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[2..12]'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"data:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">     </span><span class="s2">"Training data."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'@glob:data/*.csv'</span>
+_train<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"lr=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>lr<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2"> batch=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>batch<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare each tunable parameter's search domain with --domain. Quote the</span>
+<span class="c1"># descriptor: the shell would otherwise brace-expand {a,b,c}. --log marks a real</span>
+<span class="c1"># range as log-scaled (a hint a Bayesian-optimization proposer reads; a sweep</span>
+<span class="c1"># ignores it). The domain is validated against the parameter's type the first</span>
+<span class="c1"># time it is read, not at registration.</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span>_train<span class="w"> </span><span class="s2">"Train a model over a search space."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">        </span><span class="s2">"0.01"</span><span class="w"> </span><span class="s2">"Learning rate."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[1e-5..1.0]'</span><span class="w"> </span>--log
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"batch:integer"</span><span class="w">  </span><span class="s2">"32"</span><span class="w">   </span><span class="s2">"Batch size."</span><span class="w">    </span>--domain<span class="w"> </span><span class="s1">'{16,32,64,128}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"layers:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w">    </span><span class="s2">"Hidden layers."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[2..12]'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"data:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">     </span><span class="s2">"Training data."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'@glob:data/*.csv'</span>
+_train<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"lr=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>lr<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2"> batch=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>batch<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The descriptor grammar is one set of literals: <code class="docutils literal notranslate"><span class="pre">{a,b,c}</span></code> is a value list,
+<code class="docutils literal notranslate"><span class="pre">[lo..hi]</span></code> / <code class="docutils literal notranslate"><span class="pre">[lo..hi:step]</span></code> a range, <code class="docutils literal notranslate"><span class="pre">&#64;glob:&lt;pattern&gt;</span></code> a filesystem glob,
+and <code class="docutils literal notranslate"><span class="pre">&#64;file:&lt;path&gt;</span></code> one value per line. <code class="docutils literal notranslate"><span class="pre">--log</span></code> adds a log-scale hint to a real
+range (a Bayesian-optimization proposer reads it; a sweep ignores it). The domain
+must match the parameter’s type — a range needs <code class="docutils literal notranslate"><span class="pre">integer</span></code> or <code class="docutils literal notranslate"><span class="pre">real</span></code>, a glob
+needs <code class="docutils literal notranslate"><span class="pre">string</span></code>, a list suits any type — and it is validated the first time it
+is read, not at registration, so a type mismatch surfaces at first use.</p>
+<p>Discover the declared domains of a command with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">describe</span> <span class="pre">--space</span></code>, which
+annotates each parameter with its domain (and emits a structured <code class="docutils literal notranslate"><span class="pre">space</span></code> object
+in the JSON and YAML formats). A search proposer reads the same domains
+programmatically through <code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code> (structured, by nameref) and
+<code class="docutils literal notranslate"><span class="pre">knit_parameter_space_json</span></code>.</p>
+</section>
 <section id="reuse-parameters-with-a-parameter-set">
 <span id="stitch-reuse-parameters-parameter-set"></span><h2>Reuse parameters with a parameter set<a class="headerlink" href="#reuse-parameters-with-a-parameter-set" title="Link to this heading">#</a></h2>
 <p><em>Declare a group of parameters once and import it into many commands.</em></p>
@@ -640,8 +704,8 @@ parameter set and import the set wherever you need it. A set is opened with
 <code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code>, populated with the usual <code class="docutils literal notranslate"><span class="pre">knit_with_*</span></code> calls, and
 closed with <code class="docutils literal notranslate"><span class="pre">knit_done</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nd">@parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
@@ -662,8 +726,8 @@ _area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nb">knit_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
@@ -697,8 +761,8 @@ that collides with one already declared on the command is a fatal error.</p>
 Pass <code class="docutils literal notranslate"><span class="pre">--only</span></code> with a comma-separated allow-list to import just those
 parameters and leave the rest behind:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
@@ -711,8 +775,8 @@ _width_only<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
@@ -738,8 +802,8 @@ a set but the named ones. Excluding a name also frees it, so the command can
 declare it itself with a different kind or default — here a parameter that is
 required in the set becomes optional on this command:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
@@ -756,8 +820,8 @@ _flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
@@ -786,8 +850,8 @@ _flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 them to another program), document them with <code class="docutils literal notranslate"><span class="pre">knit_with_extra</span></code> and read them in
 the body starting at <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
@@ -803,8 +867,8 @@ _forward<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
@@ -844,8 +908,8 @@ that parses its own <code class="docutils literal notranslate"><span class="pre"
 a value, the second names flags, and it returns 1 on the first unexpected
 argument (logging an error attributed to the caller):</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
@@ -864,8 +928,8 @@ _render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
@@ -941,6 +1005,7 @@ _render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional arguments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>

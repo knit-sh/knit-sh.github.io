@@ -47,6 +47,17 @@ Default a parameter from the environment
 
 .. include:: /stitch/recipes/env-default-parameter.rst
 
+.. _stitch-declare-a-search-domain:
+
+Declare a parameter's search domain
+-----------------------------------
+
+*Attach a value set or range to a parameter with --domain for sweeps and optimization.*
+
+**APIs:** ``knit_with_optional``, ``knit_with_required``, ``knit_parameter_space``, ``knit_parameter_space_json``
+
+.. include:: /stitch/recipes/declare-a-search-domain.rst
+
 .. _stitch-reuse-parameters-parameter-set:
 
 Reuse parameters with a parameter set
