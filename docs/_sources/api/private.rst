@@ -888,6 +888,9 @@ Functions
 .. doxygenfunction:: _knit_drain_serial
    :project: knit
 
+.. doxygenfunction:: _knit_drain_validate_retry_states
+   :project: knit
+
 env.sh
 ------
 
@@ -1060,6 +1063,18 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_job_reconstruct_args_from_db_row
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reset
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reset_apply
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reset_one
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reset_validate_states
    :project: knit
 
 .. doxygenfunction:: _knit_job_resubmit

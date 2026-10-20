@@ -157,6 +157,17 @@ Drain a prepared batch with submit drain
 
 .. include:: /stitch/recipes/drain-prepared-jobs.rst
 
+.. _stitch-retry-failed-jobs:
+
+Retry failed or killed jobs
+---------------------------
+
+*Re-queue terminal-failed jobs back to prepared so a later drain retries them.*
+
+**APIs:** ``job:reset``, ``submit:drain``
+
+.. include:: /stitch/recipes/retry-failed-jobs.rst
+
 .. _stitch-prepare-from-a-plan:
 
 Prepare many jobs from a plan

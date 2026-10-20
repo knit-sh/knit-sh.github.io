@@ -796,6 +796,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_release_next"><code class="docutils literal notranslate"><span class="pre">_knit_drain_release_next()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_report"><code class="docutils literal notranslate"><span class="pre">_knit_drain_report()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_serial"><code class="docutils literal notranslate"><span class="pre">_knit_drain_serial()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_validate_retry_states"><code class="docutils literal notranslate"><span class="pre">_knit_drain_validate_retry_states()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -880,6 +881,10 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconstruct_args_from_db_row"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconstruct_args_from_db_row()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_apply()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_one"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_one()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_validate_states"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_validate_states()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_resubmit"><code class="docutils literal notranslate"><span class="pre">_knit_job_resubmit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_show"><code class="docutils literal notranslate"><span class="pre">_knit_job_show()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_show_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_show_file()</span></code></a></li>
@@ -5140,6 +5145,19 @@ compatibility guarantee.</p>
 </dl>
 </dd></dl>
 
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_drain_validate_retry_states">
+<span class="target" id="drain_8sh_1afbf33294f7d4ae741e831584f1816ea9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_drain_validate_retry_states</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_drain_validate_retry_states" title="Link to this definition">#</a><br /></dt>
+<dd><p>Check that a --retry list names only states drain may re-queue, and abort (knit_fatal) otherwise. Drain retries only the terminal-failed states &quot;killed&quot; and &quot;failed&quot;; the non-terminal &quot;running&quot;/&quot;submitting&quot; are never reclaimed (orphan detection is a separate feature) and &quot;completed&quot; is never redone from a drain. Any other value, or an empty list, is rejected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csv</strong> -- <strong>[in]</strong> The comma-separated --retry list (non-empty). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 <section id="env-sh">
@@ -5726,6 +5744,62 @@ compatibility guarantee.</p>
 <li><p><strong>table</strong> -- <strong>[in]</strong> Table holding the recorded row. </p></li>
 <li><p><strong>id</strong> -- <strong>[in]</strong> Value of the row's &quot;id&quot; column. </p></li>
 <li><p><strong>skip</strong> -- <strong>[in]</strong> Space-separated normalized names to omit. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reset">
+<span class="target" id="job__cli_8sh_1acae868caac82f60ec595c980055e564f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reset" title="Link to this definition">#</a><br /></dt>
+<dd><p>Entry point for the <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> CLI command. Re-queue terminal-failed jobs (state &quot;killed&quot; or &quot;failed&quot;) back to &quot;prepared&quot; so a later <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> retries them. The source states default to &quot;killed,failed&quot; and are restricted to those two (plus &quot;completed&quot; under --force) by _knit_job_reset_validate_states; the non-terminal &quot;running&quot;/&quot;submitting&quot; are never touched (orphan reclaim is a separate feature). The id / group / type selectors narrow which jobs match (all AND-ed), and --max-retries caps how many times a repeatedly-failing job is retried. The actual re-queue is done by the shared worker _knit_job_reset_apply.</p>
+<p>Usage: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">exp</span><span class="o">.</span><span class="n">sh</span> <span class="n">job</span> <span class="n">reset</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">uuid</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">group</span> <span class="o">&lt;</span><span class="n">g</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">type</span> <span class="o">&lt;</span><span class="n">job</span><span class="o">&gt;</span><span class="p">]</span> \
+    <span class="p">[</span><span class="o">--</span><span class="n">state</span> <span class="n">killed</span><span class="p">,</span><span class="n">failed</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">max</span><span class="o">-</span><span class="n">retries</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">force</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reset_apply">
+<span class="target" id="job__cli_8sh_1a6ba423f2c52b0fbf2d86c764784b0027"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reset_apply</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reset_apply" title="Link to this definition">#</a><br /></dt>
+<dd><p>Re-queue every job matching the selectors whose state is in states_csv back to &quot;prepared&quot; for a retry (see _knit_job_reset_one). This is the shared worker behind <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> and <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--retry</span></code>, so the two surfaces cannot drift. The selectors are AND-ed: states_csv (a validated non-empty list of source states), plus an optional id / group / job-type equality. A job whose &quot;retries&quot; count already reached max_retries is left terminal and warned about, so a poison job cannot be retried without bound; an empty max_retries means no cap. Each re-queued id is printed to stdout (in id order); a one-line count goes to stderr. Resetting nothing is not an error (idempotent): a scope with no matching terminal job simply reports zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>states_csv</strong> -- <strong>[in]</strong> Comma-separated source states to reset (already validated). </p></li>
+<li><p><strong>max_retries</strong> -- <strong>[in]</strong> Retry cap, or &quot;&quot; for no cap. </p></li>
+<li><p><strong>sel_id</strong> -- <strong>[in]</strong> Optional job UUID to match (empty means any). </p></li>
+<li><p><strong>sel_group</strong> -- <strong>[in]</strong> Optional group to match (empty means any). </p></li>
+<li><p><strong>sel_type</strong> -- <strong>[in]</strong> Optional job type (the &quot;job&quot; column) to match (empty means any). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reset_one">
+<span class="target" id="job__cli_8sh_1a8722c2abca495258652187acdb8a54d4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reset_one</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reset_one" title="Link to this definition">#</a><br /></dt>
+<dd><p>Re-queue a single job row for a retry: move it back to state &quot;prepared&quot; and clear the artifacts of its previous run, so the next <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> claims and re-runs it from the same recorded inputs. The durable folder, the batch script, and the recorded arguments are preserved (prepare wrote them and they do not change); only the run-specific fields are cleared, restoring the row to the shape a freshly-prepared job has: &quot;state&quot; -&gt; prepared, &quot;hostnames&quot; and &quot;native-cmd&quot; emptied, and the &quot;retries&quot; counter incremented. The stale backend launcher id (&lt;jobdir&gt;/.job.id) is removed so a re-dispatch records a fresh one. The job keeps its id and its provenance; no new row or edge is created.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> The job UUID (its jobs-row id). </p></li>
+<li><p><strong>current</strong> -- <strong>[in]</strong> The job's current &quot;retries&quot; count (NULL coalesced to 0 by the caller), bumped by one here. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reset_validate_states">
+<span class="target" id="job__cli_8sh_1acb530555b74f8cef42602d2ca10b1331"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reset_validate_states</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reset_validate_states" title="Link to this definition">#</a><br /></dt>
+<dd><p>Check that a comma-separated --state list names only states that <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> may re-queue, and abort (knit_fatal) otherwise. The terminal-failed states &quot;killed&quot; and &quot;failed&quot; are always allowed; &quot;completed&quot; is allowed only when the caller passed --force (a deliberate redo). Any other state (including the non-terminal &quot;running&quot;/&quot;submitting&quot;/&quot;prepared&quot;/&quot;submitted&quot;, which reset never touches) or an unknown value is rejected, as is an empty list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>csv</strong> -- <strong>[in]</strong> The comma-separated --state list. </p></li>
+<li><p><strong>force</strong> -- <strong>[in]</strong> &quot;true&quot; when --force was given (allows &quot;completed&quot;). </p></li>
 </ul>
 </dd>
 </dl>
@@ -10863,6 +10937,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_release_next"><code class="docutils literal notranslate"><span class="pre">_knit_drain_release_next()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_report"><code class="docutils literal notranslate"><span class="pre">_knit_drain_report()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_serial"><code class="docutils literal notranslate"><span class="pre">_knit_drain_serial()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_drain_validate_retry_states"><code class="docutils literal notranslate"><span class="pre">_knit_drain_validate_retry_states()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -10947,6 +11022,10 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconstruct_args_from_db_row"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconstruct_args_from_db_row()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_apply()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_one"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_one()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_validate_states"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_validate_states()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_resubmit"><code class="docutils literal notranslate"><span class="pre">_knit_job_resubmit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_show"><code class="docutils literal notranslate"><span class="pre">_knit_job_show()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_show_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_show_file()</span></code></a></li>

@@ -463,6 +463,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-many-jobs-in-one-allocation-pilot-jobs">Run many jobs in one allocation (pilot jobs)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-failed-or-killed-jobs">Retry failed or killed jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-job-arguments">Varying job arguments</a></li>
 </ul>
@@ -1230,6 +1231,105 @@ anything, and <code class="docutils literal notranslate"><span class="pre">--jso
 advances an existing <code class="docutils literal notranslate"><span class="pre">jobs</span></code> row — so the jobs you prepared and the jobs that
 ran are the same recorded rows.</p>
 </section>
+<section id="retry-failed-or-killed-jobs">
+<span id="stitch-retry-failed-jobs"></span><h2>Retry failed or killed jobs<a class="headerlink" href="#retry-failed-or-killed-jobs" title="Link to this heading">#</a></h2>
+<p><em>Re-queue terminal-failed jobs back to prepared so a later drain retries them.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">job:reset</span></code>, <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">prepare</span></code> + <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> is a durable queue: the backlog lives in the
+database as <code class="docutils literal notranslate"><span class="pre">prepared</span></code> rows, so a drainer that dies leaves the un-started jobs
+<em>still</em> <code class="docutils literal notranslate"><span class="pre">prepared</span></code> and re-running <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> resumes them for free (see
+<em>Drain a prepared batch with submit drain</em>). The gap is a job that was <strong>in
+flight</strong> when the drainer died: it is no longer <code class="docutils literal notranslate"><span class="pre">prepared</span></code>, so drain never
+picks it up again. The common cause is draining inside a <strong>pilot job</strong> killed at
+walltime — its running subjobs end up <code class="docutils literal notranslate"><span class="pre">killed</span></code> (their pre-termination trap
+fired) or <code class="docutils literal notranslate"><span class="pre">failed</span></code>. Those are terminal states, so the work is lost unless you
+put the job back in the queue.</p>
+<p><code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> does that. It moves a <code class="docutils literal notranslate"><span class="pre">killed</span></code> / <code class="docutils literal notranslate"><span class="pre">failed</span></code> job back to
+<code class="docutils literal notranslate"><span class="pre">prepared</span></code> and clears the stale run (the backend id, the recorded hostnames),
+while keeping the job’s directory, batch script, recorded arguments, and id — so
+a later <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> re-runs it from the same inputs, under the same
+provenance. It never touches <code class="docutils literal notranslate"><span class="pre">running</span></code> / <code class="docutils literal notranslate"><span class="pre">submitting</span></code> jobs (knit cannot know
+they are dead) and only redoes a <code class="docutils literal notranslate"><span class="pre">completed</span></code> job with <code class="docutils literal notranslate"><span class="pre">--force</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reset<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w">             </span><span class="c1"># re-queue every killed/failed job in the group</span>
+<span class="go">Reset 2 job(s) to prepared.</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reset<span class="w"> </span>--id<span class="w"> </span>018f9c3a-7b2e-7c41-9d0a-1f2e3d4c5b6a
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reset<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--state<span class="w"> </span>failed<span class="w">   </span><span class="c1"># only the failed ones</span>
+</pre></div>
+</div>
+<p>Each reset increments the job’s <code class="docutils literal notranslate"><span class="pre">retries</span></code> count, so a query can see how many
+attempts a job took.</p>
+<p>The job stands in here for one killed at walltime: it fails on its first attempt
+and succeeds on the retry, because <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> preserves its directory (where it
+left a marker):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that fails on its first attempt and succeeds on the retry. It records an</span>
+<span class="c1"># ".attempted" marker in its own directory (KNIT_JOB_PREFIX), which `job reset`</span>
+<span class="c1"># preserves, so the second run sees the marker and completes. A real job does not</span>
+<span class="c1"># fail on purpose; this one stands in for one killed by a walltime limit.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"flaky"</span><span class="w"> </span><span class="s2">"Fail on the first attempt, succeed on the retry."</span>
+<span class="nd">@without_setup</span>
+_flaky<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="si">}</span><span class="s2">/.attempted"</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'flaky: retry attempt, succeeding\n'</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>:<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="si">}</span><span class="s2">/.attempted"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'flaky: first attempt, failing\n'</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that fails on its first attempt and succeeds on the retry. It records an</span>
+<span class="c1"># ".attempted" marker in its own directory (KNIT_JOB_PREFIX), which `job reset`</span>
+<span class="c1"># preserves, so the second run sees the marker and completes. A real job does not</span>
+<span class="c1"># fail on purpose; this one stands in for one killed by a walltime limit.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"flaky"</span><span class="w"> </span>_flaky<span class="w"> </span><span class="s2">"Fail on the first attempt, succeed on the retry."</span>
+<span class="nb">knit_without_setup</span>
+_flaky<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="si">}</span><span class="s2">/.attempted"</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'flaky: retry attempt, succeeding\n'</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>:<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="si">}</span><span class="s2">/.attempted"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'flaky: first attempt, failing\n'</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="m">1</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Retry inside the drain.</strong> <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--retry</span> <span class="pre">&lt;states&gt;</span></code> folds the reset into
+the drain: once at the start of the pass it re-queues every matching job in those
+states (<code class="docutils literal notranslate"><span class="pre">killed</span></code> and/or <code class="docutils literal notranslate"><span class="pre">failed</span></code>, within the drain’s <code class="docutils literal notranslate"><span class="pre">--group</span></code> / <code class="docutils literal notranslate"><span class="pre">--type</span></code>
+scope), then drains the prepared backlog. This is the one command a re-submittable
+pilot runs:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>login<span class="w"> </span>node,<span class="w"> </span>once:<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>whole<span class="w"> </span>batch
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="m">5</span>
+
+<span class="gp"># </span>inside<span class="w"> </span>the<span class="w"> </span><span class="o">(</span>re-submittable<span class="o">)</span><span class="w"> </span>pilot<span class="w"> </span>body:<span class="w"> </span>resume<span class="w"> </span>AND<span class="w"> </span>retry<span class="w"> </span>what<span class="w"> </span>a<span class="w"> </span>previous
+<span class="gp"># </span>pilot<span class="w"> </span>left<span class="w"> </span>behind
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--retry<span class="w"> </span>killed,failed<span class="w"> </span>--max-retries<span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<p>The reset is a one-shot snapshot taken at the start of the pass, so a job that
+fails <em>again</em> during the same pass is left terminal for the <strong>next</strong> invocation —
+one pass cannot spin in an immediate retry loop. <code class="docutils literal notranslate"><span class="pre">--max-retries</span> <span class="pre">&lt;n&gt;</span></code> caps the
+per-job retry count (via the <code class="docutils literal notranslate"><span class="pre">retries</span></code> column), so a <strong>poison</strong> job that always
+fails is not retried without bound; it is left terminal with a warning. Leave
+<code class="docutils literal notranslate"><span class="pre">--retry</span></code> off and <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> behaves exactly as before, releasing only
+<code class="docutils literal notranslate"><span class="pre">prepared</span></code> jobs.</p>
+<p>See <em>Drain a prepared batch with submit drain</em> for the drain itself and <em>Prepare a
+job instead of submitting it</em> for building the backlog.</p>
+</section>
 <section id="prepare-many-jobs-from-a-plan">
 <span id="stitch-prepare-from-a-plan"></span><h2>Prepare many jobs from a plan<a class="headerlink" href="#prepare-many-jobs-from-a-plan" title="Link to this heading">#</a></h2>
 <p><em>Prepare a whole batch of jobs from a JSON plan, including a GitHub-Actions-style matrix.</em></p>
@@ -1394,6 +1494,7 @@ combination (an <code class="docutils literal notranslate"><span class="pre">arg
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-many-jobs-in-one-allocation-pilot-jobs">Run many jobs in one allocation (pilot jobs)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retry-failed-or-killed-jobs">Retry failed or killed jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-job-arguments">Varying job arguments</a></li>
 </ul>
