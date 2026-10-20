@@ -885,6 +885,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_state_is_terminal"><code class="docutils literal notranslate"><span class="pre">_knit_job_state_is_terminal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_status"><code class="docutils literal notranslate"><span class="pre">_knit_job_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_wait"><code class="docutils literal notranslate"><span class="pre">_knit_job_wait()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_wait_one"><code class="docutils literal notranslate"><span class="pre">_knit_job_wait_one()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1001,8 +1002,33 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilot-sh">pilot.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_after_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_before_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_build_nodelist"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_build_nodelist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_killed_trap"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_killed_trap()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_mark_outstanding_killed"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_mark_outstanding_killed()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_record_subjob"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_record_subjob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_reject_nested_submit"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_reject_nested_submit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_require_sock"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_require_sock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_teardown_kill"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_teardown_kill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit_cmdline()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_wait()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PILOT_DAEMON_PID"><code class="docutils literal notranslate"><span class="pre">_KNIT_PILOT_DAEMON_PID</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_bootstrap"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_bootstrap()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_defer"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_defer()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_ensure_table()</span></code></a></li>
@@ -1023,7 +1049,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugins_table_exists"><code class="docutils literal notranslate"><span class="pre">_knit_plugins_table_exists()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CACHE_ROOT"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CACHE_ROOT</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CHECKSUM</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CNF_INSTALLED"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CNF_INSTALLED</span></code></a></li>
@@ -1042,7 +1068,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-sh">prepare.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare"><code class="docutils literal notranslate"><span class="pre">_knit_prepare()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_id"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_id()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_next"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_next()</span></code></a></li>
@@ -1053,7 +1079,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-sh">profile.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_load_profile"><code class="docutils literal notranslate"><span class="pre">_knit_load_profile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_profile_admin_entries"><code class="docutils literal notranslate"><span class="pre">_knit_profile_admin_entries()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_profile_file_description"><code class="docutils literal notranslate"><span class="pre">_knit_profile_file_description()</span></code></a></li>
@@ -1069,7 +1095,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resolve_profile"><code class="docutils literal notranslate"><span class="pre">_knit_resolve_profile()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_MODULE_INIT_CANDIDATES"><code class="docutils literal notranslate"><span class="pre">_KNIT_MODULE_INIT_CANDIDATES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROFILE_ADMIN_DIR"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROFILE_ADMIN_DIR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROFILE_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROFILE_DEFAULT_REF</span></code></a></li>
@@ -1080,7 +1106,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prov-sh">prov.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_produced_edge_sql"><code class="docutils literal notranslate"><span class="pre">_knit_produced_edge_sql()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prov_create_table"><code class="docutils literal notranslate"><span class="pre">_knit_prov_create_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prov_edge_sql"><code class="docutils literal notranslate"><span class="pre">_knit_prov_edge_sql()</span></code></a></li>
@@ -1091,7 +1117,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_record_used_by_edge()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROV_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROV_TABLE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROV_TABLE_ENSURED"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROV_TABLE_ENSURED</span></code></a></li>
 </ul>
@@ -1099,7 +1125,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-sh">query.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_annotate_catalog"><code class="docutils literal notranslate"><span class="pre">_knit_query_annotate_catalog()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_build_lens_preamble"><code class="docutils literal notranslate"><span class="pre">_knit_query_build_lens_preamble()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_build_names"><code class="docutils literal notranslate"><span class="pre">_knit_query_build_names()</span></code></a></li>
@@ -1128,7 +1154,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-sh">remove.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_append_failed_ids"><code class="docutils literal notranslate"><span class="pre">_knit_remove_append_failed_ids()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_append_ids"><code class="docutils literal notranslate"><span class="pre">_knit_remove_append_ids()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_artifact"><code class="docutils literal notranslate"><span class="pre">_knit_remove_artifact()</span></code></a></li>
@@ -1181,7 +1207,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-sh">resource.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_is_resource"><code class="docutils literal notranslate"><span class="pre">_knit_command_is_resource()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_fetch"><code class="docutils literal notranslate"><span class="pre">_knit_fetch()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_fetch_git"><code class="docutils literal notranslate"><span class="pre">_knit_fetch_git()</span></code></a></li>
@@ -1204,14 +1230,14 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sha256"><code class="docutils literal notranslate"><span class="pre">_knit_sha256()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_RESOURCES"><code class="docutils literal notranslate"><span class="pre">_KNIT_RESOURCES</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocrate-sh">rocrate.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_rocrate_generate"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_rocrate_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_export_discover"><code class="docutils literal notranslate"><span class="pre">_knit_export_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_export_rocrate"><code class="docutils literal notranslate"><span class="pre">_knit_export_rocrate()</span></code></a></li>
@@ -1226,13 +1252,14 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-sh">sched.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pick_queue"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pick_queue()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_profile_field"><code class="docutils literal notranslate"><span class="pre">_knit_sched_profile_field()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_real_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_real_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_resolve"><code class="docutils literal notranslate"><span class="pre">_knit_sched_resolve()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
@@ -1241,7 +1268,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_uuidv7"><code class="docutils literal notranslate"><span class="pre">_knit_uuidv7()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_KILL_WARNING_SEC"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_KILL_WARNING_SEC</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_POLL_INTERVAL"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_POLL_INTERVAL</span></code></a></li>
 </ul>
@@ -1249,7 +1276,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-flux-sh">sched_flux.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_hostfile()</span></code></a></li>
@@ -1263,7 +1290,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-local-sh">sched_local.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_hostfile()</span></code></a></li>
@@ -1275,7 +1302,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-none-sh">sched_none.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_hostfile()</span></code></a></li>
@@ -1287,7 +1314,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-pbs-sh">sched_pbs.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_hostfile()</span></code></a></li>
@@ -1297,14 +1324,14 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_wait()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_PBS_REGISTER_GRACE_POLLS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_PBS_REGISTER_GRACE_POLLS</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-slurm-sh">sched_slurm.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_hostfile()</span></code></a></li>
@@ -1317,7 +1344,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_add"><code class="docutils literal notranslate"><span class="pre">_knit_set_add()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_array"><code class="docutils literal notranslate"><span class="pre">_knit_set_array()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_exists"><code class="docutils literal notranslate"><span class="pre">_knit_set_exists()</span></code></a></li>
@@ -1330,7 +1357,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sh">setup.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup_path"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_experiment_root"><code class="docutils literal notranslate"><span class="pre">_knit_experiment_root()</span></code></a></li>
@@ -1358,7 +1385,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_validate_instance_name"><code class="docutils literal notranslate"><span class="pre">_knit_validate_instance_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUPS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUPS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUP_ACTIVATE_LINES"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUP_ACTIVATE_LINES</span></code></a></li>
 </ul>
@@ -1366,13 +1393,13 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorthand-sh">shorthand.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_find_function"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_find_function()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_generate"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_opted_out"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_opted_out()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_EXTRACTOR"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_PASSTHROUGH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_PASSTHROUGH</span></code></a></li>
 </ul>
@@ -1380,14 +1407,14 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-sh">skills.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_discover"><code class="docutils literal notranslate"><span class="pre">_knit_skills_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_download"><code class="docutils literal notranslate"><span class="pre">_knit_skills_download()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_install"><code class="docutils literal notranslate"><span class="pre">_knit_skills_install()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_link_claude"><code class="docutils literal notranslate"><span class="pre">_knit_skills_link_claude()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_REPO"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_REPO</span></code></a></li>
 </ul>
@@ -1395,7 +1422,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
@@ -1405,7 +1432,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -1414,7 +1441,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -1422,7 +1449,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>
@@ -5691,8 +5718,22 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_wait">
 <span class="target" id="job__cli_8sh_1a084cc273a01ee2a698188b5b80cc7c21"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_wait</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_wait" title="Link to this definition">#</a><br /></dt>
-<dd><p>Block until a job finishes, then print its terminal lifecycle state; a &quot;killed&quot; state yields a non-zero exit so callers can detect failure.</p>
-<p>Rather than busy-polling the database, this blocks on the scheduler itself: once the job's row is not already terminal, it looks up the backend job id (.job.id in the job directory) and calls the backend's native wait (_knit_sched_wait), which returns when the scheduler stops running the job. The job's terminal state (completed/failed/killed) is recorded by its compute-side callbacks over the shared filesystem; that write is read back afterwards, with a short reconciliation window since it may land a moment after the scheduler reports the job gone. An unknown id is a fatal error rather than an endless wait. </p>
+<dd><p>Block until one or more jobs reach a terminal state, printing each job's terminal lifecycle state (one per line, in the order given).</p>
+<p>The --id argument accepts a comma-separated list of job UUIDs. Each job is waited for in turn via _knit_job_wait_one. The exit code aggregates the single-job convention: it is non-zero if ANY job ended &quot;failed&quot; or &quot;killed&quot;, zero otherwise. A missing/unknown id anywhere in the list is a fatal error. A single id behaves exactly as waiting for that one job. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_wait_one">
+<span class="target" id="job__cli_8sh_1aa6b82e1bba010162e5e009aa09c0d3ae"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_wait_one</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_wait_one" title="Link to this definition">#</a><br /></dt>
+<dd><p>Block until a single job finishes, then print its terminal lifecycle state; a &quot;killed&quot; or &quot;failed&quot; state yields a non-zero exit so callers can detect failure.</p>
+<p>Rather than busy-polling the database, this blocks on the scheduler itself: once the job's row is not already terminal, it looks up the backend job id (.job.id in the job directory) and calls the backend's native wait (_knit_sched_wait), which returns when the scheduler stops running the job. The job's terminal state (completed/failed/killed) is recorded by its compute-side callbacks over the shared filesystem; that write is read back afterwards, with a short reconciliation window since it may land a moment after the scheduler reports the job gone. An unknown id is a fatal error rather than an endless wait.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> The job UUID to wait for. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -6307,10 +6348,190 @@ compatibility guarantee.</p>
 
 </section>
 </section>
-<section id="plugin-sh">
-<h2>plugin.sh<a class="headerlink" href="#plugin-sh" title="Link to this heading">#</a></h2>
+<section id="pilot-sh">
+<h2>pilot.sh<a class="headerlink" href="#pilot-sh" title="Link to this heading">#</a></h2>
 <section id="id39">
 <h3>Functions<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_after_cb">
+<span class="target" id="pilot_8sh_1a50c925f7bc9783c3eeb55946c73a409b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_after_cb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_after_cb" title="Link to this definition">#</a><br /></dt>
+<dd><p>After-callback installed by knit_with_pilot, applying the body-exit policy for sub-jobs still outstanding when the body returns. Default (drain): ask the daemon to run every submitted sub-job to completion, blocking until it has, then exit — the safe &quot;don't lose work&quot; default, so each sub-job records its own terminal state. With --kill-on-exit: instead kill outstanding (running + queued) sub-jobs and mark them killed (_knit_pilot_teardown_kill). Either way the daemon is then reaped. A no-op when no daemon was started (KNIT_PILOT_SOCK unset). A walltime kill mid-drain does not reach here: the kill-trap (_knit_pilot_killed_trap) runs instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kill_on_exit</strong> -- <strong>[in]</strong> Non-empty to kill outstanding sub-jobs instead of draining. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_before_cb">
+<span class="target" id="pilot_8sh_1a7bf839999addb60326dabc46e8ca332f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_before_cb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_before_cb" title="Link to this definition">#</a><br /></dt>
+<dd><p>Before-callback installed by knit_with_pilot, run after the generic job before-callback (so the allocation's hostnames are already discoverable). It builds the resource inventory — the node pool (knit_job_hostnames, less the launch host when --exclude-launch-host) plus the per-node core/GPU counts from bootstrap metadata — starts knit-pilotd on a control socket under the job directory, waits for the socket to appear, and exports KNIT_PILOT / KNIT_PILOT_SOCK so the body's <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> calls reach the daemon. The node pool is built before KNIT_PILOT is exported so host discovery still resolves the real scheduler backend. Daemon output goes to &lt;jobdir&gt;/pilot.log.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exclude_launch_host</strong> -- <strong>[in]</strong> Non-empty to drop the local host from the pool. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The job's own runtime arguments (ignored). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_build_nodelist">
+<span class="target" id="pilot_8sh_1a0ac1091e8e79cb5c9d44e855e456e417"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_build_nodelist</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_build_nodelist" title="Link to this definition">#</a><br /></dt>
+<dd><p>Print the comma-separated node list for the pilot daemon's resource pool: the deduplicated hostnames the pilot job was allocated (knit_job_hostnames). When exclude_launch_host is non-empty, the daemon's own host is dropped from the pool if present — compared on the short (pre-dot) name so it matches whether the allocation reports short names or FQDNs. The drop is a no-op when the host is not in the pool (a separate launch/service node). Prints the empty string when no node remains.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exclude_launch_host</strong> -- <strong>[in]</strong> Non-empty to drop the local host from the pool. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_killed_trap">
+<span class="target" id="pilot_8sh_1a96e2800c843000776513b1109ca4f348"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_killed_trap</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_killed_trap" title="Link to this definition">#</a><br /></dt>
+<dd><p>Kill-trap for a pilot job, replacing the generic _knit_job_killed_trap on HUP/TERM/USR1 (a cancel, an out-of-time or walltime kill). It first tears the daemon down and marks all outstanding sub-jobs killed, so a killed pilot never leaves a sub-job &quot;running&quot; or lost, then chains to the generic trap to record the pilot itself &quot;killed&quot; and exit. This is also the path a walltime kill arriving mid-drain falls through to: the signal interrupts the blocking drain in the after-callback and runs this instead. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_mark_outstanding_killed">
+<span class="target" id="pilot_8sh_1af777f9da618234d562752cd6f9b6a2be"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_mark_outstanding_killed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_mark_outstanding_killed" title="Link to this definition">#</a><br /></dt>
+<dd><p>Mark every sub-job the pilot submitted that is not already in a terminal state as &quot;killed&quot; in the jobs table. Called from the kill paths (a killed pilot, or --kill-on-exit) after the daemon has been told to kill/drop outstanding sub-jobs: it closes the gap for queued sub-jobs that never started a process of their own (and so never recorded a terminal state) and is a harmless idempotent re-write for running sub-jobs whose own kill-trap already recorded &quot;killed&quot;. Best-effort and gated on bootstrap; a sub-job with no row (unknown state) is skipped. Reads the tracking file written by _knit_pilot_record_subjob. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_record_subjob">
+<span class="target" id="pilot_8sh_1a2da62c018a66b8920351a6878d045591"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_record_subjob</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_record_subjob" title="Link to this definition">#</a><br /></dt>
+<dd><p>Record a sub-job UUID the pilot submitted, one per line, in a tracking file under the pilot job directory. Teardown reads this list to reconcile sub-jobs the daemon killed or dropped: a running sub-job records its own &quot;killed&quot; when signalled, but a still-queued sub-job never started a knit process and would otherwise stay &quot;submitted&quot;, so the pilot marks it killed from this list. A no-op when not inside a pilot job directory (e.g. under unit tests).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> The sub-job UUID just queued with the daemon. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_reject_nested_submit">
+<span class="target" id="pilot_8sh_1a1063b0862b1ad22aa56259990bd624f7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_reject_nested_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_reject_nested_submit" title="Link to this definition">#</a><br /></dt>
+<dd><p>The nested-submit guard. <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> is allowed on the login node and, inside a pilot job, retargeted to the in-allocation daemon; everywhere else inside a job body it is rejected. Returns 0 (allow) when not inside a job body (KNIT_JOB_PREFIX unset — the ordinary login-side submission) or when a pilot is active (KNIT_PILOT set); otherwise it is a nested submission from a non-pilot job body and fatals, naming knit_with_pilot. Called at the top of _knit_submit, which only the real <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">--</span> <span class="pre">&lt;job&gt;</span></code> dispatch reaches — the compute-side body re-entry runs <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">&lt;job&gt;</span></code> (no --) straight into the job function, so this never blocks a job from starting. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_require_sock">
+<span class="target" id="pilot_8sh_1ab3d1acddc2a22fb74a19a484a7e613c7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_require_sock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_require_sock" title="Link to this definition">#</a><br /></dt>
+<dd><p>Fatal unless KNIT_PILOT_SOCK names a control socket to talk to the daemon. Guards the pilot backend's submit/wait/cancel paths, which are only reachable from inside a pilot job body; a missing socket means one of those was reached outside a pilot, which is a programming error worth a clear message. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_teardown_kill">
+<span class="target" id="pilot_8sh_1acf5cfbdf4550d9ae11d30254968ba601"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_teardown_kill</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_teardown_kill" title="Link to this definition">#</a><br /></dt>
+<dd><p>Tear the pilot down the hard way: tell the daemon to kill every running sub-job's process group and drop every queued one (shutdown --kill, which also makes the daemon exit), then reconcile the sub-job rows so none is left &quot;submitted&quot; or &quot;running&quot;. Shared by the --kill-on-exit body-exit policy and the pilot's kill-trap. A no-op when no daemon was started (KNIT_PILOT_SOCK unset). </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_cancel">
+<span class="target" id="pilot_8sh_1a1a25850f0b4266dedb88349cedfb1ec1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_cancel" title="Link to this definition">#</a><br /></dt>
+<dd><p>Cancel a pilot sub-job by asking the daemon to terminate it: it kills a running sub-job's process group and drops a still-queued one, marking it killed. Cancelling a sub-job that is already gone is not an error. Knit's terminal state (killed) is recorded by the sub-job's own kill-trap / the daemon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> The sub-job UUID recorded in its .job.id. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_directives">
+<span class="target" id="pilot_8sh_1a6a1a1ccc1f6e6081cdc1632d990a080b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_directives</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_directives" title="Link to this definition">#</a><br /></dt>
+<dd><p>Emit the batch directives for the pilot backend. A pilot sub-job is launched by the daemon as a plain process, not by a batch scheduler, so there are no directives and this prints nothing — it exists so every backend honours the same contract.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr_name</strong> -- <strong>[in]</strong> Name of the resolved-options associative array (unused). </p></li>
+<li><p><strong>jobdir</strong> -- <strong>[in]</strong> Job directory (unused). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_hostfile">
+<span class="target" id="pilot_8sh_1a3b44469e270275e15c5ed8e9ff3342e1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_hostfile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_hostfile" title="Link to this definition">#</a><br /></dt>
+<dd><p>Print the host list for a pilot sub-job: the node subset the daemon assigned it, named in KNIT_PILOT_HOSTFILE (one host per line). This is the &quot;raw&quot; host list per the dispatcher contract — callers such as knit_job_hostnames deduplicate and clean it. Blank lines are dropped. When no readable hostfile is present, warn and fall back to this machine's hostname. Reached from _knit_sched_hostfile whenever KNIT_PILOT_HOSTFILE is set, so a sub-job places its work onto its own subset without needing any pilot environment of its own. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_submit">
+<span class="target" id="pilot_8sh_1a5f524f540bb4f1bc5d2899fb1554c04b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_submit" title="Link to this definition">#</a><br /></dt>
+<dd><p>Submit a built sub-job to the in-allocation knit-pilotd daemon: queue its batch script (run as &quot;bash &lt;script&gt;&quot;) with the node count resolved for this submission, keyed by the sub-job UUID (the job directory's basename), with stdout/stderr redirected to the job directory. The request is non-blocking — the daemon queues it and returns at once — matching the dispatcher contract (the optional --wait is a separate _knit_sched_pilot_wait step). On the daemon accepting the request, the sub-job UUID is printed as the backend job id (the daemon tracks the sub-job by it, so wait/cancel reference it); a daemon rejection propagates as a non-zero status, which the dispatcher treats as a scheduler rejection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr_name</strong> -- <strong>[in]</strong> Name of the resolved-options associative array. </p></li>
+<li><p><strong>script</strong> -- <strong>[in]</strong> Path to the batch script to queue. </p></li>
+<li><p><strong>jobdir</strong> -- <strong>[in]</strong> Job directory (its basename is the sub-job UUID). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_submit_cmdline">
+<span class="target" id="pilot_8sh_1af098aea38ae71f10bed63345c865c3c8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_submit_cmdline</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_submit_cmdline" title="Link to this definition">#</a><br /></dt>
+<dd><p>Build the pilot backend's submission command into a caller-provided array, passed by name, for recording as the row's native-cmd: the daemon submit with the node count, launching &quot;bash &lt;script&gt;&quot;. The socket, sub-job id, and stdout/stderr redirection are knit-managed plumbing (and the id/socket are not available here), so — like the local backend's &quot;bash &lt;script&gt;&quot; — they are omitted from the recorded command, which captures the essential shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>argv_name</strong> -- <strong>[out]</strong> Name of the array to fill with the submission argv. </p></li>
+<li><p><strong>arr_name</strong> -- <strong>[in]</strong> Name of the resolved-options associative array. </p></li>
+<li><p><strong>script</strong> -- <strong>[in]</strong> Path to the batch script to queue. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_wait">
+<span class="target" id="pilot_8sh_1afaa6071e025b308c173dab8365d99b56"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_wait</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_wait" title="Link to this definition">#</a><br /></dt>
+<dd><p>Block until a pilot sub-job reaches a terminal state, by asking the daemon to wait on its id. The daemon's client exits 0 when the sub-job completed and non-zero when it failed or was killed, which this returns unchanged — the same contract the other backends' wait functions honour (knit's own terminal state is read from the jobs table afterwards by the caller).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> The sub-job UUID recorded in its .job.id by _knit_sched_pilot_submit. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id40">
+<h3>Variables<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<dl class="c var">
+<dt class="sig sig-object c">
+<span class="target" id="pilot_8sh_1a6d40e38c3b8d74fdfca19706ddcb2adf"></span><span class="sig-name descname"><span class="pre">_KNIT_PILOTD_VERSION</span></span></dt>
+<dd><p>Version of knit-pilotd to provision. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_PILOT_DAEMON_PID">
+<span class="target" id="pilot_8sh_1a7d682af40d85bada652372faefd2098d"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_PILOT_DAEMON_PID</span></span></span><a class="headerlink" href="#c._KNIT_PILOT_DAEMON_PID" title="Link to this definition">#</a><br /></dt>
+<dd><p>PID of the knit-pilotd daemon the pilot before-callback started, kept so the after-callback can reap it. Lives only within the pilot job body's process. </p>
+</dd></dl>
+
+</section>
+</section>
+<section id="plugin-sh">
+<h2>plugin.sh<a class="headerlink" href="#plugin-sh" title="Link to this heading">#</a></h2>
+<section id="id41">
+<h3>Functions<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_plugin_bootstrap">
 <span class="target" id="plugin_8sh_1aa6e119ad91a52d7b0bb134a4c7c52f10"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_plugin_bootstrap</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_plugin_bootstrap" title="Link to this definition">#</a><br /></dt>
@@ -6511,8 +6732,8 @@ compatibility guarantee.</p>
 </dd></dl>
 
 </section>
-<section id="id40">
-<h3>Variables<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<section id="id42">
+<h3>Variables<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_PLUGIN_CACHE_ROOT">
 <span class="target" id="plugin_8sh_1a60f8390b91c285f516414b6dc9179eaf"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_PLUGIN_CACHE_ROOT</span></span></span><a class="headerlink" href="#c._KNIT_PLUGIN_CACHE_ROOT" title="Link to this definition">#</a><br /></dt>
@@ -6597,8 +6818,8 @@ plugin.sh knows which plugin imported it (the stack top) and records the depende
 </section>
 <section id="prepare-sh">
 <h2>prepare.sh<a class="headerlink" href="#prepare-sh" title="Link to this heading">#</a></h2>
-<section id="id41">
-<h3>Functions<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
+<section id="id43">
+<h3>Functions<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_prepare">
 <span class="target" id="prepare_8sh_1ac380f5ac0e5b2aceb673b0035e0974c6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_prepare</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_prepare" title="Link to this definition">#</a><br /></dt>
@@ -6668,8 +6889,8 @@ plugin.sh knows which plugin imported it (the stack top) and records the depende
 </section>
 <section id="profile-sh">
 <h2>profile.sh<a class="headerlink" href="#profile-sh" title="Link to this heading">#</a></h2>
-<section id="id42">
-<h3>Functions<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<section id="id44">
+<h3>Functions<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_load_profile">
 <span class="target" id="profile_8sh_1a100380b0d478fa26bc844711b1294df8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_load_profile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_load_profile" title="Link to this definition">#</a><br /></dt>
@@ -6879,8 +7100,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id43">
-<h3>Variables<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
+<section id="id45">
+<h3>Variables<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_MODULE_INIT_CANDIDATES">
 <span class="target" id="profile_8sh_1a08260488d13ac78a2c2e81561b25ec2d"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_MODULE_INIT_CANDIDATES</span></span></span><a class="headerlink" href="#c._KNIT_MODULE_INIT_CANDIDATES" title="Link to this definition">#</a><br /></dt>
@@ -6915,8 +7136,8 @@ If the function has a return type:
 </section>
 <section id="prov-sh">
 <h2>prov.sh<a class="headerlink" href="#prov-sh" title="Link to this heading">#</a></h2>
-<section id="id44">
-<h3>Functions<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<section id="id46">
+<h3>Functions<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_produced_edge_sql">
 <span class="target" id="prov_8sh_1ae3de5cb15c24aff75b51c77dd244edbd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_produced_edge_sql</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_produced_edge_sql" title="Link to this definition">#</a><br /></dt>
@@ -7020,8 +7241,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id45">
-<h3>Variables<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<section id="id47">
+<h3>Variables<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_PROV_TABLE">
 <span class="target" id="prov_8sh_1a2218805410b27ebafccd52065628ea1e"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_PROV_TABLE</span></span></span><a class="headerlink" href="#c._KNIT_PROV_TABLE" title="Link to this definition">#</a><br /></dt>
@@ -7038,8 +7259,8 @@ If the function has a return type:
 </section>
 <section id="query-sh">
 <h2>query.sh<a class="headerlink" href="#query-sh" title="Link to this heading">#</a></h2>
-<section id="id46">
-<h3>Functions<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<section id="id48">
+<h3>Functions<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_query_annotate_catalog">
 <span class="target" id="query_8sh_1ab27b51b2256715dffb85d20b3cc80437"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_query_annotate_catalog</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_query_annotate_catalog" title="Link to this definition">#</a><br /></dt>
@@ -7364,8 +7585,8 @@ If the function has a return type:
 </section>
 <section id="remove-sh">
 <h2>remove.sh<a class="headerlink" href="#remove-sh" title="Link to this heading">#</a></h2>
-<section id="id47">
-<h3>Functions<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<section id="id49">
+<h3>Functions<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_remove_append_failed_ids">
 <span class="target" id="remove_8sh_1ab3d3b1f4cd8a688fbfa9b1df63eb32df"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_remove_append_failed_ids</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_remove_append_failed_ids" title="Link to this definition">#</a><br /></dt>
@@ -8073,8 +8294,8 @@ If the function has a return type:
 </section>
 <section id="resource-sh">
 <h2>resource.sh<a class="headerlink" href="#resource-sh" title="Link to this heading">#</a></h2>
-<section id="id48">
-<h3>Functions<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<section id="id50">
+<h3>Functions<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_command_is_resource">
 <span class="target" id="resource_8sh_1a9de3ebd6ed06ec4b06cee30cb2c214de"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_command_is_resource</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_command_is_resource" title="Link to this definition">#</a><br /></dt>
@@ -8363,8 +8584,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id49">
-<h3>Variables<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<section id="id51">
+<h3>Variables<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_RESOURCES">
 <span class="target" id="resource_8sh_1a0b3fc741b5cd99c93949c19f2cf6539c"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_RESOURCES</span></span></span><a class="headerlink" href="#c._KNIT_RESOURCES" title="Link to this definition">#</a><br /></dt>
@@ -8375,8 +8596,8 @@ If the function has a return type:
 </section>
 <section id="rocrate-sh">
 <h2>rocrate.sh<a class="headerlink" href="#rocrate-sh" title="Link to this heading">#</a></h2>
-<section id="id50">
-<h3>Functions<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
+<section id="id52">
+<h3>Functions<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_bundle_rocrate_generate">
 <span class="target" id="rocrate_8sh_1ab1f8355fc12b11b149fde8597025601c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bundle_rocrate_generate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bundle_rocrate_generate" title="Link to this definition">#</a><br /></dt>
@@ -8487,12 +8708,12 @@ If the function has a return type:
 </section>
 <section id="sched-sh">
 <h2>sched.sh<a class="headerlink" href="#sched-sh" title="Link to this heading">#</a></h2>
-<section id="id51">
-<h3>Functions<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<section id="id53">
+<h3>Functions<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_backend">
 <span class="target" id="sched_8sh_1a00e75177f27f526c6ea77aee207c0aad"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_backend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_backend" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve which scheduler backend to use: bootstrap metadata (<strong>scheduler</strong>), else live detection. Detection's &quot;&lt;unknown&gt;&quot; (no batch scheduler present) means the workstation case and maps to the local background-process backend. An explicit &quot;none&quot; in metadata is a real, deliberate backend (a user-owned cluster driven without a scheduler) and flows through untouched. Returns one of &quot;local&quot;, &quot;none&quot;, &quot;slurm&quot;, &quot;pbs&quot;, &quot;flux&quot;.</p>
+<dd><p>Resolve which scheduler backend a submission targets. Inside a pilot job (KNIT_PILOT set) the backend is &quot;pilot&quot;: <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> is retargeted to the in-allocation knit-pilotd daemon rather than the machine scheduler. Otherwise it is the machine's real backend (see _knit_sched_real_backend). Returns one of &quot;pilot&quot;, &quot;local&quot;, &quot;none&quot;, &quot;slurm&quot;, &quot;pbs&quot;, &quot;flux&quot;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -8570,6 +8791,19 @@ If the function has a return type:
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the field value. </p></li>
 <li><p><strong>profile</strong> -- <strong>[in]</strong> Profile label (may be empty; empty means &quot;no profile&quot;). </p></li>
 <li><p><strong>jq_path</strong> -- <strong>[in]</strong> jq path expression, e.g. '.scheduler.default_queue'. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_real_backend">
+<span class="target" id="sched_8sh_1ac64e12525162f58d2404aada9261606c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_real_backend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_real_backend" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the machine's real scheduler backend, ignoring any active pilot: bootstrap metadata (<strong>scheduler</strong>), else live detection. Detection's &quot;&lt;unknown&gt;&quot; (no batch scheduler present) means the workstation case and maps to the local background-process backend. An explicit &quot;none&quot; in metadata is a real, deliberate backend (a user-owned cluster driven without a scheduler) and flows through untouched. Returns one of &quot;local&quot;, &quot;none&quot;, &quot;slurm&quot;, &quot;pbs&quot;, &quot;flux&quot;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the resolved backend name. </p></li>
 </ul>
 </dd>
 </dl>
@@ -8675,8 +8909,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id52">
-<h3>Variables<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<section id="id54">
+<h3>Variables<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SCHED_KILL_WARNING_SEC">
 <span class="target" id="sched_8sh_1a835708bc19f016e046708a8e9bcd0728"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SCHED_KILL_WARNING_SEC</span></span></span><a class="headerlink" href="#c._KNIT_SCHED_KILL_WARNING_SEC" title="Link to this definition">#</a><br /></dt>
@@ -8693,8 +8927,8 @@ If the function has a return type:
 </section>
 <section id="sched-flux-sh">
 <h2>sched_flux.sh<a class="headerlink" href="#sched-flux-sh" title="Link to this heading">#</a></h2>
-<section id="id53">
-<h3>Functions<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
+<section id="id55">
+<h3>Functions<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_flux_cancel">
 <span class="target" id="sched__flux_8sh_1a1b0ee607d110248050f243b28436eb64"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_flux_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_flux_cancel" title="Link to this definition">#</a><br /></dt>
@@ -8801,8 +9035,8 @@ If the function has a return type:
 </section>
 <section id="sched-local-sh">
 <h2>sched_local.sh<a class="headerlink" href="#sched-local-sh" title="Link to this heading">#</a></h2>
-<section id="id54">
-<h3>Functions<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<section id="id56">
+<h3>Functions<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_local_cancel">
 <span class="target" id="sched__local_8sh_1a89f45cdd03a267a4246033b44c545a24"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_local_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_local_cancel" title="Link to this definition">#</a><br /></dt>
@@ -8883,8 +9117,8 @@ If the function has a return type:
 </section>
 <section id="sched-none-sh">
 <h2>sched_none.sh<a class="headerlink" href="#sched-none-sh" title="Link to this heading">#</a></h2>
-<section id="id55">
-<h3>Functions<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
+<section id="id57">
+<h3>Functions<a class="headerlink" href="#id57" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_none_cancel">
 <span class="target" id="sched__none_8sh_1a5cd74713ab862bcdb55313af51240339"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_none_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_none_cancel" title="Link to this definition">#</a><br /></dt>
@@ -8966,8 +9200,8 @@ If the function has a return type:
 </section>
 <section id="sched-pbs-sh">
 <h2>sched_pbs.sh<a class="headerlink" href="#sched-pbs-sh" title="Link to this heading">#</a></h2>
-<section id="id56">
-<h3>Functions<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
+<section id="id58">
+<h3>Functions<a class="headerlink" href="#id58" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_pbs_cancel">
 <span class="target" id="sched__pbs_8sh_1af4a29271a84e9dc01eb0f44d9e1e1604"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pbs_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pbs_cancel" title="Link to this definition">#</a><br /></dt>
@@ -9059,8 +9293,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id57">
-<h3>Variables<a class="headerlink" href="#id57" title="Link to this heading">#</a></h3>
+<section id="id59">
+<h3>Variables<a class="headerlink" href="#id59" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SCHED_PBS_REGISTER_GRACE_POLLS">
 <span class="target" id="sched__pbs_8sh_1a5391baf8d48708f586b8f140e70fc7b4"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SCHED_PBS_REGISTER_GRACE_POLLS</span></span></span><a class="headerlink" href="#c._KNIT_SCHED_PBS_REGISTER_GRACE_POLLS" title="Link to this definition">#</a><br /></dt>
@@ -9071,8 +9305,8 @@ If the function has a return type:
 </section>
 <section id="sched-slurm-sh">
 <h2>sched_slurm.sh<a class="headerlink" href="#sched-slurm-sh" title="Link to this heading">#</a></h2>
-<section id="id58">
-<h3>Functions<a class="headerlink" href="#id58" title="Link to this heading">#</a></h3>
+<section id="id60">
+<h3>Functions<a class="headerlink" href="#id60" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_slurm_cancel">
 <span class="target" id="sched__slurm_8sh_1a7b18c41cabaa2e9890c68b63a8676d20"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_slurm_cancel</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_slurm_cancel" title="Link to this definition">#</a><br /></dt>
@@ -9166,8 +9400,8 @@ If the function has a return type:
 </section>
 <section id="set-sh">
 <h2>set.sh<a class="headerlink" href="#set-sh" title="Link to this heading">#</a></h2>
-<section id="id59">
-<h3>Functions<a class="headerlink" href="#id59" title="Link to this heading">#</a></h3>
+<section id="id61">
+<h3>Functions<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_set_add">
 <span class="target" id="set_8sh_1a2b6d1b4fa9002237212dbefcec1ae248"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_set_add</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_set_add" title="Link to this definition">#</a><br /></dt>
@@ -9302,8 +9536,8 @@ If the function has a return type:
 </section>
 <section id="setup-sh">
 <h2>setup.sh<a class="headerlink" href="#setup-sh" title="Link to this heading">#</a></h2>
-<section id="id60">
-<h3>Functions<a class="headerlink" href="#id60" title="Link to this heading">#</a></h3>
+<section id="id62">
+<h3>Functions<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_default_setup">
 <span class="target" id="setup_8sh_1a8093e2e96610d7c32dccbb44ae8c3cd8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_default_setup</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_default_setup" title="Link to this definition">#</a><br /></dt>
@@ -9582,8 +9816,8 @@ If the function has a return type:
 </dd></dl>
 
 </section>
-<section id="id61">
-<h3>Variables<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
+<section id="id63">
+<h3>Variables<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SETUPS">
 <span class="target" id="setup_8sh_1a43ee8f81c4413999ad6951777811f9e3"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SETUPS</span></span></span><a class="headerlink" href="#c._KNIT_SETUPS" title="Link to this definition">#</a><br /></dt>
@@ -9600,8 +9834,8 @@ If the function has a return type:
 </section>
 <section id="shorthand-sh">
 <h2>shorthand.sh<a class="headerlink" href="#shorthand-sh" title="Link to this heading">#</a></h2>
-<section id="id62">
-<h3>Functions<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
+<section id="id64">
+<h3>Functions<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_shorthand_find_function">
 <span class="target" id="shorthand_8sh_1a9a0d4e717e3e46d919cf2742d95a0cd1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_shorthand_find_function</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_shorthand_find_function" title="Link to this definition">#</a><br /></dt>
@@ -9650,8 +9884,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id63">
-<h3>Variables<a class="headerlink" href="#id63" title="Link to this heading">#</a></h3>
+<section id="id65">
+<h3>Variables<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SHORTHAND_EXTRACTOR">
 <span class="target" id="shorthand_8sh_1a99914115f39b183232da54c985860c93"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></span></span><a class="headerlink" href="#c._KNIT_SHORTHAND_EXTRACTOR" title="Link to this definition">#</a><br /></dt>
@@ -9671,8 +9905,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="skills-sh">
 <h2>skills.sh<a class="headerlink" href="#skills-sh" title="Link to this heading">#</a></h2>
-<section id="id64">
-<h3>Functions<a class="headerlink" href="#id64" title="Link to this heading">#</a></h3>
+<section id="id66">
+<h3>Functions<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_skills_discover">
 <span class="target" id="skills_8sh_1ae46559491498d08be5ad2adc7a4b803c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_skills_discover</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_skills_discover" title="Link to this definition">#</a><br /></dt>
@@ -9708,8 +9942,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id65">
-<h3>Variables<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
+<section id="id67">
+<h3>Variables<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SKILLS_DEFAULT_REF">
 <span class="target" id="skills_8sh_1a87f3bf7498471039412cce1607935fb3"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></span></span><a class="headerlink" href="#c._KNIT_SKILLS_DEFAULT_REF" title="Link to this definition">#</a><br /></dt>
@@ -9726,8 +9960,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="sqlite-sh">
 <h2>sqlite.sh<a class="headerlink" href="#sqlite-sh" title="Link to this heading">#</a></h2>
-<section id="id66">
-<h3>Variables<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
+<section id="id68">
+<h3>Variables<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_DATABASE">
 <span class="target" id="sqlite_8sh_1af498484bceec4fae190d38e860cd2583"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DATABASE</span></span></span><a class="headerlink" href="#c._KNIT_DATABASE" title="Link to this definition">#</a><br /></dt>
@@ -9756,8 +9990,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="str-sh">
 <h2>str.sh<a class="headerlink" href="#str-sh" title="Link to this heading">#</a></h2>
-<section id="id67">
-<h3>Functions<a class="headerlink" href="#id67" title="Link to this heading">#</a></h3>
+<section id="id69">
+<h3>Functions<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_str_hyphens_to_underscores">
 <span class="target" id="str_8sh_1aafa3bd09e773bdbab4ccdcb21e89f41d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_str_hyphens_to_underscores</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_str_hyphens_to_underscores" title="Link to this definition">#</a><br /></dt>
@@ -9803,8 +10037,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="types-sh">
 <h2>types.sh<a class="headerlink" href="#types-sh" title="Link to this heading">#</a></h2>
-<section id="id68">
-<h3>Functions<a class="headerlink" href="#id68" title="Link to this heading">#</a></h3>
+<section id="id70">
+<h3>Functions<a class="headerlink" href="#id70" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_type_check_date">
 <span class="target" id="types_8sh_1a1844efaa185a89f7fff643ac540fe347"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_type_check_date</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_type_check_date" title="Link to this definition">#</a><br /></dt>
@@ -9901,8 +10135,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id69">
-<h3>Variables<a class="headerlink" href="#id69" title="Link to this heading">#</a></h3>
+<section id="id71">
+<h3>Variables<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_BUILTIN_ENUMS">
 <span class="target" id="types_8sh_1a72c663ad65459a4883adc93673379806"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_BUILTIN_ENUMS</span></span></span><a class="headerlink" href="#c._KNIT_BUILTIN_ENUMS" title="Link to this definition">#</a><br /></dt>
@@ -10418,6 +10652,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_state_is_terminal"><code class="docutils literal notranslate"><span class="pre">_knit_job_state_is_terminal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_status"><code class="docutils literal notranslate"><span class="pre">_knit_job_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_wait"><code class="docutils literal notranslate"><span class="pre">_knit_job_wait()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_wait_one"><code class="docutils literal notranslate"><span class="pre">_knit_job_wait_one()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -10534,8 +10769,33 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilot-sh">pilot.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_after_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_before_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_build_nodelist"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_build_nodelist()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_killed_trap"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_killed_trap()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_mark_outstanding_killed"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_mark_outstanding_killed()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_record_subjob"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_record_subjob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_reject_nested_submit"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_reject_nested_submit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_require_sock"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_require_sock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_teardown_kill"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_teardown_kill()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit_cmdline()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_wait()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PILOT_DAEMON_PID"><code class="docutils literal notranslate"><span class="pre">_KNIT_PILOT_DAEMON_PID</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_bootstrap"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_bootstrap()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_defer"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_defer()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_ensure_table()</span></code></a></li>
@@ -10556,7 +10816,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugins_table_exists"><code class="docutils literal notranslate"><span class="pre">_knit_plugins_table_exists()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CACHE_ROOT"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CACHE_ROOT</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CHECKSUM</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PLUGIN_CNF_INSTALLED"><code class="docutils literal notranslate"><span class="pre">_KNIT_PLUGIN_CNF_INSTALLED</span></code></a></li>
@@ -10575,7 +10835,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-sh">prepare.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare"><code class="docutils literal notranslate"><span class="pre">_knit_prepare()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_id"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_id()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_next"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_next()</span></code></a></li>
@@ -10586,7 +10846,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profile-sh">profile.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_load_profile"><code class="docutils literal notranslate"><span class="pre">_knit_load_profile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_profile_admin_entries"><code class="docutils literal notranslate"><span class="pre">_knit_profile_admin_entries()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_profile_file_description"><code class="docutils literal notranslate"><span class="pre">_knit_profile_file_description()</span></code></a></li>
@@ -10602,7 +10862,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resolve_profile"><code class="docutils literal notranslate"><span class="pre">_knit_resolve_profile()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_MODULE_INIT_CANDIDATES"><code class="docutils literal notranslate"><span class="pre">_KNIT_MODULE_INIT_CANDIDATES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROFILE_ADMIN_DIR"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROFILE_ADMIN_DIR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROFILE_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROFILE_DEFAULT_REF</span></code></a></li>
@@ -10613,7 +10873,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prov-sh">prov.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_produced_edge_sql"><code class="docutils literal notranslate"><span class="pre">_knit_produced_edge_sql()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prov_create_table"><code class="docutils literal notranslate"><span class="pre">_knit_prov_create_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prov_edge_sql"><code class="docutils literal notranslate"><span class="pre">_knit_prov_edge_sql()</span></code></a></li>
@@ -10624,7 +10884,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_record_used_by_edge()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROV_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROV_TABLE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_PROV_TABLE_ENSURED"><code class="docutils literal notranslate"><span class="pre">_KNIT_PROV_TABLE_ENSURED</span></code></a></li>
 </ul>
@@ -10632,7 +10892,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-sh">query.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_annotate_catalog"><code class="docutils literal notranslate"><span class="pre">_knit_query_annotate_catalog()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_build_lens_preamble"><code class="docutils literal notranslate"><span class="pre">_knit_query_build_lens_preamble()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_query_build_names"><code class="docutils literal notranslate"><span class="pre">_knit_query_build_names()</span></code></a></li>
@@ -10661,7 +10921,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-sh">remove.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_append_failed_ids"><code class="docutils literal notranslate"><span class="pre">_knit_remove_append_failed_ids()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_append_ids"><code class="docutils literal notranslate"><span class="pre">_knit_remove_append_ids()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_remove_artifact"><code class="docutils literal notranslate"><span class="pre">_knit_remove_artifact()</span></code></a></li>
@@ -10714,7 +10974,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-sh">resource.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_command_is_resource"><code class="docutils literal notranslate"><span class="pre">_knit_command_is_resource()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_fetch"><code class="docutils literal notranslate"><span class="pre">_knit_fetch()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_fetch_git"><code class="docutils literal notranslate"><span class="pre">_knit_fetch_git()</span></code></a></li>
@@ -10737,14 +10997,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sha256"><code class="docutils literal notranslate"><span class="pre">_knit_sha256()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_RESOURCES"><code class="docutils literal notranslate"><span class="pre">_KNIT_RESOURCES</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rocrate-sh">rocrate.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_rocrate_generate"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_rocrate_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_export_discover"><code class="docutils literal notranslate"><span class="pre">_knit_export_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_export_rocrate"><code class="docutils literal notranslate"><span class="pre">_knit_export_rocrate()</span></code></a></li>
@@ -10759,13 +11019,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-sh">sched.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pick_queue"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pick_queue()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_profile_field"><code class="docutils literal notranslate"><span class="pre">_knit_sched_profile_field()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_real_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_real_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_resolve"><code class="docutils literal notranslate"><span class="pre">_knit_sched_resolve()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
@@ -10774,7 +11035,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_uuidv7"><code class="docutils literal notranslate"><span class="pre">_knit_uuidv7()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_KILL_WARNING_SEC"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_KILL_WARNING_SEC</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_POLL_INTERVAL"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_POLL_INTERVAL</span></code></a></li>
 </ul>
@@ -10782,7 +11043,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-flux-sh">sched_flux.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_hostfile()</span></code></a></li>
@@ -10796,7 +11057,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-local-sh">sched_local.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_hostfile()</span></code></a></li>
@@ -10808,7 +11069,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-none-sh">sched_none.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_hostfile()</span></code></a></li>
@@ -10820,7 +11081,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-pbs-sh">sched_pbs.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id56">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_hostfile()</span></code></a></li>
@@ -10830,14 +11091,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_wait()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id57">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCHED_PBS_REGISTER_GRACE_POLLS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCHED_PBS_REGISTER_GRACE_POLLS</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-slurm-sh">sched_slurm.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id58">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_hostfile()</span></code></a></li>
@@ -10850,7 +11111,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-sh">set.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id59">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_add"><code class="docutils literal notranslate"><span class="pre">_knit_set_add()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_array"><code class="docutils literal notranslate"><span class="pre">_knit_set_array()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_set_exists"><code class="docutils literal notranslate"><span class="pre">_knit_set_exists()</span></code></a></li>
@@ -10863,7 +11124,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-sh">setup.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id60">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_default_setup_path"><code class="docutils literal notranslate"><span class="pre">_knit_default_setup_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_experiment_root"><code class="docutils literal notranslate"><span class="pre">_knit_experiment_root()</span></code></a></li>
@@ -10891,7 +11152,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_validate_instance_name"><code class="docutils literal notranslate"><span class="pre">_knit_validate_instance_name()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id61">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUPS"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUPS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SETUP_ACTIVATE_LINES"><code class="docutils literal notranslate"><span class="pre">_KNIT_SETUP_ACTIVATE_LINES</span></code></a></li>
 </ul>
@@ -10899,13 +11160,13 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorthand-sh">shorthand.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id62">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_find_function"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_find_function()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_generate"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_generate()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_shorthand_opted_out"><code class="docutils literal notranslate"><span class="pre">_knit_shorthand_opted_out()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id63">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_EXTRACTOR"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_EXTRACTOR</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SHORTHAND_PASSTHROUGH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SHORTHAND_PASSTHROUGH</span></code></a></li>
 </ul>
@@ -10913,14 +11174,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-sh">skills.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id64">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_discover"><code class="docutils literal notranslate"><span class="pre">_knit_skills_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_download"><code class="docutils literal notranslate"><span class="pre">_knit_skills_download()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_install"><code class="docutils literal notranslate"><span class="pre">_knit_skills_install()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_skills_link_claude"><code class="docutils literal notranslate"><span class="pre">_knit_skills_link_claude()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id65">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_DEFAULT_REF"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_DEFAULT_REF</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SKILLS_REPO"><code class="docutils literal notranslate"><span class="pre">_KNIT_SKILLS_REPO</span></code></a></li>
 </ul>
@@ -10928,7 +11189,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id66">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
@@ -10938,7 +11199,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id67">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -10947,7 +11208,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id68">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id70">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -10955,7 +11216,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id69">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>

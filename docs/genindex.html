@@ -967,6 +967,8 @@
 </li>
       <li><a href="api/private.html#c._knit_job_wait">_knit_job_wait (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_job_wait_one">_knit_job_wait_one (C function)</a>
+</li>
       <li><a href="api/private.html#c._KNIT_JOBS">_KNIT_JOBS (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_JOBS_TABLE">_KNIT_JOBS_TABLE (C var)</a>
@@ -1037,8 +1039,6 @@
 </li>
       <li><a href="api/private.html#c._knit_metadata_render_value">_knit_metadata_render_value (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_metadata_show">_knit_metadata_show (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_metadata_store">_knit_metadata_store (C function)</a>
@@ -1055,6 +1055,8 @@
 </li>
       <li><a href="api/private.html#c._knit_output_description">_knit_output_description (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_output_type">_knit_output_type (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_param_check_declaration">_knit_param_check_declaration (C function)</a>
@@ -1066,6 +1068,26 @@
       <li><a href="api/private.html#c._knit_param_type">_knit_param_type (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_PARAMETER_SETS">_KNIT_PARAMETER_SETS (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_after_cb">_knit_pilot_after_cb (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_before_cb">_knit_pilot_before_cb (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_build_nodelist">_knit_pilot_build_nodelist (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_PILOT_DAEMON_PID">_KNIT_PILOT_DAEMON_PID (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_killed_trap">_knit_pilot_killed_trap (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_mark_outstanding_killed">_knit_pilot_mark_outstanding_killed (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_record_subjob">_knit_pilot_record_subjob (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_reject_nested_submit">_knit_pilot_reject_nested_submit (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_require_sock">_knit_pilot_require_sock (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_pilot_teardown_kill">_knit_pilot_teardown_kill (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_plugin_bootstrap">_knit_plugin_bootstrap (C function)</a>
 </li>
@@ -1501,9 +1523,23 @@
 </li>
       <li><a href="api/private.html#c._knit_sched_pick_queue">_knit_sched_pick_queue (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_sched_pilot_cancel">_knit_sched_pilot_cancel (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_directives">_knit_sched_pilot_directives (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_hostfile">_knit_sched_pilot_hostfile (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_submit">_knit_sched_pilot_submit (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_submit_cmdline">_knit_sched_pilot_submit_cmdline (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_wait">_knit_sched_pilot_wait (C function)</a>
+</li>
       <li><a href="api/private.html#c._KNIT_SCHED_POLL_INTERVAL">_KNIT_SCHED_POLL_INTERVAL (C var)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_profile_field">_knit_sched_profile_field (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_real_backend">_knit_sched_real_backend (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_resolve">_knit_sched_resolve (C function)</a>
 </li>
@@ -1801,11 +1837,13 @@
 </li>
       <li><a href="api/public.html#c.knit_no_record_on_failure">knit_no_record_on_failure (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_output">knit_output (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_parameter_set">knit_parameter_set (C function)</a>
+</li>
+      <li><a href="api/public.html#c.KNIT_PILOT_SOCK">KNIT_PILOT_SOCK (C var)</a>
 </li>
       <li><a href="api/public.html#c.knit_platform_name">knit_platform_name (C function)</a>
 </li>
@@ -1910,6 +1948,8 @@
       <li><a href="api/public.html#c.knit_with_output_artifact">knit_with_output_artifact (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_with_parameter_set">knit_with_parameter_set (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_with_pilot">knit_with_pilot (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_with_provenance">knit_with_provenance (C function)</a>
 </li>

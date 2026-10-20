@@ -460,6 +460,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-job-s-output">Retrieve a job’s output</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-or-resubmit-a-job">Cancel or resubmit a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-job-instead-of-submitting-it">Prepare a job instead of submitting it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-many-jobs-in-one-allocation-pilot-jobs">Run many jobs in one allocation (pilot jobs)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a><ul class="nav section-nav flex-column">
@@ -1035,6 +1036,131 @@ remotely:</p>
 <p>See <em>Release prepared jobs</em> for how to hand a prepared job to the scheduler, and
 <em>Prepare many jobs from a plan</em> for preparing a whole batch at once.</p>
 </section>
+<section id="run-many-jobs-in-one-allocation-pilot-jobs">
+<span id="stitch-run-many-jobs-in-one-allocation"></span><h2>Run many jobs in one allocation (pilot jobs)<a class="headerlink" href="#run-many-jobs-in-one-allocation-pilot-jobs" title="Link to this heading">#</a></h2>
+<p><em>Mark a job a pilot so its body can submit sub-jobs that pack onto its own allocation.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>, <code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">job:wait</span></code></p>
+<p>A single <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> buys one allocation from the machine scheduler. To run
+many smaller jobs <em>inside</em> that allocation — a parameter campaign, an ensemble,
+a many-task workload — mark a job a <strong>pilot</strong> with <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>. When the
+pilot job starts, knit launches a small in-allocation scheduler (the
+<code class="docutils literal notranslate"><span class="pre">knit-pilotd</span></code> daemon, provisioned at bootstrap like the other bundled tools)
+over the job’s own nodes. From then on a <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> in the pilot’s body goes
+to that daemon instead of to Slurm/PBS, so the sub-jobs pack onto the allocation
+and run concurrently — with no second trip through the batch queue.</p>
+<p>The body fans out the sub-jobs, keeping the UUID each <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> returns, and
+waits on the whole batch with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">job</span> <span class="pre">wait</span> <span class="pre">--id</span></code> (which accepts a
+comma-separated list):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body, `knit submit` targets the</span>
+<span class="c1"># in-allocation daemon (started over the job's own nodes) instead of the machine</span>
+<span class="c1"># scheduler, so the sub-jobs pack onto the allocation and run concurrently.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"campaign"</span><span class="w"> </span><span class="s2">"Run many worker sub-jobs on one allocation."</span>
+<span class="nd">@with_pilot</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"count:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Number of worker sub-jobs to fan out."</span>
+_campaign_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>count<span class="w"> </span>seed<span class="w"> </span><span class="nv">ids</span><span class="o">=</span><span class="s2">""</span>
+<span class="w">    </span><span class="nv">count</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"count"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># Each `knit submit` queues a sub-job with the pilot daemon and returns at</span>
+<span class="w">    </span><span class="c1"># once with its UUID; --nodes 1 asks for a one-node slice. Collect the UUIDs.</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>seed<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>count<span class="p">;</span><span class="w"> </span>seed++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">ids</span><span class="o">+=</span><span class="s2">"</span><span class="si">${</span><span class="nv">ids</span><span class="p">:+,</span><span class="si">}</span><span class="k">$(</span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>worker<span class="w"> </span>--seed<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">seed</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span><span class="c1"># Wait for the whole batch: `knit job wait --id` takes a comma-separated list</span>
+<span class="w">    </span><span class="c1"># and blocks until every sub-job is terminal (non-zero if any failed/killed).</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ids</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body, `knit submit` targets the</span>
+<span class="c1"># in-allocation daemon (started over the job's own nodes) instead of the machine</span>
+<span class="c1"># scheduler, so the sub-jobs pack onto the allocation and run concurrently.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"campaign"</span><span class="w"> </span>_campaign_job<span class="w"> </span><span class="s2">"Run many worker sub-jobs on one allocation."</span>
+<span class="nb">knit_with_pilot</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"count:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Number of worker sub-jobs to fan out."</span>
+_campaign_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>count<span class="w"> </span>seed<span class="w"> </span><span class="nv">ids</span><span class="o">=</span><span class="s2">""</span>
+<span class="w">    </span><span class="nv">count</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"count"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+
+<span class="w">    </span><span class="c1"># Each `knit submit` queues a sub-job with the pilot daemon and returns at</span>
+<span class="w">    </span><span class="c1"># once with its UUID; --nodes 1 asks for a one-node slice. Collect the UUIDs.</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="w"> </span><span class="nv">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>seed<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>count<span class="p">;</span><span class="w"> </span>seed++<span class="w"> </span><span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">        </span><span class="nv">ids</span><span class="o">+=</span><span class="s2">"</span><span class="si">${</span><span class="nv">ids</span><span class="p">:+,</span><span class="si">}</span><span class="k">$(</span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>worker<span class="w"> </span>--seed<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">seed</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="k">done</span>
+
+<span class="w">    </span><span class="c1"># Wait for the whole batch: `knit job wait --id` takes a comma-separated list</span>
+<span class="w">    </span><span class="c1"># and blocks until every sub-job is terminal (non-zero if any failed/killed).</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">ids</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each sub-job is an ordinary knit job — here a tiny <code class="docutils literal notranslate"><span class="pre">worker</span></code> — so it records
+its own row and a provenance <code class="docutils literal notranslate"><span class="pre">call</span></code> edge back to the pilot; a campaign is
+queryable as a normal parent/child job graph:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A small, ordinary sub-job. Nothing marks it "for pilots only" — a pilot simply</span>
+<span class="c1"># submits many of them. @without_setup keeps it self-contained (no --setup).</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"worker"</span><span class="w"> </span><span class="s2">"A small sub-job."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"seed:integer"</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"This worker's PRNG seed."</span>
+_worker_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>seed
+<span class="w">    </span><span class="nv">seed</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"seed"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'worker seed %s on %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">seed</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A small, ordinary sub-job. Nothing marks it "for pilots only" — a pilot simply</span>
+<span class="c1"># submits many of them. @without_setup keeps it self-contained (no --setup).</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"worker"</span><span class="w"> </span>_worker_job<span class="w"> </span><span class="s2">"A small sub-job."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"seed:integer"</span><span class="w"> </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"This worker's PRNG seed."</span>
+_worker_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>seed
+<span class="w">    </span><span class="nv">seed</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"seed"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'worker seed %s on %s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">seed</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>hostname<span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Launch it like any job; give the pilot the nodes the sub-jobs will pack onto:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">2</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>campaign<span class="w"> </span>--count<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>Outside a pilot job, a <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> from within a job body is rejected (it
+would nest batch submissions) and the error names <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>. Two options
+tune a pilot: <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span> <span class="pre">--exclude-launch-host</span></code> drops the daemon’s own
+node from the pool (for machines where the job script shares the first compute
+node; a no-op otherwise), and <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span> <span class="pre">--kill-on-exit</span></code> kills any
+sub-jobs still outstanding when the body returns instead of the default, which
+<strong>drains</strong> them to completion first. Killing the pilot job itself tears the whole
+sub-tree down: every running sub-job is signalled and every queued one dropped,
+and all are recorded <code class="docutils literal notranslate"><span class="pre">killed</span></code> — a killed pilot never leaves a sub-job running
+or lost.</p>
+</section>
 <section id="release-prepared-jobs">
 <span id="stitch-release-prepared-jobs"></span><h2>Release prepared jobs<a class="headerlink" href="#release-prepared-jobs" title="Link to this heading">#</a></h2>
 <p><em>Hand prepared jobs to the scheduler one at a time, by id or oldest-first, with a drain loop.</em></p>
@@ -1265,6 +1391,7 @@ combination (an <code class="docutils literal notranslate"><span class="pre">arg
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-job-s-output">Retrieve a job’s output</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-or-resubmit-a-job">Cancel or resubmit a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-a-job-instead-of-submitting-it">Prepare a job instead of submitting it</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-many-jobs-in-one-allocation-pilot-jobs">Run many jobs in one allocation (pilot jobs)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#release-prepared-jobs">Release prepared jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drain-a-prepared-batch-with-submit-drain">Drain a prepared batch with submit drain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-many-jobs-from-a-plan">Prepare many jobs from a plan</a><ul class="nav section-nav flex-column">

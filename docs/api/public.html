@@ -556,6 +556,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_output"><code class="docutils literal notranslate"><span class="pre">knit_with_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_output_artifact"><code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_pilot"><code class="docutils literal notranslate"><span class="pre">knit_with_pilot()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_provenance"><code class="docutils literal notranslate"><span class="pre">knit_with_provenance()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_required"><code class="docutils literal notranslate"><span class="pre">knit_with_required()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_resource"><code class="docutils literal notranslate"><span class="pre">knit_with_resource()</span></code></a></li>
@@ -575,6 +576,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_LOCAL_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_SIZE"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_SIZE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_PILOT_SOCK"><code class="docutils literal notranslate"><span class="pre">KNIT_PILOT_SOCK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_RESOURCE_EXPECTED_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_RESOURCE_EXPECTED_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_RESOURCE_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_RESOURCE_PREFIX</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_SCRIPT_NAME"><code class="docutils literal notranslate"><span class="pre">KNIT_SCRIPT_NAME</span></code></a></li>
@@ -2270,6 +2272,29 @@ knit_done
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_with_pilot">
+<span class="target" id="pilot_8sh_1aadf0aaa2b1e1078bc57e88272dfc6986"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_pilot</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_pilot" title="Link to this definition">#</a><br /></dt>
+<dd><p>Declare that the job currently being registered is a pilot job: one that may call <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> in its body to schedule sub-jobs onto its own allocation, through an in-allocation knit-pilotd daemon instead of the machine scheduler. Must be called between knit_register_job and knit_done, at most once per job.</p>
+<p>Valid only for jobs. Setups, wrappers, apps, and plain commands are rejected with a clear fatal (only a job has an allocation to schedule onto).</p>
+<p>Options (flags to the decorator, stored on the command's pilot markers): --exclude-launch-host Drop the daemon's own host from the node pool when it is part of the allocation (for systems where the job script shares the first compute node). A no-op on separate launch/service-node systems. --kill-on-exit When the body returns with sub-jobs still outstanding, kill them instead of draining (the default).</p>
+<p>It installs a before-callback that starts the daemon and exports KNIT_PILOT / KNIT_PILOT_SOCK, and an after-callback that stops it.</p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>knit_register_job "campaign" _campaign "Run many sub-jobs in one allocation."
+knit_with_pilot
+_campaign() {
+    local ids=""
+    local seed
+    for seed in 1 2 3; do
+        ids+="${ids:+,}$(knit submit --nodes 2 -- simulate --seed "${seed}")"
+    done
+    knit job wait --id "${ids}"
+}
+knit_done
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_with_provenance">
 <span class="target" id="cli_8sh_1aae448bc8b28188aded75e4ea89d3ebe3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_provenance</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_provenance" title="Link to this definition">#</a><br /></dt>
 <dd><p>Mark the command being registered as participating in the provenance graph: an invocation of it records a &quot;call&quot; edge and acts as an in-process parent frame for the commands it invokes. This is an explicit override of the default (which is by visibility — see _knit_provenance_enabled), so it forces a hidden command into the graph. The mark also propagates to unmarked lexical descendants (e.g. &quot;a&quot; marked &quot;with&quot; makes an unmarked &quot;a:b&quot; participate). </p>
@@ -2467,6 +2492,12 @@ knit_done
 </dd></dl>
 
 <dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_PILOT_SOCK">
+<span class="target" id="pilot_8sh_1a409efeadbf1baa1f3f754595d86b4736"></span><span class="n"><span class="pre">ExportedString</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_PILOT_SOCK</span></span></span><a class="headerlink" href="#c.KNIT_PILOT_SOCK" title="Link to this definition">#</a><br /></dt>
+<dd><p>Public environment variable exported alongside KNIT_PILOT: the path of the knit-pilotd control socket the pilot job's body (and its <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> calls) use to talk to the daemon. </p>
+</dd></dl>
+
+<dl class="c var">
 <dt class="sig sig-object c" id="c.KNIT_RESOURCE_EXPECTED_CHECKSUM">
 <span class="target" id="resource_8sh_1afd48dbb556061e489ea1b423a2833012"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_RESOURCE_EXPECTED_CHECKSUM</span></span></span><a class="headerlink" href="#c.KNIT_RESOURCE_EXPECTED_CHECKSUM" title="Link to this definition">#</a><br /></dt>
 <dd><p>Public environment variable exported into a resource download body: the expected checksum of the resource when the caller requested one (empty when none was given). A download body may verify the fetched content against it. </p>
@@ -2659,6 +2690,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_output"><code class="docutils literal notranslate"><span class="pre">knit_with_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_output_artifact"><code class="docutils literal notranslate"><span class="pre">knit_with_output_artifact()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_with_parameter_set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_pilot"><code class="docutils literal notranslate"><span class="pre">knit_with_pilot()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_provenance"><code class="docutils literal notranslate"><span class="pre">knit_with_provenance()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_required"><code class="docutils literal notranslate"><span class="pre">knit_with_required()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_resource"><code class="docutils literal notranslate"><span class="pre">knit_with_resource()</span></code></a></li>
@@ -2678,6 +2710,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_LOCAL_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_SIZE"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_SIZE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_PILOT_SOCK"><code class="docutils literal notranslate"><span class="pre">KNIT_PILOT_SOCK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_RESOURCE_EXPECTED_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_RESOURCE_EXPECTED_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_RESOURCE_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_RESOURCE_PREFIX</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_SCRIPT_NAME"><code class="docutils literal notranslate"><span class="pre">KNIT_SCRIPT_NAME</span></code></a></li>

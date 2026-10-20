@@ -326,6 +326,9 @@ Functions
 .. doxygenfunction:: knit_with_parameter_set
    :project: knit
 
+.. doxygenfunction:: knit_with_pilot
+   :project: knit
+
 .. doxygenfunction:: knit_with_provenance
    :project: knit
 
@@ -375,6 +378,9 @@ Variables
    :project: knit
 
 .. doxygenvariable:: KNIT_MPI_SIZE
+   :project: knit
+
+.. doxygenvariable:: KNIT_PILOT_SOCK
    :project: knit
 
 .. doxygenvariable:: KNIT_RESOURCE_EXPECTED_CHECKSUM

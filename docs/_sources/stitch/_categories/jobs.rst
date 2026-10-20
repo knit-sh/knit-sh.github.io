@@ -124,6 +124,17 @@ Prepare a job instead of submitting it
 
 .. include:: /stitch/recipes/prepare-a-job.rst
 
+.. _stitch-run-many-jobs-in-one-allocation:
+
+Run many jobs in one allocation (pilot jobs)
+--------------------------------------------
+
+*Mark a job a pilot so its body can submit sub-jobs that pack onto its own allocation.*
+
+**APIs:** ``knit_with_pilot``, ``submit``, ``job:wait``
+
+.. include:: /stitch/recipes/run-many-jobs-in-one-allocation.rst
+
 .. _stitch-release-prepared-jobs:
 
 Release prepared jobs

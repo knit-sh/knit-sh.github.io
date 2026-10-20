@@ -1077,6 +1077,9 @@ Functions
 .. doxygenfunction:: _knit_job_wait
    :project: knit
 
+.. doxygenfunction:: _knit_job_wait_one
+   :project: knit
+
 launch.sh
 ---------
 
@@ -1261,6 +1264,66 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_metadata_store
+   :project: knit
+
+pilot.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_pilot_after_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_before_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_build_nodelist
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_killed_trap
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_mark_outstanding_killed
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_record_subjob
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_reject_nested_submit
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_require_sock
+   :project: knit
+
+.. doxygenfunction:: _knit_pilot_teardown_kill
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_cancel
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_directives
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_hostfile
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_submit
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_submit_cmdline
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_wait
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_PILOTD_VERSION
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PILOT_DAEMON_PID
    :project: knit
 
 plugin.sh
@@ -1843,6 +1906,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_profile_field
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_real_backend
    :project: knit
 
 .. doxygenfunction:: _knit_sched_resolve
