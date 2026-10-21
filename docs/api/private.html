@@ -880,6 +880,9 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_follow_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_follow_file()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile_apply()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile_set_state"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile_set_state()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconstruct_args_from_db_row"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconstruct_args_from_db_row()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_apply()</span></code></a></li>
@@ -1025,6 +1028,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_wait()</span></code></a></li>
@@ -1262,6 +1266,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-sh">sched.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_jobid_read"><code class="docutils literal notranslate"><span class="pre">_knit_jobid_read()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_directives()</span></code></a></li>
@@ -1270,6 +1275,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_profile_field"><code class="docutils literal notranslate"><span class="pre">_knit_sched_profile_field()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_real_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_real_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_resolve"><code class="docutils literal notranslate"><span class="pre">_knit_sched_resolve()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_wait()</span></code></a></li>
@@ -1290,6 +1296,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_wait()</span></code></a></li>
@@ -1303,6 +1310,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_wait()</span></code></a></li>
@@ -1315,6 +1323,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_wait()</span></code></a></li>
@@ -1328,6 +1337,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_wait()</span></code></a></li>
@@ -1345,6 +1355,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_wait()</span></code></a></li>
@@ -5733,6 +5744,50 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reconcile">
+<span class="target" id="job__cli_8sh_1a9a447a913ac36a8bef3cb5afefa322ff"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reconcile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reconcile" title="Link to this definition">#</a><br /></dt>
+<dd><p>Entry point for the <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> CLI command. For each job whose row is in state running or submitting, ask the scheduler for its true fate and correct the row to the right terminal state when the scheduler confirms the job has stopped. A job the scheduler still reports as active is left unchanged.</p>
+<p>With no selectors the command walks all active jobs. The id / group / type selectors AND-ed together narrow the scope. An empty match is a no-op (not an error). With --dry-run each would-be change is reported but no write is made.</p>
+<p>Usage: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">exp</span><span class="o">.</span><span class="n">sh</span> <span class="n">job</span> <span class="n">reconcile</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span> <span class="o">&lt;</span><span class="n">uuid</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">group</span> <span class="o">&lt;</span><span class="n">g</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">type</span> <span class="o">&lt;</span><span class="n">job</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">dry</span><span class="o">-</span><span class="n">run</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reconcile_apply">
+<span class="target" id="job__cli_8sh_1a50375e410e84c7055063ddd7b0977301"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reconcile_apply</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reconcile_apply" title="Link to this definition">#</a><br /></dt>
+<dd><p>Shared worker behind <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> and <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--reconcile</span></code>. For each job row in state running or submitting that matches the optional selectors, ask the scheduler for the job's true state and move the row to the correct terminal state when the scheduler confirms the job has stopped. A running verdict leaves the row unchanged. An unknown verdict (the scheduler has no record of a job the row calls active) is mapped to killed.</p>
+<p>The .job.id-less rule: when the job directory has no launcher id file, a submitting row without an explicit --id is skipped with a warning (a live drainer may be mid-dispatch); any other active row without a launcher id (including a running row or a submitting row addressed by explicit --id) is treated as unknown, which maps to killed.</p>
+<p>Each changed row is printed to stdout as &quot;&lt;id&gt; &lt;new_state&gt;&quot;. Under dry-run the same output is produced but no write is made. A summary count goes to stderr. Reconciling nothing is not an error.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dry_run</strong> -- <strong>[in]</strong> &quot;true&quot; to report without writing. </p></li>
+<li><p><strong>sel_id</strong> -- <strong>[in]</strong> Optional job UUID to match (empty means any). </p></li>
+<li><p><strong>sel_group</strong> -- <strong>[in]</strong> Optional group to match (empty means any). </p></li>
+<li><p><strong>sel_type</strong> -- <strong>[in]</strong> Optional job type to match (empty means any). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_reconcile_set_state">
+<span class="target" id="job__cli_8sh_1aaffd9327f9ae6a5a8bd889380c2280a7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reconcile_set_state</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reconcile_set_state" title="Link to this definition">#</a><br /></dt>
+<dd><p>Update a job row to a new state using a conditional SQL UPDATE that only matches rows still in an active state (running or submitting). This guard prevents a reconcile write from overwriting a terminal state that the job's own kill trap wrote a moment earlier: whichever writer runs second finds the row already left active states and makes no change.</p>
+<p>Route through _knit_sqlite3_write (the flock serializer) so the conditional check and the write are atomic with respect to other concurrent writers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> -- <strong>[in]</strong> Job UUID. </p></li>
+<li><p><strong>new_state</strong> -- <strong>[in]</strong> Terminal state to record (completed, failed, or killed). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_reconstruct_args_from_db_row">
 <span class="target" id="job__cli_8sh_1a60039e9f20c916c0bdb0b44e5ec05bb5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_reconstruct_args_from_db_row</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_reconstruct_args_from_db_row" title="Link to this definition">#</a><br /></dt>
 <dd><p>Append CLI arguments reconstructing a command's recorded parameters from one row of a table, so a past invocation can be replayed. Iteration is driven by the command's declared schema (not the raw table columns) so that only genuine parameters are emitted and outputs are ignored: each required or optional parameter with a non-empty recorded value is appended as &quot;--name value&quot;, and each flag recorded as &quot;true&quot; is appended as a bare &quot;--name&quot;. A column named in the space-separated skip list is left out (e.g. &quot;setup&quot;, handled specially by the caller). A parameter whose column is absent from the table is skipped, so a job whose per-job table predates a newly added parameter still replays.</p>
@@ -6598,7 +6653,7 @@ compatibility guarantee.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> -- <strong>[in]</strong> The sub-job UUID recorded in its .job.id. </p></li>
+<li><p><strong>payload</strong> -- <strong>[in]</strong> The pilot payload &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot; (a bare id is accepted too). Stripped to the sub-job id for the daemon. </p></li>
 </ul>
 </dd>
 </dl>
@@ -6625,9 +6680,25 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pilot_status">
+<span class="target" id="pilot_8sh_1afa902a4afcf825e8e557259388149e7d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return the status of a pilot sub-job. The payload is &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot;.</p>
+<p>Precise path: when a live daemon is reachable (KNIT_PILOT_SOCK points at an existing socket, e.g. reconcile run from inside the pilot body), ask it with the non-blocking STATUS verb for the sub-job's actual state and map it: queued or running -&gt; 'running' (left alone); completed -&gt; 'completed'; failed -&gt; 'failed'; killed or unknown -&gt; 'killed'. A daemon that cannot be reached (stale socket, non-zero exit, empty/unrecognized answer) falls through to the parent walk.</p>
+<p>Fallback (no reachable daemon, e.g. reconcile from the login node after a hard-killed pilot): a pilot sub-job lives and dies with its pilot allocation, and the pilot job is itself an ordinary machine-scheduler job, so its fate is resolved from the parent pilot's true state as the parent's own scheduler reports it. Verdict: the parent still running -&gt; 'running' (left alone); the parent terminal/gone, or no parent to ask -&gt; 'killed' (the allocation is gone, so a sub-job stuck non-terminal died with it; same unknown-&gt;killed policy as the other backends). The walk is transitive: a parent that is itself a pilot recurses one more hop through _knit_sched_status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>payload</strong> -- <strong>[in]</strong> The pilot payload &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot;. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_pilot_submit">
 <span class="target" id="pilot_8sh_1a5f524f540bb4f1bc5d2899fb1554c04b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pilot_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pilot_submit" title="Link to this definition">#</a><br /></dt>
-<dd><p>Submit a built sub-job to the in-allocation knit-pilotd daemon: queue its batch script (run as &quot;bash &lt;script&gt;&quot;) with the node count resolved for this submission, keyed by the sub-job UUID (the job directory's basename), with stdout/stderr redirected to the job directory. The request is non-blocking — the daemon queues it and returns at once — matching the dispatcher contract (the optional --wait is a separate _knit_sched_pilot_wait step). On the daemon accepting the request, the sub-job UUID is printed as the backend job id (the daemon tracks the sub-job by it, so wait/cancel reference it); a daemon rejection propagates as a non-zero status, which the dispatcher treats as a scheduler rejection.</p>
+<dd><p>Submit a built sub-job to the in-allocation knit-pilotd daemon: queue its batch script (run as &quot;bash &lt;script&gt;&quot;) with the node count resolved for this submission, keyed by the sub-job UUID (the job directory's basename), with stdout/stderr redirected to the job directory. The request is non-blocking — the daemon queues it and returns at once — matching the dispatcher contract (the optional --wait is a separate _knit_sched_pilot_wait step). On the daemon accepting the request, &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot; is printed as the backend job id: the daemon tracks the sub-job by &lt;sub-job-id&gt; (wait/cancel strip to it) and &lt;parent-uuid&gt; links the sub-job to the pilot job that submitted it, so reconcile can resolve a stuck sub-job's fate from the parent pilot's state. A daemon rejection propagates as a non-zero status, which the dispatcher treats as a scheduler rejection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6661,7 +6732,7 @@ compatibility guarantee.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> -- <strong>[in]</strong> The sub-job UUID recorded in its .job.id by _knit_sched_pilot_submit. </p></li>
+<li><p><strong>payload</strong> -- <strong>[in]</strong> The pilot payload &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot; (its id field is the sub-job id the daemon tracks); a bare id is accepted too. Stripped to the sub-job id before the daemon call. </p></li>
 </ul>
 </dd>
 </dl>
@@ -8867,6 +8938,23 @@ If the function has a return type:
 <section id="id53">
 <h3>Functions<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_jobid_read">
+<span class="target" id="sched_8sh_1ac60eba83c5c89b6d28537aa7cbb7084e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_jobid_read</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_jobid_read" title="Link to this definition">#</a><br /></dt>
+<dd><p>Read a job's recorded launcher id from &lt;jobdir&gt;/.job.id and resolve both the scheduler backend that minted it and the backend-specific id. The file is written tagged as &quot;&lt;backend&gt;:&lt;payload&gt;&quot; (see _knit_job_submit), so the backend travels with the id and every reader routes by the id's true namespace rather than the ambient backend of wherever the command runs. For a pilot sub-job the payload is itself &quot;&lt;parent-uuid&gt;:&lt;sub-job-id&gt;&quot;; this returns it whole and the pilot layer splits it.</p>
+<p>A file with no recognised &quot;&lt;backend&gt;:&quot; prefix is a legacy raw id (written before tagging): the whole content is the id and the backend falls back to the ambient _knit_sched_backend, preserving the old behaviour. The prefix counts as a tag only when it names a known backend, so a legacy id that happens to carry a colon is not misparsed.</p>
+<p>The caller is responsible for checking that &lt;jobdir&gt;/.job.id exists; this does not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the variable to hold the backend name. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the variable to hold the backend-specific id. </p></li>
+<li><p><strong>jobdir</strong> -- <strong>[in]</strong> Job directory holding the .job.id file. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_backend">
 <span class="target" id="sched_8sh_1a00e75177f27f526c6ea77aee207c0aad"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_backend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_backend" title="Link to this definition">#</a><br /></dt>
 <dd><p>Resolve which scheduler backend a submission targets. Inside a pilot job (KNIT_PILOT set) the backend is &quot;pilot&quot;: <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> is retargeted to the in-allocation knit-pilotd daemon rather than the machine scheduler. Otherwise it is the machine's real backend (see _knit_sched_real_backend). Returns one of &quot;pilot&quot;, &quot;local&quot;, &quot;none&quot;, &quot;slurm&quot;, &quot;pbs&quot;, &quot;flux&quot;.</p>
@@ -8976,6 +9064,22 @@ If the function has a return type:
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>out_array</strong> -- <strong>[out]</strong> Name of an associative array to populate (passed by name). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The submission CLI arguments (everything before &quot;--&quot;). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_status">
+<span class="target" id="sched_8sh_1a1bb792579b2018a77ca3e865952cd44a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Dispatch to the configured backend's status query, which asks the scheduler for the true current state of a submitted job and returns a normalized verdict. Used by job reconcile to correct job rows that are stuck at running/submitting because a hard SIGKILL prevented the compute-side kill trap from recording the terminal state (see src/job_cli.sh _knit_job_reconcile_apply).</p>
+<p>The verdict is one of: running (job is still active), completed (job exited cleanly), killed (job was terminated by a signal or timeout, or the scheduler has no record of it), failed (job exited with a non-signal non-zero exit code). Callers treat &quot;unknown&quot; as &quot;killed&quot; per the agreed policy; backends that cannot determine the outcome return &quot;unknown&quot; directly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>backend</strong> -- <strong>[in]</strong> Scheduler backend name (&quot;local&quot;, &quot;none&quot;, &quot;slurm&quot;, &quot;pbs&quot;, &quot;flux&quot;). </p></li>
+<li><p><strong>jobid</strong> -- <strong>[in]</strong> Backend job id (scheduler id, or a PID for local/none backends). </p></li>
 </ul>
 </dd>
 </dl>
@@ -9132,6 +9236,21 @@ If the function has a return type:
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_flux_status">
+<span class="target" id="sched__flux_8sh_1afb903d29d88000d181ff6ef425153b14"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_flux_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_flux_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Ask Flux for the true state of a submitted job and return a normalized verdict (one of: running, completed, killed, failed, unknown). Two flux-jobs queries are issued: one for the job state and, for an INACTIVE job, one for the result.</p>
+<p>State / result mapping: state DEPEND PRIORITY SCHED RUN CLEANUP -&gt; running state INACTIVE + result COMPLETED -&gt; completed state INACTIVE + result CANCELED or TIMEOUT -&gt; killed state INACTIVE + result FAILED -&gt; failed not found / empty state -&gt; unknown</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>jobid</strong> -- <strong>[in]</strong> Flux job id (from the job's .job.id). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_flux_submit">
 <span class="target" id="sched__flux_8sh_1aa1e4a8434cde7238351afd195376d8e1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_flux_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_flux_submit" title="Link to this definition">#</a><br /></dt>
 <dd><p>Submit an already-written batch script with flux batch and print the resulting job id. Flux has no sbatch --wait equivalent at submit time, so when the resolved &quot;wait&quot; flag is &quot;true&quot; the function blocks after submission with <code class="docutils literal notranslate"><span class="pre">flux</span> <span class="pre">job</span> <span class="pre">status</span> <span class="pre">&lt;id&gt;</span></code> (a real blocking wait; see _knit_sched_flux_wait). The --output/--error redirection is carried by the script's directives, so the job directory is not needed here.</p>
@@ -9227,6 +9346,20 @@ If the function has a return type:
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_local_status">
+<span class="target" id="sched__local_8sh_1a9b1e697034bd26bd47d408e3a6f23267"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_local_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_local_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return the status of a locally-launched job process as a normalized verdict (one of: running, killed, unknown). The launcher id is a PID recorded in the job's .job.id. A non-integer id returns unknown. kill -0 (a liveness probe) is used to check whether the process is still alive: success means running; failure means the process is gone and is reported as killed (there is no exit record for a bare background process, so completed and failed cannot be distinguished).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>pid</strong> -- <strong>[in]</strong> Process id recorded in the job's .job.id by the local backend. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_local_submit">
 <span class="target" id="sched__local_8sh_1a261b48c5c485258d7dec2fa64cffc6b4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_local_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_local_submit" title="Link to this definition">#</a><br /></dt>
 <dd><p>Submit a batch script on a machine with no scheduler by running it as a detached background process via _knit_submit_local. Job stdout/stderr are redirected to &lt;jobdir&gt;/.stdout and &lt;jobdir&gt;/.stderr, and the resolved walltime (if any) caps the run. When the resolved &quot;wait&quot; flag is &quot;true&quot;, block until the process finishes. Prints the process id to stdout.</p>
@@ -9307,6 +9440,20 @@ If the function has a return type:
 <dt class="sig sig-object c" id="c._knit_sched_none_hostfile">
 <span class="target" id="sched__none_8sh_1aeaada85511022e3cb7249bd7f6a7a426"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_none_hostfile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_none_hostfile" title="Link to this definition">#</a><br /></dt>
 <dd><p>Print the host list for a none-backend job: the contents of the node file configured at bootstrap (metadata <strong>default_nodefile</strong>), one host per line. This is the &quot;raw&quot; host list per the dispatcher contract — entries may repeat or carry a trailing &quot;:N&quot; slot count; callers such as knit_job_hostnames deduplicate and clean it. Blank lines are dropped so an empty entry never reaches the normaliser. When no readable node file is configured (unset, or the path does not exist / is not readable), warn and fall back to this machine's hostname. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_none_status">
+<span class="target" id="sched__none_8sh_1ae32701b125cbff05cee289b85a063970"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_none_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_none_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return the status of a none-backend job process. Identical to the local backend (the job is a background process on this host). Delegates to _knit_sched_local_status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>pid</strong> -- <strong>[in]</strong> Process id recorded in the job's .job.id. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -9399,6 +9546,21 @@ If the function has a return type:
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>raw</strong> -- <strong>[in]</strong> Raw stdout captured from qsub. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_pbs_status">
+<span class="target" id="sched__pbs_8sh_1a868d11cc2fecec5633de30d896170de7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pbs_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pbs_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Ask PBS for the true state of a submitted job and return a normalized verdict (one of: running, completed, killed, failed, unknown). Uses qstat -x -f to query finished-job history (requires job_history_enable on the server, which the test cluster enables). Parses job_state and Exit_status with the same awk -F'=' style used by _knit_sched_pbs_wait.</p>
+<p>State mapping from job_state / Exit_status: R Q H W T S B E -&gt; running (active or queued) F with Exit_status absent -&gt; killed (history truncated or OOM) F with Exit_status = 0 -&gt; completed F with Exit_status &gt;= 128 (signal exit) -&gt; killed F with other non-zero Exit_status -&gt; failed no record at all -&gt; unknown</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>jobid</strong> -- <strong>[in]</strong> PBS job id (from the job's .job.id). </p></li>
 </ul>
 </dd>
 </dl>
@@ -9504,6 +9666,21 @@ If the function has a return type:
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>raw</strong> -- <strong>[in]</strong> Raw stdout captured from sbatch. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sched_slurm_status">
+<span class="target" id="sched__slurm_8sh_1ab87fe017fb00298e4ab1db0d73f7ad89"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_slurm_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_slurm_status" title="Link to this definition">#</a><br /></dt>
+<dd><p>Ask Slurm for the true state of a submitted job and return a normalized verdict (one of: running, completed, killed, failed, unknown). sacct is used rather than squeue because sacct retains accounting records after the job finishes, so the result is available after the job exits. When sacct has no record (the accounting database is absent or the job predates it), squeue is tried as a fallback: a non-empty squeue result means the job is still queued/running; an empty result means the job is gone but we cannot determine its outcome (unknown).</p>
+<p>State mapping from sacct's job state field (first whitespace-separated token, because Slurm emits &quot;CANCELLED by &lt;uid&gt;&quot; for user cancellations): RUNNING PENDING REQUEUED RESIZING SUSPENDED CONFIGURING COMPLETING -&gt; running COMPLETED -&gt; completed TIMEOUT OUT_OF_MEMORY NODE_FAIL CANCELLED PREEMPTED BOOT_FAIL DEADLINE -&gt; killed FAILED -&gt; failed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the verdict string. </p></li>
+<li><p><strong>jobid</strong> -- <strong>[in]</strong> Slurm job id (from the job's .job.id). </p></li>
 </ul>
 </dd>
 </dl>
@@ -11021,6 +11198,9 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_follow_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_follow_file()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile_apply()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile_set_state"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile_set_state()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconstruct_args_from_db_row"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconstruct_args_from_db_row()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reset_apply"><code class="docutils literal notranslate"><span class="pre">_knit_job_reset_apply()</span></code></a></li>
@@ -11166,6 +11346,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_wait()</span></code></a></li>
@@ -11403,6 +11584,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sched-sh">sched.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_jobid_read"><code class="docutils literal notranslate"><span class="pre">_knit_jobid_read()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_directives()</span></code></a></li>
@@ -11411,6 +11593,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_profile_field"><code class="docutils literal notranslate"><span class="pre">_knit_sched_profile_field()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_real_backend"><code class="docutils literal notranslate"><span class="pre">_knit_sched_real_backend()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_resolve"><code class="docutils literal notranslate"><span class="pre">_knit_sched_resolve()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_wait()</span></code></a></li>
@@ -11431,6 +11614,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_flux_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_flux_wait()</span></code></a></li>
@@ -11444,6 +11628,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_local_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_local_wait()</span></code></a></li>
@@ -11456,6 +11641,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_hostfile()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_none_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_none_wait()</span></code></a></li>
@@ -11469,6 +11655,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pbs_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pbs_wait()</span></code></a></li>
@@ -11486,6 +11673,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_directives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_hostfile"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_hostfile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_parse_jobid"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_parse_jobid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_status"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_status()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_submit"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_slurm_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_slurm_wait()</span></code></a></li>

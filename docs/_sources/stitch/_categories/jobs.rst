@@ -178,3 +178,14 @@ Prepare many jobs from a plan
 **APIs:** ``prepare:from``
 
 .. include:: /stitch/recipes/prepare-from-a-plan.rst
+
+.. _stitch-recover-stuck-jobs:
+
+Recover jobs stuck at running
+-----------------------------
+
+*Correct jobs that a hard SIGKILL left stuck at running/submitting to their true terminal state, then retry them.*
+
+**APIs:** ``job:reconcile``, ``submit:drain``
+
+.. include:: /stitch/recipes/recover-stuck-jobs.rst

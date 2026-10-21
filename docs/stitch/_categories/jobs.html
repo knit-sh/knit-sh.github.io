@@ -468,6 +468,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-job-arguments">Varying job arguments</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-jobs-stuck-at-running">Recover jobs stuck at running</a></li>
 </ul>
             </nav>
         </div>
@@ -1431,6 +1432,108 @@ combination (an <code class="docutils literal notranslate"><span class="pre">arg
 </div>
 </section>
 </section>
+<section id="recover-jobs-stuck-at-running">
+<span id="stitch-recover-stuck-jobs"></span><h2>Recover jobs stuck at running<a class="headerlink" href="#recover-jobs-stuck-at-running" title="Link to this heading">#</a></h2>
+<p><em>Correct jobs that a hard SIGKILL left stuck at running/submitting to their true terminal state, then retry them.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">job:reconcile</span></code>, <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code></p>
+<p>When a compute node crashes, runs out of memory, or a drainer process is
+hard-killed, the scheduler terminates the job with <code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code>. The knit
+compute-side kill trap has no chance to run, so the job’s database row stays
+<code class="docutils literal notranslate"><span class="pre">running</span></code> indefinitely. <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> and <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--retry</span></code> will not
+touch it, because both require a terminal state (<code class="docutils literal notranslate"><span class="pre">killed</span></code> / <code class="docutils literal notranslate"><span class="pre">failed</span></code>) before
+they re-queue a row.</p>
+<p><code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> bridges the gap. It walks every <code class="docutils literal notranslate"><span class="pre">running</span></code> or <code class="docutils literal notranslate"><span class="pre">submitting</span></code>
+row in the database, reads the per-job <code class="docutils literal notranslate"><span class="pre">.job.id</span></code> file that the scheduler
+assigned at dispatch time, and asks the scheduler for the job’s true fate. The
+verdict drives a state correction:</p>
+<ul class="simple">
+<li><p><strong>running</strong> — the job is genuinely alive; the row is left unchanged.</p></li>
+<li><p><strong>completed</strong> / <strong>failed</strong> / <strong>killed</strong> — the row is updated to match.</p></li>
+<li><p><strong>unknown</strong> (no scheduler record) — the row is moved to <code class="docutils literal notranslate"><span class="pre">killed</span></code> (a job
+the scheduler cannot confirm active is not a success).</p></li>
+</ul>
+<p>The write is conditional (<code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">state</span> <span class="pre">IN</span> <span class="pre">('running','submitting')</span></code>), so a
+kill trap that fires concurrently always wins a close race.</p>
+<p>Run it by group to scope it to a single sweep, or without a selector to walk
+the entire database:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--group<span class="w"> </span>sweep
+<span class="go">Reconciled 2 job(s); left 1 running.</span>
+
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--dry-run<span class="w">    </span><span class="c1"># inspect without writing</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="nv">$id</span><span class="s2">"</span><span class="w">   </span><span class="c1"># one job by UUID</span>
+</pre></div>
+</div>
+<p>The job used as the example here always completes, so a stuck row is recovered
+as <code class="docutils literal notranslate"><span class="pre">killed</span></code> (the scheduler reports its PID gone with no exit record):</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job that always completes. It only does arithmetic, so it runs</span>
+<span class="c1"># fast on any backend and is suitable as the "victim" job whose state we</span>
+<span class="c1"># manipulate to simulate a hard-kill scenario.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w">  </span><span class="s2">"Number of steps to run."</span>
+<span class="nd">@with_table</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w">  </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+_sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"result"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'sim: n=%s result=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job that always completes. It only does arithmetic, so it runs</span>
+<span class="c1"># fast on any backend and is suitable as the "victim" job whose state we</span>
+<span class="c1"># manipulate to simulate a hard-kill scenario.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span>_sim<span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w">  </span><span class="s2">"Number of steps to run."</span>
+<span class="nb">knit_with_table</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w">  </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+_sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"result"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'sim: n=%s result=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Recover and retry in one drain pass.</strong> <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--reconcile</span></code> folds the
+reconcile step into the drain loop: before releasing any prepared job it corrects
+every stuck row in the drain’s <code class="docutils literal notranslate"><span class="pre">--group</span></code>/<code class="docutils literal notranslate"><span class="pre">--type</span></code> scope, then <code class="docutils literal notranslate"><span class="pre">--retry</span></code>
+re-queues the newly-killed rows, and the drain releases them. This is the pattern
+a re-submittable pilot uses to survive a hard cluster kill:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>inside<span class="w"> </span>the<span class="w"> </span><span class="o">(</span>re-submittable<span class="o">)</span><span class="w"> </span>pilot<span class="w"> </span>body
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed<span class="w"> </span>--max-retries<span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Order inside the pass is always: reconcile → retry → drain. <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code> is
+skipped under <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code>. Combined with <code class="docutils literal notranslate"><span class="pre">--retry</span></code>, a single pilot
+submission can recover, re-queue, and complete an entire batch that was
+interrupted mid-flight by a hard scheduler kill.</p>
+<p><strong>Pilot sub-jobs.</strong> A sub-job submitted inside a pilot job runs under the
+in-allocation daemon, not the batch scheduler, so the scheduler cannot answer for
+it directly. <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> handles this by walking from the stuck sub-job to
+its <strong>parent pilot</strong> — which <em>is</em> an ordinary scheduler job — and asking the
+scheduler for the parent’s fate: if the pilot is gone, its orphaned sub-jobs died
+with the allocation and are marked <code class="docutils literal notranslate"><span class="pre">killed</span></code>; if the pilot is still running, the
+sub-jobs are left alone. So a <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> run from the login node after a
+hard-killed pilot correctly recovers the sub-jobs it left stuck, and running it
+against a live pilot never false-kills a sub-job that is still working.</p>
+<p>See <em>Retry failed or killed jobs</em> for the retry mechanics and <em>Run many jobs in
+one allocation (pilot jobs)</em> for the pilot pattern.</p>
+</section>
 </section>
 
 
@@ -1499,6 +1602,7 @@ combination (an <code class="docutils literal notranslate"><span class="pre">arg
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#varying-job-arguments">Varying job arguments</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-jobs-stuck-at-running">Recover jobs stuck at running</a></li>
 </ul>
   </nav></div>
 

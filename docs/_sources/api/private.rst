@@ -1062,6 +1062,15 @@ Functions
 .. doxygenfunction:: _knit_job_list
    :project: knit
 
+.. doxygenfunction:: _knit_job_reconcile
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reconcile_apply
+   :project: knit
+
+.. doxygenfunction:: _knit_job_reconcile_set_state
+   :project: knit
+
 .. doxygenfunction:: _knit_job_reconstruct_args_from_db_row
    :project: knit
 
@@ -1333,6 +1342,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_pilot_hostfile
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pilot_status
    :project: knit
 
 .. doxygenfunction:: _knit_sched_pilot_submit
@@ -1917,6 +1929,9 @@ sched.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_jobid_read
+   :project: knit
+
 .. doxygenfunction:: _knit_sched_backend
    :project: knit
 
@@ -1939,6 +1954,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_resolve
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_status
    :project: knit
 
 .. doxygenfunction:: _knit_sched_submit
@@ -1983,6 +2001,9 @@ Functions
 .. doxygenfunction:: _knit_sched_flux_parse_jobid
    :project: knit
 
+.. doxygenfunction:: _knit_sched_flux_status
+   :project: knit
+
 .. doxygenfunction:: _knit_sched_flux_submit
    :project: knit
 
@@ -2010,6 +2031,9 @@ Functions
 .. doxygenfunction:: _knit_sched_local_hostfile
    :project: knit
 
+.. doxygenfunction:: _knit_sched_local_status
+   :project: knit
+
 .. doxygenfunction:: _knit_sched_local_submit
    :project: knit
 
@@ -2032,6 +2056,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_none_hostfile
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_none_status
    :project: knit
 
 .. doxygenfunction:: _knit_sched_none_submit
@@ -2059,6 +2086,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_pbs_parse_jobid
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_pbs_status
    :project: knit
 
 .. doxygenfunction:: _knit_sched_pbs_submit
@@ -2092,6 +2122,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_slurm_parse_jobid
+   :project: knit
+
+.. doxygenfunction:: _knit_sched_slurm_status
    :project: knit
 
 .. doxygenfunction:: _knit_sched_slurm_submit

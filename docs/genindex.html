@@ -951,6 +951,12 @@
 </li>
       <li><a href="api/private.html#c._knit_job_list">_knit_job_list (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_job_reconcile">_knit_job_reconcile (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_job_reconcile_apply">_knit_job_reconcile_apply (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_job_reconcile_set_state">_knit_job_reconcile_set_state (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_job_reconstruct_args_from_db_row">_knit_job_reconstruct_args_from_db_row (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_job_record_hostnames">_knit_job_record_hostnames (C function)</a>
@@ -986,6 +992,8 @@
       <li><a href="api/private.html#c._knit_job_wait">_knit_job_wait (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_job_wait_one">_knit_job_wait_one (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_jobid_read">_knit_jobid_read (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_JOBS">_KNIT_JOBS (C var)</a>
 </li>
@@ -1075,10 +1083,10 @@
 </li>
       <li><a href="api/private.html#c._knit_output_type">_knit_output_type (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_param_check_declaration">_knit_param_check_declaration (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_param_default">_knit_param_default (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_param_description">_knit_param_description (C function)</a>
@@ -1487,6 +1495,8 @@
 </li>
       <li><a href="api/private.html#c._knit_sched_flux_parse_jobid">_knit_sched_flux_parse_jobid (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_sched_flux_status">_knit_sched_flux_status (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_sched_flux_submit">_knit_sched_flux_submit (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_flux_submit_cmdline">_knit_sched_flux_submit_cmdline (C function)</a>
@@ -1505,6 +1515,8 @@
 </li>
       <li><a href="api/private.html#c._knit_sched_local_hostfile">_knit_sched_local_hostfile (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_sched_local_status">_knit_sched_local_status (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_sched_local_submit">_knit_sched_local_submit (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_local_submit_cmdline">_knit_sched_local_submit_cmdline (C function)</a>
@@ -1516,6 +1528,8 @@
       <li><a href="api/private.html#c._knit_sched_none_directives">_knit_sched_none_directives (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_none_hostfile">_knit_sched_none_hostfile (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_none_status">_knit_sched_none_status (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_none_submit">_knit_sched_none_submit (C function)</a>
 </li>
@@ -1533,6 +1547,8 @@
 </li>
       <li><a href="api/private.html#c._KNIT_SCHED_PBS_REGISTER_GRACE_POLLS">_KNIT_SCHED_PBS_REGISTER_GRACE_POLLS (C var)</a>
 </li>
+      <li><a href="api/private.html#c._knit_sched_pbs_status">_knit_sched_pbs_status (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_sched_pbs_submit">_knit_sched_pbs_submit (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_pbs_submit_cmdline">_knit_sched_pbs_submit_cmdline (C function)</a>
@@ -1546,6 +1562,8 @@
       <li><a href="api/private.html#c._knit_sched_pilot_directives">_knit_sched_pilot_directives (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_pilot_hostfile">_knit_sched_pilot_hostfile (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_pilot_status">_knit_sched_pilot_status (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_pilot_submit">_knit_sched_pilot_submit (C function)</a>
 </li>
@@ -1569,11 +1587,15 @@
 </li>
       <li><a href="api/private.html#c._knit_sched_slurm_parse_jobid">_knit_sched_slurm_parse_jobid (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_sched_slurm_status">_knit_sched_slurm_status (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_sched_slurm_submit">_knit_sched_slurm_submit (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_slurm_submit_cmdline">_knit_sched_slurm_submit_cmdline (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_slurm_wait">_knit_sched_slurm_wait (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_sched_status">_knit_sched_status (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_sched_submit">_knit_sched_submit (C function)</a>
 </li>
