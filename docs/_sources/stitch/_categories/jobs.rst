@@ -189,3 +189,14 @@ Recover jobs stuck at running
 **APIs:** ``job:reconcile``, ``submit:drain``
 
 .. include:: /stitch/recipes/recover-stuck-jobs.rst
+
+.. _stitch-run-a-parameter-sweep:
+
+Run a parameter sweep
+---------------------
+
+*Run a command, job, or app once per point in a cartesian product of values with knit sweep.*
+
+**APIs:** ``sweep``, ``submit:drain``, ``knit_with_optional``, ``knit_parameter_space``, ``knit_command_parameters``
+
+.. include:: /stitch/recipes/run-a-parameter-sweep.rst

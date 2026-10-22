@@ -635,6 +635,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_check_declaration"><code class="docutils literal notranslate"><span class="pre">_knit_param_check_declaration()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_default"><code class="docutils literal notranslate"><span class="pre">_knit_param_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_description"><code class="docutils literal notranslate"><span class="pre">_knit_param_description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_is_norecord"><code class="docutils literal notranslate"><span class="pre">_knit_param_is_norecord()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_type"><code class="docutils literal notranslate"><span class="pre">_knit_param_type()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_print_command_usage"><code class="docutils literal notranslate"><span class="pre">_knit_print_command_usage()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_print_options_block"><code class="docutils literal notranslate"><span class="pre">_knit_print_options_block()</span></code></a></li>
@@ -1477,8 +1478,32 @@
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sweep-sh">sweep.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep"><code class="docutils literal notranslate"><span class="pre">_knit_sweep()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_ask"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_ask()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_dimensions_json"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_dimensions_json()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_downstream"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_downstream()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_enumerate"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_enumerate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_enumerate_domain"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_enumerate_domain()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_expand_glob"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_expand_glob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_observe"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_observe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_plan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_plan()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_range_grid"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_range_grid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_reconstruct"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_reconstruct()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_domains"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_domains()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_target"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_target()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_scan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_scan()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SWEEPS_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SWEEPS_TABLE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -1486,7 +1511,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>
@@ -3490,6 +3515,23 @@ compatibility guarantee.</p>
 <li><p><strong>cmd</strong> -- <strong>[in]</strong> Command to which the parameter belongs (must be mangled). </p></li>
 <li><p><strong>param</strong> -- <strong>[in]</strong> Name of the parameter (must be normalized). </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_param_is_norecord">
+<span class="target" id="cli_8sh_1a3b4b98ae04210ee8ed80446c5d2a394a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_param_is_norecord</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_param_is_norecord" title="Link to this definition">#</a><br /></dt>
+<dd><p>Test whether a parameter or flag was declared with &quot;--no-record&quot;: parsed, validated, and shown in &quot;--help&quot; as an ordinary option, but kept out of the command's table (no column) and out of every recorded row. This lets a command carry control options the user sets at the call site without widening its table schema. The marker lives in the parameter's own namespace (<em>KNIT_CMD</em>&lt;cmd&gt;<em>2</em>_norecord), set by knit_with_required / knit_with_optional / knit_with_flag.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name (as used in <em>KNIT_CMD</em>* variables). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> Normalized (underscored) parameter name. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if the parameter is marked no-record, 1 otherwise. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -9738,7 +9780,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_search_group_forward">
 <span class="target" id="search_8sh_1a0e2f2d5c3bca79ef7762a53704750a54"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_search_group_forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_search_group_forward" title="Link to this definition">#</a><br /></dt>
-<dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; token, before its &quot;--&quot;. The line is left unchanged when the group is empty or the line is not a submit line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges). The parent row itself records the group automatically, since a proposer declares --group as an ordinary optional parameter.</p>
+<dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; or &quot;prepare&quot; token, before its &quot;--&quot;. Both are job dispatchers that share the submit option surface (and so accept --group); a sweep that prepares a durable product uses the &quot;prepare&quot; form. The line is left unchanged when the group is empty or the line is neither a submit nor a prepare line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges). The parent row itself records the group automatically, since a proposer declares --group as an ordinary optional parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -10586,10 +10628,259 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 
 </section>
 </section>
-<section id="types-sh">
-<h2>types.sh<a class="headerlink" href="#types-sh" title="Link to this heading">#</a></h2>
+<section id="sweep-sh">
+<h2>sweep.sh<a class="headerlink" href="#sweep-sh" title="Link to this heading">#</a></h2>
 <section id="id71">
 <h3>Functions<a class="headerlink" href="#id71" title="Link to this heading">#</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep">
+<span class="target" id="sweep_8sh_1a9bbaaa26686d9168f34e934298b12aa5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep" title="Link to this definition">#</a><br /></dt>
+<dd><p>Entry point for the <code class="docutils literal notranslate"><span class="pre">sweep</span></code> CLI command. The sweep's own options are parsed and validated by the framework before the body runs (the control options are declared with &quot;--no-record&quot; so they validate but add no table column). This body splits the downstream off the first &quot;--&quot; and validates that a downstream command is present.</p>
+<p>The scan (M2), declared-domain resolution (M3), odometer and line reconstruction (M4), and execution (M5) are added in later milestones; for now the body stops after the split so the command registers, parses, and records a campaign row with the fixed column set.</p>
+<p>Usage: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">exp</span><span class="o">.</span><span class="n">sh</span> <span class="n">sweep</span> <span class="p">[</span><span class="n">SWEEP</span> <span class="n">ARGS</span><span class="p">]</span> <span class="o">--</span> <span class="o">&lt;</span><span class="n">downstream</span> <span class="n">knit</span> <span class="n">command</span><span class="p">,</span> <span class="k">with</span> <span class="n">sweep</span><span class="o">-</span><span class="n">syntax</span> <span class="n">values</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_ask">
+<span class="target" id="sweep_8sh_1ac74911ece4b4f0a03468254df7190cea"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_ask</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_ask" title="Link to this definition">#</a><br /></dt>
+<dd><p>The sweep's &quot;ask&quot; callback for _knit_search_loop: yield the next cartesian product combination as a reconstructed downstream command line, then advance the odometer cursor. Like every search proposer (see the fake proposer in tests/test_search_loop.sh), it reads its state from the enclosing dispatcher frame through dynamic scope -- here _knit_sweep's locals: the plan arrays (template/axes/flat/offsets/counts), the product size (total), the campaign group spliced into a submit/prepare line, and the cursor it advances. Returns 1 when the product is exhausted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret_tag</strong> -- <strong>[out]</strong> The opaque trial tag (the combination index). </p></li>
+<li><p><strong>__knit_ret_argv</strong> -- <strong>[out]</strong> The reconstructed downstream argv. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_dimensions_json">
+<span class="target" id="sweep_8sh_1a0bbd30a8c5f2523c6f6511f1a057e38c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_dimensions_json</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_dimensions_json" title="Link to this definition">#</a><br /></dt>
+<dd><p>Build the campaign's &quot;dimensions&quot; JSON object: one key per axis (its name) mapping to the ordered array of that axis's values, e.g. {&quot;nodes&quot;:[1,2,4],&quot;samples&quot;:[1000,100000]}. Numeric-looking values are emitted as JSON numbers, others as strings. This is the single JSON column recorded on the sweeps row (so a 1-node command and a 1024-node job produce rows of the same shape).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to receive the JSON string. </p></li>
+<li><p><strong>__knit_axes</strong> -- <strong>[in]</strong> Name of the axis-descriptor array. </p></li>
+<li><p><strong>__knit_flat</strong> -- <strong>[in]</strong> Name of the flattened axis-values array. </p></li>
+<li><p><strong>__knit_off</strong> -- <strong>[in]</strong> Name of the per-axis offset array. </p></li>
+<li><p><strong>__knit_cnt</strong> -- <strong>[in]</strong> Name of the per-axis count array. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_downstream">
+<span class="target" id="sweep_8sh_1a972bace3f14783aba46d78b4aaf9e1b2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_downstream</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_downstream" title="Link to this definition">#</a><br /></dt>
+<dd><p>Split a sweep invocation's arguments at the first &quot;--&quot; and return, by nameref, the downstream token list: everything after that first &quot;--&quot;. The downstream is the real knit command the sweep wraps (e.g. &quot;submit ... -- &lt;job&gt; ...&quot; or a bare &quot;&lt;command&gt; ...&quot;); any inner &quot;--&quot; it carries (a submit/prepare/run line has one) is preserved, because only the first &quot;--&quot; separates the sweep's own options from the downstream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array to receive the downstream tokens. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The sweep invocation arguments. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_enumerate">
+<span class="target" id="sweep_8sh_1aa97145ed681e5fd7d92d9861a1129bfe"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_enumerate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_enumerate" title="Link to this definition">#</a><br /></dt>
+<dd><p>Enumerate one literal axis descriptor token into its concrete list of values. The token is parsed through the shared search-core parser, then the parsed descriptor is enumerated by kind: a list (or </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_enumerate_domain">
+<span class="target" id="sweep_8sh_1a567bd39230327e6fa7e3e811a19b84c5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_enumerate_domain</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_enumerate_domain" title="Link to this definition">#</a><br /></dt>
+<dd><p>Enumerate a parameter's declared search domain into its concrete value list, applying the enumerability gate the proposer owns. A real range (kind &quot;range&quot;, type &quot;real&quot;) is bounds-only (a Bayesian-optimization proposer samples it; a sweep cannot enumerate it), so asking to sweep one is a fatal with the fix message. Every other declared domain (a list, a glob, an enum list, or an integer range) enumerates like a call-site literal of the same shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array to receive the value list. </p></li>
+<li><p><strong>mangled</strong> -- <strong>[in]</strong> The command the parameter belongs to (mangled name). </p></li>
+<li><p><strong>param</strong> -- <strong>[in]</strong> The parameter name (normalized). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_expand_glob">
+<span class="target" id="sweep_8sh_1a74c853db8e440e8f4d030ad0b111b8e4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_expand_glob</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_expand_glob" title="Link to this definition">#</a><br /></dt>
+<dd><p>Expand a &quot;&#64;glob:&lt;pattern&gt;&quot; axis into its list of matching paths, at scan time. Pathname expansion is done with nullglob on (so a non-matching pattern yields an empty list, not the literal pattern), and a glob that matches nothing is a fatal: a zero-value axis would collapse the whole product to zero runs, which is almost always a mistake (a typo or the wrong working directory).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array to receive the matching paths. </p></li>
+<li><p><strong>pattern</strong> -- <strong>[in]</strong> The glob pattern (already stripped of its &quot;&#64;glob:&quot; prefix). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_observe">
+<span class="target" id="sweep_8sh_1ad5baa1730faf31116d13c0579ccc8ee4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_observe</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_observe" title="Link to this definition">#</a><br /></dt>
+<dd><p>The sweep's &quot;observe&quot; callback for _knit_search_loop: apply the --on-failure policy to one finished trial. The sweep reads no objective (it is the no-model proposer), so it uses only the terminal status: under &quot;stop&quot; a failed child aborts the campaign (return non-zero); under &quot;continue&quot; the whole product runs regardless. The policy is read from _knit_sweep's frame (dynamic scope).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>$1</strong> -- <strong>[in]</strong> The trial tag (unused). </p></li>
+<li><p><strong>$2</strong> -- <strong>[in]</strong> The child row id (unused). </p></li>
+<li><p><strong>$3</strong> -- <strong>[in]</strong> The trial's terminal status (&quot;completed&quot; or &quot;failed&quot;). </p></li>
+<li><p><strong>$4</strong> -- <strong>[in]</strong> The objective (unused; the sweep has no collector). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_plan">
+<span class="target" id="sweep_8sh_1ad938edd8dd923fbcca6f47609f6f5815"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_plan</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_plan" title="Link to this definition">#</a><br /></dt>
+<dd><p>Build the odometer plan from the resolved per-axis value lists. Each axis's newline-joined value list is split into the shared &quot;flat&quot; array; its start offset and count let the reconstructor read any axis value by (axis, index) without an array of arrays (which bash lacks). The total is the product of the per-axis counts (1 when there are no axes: the single literal combination).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the array to receive the per-axis value counts. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive all axis values, flattened. </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive each axis's start offset. </p></li>
+<li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the variable to receive the product total. </p></li>
+<li><p><strong>__knit_vals</strong> -- <strong>[in]</strong> Name of the per-axis value-list array (newline joined). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_range_grid">
+<span class="target" id="sweep_8sh_1a89349784f97ebd41b246e32968e418af"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_range_grid</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_range_grid" title="Link to this definition">#</a><br /></dt>
+<dd><p>Enumerate a range descriptor into its concrete grid of values. Two cases:</p>
+<p><ul class="simple">
+<li><p>no step (&quot;[lo..hi]&quot;): an integer grid with step 1, ascending or descending (lo may be greater than hi). The bounds must be integers; a bare real interval is bounds-only (a BO samples it, a sweep cannot enumerate it) and is a fatal with the fix message.</p></li>
+<li><p>an explicit step (&quot;[lo..hi:step]&quot;): a linear grid from lo toward hi by the step magnitude (integer or real; real arithmetic is done with awk so a fractional step lands exactly). Descending is allowed (lo greater than hi).</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array to receive the grid values. </p></li>
+<li><p><strong>lo</strong> -- <strong>[in]</strong> The low (first) bound. </p></li>
+<li><p><strong>hi</strong> -- <strong>[in]</strong> The high (last) bound. </p></li>
+<li><p><strong>step</strong> -- <strong>[in]</strong> The step, or empty for the integer step-1 grid. </p></li>
+<li><p><strong>token</strong> -- <strong>[in]</strong> The original token, for error messages. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_reconstruct">
+<span class="target" id="sweep_8sh_1a72e39635f1bd366d9e36147d9a62f196"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_reconstruct</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_reconstruct" title="Link to this definition">#</a><br /></dt>
+<dd><p>Rebuild one combination's downstream command line from the template: copy the template, then overwrite each axis's template slot with that axis's value for the given combination index. The index is decoded as a mixed-radix odometer in which the last axis varies fastest (so the product enumerates in a stable, row-major order). The caller applies the --group splice afterwards.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the array to receive the reconstructed line. </p></li>
+<li><p><strong>__knit_tmpl</strong> -- <strong>[in]</strong> Name of the reconstruction template array. </p></li>
+<li><p><strong>__knit_axes</strong> -- <strong>[in]</strong> Name of the axis-descriptor array. </p></li>
+<li><p><strong>__knit_flat</strong> -- <strong>[in]</strong> Name of the flattened axis-values array. </p></li>
+<li><p><strong>__knit_off</strong> -- <strong>[in]</strong> Name of the per-axis offset array. </p></li>
+<li><p><strong>__knit_cnt</strong> -- <strong>[in]</strong> Name of the per-axis count array. </p></li>
+<li><p><strong>idx</strong> -- <strong>[in]</strong> The combination index (0 &lt;= idx &lt; total). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_resolve_domains">
+<span class="target" id="sweep_8sh_1ac2fb42e29c8b4d5e0d07ea290b177155"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_resolve_domains</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_resolve_domains" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the declared-domain axes (&#64;sweep / &#64;default / --fill) against the downstream target's parameters, splicing the results into the M2 scan. This is the one point where the sweep introspects the target, and it runs only when it must: --fill sweep, or a &#64;sweep/&#64;default marker at the call site. With --fill default and no marker it returns at once, having read nothing.</p>
+<p>For each target parameter, the call-site classification (explicit / sweep / default / unspecified, from the seen map) and the parameter's declared-domain presence feed the shared _knit_search_resolve_fill precedence rule:<ul class="simple">
+<li><p>explicit: left as the M2 scan already has it (a literal axis, or a scalar that passes through);</p></li>
+<li><p>sweep: enumerate the declared domain (via _knit_sweep_enumerate_domain) and either fill the call-site &#64;sweep marker axis in place, or, for a parameter left unspecified under --fill sweep, append a new &quot;--param &lt;value&gt;&quot; axis to the template;</p></li>
+<li><p>default: a call-site &#64;default marker is pinned to the resolved default value in the template (and drops out as an axis); an unspecified parameter keeps its default, which the downstream fills when the reconstructed line runs. An explicit &#64;sweep on a parameter with no declared domain is a fatal; a &#64;sweep / &#64;default naming a parameter the target does not have is a fatal.</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[inout]</strong> Name of the reconstruction template array. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[inout]</strong> Name of the axis-descriptor array. </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[inout]</strong> Name of the per-axis value-list array. </p></li>
+<li><p><strong>__knit_seen</strong> -- <strong>[in]</strong> Name of the seen map (option -&gt; classification). </p></li>
+<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy (&quot;default&quot; or &quot;sweep&quot;). </p></li>
+<li><p><strong>mangled</strong> -- <strong>[in]</strong> The resolved downstream target (mangled command name). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_resolve_target">
+<span class="target" id="sweep_8sh_1abd6e136e564de23e43d20e487fe5d9ea"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_resolve_target</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_resolve_target" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the downstream target from the downstream token list: the command whose parameters the sweep introspects to resolve a declared domain (&#64;sweep / --fill sweep), plus the dispatcher and target display names recorded on the sweeps row. The mapping mirrors how the downstream is actually run:</p>
+<p>submit|prepare ... -- &lt;job&gt; ... -&gt; submit:&lt;job&gt; (prepare reuses submit's jobs) run ... -- &lt;app&gt; ... -&gt; run:&lt;app&gt; &lt;command&gt; ... -&gt; the command itself (lazy-discovered, so a colon-nested name like &quot;metadata store&quot; resolves)</p>
+<p>The mangled command is empty when a submit/prepare/run line carries no job or app after its inner &quot;--&quot; (the downstream dispatcher reports that error when the line is run), so the caller can still record the dispatcher without a target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Mangled command name to introspect (empty if none). </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Dispatcher display name (submit/prepare/run, or the command name for a bare command). </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Target display name (the job/app name, or the command name for a bare command). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_scan">
+<span class="target" id="sweep_8sh_1a34e91b47e2985592c8390e970fc5c17f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_scan</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_scan" title="Link to this definition">#</a><br /></dt>
+<dd><p>Scan a downstream token list left to right into an ordered list of axes and a reconstruction template, without introspecting the downstream command. A token is sweeper-handled only when it starts with &quot;{&quot;, &quot;[&quot;, or &quot;&#64;&quot; and its preceding &quot;--option&quot; is not named in --passthrough; every other token is literal and is left in the template verbatim. Each handled token is classified:</p>
+<p><ul class="simple">
+<li><p>&quot;{...}&quot; / &quot;[...]&quot; / &quot;&#64;glob:...&quot; / &quot;&#64;file:...&quot; -&gt; a literal axis: parsed and enumerated now into a value list (kind &quot;literal&quot;);</p></li>
+<li><p>&quot;&#64;sweep&quot; -&gt; a marker to sweep the parameter's declared domain, resolved in a later milestone (kind &quot;sweep&quot;, empty value list here);</p></li>
+<li><p>&quot;&#64;default&quot; -&gt; a marker to pin the parameter at its default (kind &quot;default&quot;);</p></li>
+<li><p>any other &quot;&#64;...&quot; -&gt; a fatal (unknown directive).</p></li>
+</ul>
+</p>
+<p>An axis is named by its preceding &quot;--option&quot; (hyphens folded to underscores); a swept positional token is named &quot;#&lt;index&gt;&quot; by its position in the downstream. The &quot;seen&quot; map records, for every &quot;--option&quot; that carried a value, how the call site referenced it (&quot;explicit&quot;, &quot;sweep&quot;, or &quot;default&quot;), so declared-domain resolution (a later milestone) knows which parameters were specified. The inline &quot;--opt=value&quot; form is self-contained and never swept (use the separate &quot;--opt {...}&quot; form to sweep a value); it is recorded as &quot;explicit&quot;.</p>
+<p>Output arrays are parallel: axis i is described by __knit_ret2[i] (the string &quot;&lt;kind&gt; &lt;template-index&gt; &lt;name&gt;&quot;) and its value list is __knit_ret3[i] (newline joined; empty for a &quot;sweep&quot;/&quot;default&quot; marker). The caller MUST pass a freshly declared associative array for the &quot;seen&quot; map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the array to receive the reconstruction template (a copy of the downstream tokens; the odometer overwrites each axis's template slot with its current value). </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive the axis descriptors. </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive the per-axis value lists. </p></li>
+<li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map. </p></li>
+<li><p><strong>passthrough_csv</strong> -- <strong>[in]</strong> Comma-separated option names whose values are never treated as sweep-syntax (may be empty). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id72">
+<h3>Variables<a class="headerlink" href="#id72" title="Link to this heading">#</a></h3>
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_SWEEPS_TABLE">
+<span class="target" id="sweep_8sh_1a23657f8eb82495d11145ef84ef9f4cce"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SWEEPS_TABLE</span></span></span><a class="headerlink" href="#c._KNIT_SWEEPS_TABLE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Name of the table recording every sweep campaign. The row id is the sweep's own UUID. Each child point (a submitted/run/command invocation, or a prepared row) records an automatic &quot;call&quot; edge back to this row through the provenance graph, so a campaign's children are found by walking the edges, not by a stored column. The column set is fixed and kind-independent: id, the recorded &quot;group&quot; label, and the &quot;target&quot;/&quot;dispatcher&quot;/&quot;dimensions&quot;/&quot;count&quot; outputs. The control options (--on-failure/--parallel/--passthrough/--fill/--dry-run) are declared with &quot;--no-record&quot; so they are parsed and validated but add no column. </p>
+</dd></dl>
+
+</section>
+</section>
+<section id="types-sh">
+<h2>types.sh<a class="headerlink" href="#types-sh" title="Link to this heading">#</a></h2>
+<section id="id73">
+<h3>Functions<a class="headerlink" href="#id73" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_type_check_date">
 <span class="target" id="types_8sh_1a1844efaa185a89f7fff643ac540fe347"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_type_check_date</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_type_check_date" title="Link to this definition">#</a><br /></dt>
@@ -10686,8 +10977,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id72">
-<h3>Variables<a class="headerlink" href="#id72" title="Link to this heading">#</a></h3>
+<section id="id74">
+<h3>Variables<a class="headerlink" href="#id74" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_BUILTIN_ENUMS">
 <span class="target" id="types_8sh_1a72c663ad65459a4883adc93673379806"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_BUILTIN_ENUMS</span></span></span><a class="headerlink" href="#c._KNIT_BUILTIN_ENUMS" title="Link to this definition">#</a><br /></dt>
@@ -10953,6 +11244,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_check_declaration"><code class="docutils literal notranslate"><span class="pre">_knit_param_check_declaration()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_default"><code class="docutils literal notranslate"><span class="pre">_knit_param_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_description"><code class="docutils literal notranslate"><span class="pre">_knit_param_description()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_is_norecord"><code class="docutils literal notranslate"><span class="pre">_knit_param_is_norecord()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_param_type"><code class="docutils literal notranslate"><span class="pre">_knit_param_type()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_print_command_usage"><code class="docutils literal notranslate"><span class="pre">_knit_print_command_usage()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_print_options_block"><code class="docutils literal notranslate"><span class="pre">_knit_print_options_block()</span></code></a></li>
@@ -11795,8 +12087,32 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sweep-sh">sweep.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id71">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep"><code class="docutils literal notranslate"><span class="pre">_knit_sweep()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_ask"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_ask()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_dimensions_json"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_dimensions_json()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_downstream"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_downstream()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_enumerate"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_enumerate()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_enumerate_domain"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_enumerate_domain()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_expand_glob"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_expand_glob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_observe"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_observe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_plan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_plan()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_range_grid"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_range_grid()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_reconstruct"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_reconstruct()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_domains"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_domains()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_target"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_target()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_scan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_scan()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SWEEPS_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SWEEPS_TABLE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id73">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -11804,7 +12120,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id72">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>

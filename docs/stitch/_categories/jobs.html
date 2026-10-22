@@ -469,6 +469,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-jobs-stuck-at-running">Recover jobs stuck at running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-parameter-sweep">Run a parameter sweep</a></li>
 </ul>
             </nav>
         </div>
@@ -1534,6 +1535,119 @@ against a live pilot never false-kills a sub-job that is still working.</p>
 <p>See <em>Retry failed or killed jobs</em> for the retry mechanics and <em>Run many jobs in
 one allocation (pilot jobs)</em> for the pilot pattern.</p>
 </section>
+<section id="run-a-parameter-sweep">
+<span id="stitch-run-a-parameter-sweep"></span><h2>Run a parameter sweep<a class="headerlink" href="#run-a-parameter-sweep" title="Link to this heading">#</a></h2>
+<p><em>Run a command, job, or app once per point in a cartesian product of values with knit sweep.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">sweep</span></code>, <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_command_parameters</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code> runs a downstream command <strong>once per point in the cartesian
+product</strong> of a set of values per parameter. It is the exhaustive, no-model
+proposer: you write the exact invocation you would run once, and mark any value
+you want to vary in <strong>sweep-syntax</strong>. The sweep is opaque to the downstream
+command — it scans the tokens after <code class="docutils literal notranslate"><span class="pre">--</span></code> for sweep-syntax, treats each as an
+axis, passes everything else through verbatim, and re-emits the reconstructed
+line once per combination.</p>
+<p>A value is a swept axis when it is <code class="docutils literal notranslate"><span class="pre">{a,b,c}</span></code> (a list), <code class="docutils literal notranslate"><span class="pre">[lo..hi]</span></code> /
+<code class="docutils literal notranslate"><span class="pre">[lo..hi:step]</span></code> (a range), <code class="docutils literal notranslate"><span class="pre">&#64;glob:&lt;pattern&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;file:&lt;path&gt;</span></code>; quote the
+braces and brackets so the shell does not expand them. Everything else passes
+through. The downstream command carries an ordinary job here:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
+<span class="c1"># can draw its values from the declaration (--fill sweep / --n @sweep) as well as</span>
+<span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Number of steps."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="nd">@with_table</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+_sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"result"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'sim: n=%s result=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
+<span class="c1"># can draw its values from the declaration (--fill sweep / --n @sweep) as well as</span>
+<span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span>_sim<span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Number of steps."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="nb">knit_with_table</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+_sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
+<span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"result"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'sim: n=%s result=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">n</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="k">$((</span><span class="w"> </span><span class="nv">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="k">))</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ephemeral: run the product now.</strong> Write the real invocation after <code class="docutils literal notranslate"><span class="pre">--</span></code> and
+mark the swept values. The dispatcher you use (<code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">run</span></code>, or a plain
+command) selects what each point does; the sweep launches them in-process,
+keeping at most <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> in flight (default 1):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>a<span class="w"> </span>job<span class="w"> </span>per<span class="w"> </span>point<span class="w"> </span><span class="o">(</span><span class="m">3</span><span class="w"> </span>submissions<span class="o">)</span>,<span class="w"> </span>grouped<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>campaign:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="o">{</span><span class="m">1</span>,2<span class="o">}</span><span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="gp"># </span>an<span class="w"> </span>app<span class="w"> </span>per<span class="w"> </span>point,<span class="w"> </span>inside<span class="w"> </span>one<span class="w"> </span>allocation:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="o">{</span><span class="m">1</span>,2,4<span class="o">}</span><span class="w"> </span>--<span class="w"> </span>stencil<span class="w"> </span>--tile<span class="w"> </span><span class="s1">'{64,128}'</span>
+<span class="gp"># </span>a<span class="w"> </span>plain<span class="w"> </span><span class="nb">command</span><span class="w"> </span>per<span class="w"> </span>point:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--group</span></code> is spliced into each <code class="docutils literal notranslate"><span class="pre">submit</span></code> line, so the campaign’s jobs share a
+<code class="docutils literal notranslate"><span class="pre">jobs.group</span></code>; every point also records an automatic <code class="docutils literal notranslate"><span class="pre">call</span></code> edge back to the
+sweep’s row, so a query can walk a campaign to its children. <code class="docutils literal notranslate"><span class="pre">--on-failure</span>
+<span class="pre">stop</span></code> aborts on the first failed child (<code class="docutils literal notranslate"><span class="pre">continue</span></code>, the default, runs the
+whole product). <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> prints each reconstructed command line and exits
+without recording or running — the quickest way to see exactly what a sweep
+would do.</p>
+<p><strong>Vary a declared domain.</strong> When a parameter declares a <code class="docutils literal notranslate"><span class="pre">--domain</span></code> (see <em>Declare
+a parameter’s search domain</em>), the sweep can draw its values from the
+declaration instead of the command line: <code class="docutils literal notranslate"><span class="pre">--param</span> <span class="pre">&#64;sweep</span></code> opts one parameter in,
+<code class="docutils literal notranslate"><span class="pre">--fill</span> <span class="pre">sweep</span></code> opts in <em>every</em> unspecified parameter with an enumerable domain,
+and <code class="docutils literal notranslate"><span class="pre">--param</span> <span class="pre">&#64;default</span></code> opts one back out. A real-interval range is bounds-only
+and cannot be enumerated, so sweeping one is a hard error with a fix message.
+This is the one point where the sweep introspects the target, through the same
+accessors a Bayesian-optimization proposer uses (<code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code> /
+<code class="docutils literal notranslate"><span class="pre">knit_command_parameters</span></code>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--fill<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w">          </span><span class="c1"># sim --n over its {1,2,4} domain</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="nd">@sweep</span><span class="w">             </span><span class="c1"># same, opting --n in explicitly</span>
+</pre></div>
+</div>
+<p><strong>Durable: prepare now, drain later (resumable).</strong> Swap <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">submit</span></code> for
+<code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">prepare</span></code> and the sweep writes the whole product as a durable to-do list —
+one <code class="docutils literal notranslate"><span class="pre">prepared</span></code> job per point, no scheduler contact — then a separate
+<code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> releases them. This is the form to use for a large or long
+campaign, or whenever you want to resume after an interruption: a drainer that
+dies leaves the un-started points still <code class="docutils literal notranslate"><span class="pre">prepared</span></code>, so re-running drain resumes
+exactly the remainder (see <em>Drain a prepared batch with submit drain</em> and <em>Retry
+failed or killed jobs</em>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span>.<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once<span class="w"> </span><span class="o">(</span>durable,<span class="w"> </span>grouped<span class="o">)</span>:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>--<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node,<span class="w"> </span>or<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span>pilot<span class="w"> </span>job:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
+</pre></div>
+</div>
+<p>Resumability is not a sweep feature at all — it is a property of the
+prepare/drain queue the sweep writes into. Draining inside a <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>
+job packs the swept jobs onto the pilot’s nodes with no second queue wait; a
+pilot killed at walltime is resumed by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code>
+first corrects the sub-jobs the hard kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code>
+re-queues them. The sweep’s own <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the
+ephemeral forms; durable concurrency, recovery, and failure policy are drain’s.</p>
+</section>
 </section>
 
 
@@ -1603,6 +1717,7 @@ one allocation (pilot jobs)</em> for the pilot pattern.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recover-jobs-stuck-at-running">Recover jobs stuck at running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-parameter-sweep">Run a parameter sweep</a></li>
 </ul>
   </nav></div>
 

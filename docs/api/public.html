@@ -2186,6 +2186,7 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <li><p><strong>param</strong> -- <strong>[in]</strong> Parameter name. </p></li>
 <li><p><strong>description</strong> -- <strong>[in]</strong> Description of the parameter. </p></li>
 <li><p><strong>--when</strong> -- <strong>[in]</strong> Optional boolean constraint expression (jq syntax referring to the command's other parameters); the parameter only applies when the expression evaluates to true. </p></li>
+<li><p><strong>--no-record</strong> -- <strong>[in]</strong> Optional flag; parse, validate, and show the flag in &quot;--help&quot; as usual, but keep it out of the command's table (no column) and out of every recorded row. For a call-site control flag that must not widen the table schema. </p></li>
 </ul>
 </dd>
 </dl>
@@ -2272,6 +2273,7 @@ knit_done
 <li><p><strong>--no-checksum</strong> -- <strong>[in]</strong> Optional flag; for a file/directory parameter, disable the content checksum and its companion column. </p></li>
 <li><p><strong>--domain</strong> -- <strong>[in]</strong> Optional search domain descriptor (&quot;{a,b,c}&quot;, &quot;[lo..hi]&quot;, &quot;[lo..hi:step]&quot;, &quot;&#64;glob:&lt;pat&gt;&quot;, or &quot;&#64;file:&lt;path&gt;&quot;; quote it). Its shape is checked here and the token is stored verbatim; it is parsed and validated against the parameter type on demand, when the parameter-sweep or Bayesian-optimization search proposer reads it. </p></li>
 <li><p><strong>--log</strong> -- <strong>[in]</strong> Optional flag; for a real &quot;--domain [lo..hi]&quot;, mark the range as log-scale (used by the optimization proposer, ignored by the sweep). </p></li>
+<li><p><strong>--no-record</strong> -- <strong>[in]</strong> Optional flag; parse, validate, and show the parameter in &quot;--help&quot; as usual, but keep it out of the command's table (no column) and out of every recorded row. For a call-site control option that must not widen the table schema. </p></li>
 </ul>
 </dd>
 </dl>
@@ -2402,6 +2404,7 @@ knit_done
 <li><p><strong>--no-checksum</strong> -- <strong>[in]</strong> Optional flag; for a file/directory parameter, disable the content checksum and its companion column. </p></li>
 <li><p><strong>--domain</strong> -- <strong>[in]</strong> Optional search domain descriptor (&quot;{a,b,c}&quot;, &quot;[lo..hi]&quot;, &quot;[lo..hi:step]&quot;, &quot;&#64;glob:&lt;pat&gt;&quot;, or &quot;&#64;file:&lt;path&gt;&quot;; quote it). Its shape is checked here and the token is stored verbatim; it is parsed and validated against the parameter type on demand, when the parameter-sweep or Bayesian-optimization search proposer reads it. </p></li>
 <li><p><strong>--log</strong> -- <strong>[in]</strong> Optional flag; for a real &quot;--domain [lo..hi]&quot;, mark the range as log-scale (used by the optimization proposer, ignored by the sweep). </p></li>
+<li><p><strong>--no-record</strong> -- <strong>[in]</strong> Optional flag; parse, validate, and show the parameter in &quot;--help&quot; as usual, but keep it out of the command's table (no column) and out of every recorded row. For a call-site control option that must not widen the table schema. </p></li>
 </ul>
 </dd>
 </dl>

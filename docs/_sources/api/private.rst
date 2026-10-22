@@ -477,6 +477,9 @@ Functions
 .. doxygenfunction:: _knit_param_description
    :project: knit
 
+.. doxygenfunction:: _knit_param_is_norecord
+   :project: knit
+
 .. doxygenfunction:: _knit_param_type
    :project: knit
 
@@ -2374,6 +2377,60 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_str_underscores_to_hyphens
+   :project: knit
+
+sweep.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_sweep
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_ask
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_dimensions_json
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_downstream
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_enumerate
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_enumerate_domain
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_expand_glob
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_observe
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_plan
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_range_grid
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_reconstruct
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_resolve_domains
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_resolve_target
+   :project: knit
+
+.. doxygenfunction:: _knit_sweep_scan
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_SWEEPS_TABLE
    :project: knit
 
 types.sh
