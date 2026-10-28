@@ -23,6 +23,7 @@ name-discovery rule the registration shorthands use).
    _categories/spack
    _categories/jobs
    _categories/apps
+   _categories/search
    _categories/recording
    _categories/artifacts
    _categories/provenance

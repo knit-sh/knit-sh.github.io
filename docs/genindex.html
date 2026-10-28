@@ -225,6 +225,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/spack.html">Spack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/jobs.html">Jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stitch/_categories/search.html">Parameter search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/recording.html">Recording</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/artifacts.html">Results &amp; artifacts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/provenance.html">Provenance</a></li>
@@ -642,8 +643,6 @@
       <li><a href="api/private.html#c._knit_db_setup_table">_knit_db_setup_table (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_db_sql_ident">_knit_db_sql_ident (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_db_update_row">_knit_db_update_row (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_decl_flag_present">_knit_decl_flag_present (C function)</a>
 </li>
@@ -1097,12 +1096,12 @@
 </li>
       <li><a href="api/private.html#c._knit_pilot_after_cb">_knit_pilot_after_cb (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_pilot_before_cb">_knit_pilot_before_cb (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_pilot_build_nodelist">_knit_pilot_build_nodelist (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._KNIT_PILOT_DAEMON_PID">_KNIT_PILOT_DAEMON_PID (C var)</a>
 </li>
       <li><a href="api/private.html#c._knit_pilot_killed_trap">_knit_pilot_killed_trap (C function)</a>
@@ -1611,15 +1610,9 @@
 </li>
       <li><a href="api/private.html#c._KNIT_SCRIPT_PATH">_KNIT_SCRIPT_PATH (C var)</a>
 </li>
-      <li><a href="api/private.html#c._knit_search_group_forward">_knit_search_group_forward (C function)</a>
-</li>
       <li><a href="api/private.html#c._knit_search_is_descriptor">_knit_search_is_descriptor (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_search_job_terminal_status">_knit_search_job_terminal_status (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_search_launch">_knit_search_launch (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_search_loop">_knit_search_loop (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_search_loop_app">_knit_search_loop_app (C function)</a>
 </li>
@@ -1628,8 +1621,6 @@
       <li><a href="api/private.html#c._knit_search_loop_job">_knit_search_loop_job (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_search_parse_literal">_knit_search_parse_literal (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_search_resolve_fill">_knit_search_resolve_fill (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_search_validate_descriptor">_knit_search_validate_descriptor (C function)</a>
 </li>
@@ -1646,8 +1637,6 @@
       <li><a href="api/private.html#c._knit_set_new">_knit_set_new (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_set_remove">_knit_set_remove (C function)</a>
-</li>
-      <li><a href="api/private.html#c._knit_set_row_id">_knit_set_row_id (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_setup">_knit_setup (C function)</a>
 </li>
@@ -1761,8 +1750,6 @@
 </li>
       <li><a href="api/private.html#c._knit_sweep_resolve_domains">_knit_sweep_resolve_domains (C function)</a>
 </li>
-      <li><a href="api/private.html#c._knit_sweep_resolve_target">_knit_sweep_resolve_target (C function)</a>
-</li>
       <li><a href="api/private.html#c._knit_sweep_scan">_knit_sweep_scan (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_SWEEPS_TABLE">_KNIT_SWEEPS_TABLE (C var)</a>
@@ -1825,6 +1812,8 @@
 </li>
       <li><a href="api/public.html#c.knit_command_has_marker">knit_command_has_marker (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_command_outputs">knit_command_outputs (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_command_parameters">knit_command_parameters (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_command_run_after">knit_command_run_after (C function)</a>
@@ -1833,11 +1822,15 @@
 </li>
       <li><a href="api/public.html#c.knit_command_set_marker">knit_command_set_marker (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_command_table">knit_command_table (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_copy_function">knit_copy_function (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_critical">knit_critical (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_current_command">knit_current_command (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_db_update_row">knit_db_update_row (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_debug">knit_debug (C function)</a>
 </li>
@@ -1935,14 +1928,16 @@
 </li>
       <li><a href="api/public.html#c.knit_output">knit_output (C function)</a>
 </li>
+      <li><a href="api/public.html#c.knit_output_type">knit_output_type (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_parameter_set">knit_parameter_set (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_parameter_space">knit_parameter_space (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_parameter_space_json">knit_parameter_space_json (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/public.html#c.knit_parameter_type">knit_parameter_type (C function)</a>
 </li>
       <li><a href="api/public.html#c.KNIT_PILOT_SOCK">KNIT_PILOT_SOCK (C var)</a>
@@ -1997,11 +1992,29 @@
 </li>
       <li><a href="api/public.html#c.KNIT_SCRIPT_PATH">KNIT_SCRIPT_PATH (C var)</a>
 </li>
+      <li><a href="api/public.html#c.knit_search_group_forward">knit_search_group_forward (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_launch">knit_search_launch (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_loop">knit_search_loop (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_parse_token">knit_search_parse_token (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_read_objective">knit_search_read_objective (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_resolve_fill">knit_search_resolve_fill (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_resolve_target">knit_search_resolve_target (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_search_scan">knit_search_scan (C function)</a>
+</li>
       <li><a href="api/public.html#c.knit_set_invocation_args">knit_set_invocation_args (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_set_parameter">knit_set_parameter (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_set_program_description">knit_set_program_description (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_set_row_id">knit_set_row_id (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_setup_activate_line">knit_setup_activate_line (C function)</a>
 </li>

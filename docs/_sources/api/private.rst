@@ -528,9 +528,6 @@ Functions
 .. doxygenfunction:: _knit_resolve_source_context
    :project: knit
 
-.. doxygenfunction:: _knit_set_row_id
-   :project: knit
-
 .. doxygenfunction:: _knit_usable_before_bootstrap_validate
    :project: knit
 
@@ -616,9 +613,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_db_sql_ident
-   :project: knit
-
-.. doxygenfunction:: _knit_db_update_row
    :project: knit
 
 Variables
@@ -2145,19 +2139,10 @@ search.sh
 Functions
 ~~~~~~~~~
 
-.. doxygenfunction:: _knit_search_group_forward
-   :project: knit
-
 .. doxygenfunction:: _knit_search_is_descriptor
    :project: knit
 
 .. doxygenfunction:: _knit_search_job_terminal_status
-   :project: knit
-
-.. doxygenfunction:: _knit_search_launch
-   :project: knit
-
-.. doxygenfunction:: _knit_search_loop
    :project: knit
 
 .. doxygenfunction:: _knit_search_loop_app
@@ -2170,9 +2155,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_search_parse_literal
-   :project: knit
-
-.. doxygenfunction:: _knit_search_resolve_fill
    :project: knit
 
 .. doxygenfunction:: _knit_search_validate_descriptor
@@ -2419,9 +2401,6 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sweep_resolve_domains
-   :project: knit
-
-.. doxygenfunction:: _knit_sweep_resolve_target
    :project: knit
 
 .. doxygenfunction:: _knit_sweep_scan

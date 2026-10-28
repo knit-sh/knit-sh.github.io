@@ -41,6 +41,9 @@ Functions
 .. doxygenfunction:: knit_command_has_marker
    :project: knit
 
+.. doxygenfunction:: knit_command_outputs
+   :project: knit
+
 .. doxygenfunction:: knit_command_parameters
    :project: knit
 
@@ -53,6 +56,9 @@ Functions
 .. doxygenfunction:: knit_command_set_marker
    :project: knit
 
+.. doxygenfunction:: knit_command_table
+   :project: knit
+
 .. doxygenfunction:: knit_copy_function
    :project: knit
 
@@ -60,6 +66,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_current_command
+   :project: knit
+
+.. doxygenfunction:: knit_db_update_row
    :project: knit
 
 .. doxygenfunction:: knit_debug
@@ -188,6 +197,9 @@ Functions
 .. doxygenfunction:: knit_output
    :project: knit
 
+.. doxygenfunction:: knit_output_type
+   :project: knit
+
 .. doxygenfunction:: knit_parameter_set
    :project: knit
 
@@ -263,6 +275,30 @@ Functions
 .. doxygenfunction:: knit_run_before
    :project: knit
 
+.. doxygenfunction:: knit_search_group_forward
+   :project: knit
+
+.. doxygenfunction:: knit_search_launch
+   :project: knit
+
+.. doxygenfunction:: knit_search_loop
+   :project: knit
+
+.. doxygenfunction:: knit_search_parse_token
+   :project: knit
+
+.. doxygenfunction:: knit_search_read_objective
+   :project: knit
+
+.. doxygenfunction:: knit_search_resolve_fill
+   :project: knit
+
+.. doxygenfunction:: knit_search_resolve_target
+   :project: knit
+
+.. doxygenfunction:: knit_search_scan
+   :project: knit
+
 .. doxygenfunction:: knit_set_invocation_args
    :project: knit
 
@@ -270,6 +306,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_set_program_description
+   :project: knit
+
+.. doxygenfunction:: knit_set_row_id
    :project: knit
 
 .. doxygenfunction:: knit_setup_activate_line
