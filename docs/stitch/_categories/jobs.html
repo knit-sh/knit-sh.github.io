@@ -627,7 +627,10 @@ the cores on each node it is given.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--walltime</span></code> is the wall-clock limit as <code class="docutils literal notranslate"><span class="pre">HH:MM:SS</span></code>. If you omit it, knit
 fills one in, in this order: the project default set with <code class="docutils literal notranslate"><span class="pre">bootstrap</span>
 <span class="pre">--default-walltime</span></code>, then the selected queue’s default (or maximum) from the
-machine profile, and finally one hour.</p></li>
+machine profile, and finally one hour. Pass <code class="docutils literal notranslate"><span class="pre">--walltime</span> <span class="pre">none</span></code> to run with <strong>no
+wall-clock limit</strong> — honored on the <code class="docutils literal notranslate"><span class="pre">local</span></code>, <code class="docutils literal notranslate"><span class="pre">none</span></code>, and <code class="docutils literal notranslate"><span class="pre">pilot</span></code>
+schedulers (which do not cap a job’s run), and rejected on batch schedulers
+(Slurm, PBS, Flux), where every job runs under a queue walltime cap.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--gpus-per-node</span></code> (default <code class="docutils literal notranslate"><span class="pre">0</span></code>) requests GPUs per node on a GPU partition.</p></li>
 </ul>
 <p>These values become the scheduler directives in the generated batch script (which

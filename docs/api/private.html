@@ -9048,7 +9048,7 @@ If the function has a return type:
 <dt class="sig sig-object c" id="c._knit_sched_pick_queue">
 <span class="target" id="sched_8sh_1a22a1dc63b1add7a799f967e9d3b1c13b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_pick_queue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_pick_queue" title="Link to this definition">#</a><br /></dt>
 <dd><p>Select a queue automatically for the &quot;--queue auto&quot; strategy, choosing the first queue declared in the machine profile that would accept the job as the user specified it. Queues are read from the profile's .scheduler.queues object in declaration order (jq preserves object key order), and the first one that violates none of its declared constraints is returned by nameref.</p>
-<p>The constraints checked are the node count (min_nodes/max_nodes) and, only when the user gave an explicit walltime, the walltime bounds (min_walltime/ max_walltime, compared in seconds). A constraint the profile omits — or a profile walltime that does not parse — is not an obstacle (permissive). The walltime argument is the raw user request, so this must run before walltime is defaulted (the default itself is queue-derived, which is why auto resolves the queue first).</p>
+<p>The constraints checked are the node count (min_nodes/max_nodes) and, only when the user gave a concrete walltime, the walltime bounds (min_walltime/ max_walltime, compared in seconds). A &quot;none&quot; walltime (no wall-clock limit) does not filter on walltime, the same as an unspecified one. A constraint the profile omits — or a profile walltime that does not parse — is not an obstacle (permissive). The walltime argument is the raw user request, so this must run before walltime is defaulted (the default itself is queue-derived, which is why auto resolves the queue first).</p>
 <p>Outcomes:<ul class="simple">
 <li><p>no queues declared in the profile -&gt; empty selection, return 0 (the caller then submits with no queue directive, i.e. the scheduler's own default);</p></li>
 <li><p>a queue accepts the job -&gt; that queue's name, return 0;</p></li>
@@ -9060,7 +9060,7 @@ If the function has a return type:
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the selected queue name. </p></li>
 <li><p><strong>nodes</strong> -- <strong>[in]</strong> Requested node count. </p></li>
-<li><p><strong>walltime</strong> -- <strong>[in]</strong> Requested walltime (HH:MM:SS), or empty when unspecified. </p></li>
+<li><p><strong>walltime</strong> -- <strong>[in]</strong> Requested walltime (HH:MM:SS), &quot;none&quot; for no limit, or empty when unspecified. Only a concrete HH:MM:SS filters. </p></li>
 </ul>
 </dd>
 </dl>
@@ -9403,7 +9403,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sched_local_submit">
 <span class="target" id="sched__local_8sh_1a00629ba1398d3a83009f2e7f937f03a2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sched_local_submit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sched_local_submit" title="Link to this definition">#</a><br /></dt>
-<dd><p>Submit a batch script on a machine with no scheduler by running it as a detached background process via _knit_submit_local. Job stdout/stderr are redirected to &lt;jobdir&gt;/.stdout and &lt;jobdir&gt;/.stderr, and the resolved walltime (if any) caps the run. When the resolved &quot;wait&quot; flag is &quot;true&quot;, block until the process finishes. Prints the process id to stdout.</p>
+<dd><p>Submit a batch script on a machine with no scheduler by running it as a detached background process via _knit_submit_local. Job stdout/stderr are redirected to &lt;jobdir&gt;/.stdout and &lt;jobdir&gt;/.stderr, and the resolved walltime (if any) caps the run; a walltime of &quot;none&quot; imposes no cap. When the resolved &quot;wait&quot; flag is &quot;true&quot;, block until the process finishes. Prints the process id to stdout.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
