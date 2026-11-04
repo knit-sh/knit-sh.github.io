@@ -218,6 +218,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/part1.html">Part I — The guided tour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/part3.html">Part III — Searching for the best architecture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../stitch/index.html">Stitch Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -513,6 +514,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_list_profiles"><code class="docutils literal notranslate"><span class="pre">knit_list_profiles()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_log_set_level"><code class="docutils literal notranslate"><span class="pre">knit_log_set_level()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_no_record_on_failure"><code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_on_fatal"><code class="docutils literal notranslate"><span class="pre">knit_on_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output"><code class="docutils literal notranslate"><span class="pre">knit_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output_type"><code class="docutils literal notranslate"><span class="pre">knit_output_type()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_parameter_set()</span></code></a></li>
@@ -1206,7 +1208,7 @@ local extra=("${args[@]:extra_index}")
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_fatal">
 <span class="target" id="log_8sh_1ab6950837102542c417b049644f9a080a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_fatal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_fatal" title="Link to this definition">#</a><br /></dt>
-<dd><p>Logging function for fatal error messages. Will be printed no matter the log level, and the program will exit with an error value.</p>
+<dd><p>Logging function for fatal error messages. Will be printed no matter the log level, and the program will exit with an error value. Any callbacks registered with knit_on_fatal are run first (see the drain below).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1544,6 +1546,20 @@ for csv in "${tables[@]}"; do cat "${csv}" &gt;&gt; combined.csv; done
 <span class="target" id="cli_8sh_1a6ccb9bc756513bbcb317c30d4c1176ec"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_no_record_on_failure</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_no_record_on_failure" title="Link to this definition">#</a><br /></dt>
 <dd><p>Mark the command currently being registered so that a failed invocation records no database row. By default a command with a table (knit_with_table) records a row after its body runs, whatever the body's exit status; with this directive a non-zero body exit skips recording, so a failed run leaves no data row behind. Use it for a command that removes its own partial output on failure (as <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">fetch</span></code> removes a partial resource instance), where a dangling row would misrepresent a run that produced nothing.</p>
 <p>Must be called between a knit_register* call and knit_done. It is not valid on a job (knit_register_job): a job's row carries a &quot;state&quot; column written from its callbacks and signal traps (running / killed / completed), which suppressing a failed job's row would drop. It is not valid on a wrapper (knit_register_wrapper) either, which forwards its arguments verbatim and has no body of its own. Calling it more than once on the same command is harmless. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_on_fatal">
+<span class="target" id="log_8sh_1ae7587d89b9c27d8f45ab43edf4b0aaf6"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_on_fatal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_on_fatal" title="Link to this definition">#</a><br /></dt>
+<dd><p>Register a callback to run when knit_fatal is about to abort the process. The arguments form one command (and its arguments), stored pre-escaped with printf q (as knit_run_before / knit_run_after store their callbacks) in the global _KNIT_ON_FATAL list, and re-run by knit_fatal's drain just before it exits.</p>
+<p>This exists so a compute-side job can record a terminal state before a fatal abort tears the process down: the normal after-callback (which records the state) never runs when the body or a before-callback exits via knit_fatal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> The callback command and its arguments. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -1998,7 +2014,8 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_search_group_forward">
 <span class="target" id="search_8sh_1a3ecaa28a938032c3826e9bbf9bc695ee"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_group_forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_group_forward" title="Link to this definition">#</a><br /></dt>
-<dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; or &quot;prepare&quot; token, before its &quot;--&quot;. Both are job dispatchers that share the submit option surface (and so accept --group); a sweep that prepares a durable product uses the &quot;prepare&quot; form. The line is left unchanged when the group is empty or the line is neither a submit nor a prepare line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges). The parent row itself records the group automatically, since a proposer declares --group as an ordinary optional parameter.</p>
+<dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; or &quot;prepare&quot; token, before its &quot;--&quot;. Both are job dispatchers that share the submit option surface (and so accept --group). The line is left unchanged when the group is empty or the line is neither a submit nor a prepare line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges).</p>
+<p>This is an optional search-core helper for a proposer that wants its trials to carry the campaign group (the ax optimizer uses it so a campaign's trial jobs share a jobs.group). A proposer is not required to call it: &quot;knit sweep&quot; deliberately does not, keeping the sweep's own --group (which labels the parent sweeps row) independent of any --group the user writes on the downstream submit/prepare line (which labels the produced jobs). A sweep still finds its children through the automatic provenance &quot;call&quot; edges, not a shared group.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2088,14 +2105,14 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <dt class="sig sig-object c" id="c.knit_search_resolve_fill">
 <span class="target" id="search_8sh_1ad179e818e3f5b2f8d16b4c4319a8789f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_resolve_fill</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_resolve_fill" title="Link to this definition">#</a><br /></dt>
 <dd><p>Resolve, for one parameter, whether it varies in the campaign and from where. This is the shared &quot;Which parameters vary&quot; rule that both proposers reuse (each sets only its own default --fill); it does NOT read or enumerate a declared domain (how a varying parameter's domain is used -- enumerate or sample -- stays with the proposer, as does the enumerability check). The result is one of:</p>
-<p>explicit the call site carries a concrete value or a set literal for this parameter, so the proposer uses what the line already says; sweep vary this parameter from its declared domain; default leave this parameter at its default value.</p>
-<p>The precedence (highest first): an explicit value/token always wins; then a per-parameter &#64;sweep / &#64;default token; then the --fill policy for an otherwise unspecified parameter. Under --fill sweep an unspecified parameter varies only when it has a declared domain -- a parameter with no declared domain stays at its default under either policy (it is never &quot;the space&quot;). The per-parameter token classification (explicit / sweep / default / unspecified) comes from the proposer's own call-site scan; this helper only applies the precedence.</p>
+<p>explicit the call site carries a concrete value or a set literal for this parameter, so the proposer uses what the line already says; domain vary this parameter from its declared domain; default leave this parameter at its default value.</p>
+<p>The precedence (highest first): an explicit value/token always wins; then a per-parameter &#64;domain / &#64;default token; then the --fill policy for an otherwise unspecified parameter. Under --fill domain an unspecified parameter varies only when it has a declared domain -- a parameter with no declared domain stays at its default under either policy (it is never &quot;the space&quot;). The per-parameter token classification (explicit / domain / default / unspecified) comes from the proposer's own call-site scan; this helper only applies the precedence.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The resolution (&quot;explicit&quot;, &quot;sweep&quot;, or &quot;default&quot;). </p></li>
-<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy for an unspecified parameter (&quot;default&quot; or &quot;sweep&quot;). </p></li>
-<li><p><strong>token</strong> -- <strong>[in]</strong> How the call site referenced this parameter: &quot;explicit&quot; (a concrete value or set literal), &quot;sweep&quot; (&#64;sweep), &quot;default&quot; (&#64;default), or &quot;unspecified&quot; (nothing). </p></li>
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The resolution (&quot;explicit&quot;, &quot;domain&quot;, or &quot;default&quot;). </p></li>
+<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy for an unspecified parameter (&quot;default&quot; or &quot;domain&quot;). </p></li>
+<li><p><strong>token</strong> -- <strong>[in]</strong> How the call site referenced this parameter: &quot;explicit&quot; (a concrete value or set literal), &quot;domain&quot; (&#64;domain), &quot;default&quot; (&#64;default), or &quot;unspecified&quot; (nothing). </p></li>
 <li><p><strong>has_domain</strong> -- <strong>[in]</strong> &quot;true&quot; if the parameter has a declared domain, else &quot;false&quot;. </p></li>
 </ul>
 </dd>
@@ -2105,7 +2122,7 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_search_resolve_target">
 <span class="target" id="search_8sh_1a322c923b417672ce866b94ca4737bf95"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_resolve_target</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_resolve_target" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve the downstream target from the downstream token list: the command whose parameters a search proposer introspects (to resolve declared domains or &#64;sweep markers), plus the dispatcher and target display names. The mapping mirrors how the downstream is actually run:</p>
+<dd><p>Resolve the downstream target from the downstream token list: the command whose parameters a search proposer introspects (to resolve declared domains or &#64;domain markers), plus the dispatcher and target display names. The mapping mirrors how the downstream is actually run:</p>
 <p>submit|prepare ... -- &lt;job&gt; ... -&gt; submit:&lt;job&gt; run ... -- &lt;app&gt; ... -&gt; run:&lt;app&gt; &lt;command&gt; ... -&gt; the command itself</p>
 <p>The mangled command is empty when a submit/prepare/run line carries no job or app after its inner &quot;--&quot; (the downstream dispatcher reports the error when the line is actually run), so the caller can still record the dispatcher name.</p>
 <dl class="field-list simple">
@@ -2126,20 +2143,20 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <dd><p>Classify a downstream token list left to right into an ordered list of axes and a reconstruction template, without introspecting the downstream command and without enumerating literal axes. A token is handled only when it starts with &quot;{&quot;, &quot;[&quot;, or &quot;&#64;&quot; and its preceding &quot;--option&quot; is not named in --passthrough; every other token is literal and is placed in the template verbatim. Each handled token is classified:</p>
 <p><ul class="simple">
 <li><p>&quot;{...}&quot; / &quot;[...]&quot; / &quot;&#64;glob:...&quot; / &quot;&#64;file:...&quot; -&gt; kind &quot;literal&quot;;</p></li>
-<li><p>&quot;&#64;sweep&quot; -&gt; a marker to sweep the declared domain (kind &quot;sweep&quot;);</p></li>
+<li><p>&quot;&#64;domain&quot; -&gt; a marker to vary the declared domain (kind &quot;domain&quot;);</p></li>
 <li><p>&quot;&#64;default&quot; -&gt; a marker to pin at the default (kind &quot;default&quot;);</p></li>
 <li><p>any other &quot;&#64;...&quot; -&gt; a fatal (unknown directive).</p></li>
 </ul>
 </p>
-<p>An axis is named by its preceding &quot;--option&quot; (hyphens folded to underscores); a swept positional token is named &quot;#&lt;index&gt;&quot; by its position in the downstream. The &quot;seen&quot; map records, for every &quot;--option&quot; that carried a value, how the call site referenced it (&quot;explicit&quot;, &quot;sweep&quot;, or &quot;default&quot;); a literal axis folds to &quot;explicit&quot;. The inline &quot;--opt=value&quot; form is self-contained and recorded as &quot;explicit&quot;. All four outputs are reset on entry, so the &quot;seen&quot; map need not be empty, but it MUST be declared as an associative array (declare -A).</p>
+<p>An axis is named by its preceding &quot;--option&quot; (hyphens folded to underscores); a swept positional token is named &quot;#&lt;index&gt;&quot; by its position in the downstream. The &quot;seen&quot; map records, for every &quot;--option&quot; that carried a value, how the call site referenced it (&quot;explicit&quot;, &quot;domain&quot;, or &quot;default&quot;); a literal axis folds to &quot;explicit&quot;. The inline &quot;--opt=value&quot; form is self-contained and recorded as &quot;explicit&quot;. All four outputs are reset on entry, so the &quot;seen&quot; map need not be empty, but it MUST be declared as an associative array (declare -A).</p>
 <p>Unlike _knit_sweep_scan, this function stores the verbatim token text (not an enumerated value list) in rawtokens-out for literal axes. Callers that need the enumerated list enumerate each raw token themselves.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the array to receive the reconstruction template (a copy of the downstream tokens). </p></li>
 <li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive the axis descriptors, each the string &quot;&lt;kind&gt; &lt;slot&gt; &lt;name&gt;&quot;. </p></li>
-<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive per-axis raw tokens: the verbatim token text for a &quot;literal&quot; axis, empty for &quot;sweep&quot;/&quot;default&quot;. </p></li>
-<li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map (option -&gt; &quot;explicit&quot;|&quot;sweep&quot;|&quot;default&quot;). </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive per-axis raw tokens: the verbatim token text for a &quot;literal&quot; axis, empty for &quot;domain&quot;/&quot;default&quot;. </p></li>
+<li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map (option -&gt; &quot;explicit&quot;|&quot;domain&quot;|&quot;default&quot;). </p></li>
 <li><p><strong>passthrough_csv</strong> -- <strong>[in]</strong> Comma-separated option names whose values are never treated as sweep-syntax (may be empty). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
 </ul>
@@ -2975,6 +2992,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_list_profiles"><code class="docutils literal notranslate"><span class="pre">knit_list_profiles()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_log_set_level"><code class="docutils literal notranslate"><span class="pre">knit_log_set_level()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_no_record_on_failure"><code class="docutils literal notranslate"><span class="pre">knit_no_record_on_failure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_on_fatal"><code class="docutils literal notranslate"><span class="pre">knit_on_fatal()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output"><code class="docutils literal notranslate"><span class="pre">knit_output()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_output_type"><code class="docutils literal notranslate"><span class="pre">knit_output_type()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_parameter_set"><code class="docutils literal notranslate"><span class="pre">knit_parameter_set()</span></code></a></li>

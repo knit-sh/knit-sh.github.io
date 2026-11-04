@@ -1,0 +1,1610 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+    <title>Part III — Searching for the best architecture &#8212; Knit</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=b8bcef97"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/part3';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://knit.sh/docs/tutorial/part3.html" />
+    <link rel="icon" href="../_static/knit-logo-simple.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stitch Guide" href="../stitch/index.html" />
+    <link rel="prev" title="Part II — Refining the experiment" href="part2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/knit-logo-simple.svg" class="logo__image only-light" alt="Knit - Home"/>
+    <img src="../_static/knit-logo-simple.svg" class="logo__image only-dark pst-js-only" alt="Knit - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Knit
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guides</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="part1.html">Part I — The guided tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Part III — Searching for the best architecture</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../stitch/index.html">Stitch Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/bootstrap.html">Bootstrap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/commands.html">Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/parameters.html">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/types.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/setup.html">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/resources.html">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/spack.html">Spack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/jobs.html">Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/apps.html">Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/search.html">Parameter search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/artifacts.html">Results &amp; artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/provenance.html">Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/cleanup.html">Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/bundle.html">Bundle &amp; export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/profiles.html">Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/metadata.html">Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/ai.html">AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/logging.html">Logging &amp; output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/plugins.html">Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/introspection.html">Introspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/agent.html">Agent skills</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api/public.html">Public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/private.html">Private API</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/knit-sh/knit/issues/new?title=Issue%20on%20page%20%2Ftutorial/part3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/part3.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Part III — Searching for the best architecture</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-program">The program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-one-training-run">Step 1 — One training run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-declare-the-search-space">Step 2 — Declare the search space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-a-sweep-by-hand">Step 3 — A sweep by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-knit-sweep">Step 4 — <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-durable-prepare-and-drain">Step 5 — Durable prepare and drain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-run-the-sweep-inside-a-pilot-job">Step 6 — Run the sweep inside a pilot job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-one-pilot-resumed-until-the-sweep-is-done">Step 7 — One pilot, resumed until the sweep is done</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-when-the-grid-explodes-bayesian-optimization">Step 8 — When the grid explodes: Bayesian optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-state-the-finding">Step 9 — State the finding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complete-experiment-part-iii">The complete experiment (Part III)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="part-iii-searching-for-the-best-architecture">
+<h1>Part III — Searching for the best architecture<a class="headerlink" href="#part-iii-searching-for-the-best-architecture" title="Link to this heading">#</a></h1>
+<p>Tired of the <code class="docutils literal notranslate"><span class="pre">julia-fractal</span></code> example? Good news, we are going to use a new
+one: training a convolutional neural network (CNN) on an image dataset (CIFAR-10).
+Such a CNN can be configured with various numbers of layers or kernel sizes, and
+can be trained with various hyperparameters. But how do we know which architecture
+is the best? This matters: if the goal of an experiment is to compare a new approach
+to image classification against a state-of-the-art CNN, we better be sure to configure
+the latter as best as we can.</p>
+<p>This part of the tutorial will introduce a number of features, including uv-based
+setups (as opposed to the previously used spack-based ones), domain descriptions,
+parameter sweeps, and parameter-space exploration using Bayesian optimization.</p>
+<p>We build <code class="docutils literal notranslate"><span class="pre">exp.sh</span></code> up as we go: Steps 1–2 start with a <code class="docutils literal notranslate"><span class="pre">train</span></code> job that
+searches three parameters, and Step 8 grows it to eight. So the command output
+shown along the way reflects the file <em>at that step</em>, not the finished script —
+the complete version appears at the end, in <a class="reference internal" href="#the-complete-experiment-part-iii">The complete experiment (Part III)</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This part runs on a laptop. Unlike Part I it needs no compiler or MPI, but it
+does need the <strong>uv</strong> plugin’s prerequisites (a network connection and the
+ability to run <a class="reference external" href="https://docs.astral.sh/uv/">uv</a>, which bootstrap provisions
+for you) and enough time and memory to train a small network on CPU. A GPU is
+not required. As in Part I, every step’s code is shown in full and was
+validated end to end during development; the console output is illustrative.</p>
+</div>
+<section id="the-program">
+<h2>The program<a class="headerlink" href="#the-program" title="Link to this heading">#</a></h2>
+<p>Like <code class="docutils literal notranslate"><span class="pre">julia-fractal</span></code>, the trainer lives in its own public repository,
+<a class="reference external" href="https://github.com/knit-sh/image-classifier-example">image-classifier-example</a> (the <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span></code>
+program). We do not reproduce its source here; we treat it as a black box with a
+simple contract. It is a real PyTorch program that:</p>
+<ul class="simple">
+<li><p>reads a CNN architecture from command-line arguments (number of convolution
+blocks, channels per block, kernel size, and — later — dropout, activation,
+learning rate, and more);</p></li>
+<li><p>trains that architecture on CIFAR-10 for a few epochs;</p></li>
+<li><p>prints its final validation accuracy on a stable, machine-readable line,
+<code class="docutils literal notranslate"><span class="pre">RESULT</span> <span class="pre">val_accuracy=&lt;percent&gt;</span></code>, which the job reads back and records.</p></li>
+</ul>
+<p>It is installable as a Python package, so the setup can point <strong>uv</strong> straight at
+the repository and get a pinned, reproducible environment <em>and</em> the program
+itself in one step. That contract — <em>these arguments in, an accuracy out</em> — is
+all we need; the PyTorch internals stay out of view.</p>
+</section>
+<section id="step-1-one-training-run">
+<span id="tutorial-part3-step1"></span><h2>Step 1 — One training run<a class="headerlink" href="#step-1-one-training-run" title="Link to this heading">#</a></h2>
+<p>The first step provisions the environment and runs a single architecture. Three
+registrations do it: a <strong>setup</strong> that installs the program, a <strong>resource</strong> that
+downloads the dataset, and a <strong>job</strong> that trains one network and records its
+accuracy.</p>
+<p>Part I provisioned a C++ toolchain with the <strong>Spack</strong> plugin. An ML stack is a
+better fit for <strong>uv</strong>, so Part III imports that plugin instead and declares a
+uv-backed setup. The setup names one requirement — the <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span></code> package,
+installed directly from its Git repository — and has no body of its own; uv
+building and activating the environment is all it does:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A uv-backed setup installs the classifier. @with_uv_specs declares a uv Python</span>
+<span class="c1"># environment whose single requirement is the cifar-cnn package, installed</span>
+<span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
+<span class="c1"># first step, so the `cifar-cnn` console script is on PATH before any job that</span>
+<span class="c1"># declares this setup runs. It captures the resolved pyproject.toml / uv.lock as</span>
+<span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
+<span class="c1"># all it does --- so @empty stands in for the body function.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@empty</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A uv-backed setup installs the classifier. @with_uv_specs declares a uv Python</span>
+<span class="c1"># environment whose single requirement is the cifar-cnn package, installed</span>
+<span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
+<span class="c1"># first step, so the `cifar-cnn` console script is on PATH before any job that</span>
+<span class="c1"># declares this setup runs. It captures the resolved pyproject.toml / uv.lock as</span>
+<span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
+<span class="c1"># all it does --- so @empty stands in for the body function.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because a uv-backed setup is declared, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> provisions a knit-private uv
+automatically. uv installs the program and pins the exact dependency set
+(<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> / <code class="docutils literal notranslate"><span class="pre">uv.lock</span></code>) as provenance, so a reproducer gets the same
+environment.</p>
+<p>The CIFAR-10 dataset is an input, so it is a <strong>resource</strong>. <code class="docutils literal notranslate"><span class="pre">&#64;with_url</span></code> makes
+<code class="docutils literal notranslate"><span class="pre">cifar</span></code> a downloadable resource with a default URL; <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">fetch</span></code> downloads
+and (with <code class="docutils literal notranslate"><span class="pre">--uncompress</span></code>) unpacks it once into <code class="docutils literal notranslate"><span class="pre">resources/</span></code>, recording the
+URL:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input. @with_url makes `cifar` a</span>
+<span class="c1"># downloadable resource whose default URL is the CIFAR-10 python archive;</span>
+<span class="c1"># `knit fetch --name cifar -- cifar --uncompress` downloads and unpacks it into</span>
+<span class="c1"># resources/cifar/ once, then records the URL for provenance. The train job</span>
+<span class="c1"># reads the staged directory back through knit_resource_path.</span>
+<span class="nd">@resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
+<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input. @with_url makes `cifar` a</span>
+<span class="c1"># downloadable resource whose default URL is the CIFAR-10 python archive;</span>
+<span class="c1"># `knit fetch --name cifar -- cifar --uncompress` downloads and unpacks it into</span>
+<span class="c1"># resources/cifar/ once, then records the URL for provenance. The train job</span>
+<span class="c1"># reads the staged directory back through knit_resource_path.</span>
+<span class="nb">knit_register_resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
+<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Probably due to CIFAR-10’s popularity, download is usually slow from its
+source website.</p>
+</div>
+<p>Finally the <code class="docutils literal notranslate"><span class="pre">train</span></code> job. It depends on the setup (so <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span></code> is on
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code>) and the resource (so the dataset is staged), runs <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span> <span class="pre">train</span></code>,
+parses the <code class="docutils literal notranslate"><span class="pre">RESULT</span> <span class="pre">val_accuracy=</span></code> line, and records the number as a declared
+<strong>output</strong> — the column every later step reads as the objective:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job that trains one network and records its validation accuracy. It</span>
+<span class="c1"># declares the cnnenv setup (so cifar-cnn is on PATH) and the cifar resource (so</span>
+<span class="c1"># the dataset is staged). Its body runs `cifar-cnn train`, reads the</span>
+<span class="c1"># machine-readable "RESULT val_accuracy=..." line the program prints, and records</span>
+<span class="c1"># it with knit_output --- that recorded column is the objective later steps rank</span>
+<span class="c1"># and optimize.</span>
+<span class="c1">#</span>
+<span class="c1"># Each tunable parameter also carries a --domain: its search space, a range</span>
+<span class="c1"># [lo..hi] or a set {a,b,c}. The job runs fine without mentioning domains (every</span>
+<span class="c1"># parameter has a default); the domains come into play in Step 2, when we search.</span>
+<span class="c1"># There is deliberately no @with_table here: @job already declares the job's own</span>
+<span class="c1"># table, which is where the objective is read; a bare @with_table would split</span>
+<span class="c1"># recording from that table.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span><span class="s2">"Train the CNN and record its validation accuracy."</span>
+<span class="nd">@with_setup</span><span class="w">    </span><span class="s2">"cnnenv"</span>
+<span class="nd">@with_resource</span><span class="w"> </span><span class="s2">"data:cifar"</span><span class="w"> </span><span class="s2">"Name of the fetched CIFAR instance."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"dataset:string"</span><span class="w">        </span><span class="s2">"cifar10"</span><span class="w"> </span><span class="s2">"Dataset loader (not searched)."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"num-blocks:integer"</span><span class="w">    </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution blocks."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'[1..5]'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"base-channels:integer"</span><span class="w"> </span><span class="s2">"32"</span><span class="w">      </span><span class="s2">"Channels in the first block."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{16,32,64}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"kernel-size:integer"</span><span class="w">   </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution kernel size."</span><span class="w">     </span>--domain<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"epochs:integer"</span><span class="w">        </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Training epochs (not searched)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"val_accuracy:real"</span><span class="w">     </span><span class="s2">"0"</span><span class="w">       </span><span class="s2">"Final-epoch validation accuracy (%)."</span>
+_train_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>datadir<span class="w"> </span>dataset<span class="w"> </span>out<span class="w"> </span>acc
+<span class="w">    </span><span class="nv">datadir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">dataset</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dataset<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cifar-cnn<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--model<span class="w">         </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/model.pt"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dataset<span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">dataset</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--data<span class="w">          </span><span class="s2">"</span><span class="si">${</span><span class="nv">datadir</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--num-blocks<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>num-blocks<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--base-channels<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>base-channels<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--kernel-size<span class="w">   </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>kernel-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--epochs<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>epochs<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/dev/stderr<span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">acc</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>grep<span class="w"> </span>-oE<span class="w"> </span><span class="s1">'RESULT val_accuracy=[0-9.]+'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="o">=</span><span class="w"> </span>-f2<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"val_accuracy"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">acc</span><span class="k">:-</span><span class="nv">0</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job that trains one network and records its validation accuracy. It</span>
+<span class="c1"># declares the cnnenv setup (so cifar-cnn is on PATH) and the cifar resource (so</span>
+<span class="c1"># the dataset is staged). Its body runs `cifar-cnn train`, reads the</span>
+<span class="c1"># machine-readable "RESULT val_accuracy=..." line the program prints, and records</span>
+<span class="c1"># it with knit_output --- that recorded column is the objective later steps rank</span>
+<span class="c1"># and optimize.</span>
+<span class="c1">#</span>
+<span class="c1"># Each tunable parameter also carries a --domain: its search space, a range</span>
+<span class="c1"># [lo..hi] or a set {a,b,c}. The job runs fine without mentioning domains (every</span>
+<span class="c1"># parameter has a default); the domains come into play in Step 2, when we search.</span>
+<span class="c1"># There is deliberately no @with_table here: @job already declares the job's own</span>
+<span class="c1"># table, which is where the objective is read; a bare @with_table would split</span>
+<span class="c1"># recording from that table.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span>_train_job<span class="w"> </span><span class="s2">"Train the CNN and record its validation accuracy."</span>
+<span class="nb">knit_with_setup</span><span class="w">    </span><span class="s2">"cnnenv"</span>
+<span class="nb">knit_with_resource</span><span class="w"> </span><span class="s2">"data:cifar"</span><span class="w"> </span><span class="s2">"Name of the fetched CIFAR instance."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"dataset:string"</span><span class="w">        </span><span class="s2">"cifar10"</span><span class="w"> </span><span class="s2">"Dataset loader (not searched)."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"num-blocks:integer"</span><span class="w">    </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution blocks."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'[1..5]'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"base-channels:integer"</span><span class="w"> </span><span class="s2">"32"</span><span class="w">      </span><span class="s2">"Channels in the first block."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{16,32,64}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"kernel-size:integer"</span><span class="w">   </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution kernel size."</span><span class="w">     </span>--domain<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"epochs:integer"</span><span class="w">        </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Training epochs (not searched)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"val_accuracy:real"</span><span class="w">     </span><span class="s2">"0"</span><span class="w">       </span><span class="s2">"Final-epoch validation accuracy (%)."</span>
+_train_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>datadir<span class="w"> </span>dataset<span class="w"> </span>out<span class="w"> </span>acc
+<span class="w">    </span><span class="nv">datadir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">dataset</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dataset<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cifar-cnn<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--model<span class="w">         </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/model.pt"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dataset<span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">dataset</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--data<span class="w">          </span><span class="s2">"</span><span class="si">${</span><span class="nv">datadir</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--num-blocks<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>num-blocks<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--base-channels<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>base-channels<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--kernel-size<span class="w">   </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>kernel-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--epochs<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>epochs<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/dev/stderr<span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">acc</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>grep<span class="w"> </span>-oE<span class="w"> </span><span class="s1">'RESULT val_accuracy=[0-9.]+'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="o">=</span><span class="w"> </span>-f2<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"val_accuracy"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">acc</span><span class="k">:-</span><span class="nv">0</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bootstrap, fetch the data, build the environment, and train one network:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>fetch<span class="w"> </span>--name<span class="w"> </span>cifar<span class="w"> </span>--<span class="w"> </span>cifar<span class="w"> </span>--uncompress
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>setup<span class="w"> </span>--name<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>cnnenv
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar
+<span class="go">...</span>
+<span class="go">RESULT val_accuracy=63.7</span>
+</pre></div>
+</div>
+<p>That run used every parameter’s default. The recorded <code class="docutils literal notranslate"><span class="pre">val_accuracy</span></code> is the single
+number the rest of this tutorial works to maximize.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may have noticed each parameter already carries a <code class="docutils literal notranslate"><span class="pre">--domain</span></code>
+annotation. The job runs fine without it — every parameter has a default —
+so we glossed over it just now. It is the subject of the next step.</p>
+</div>
+</section>
+<section id="step-2-declare-the-search-space">
+<span id="tutorial-part3-step2"></span><h2>Step 2 — Declare the search space<a class="headerlink" href="#step-2-declare-the-search-space" title="Link to this heading">#</a></h2>
+<p>To <em>search</em> for the best architecture we first have to say what “all
+architectures” means: the set of values each parameter may take. That is the parameter’s
+<strong>domain</strong>, which you may already have spotted on the <code class="docutils literal notranslate"><span class="pre">train</span></code> job above. It is
+declared with <code class="docutils literal notranslate"><span class="pre">--domain</span></code> right where the parameter is declared — a range
+<code class="docutils literal notranslate"><span class="pre">[lo..hi]</span></code> for a count (<code class="docutils literal notranslate"><span class="pre">num-blocks</span></code>), or a set <code class="docutils literal notranslate"><span class="pre">{a,b,c}</span></code> for a discrete
+choice (<code class="docutils literal notranslate"><span class="pre">base-channels</span></code>, <code class="docutils literal notranslate"><span class="pre">kernel-size</span></code>). Quote the descriptor so the shell
+does not brace-expand <code class="docutils literal notranslate"><span class="pre">{...}</span></code>. Parameters that are not searched — <code class="docutils literal notranslate"><span class="pre">dataset</span></code>
+(fixed per run) and <code class="docutils literal notranslate"><span class="pre">epochs</span></code> (kept small so a run finishes fast) — simply
+carry no domain. A domain changes nothing about how the job runs on its own; it
+is a declaration the search tools read.</p>
+<p>Those declarations are the single source of truth for the rest of the part, and
+you can read them back at any time with <code class="docutils literal notranslate"><span class="pre">./exp.sh</span> <span class="pre">describe</span> <span class="pre">--space</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>describe<span class="w"> </span>--only<span class="w"> </span><span class="s1">'submit train'</span><span class="w"> </span>--space
+<span class="go">submit train</span>
+<span class="go">------------</span>
+<span class="go">  [job, user]  Train the CNN and record its validation accuracy.</span>
+
+<span class="go">  Options</span>
+<span class="go">  -------</span>
+<span class="go">    --help                   Print this help message and exit.</span>
+<span class="go">    --data &lt;value&gt;           [required, resource: cifar] Name of the fetched CIFAR instance.</span>
+<span class="go">    --dataset &lt;value&gt;        [default: 'cifar10'] Dataset loader (not searched).</span>
+<span class="go">    --num-blocks &lt;value&gt;     [default: '3', range [1,5]] Convolution blocks.</span>
+<span class="go">    --base-channels &lt;value&gt;  [default: '32', values {16,32,64}] Channels in the first block.</span>
+<span class="go">    --kernel-size &lt;value&gt;    [default: '3', values {3,5}] Convolution kernel size.</span>
+<span class="go">    --epochs &lt;value&gt;         [default: '3'] Training epochs (not searched).</span>
+
+<span class="go">  Outputs</span>
+<span class="go">  -------</span>
+<span class="go">    val-accuracy  [real, default: '0'] Final-epoch validation accuracy (%).</span>
+</pre></div>
+</div>
+<p>With the space declared, the obvious next move is to try more than one point in
+it.</p>
+</section>
+<section id="step-3-a-sweep-by-hand">
+<span id="tutorial-part3-step3"></span><h2>Step 3 — A sweep by hand<a class="headerlink" href="#step-3-a-sweep-by-hand" title="Link to this heading">#</a></h2>
+<p>One training run tells us nothing about which architecture is best; we need to
+compare several. The first thing anyone reaches for is a shell loop over the two
+discrete parameters:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="k">for</span><span class="w"> </span>nb<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="go">    for ks in 3 5; do</span>
+<span class="go">      ./exp.sh submit --setup cnnenv --wait -- train --data cifar \</span>
+<span class="go">          --num-blocks "$nb" --kernel-size "$ks"</span>
+<span class="go">    done</span>
+<span class="go">  done</span>
+</pre></div>
+</div>
+<p>This works — it trains all six architectures and records six <code class="docutils literal notranslate"><span class="pre">val_accuracy</span></code>
+rows — but it is unsatisfying in three ways. The grid is hard-coded in shell,
+not derived from the domains we just declared, so it can silently drift from
+them. The six runs share no common label, so nothing ties them together as one
+experiment. And it is <strong>not resumable</strong>: if the machine reboots after the fourth
+run, the loop starts over from the first. Each of these is a reason to let Knit
+build the grid for us.</p>
+</section>
+<section id="step-4-knit-sweep">
+<span id="tutorial-part3-step4"></span><h2>Step 4 — <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code><a class="headerlink" href="#step-4-knit-sweep" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code> replaces the loop. It runs the existing <code class="docutils literal notranslate"><span class="pre">train</span></code> job once per
+point of a cartesian product, where each swept parameter takes <em>sweep-syntax</em> in
+place of a value: an explicit set <code class="docutils literal notranslate"><span class="pre">'{2,3,4}'</span></code>, or <code class="docutils literal notranslate"><span class="pre">&#64;domain</span></code> to draw from the
+parameter’s declared <code class="docutils literal notranslate"><span class="pre">--domain</span></code>. The <code class="docutils literal notranslate"><span class="pre">--group</span> <span class="pre">grid</span></code> on the <code class="docutils literal notranslate"><span class="pre">submit</span></code> line
+tags every job the sweep produces with one campaign label, so you can later
+drain, inspect, or remove them as a unit. Here is the six-point grid, run two at
+a time:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">2</span><span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--wait<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+</pre></div>
+</div>
+<p>Quote the sets so the shell does not brace-expand them. Preview the expansion
+without running anything by inserting <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> right after <code class="docutils literal notranslate"><span class="pre">sweep</span></code>; it
+prints the reconstructed command lines and exits. Notice that the entire
+<code class="docutils literal notranslate"><span class="pre">submit</span></code> line — <code class="docutils literal notranslate"><span class="pre">--group</span></code>, <code class="docutils literal notranslate"><span class="pre">--setup</span></code>, and all — is replicated verbatim
+for each point, with only the swept parameters changing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--dry-run<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 2 --kernel-size 3</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 2 --kernel-size 5</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 3 --kernel-size 3</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 3 --kernel-size 5</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 4 --kernel-size 3</span>
+<span class="go">submit --group grid --setup cnnenv -- train --data cifar --num-blocks 4 --kernel-size 5</span>
+</pre></div>
+</div>
+<p>This is where the domains of Step 2 pay off. Give a parameter <code class="docutils literal notranslate"><span class="pre">&#64;domain</span></code> instead
+of an explicit set and the sweep draws its values straight from the declared
+domain, so the grid can never drift from it. <code class="docutils literal notranslate"><span class="pre">--num-blocks</span> <span class="pre">&#64;domain</span></code> expands to
+the whole <code class="docutils literal notranslate"><span class="pre">[1..5]</span></code> range:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--dry-run<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="go">submit -- train --data cifar --num-blocks 1 --kernel-size 3</span>
+<span class="go">submit -- train --data cifar --num-blocks 1 --kernel-size 5</span>
+<span class="go">... six more ...</span>
+<span class="go">submit -- train --data cifar --num-blocks 5 --kernel-size 3</span>
+<span class="go">submit -- train --data cifar --num-blocks 5 --kernel-size 5</span>
+</pre></div>
+</div>
+<p>Beyond running the jobs, the sweep records itself: each child job carries a
+provenance edge back to the sweep, so the whole grid can be queried as one unit
+later (we use that in the inspection step). One command, one label, and the grid
+is derived from the declared space — two of the three complaints from Step 3
+are gone. But this ephemeral form still runs the whole sweep inside one
+foreground process. Lose that process — a closed laptop, a dropped connection
+— and the sweep stops where it was. The third complaint, resumability, needs
+one more move.</p>
+</section>
+<section id="step-5-durable-prepare-and-drain">
+<span id="tutorial-part3-step5"></span><h2>Step 5 — Durable prepare and drain<a class="headerlink" href="#step-5-durable-prepare-and-drain" title="Link to this heading">#</a></h2>
+<p>The fix is to separate <em>planning</em> the sweep from <em>running</em> it. Point the sweep at
+<code class="docutils literal notranslate"><span class="pre">prepare</span></code> instead of <code class="docutils literal notranslate"><span class="pre">submit</span></code> and it records one job per grid point in the
+<code class="docutils literal notranslate"><span class="pre">prepared</span></code> state, contacting no scheduler:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+</pre></div>
+</div>
+<p>The whole submission spec — the <code class="docutils literal notranslate"><span class="pre">--group</span></code> label, the setup, and on a cluster
+the nodes, walltime, and queue — is frozen at prepare time, which is why those
+options go on the <code class="docutils literal notranslate"><span class="pre">prepare</span></code> line. The six jobs now sit durably in the database
+as a to-do list. Release them with <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code>, which keeps up to
+<code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> jobs alive at once:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+<p>Resumability is now a property of the queue, not of any one process. If a drain
+is interrupted, the finished jobs stay recorded and the unreleased ones stay
+<code class="docutils literal notranslate"><span class="pre">prepared</span></code>; running <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--group</span> <span class="pre">grid</span></code> again picks up exactly where
+it left off. This prepare-then-drain shape is the backbone of the rest of the
+part.</p>
+</section>
+<section id="step-6-run-the-sweep-inside-a-pilot-job">
+<span id="tutorial-part3-step6"></span><h2>Step 6 — Run the sweep inside a pilot job<a class="headerlink" href="#step-6-run-the-sweep-inside-a-pilot-job" title="Link to this heading">#</a></h2>
+<p>Everything so far runs fine on a laptop. On a cluster, though, <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code>
+releases each <code class="docutils literal notranslate"><span class="pre">train</span></code> job to the <em>batch scheduler</em>, so every job waits in the
+queue on its own — six queue waits for a six-point grid, and far more once the
+search grows. We would rather wait in the queue <strong>once</strong>, get an allocation, and
+run the whole sweep inside it.</p>
+<p>That is what a <strong>pilot job</strong> does. A job marked <code class="docutils literal notranslate"><span class="pre">&#64;with_pilot</span></code> takes one
+allocation and starts the in-allocation <code class="docutils literal notranslate"><span class="pre">knit-pilotd</span></code> daemon over its nodes;
+from inside its body, every <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> — including the ones <code class="docutils literal notranslate"><span class="pre">submit</span>
+<span class="pre">drain</span></code> issues — targets that daemon instead of the batch scheduler, so the
+drained jobs pack onto the pilot’s own nodes with no second queue wait. To fill
+those nodes rather than use them one at a time, the drain runs several jobs at
+once: the body sizes <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> to the allocation’s node count (one
+single-node <code class="docutils literal notranslate"><span class="pre">train</span></code> per node), read with <code class="docutils literal notranslate"><span class="pre">knit_job_hostnames</span></code> from inside the
+pilot:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body every `knit submit` --- here</span>
+<span class="c1"># the ones `submit drain` issues --- targets the in-allocation knit-pilotd daemon</span>
+<span class="c1"># over the pilot's own nodes, not the machine scheduler, so the prepared sweep</span>
+<span class="c1"># packs onto this one allocation instead of queueing job by job. The pilot trains</span>
+<span class="c1"># nothing itself, so it declares no setup; each drained `train` job still carries</span>
+<span class="c1"># the --setup frozen into it at prepare time.</span>
+<span class="c1">#</span>
+<span class="c1"># To actually pack the allocation, the drain runs several jobs at once:</span>
+<span class="c1"># --max-inflight is sized to the pilot's node count (one single-node `train` per</span>
+<span class="c1"># node), read with knit_job_hostnames inside the allocation. A plain</span>
+<span class="c1"># `submit drain` with no --max-inflight releases jobs one at a time, leaving every</span>
+<span class="c1"># node but one idle.</span>
+<span class="c1">#</span>
+<span class="c1"># The body is a pure drainer, written to be re-runnable. Resubmitting the same</span>
+<span class="c1"># pilot after a walltime kill resumes the sweep in three moves:</span>
+<span class="c1">#   1. job reconcile --- a hard kill leaves jobs stuck in `running`/`submitting`;</span>
+<span class="c1">#      reconcile asks the scheduler their true fate and corrects them to `killed`.</span>
+<span class="c1">#   2. job reset --- move those `killed` jobs back to `prepared` so they re-run.</span>
+<span class="c1">#   3. submit drain --- drain the still-`prepared` remainder of the sweep, N jobs</span>
+<span class="c1">#      at a time, where N is the allocation's node count.</span>
+<span class="c1"># On the first run reconcile and reset find nothing and are no-ops; on a resume</span>
+<span class="c1"># they recover the interrupted jobs. The sweep's product is prepared once; this</span>
+<span class="c1"># pilot just chews through it across as many walltime windows as it takes.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"sweep-pilot"</span><span class="w"> </span><span class="s2">"Drain a prepared sweep inside one pilot allocation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_pilot</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"group:string"</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span><span class="s2">"Sweep group to drain."</span>
+_sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>group<span class="w"> </span>nodes
+<span class="w">    </span><span class="nv">group</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>group<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="c1"># One single-node `train` job per node: size the drain's concurrency to the</span>
+<span class="w">    </span><span class="c1"># pilot's allocation so the whole allocation works at once.</span>
+<span class="w">    </span><span class="nv">nodes</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reset<span class="w">     </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>drain<span class="w">  </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body every `knit submit` --- here</span>
+<span class="c1"># the ones `submit drain` issues --- targets the in-allocation knit-pilotd daemon</span>
+<span class="c1"># over the pilot's own nodes, not the machine scheduler, so the prepared sweep</span>
+<span class="c1"># packs onto this one allocation instead of queueing job by job. The pilot trains</span>
+<span class="c1"># nothing itself, so it declares no setup; each drained `train` job still carries</span>
+<span class="c1"># the --setup frozen into it at prepare time.</span>
+<span class="c1">#</span>
+<span class="c1"># To actually pack the allocation, the drain runs several jobs at once:</span>
+<span class="c1"># --max-inflight is sized to the pilot's node count (one single-node `train` per</span>
+<span class="c1"># node), read with knit_job_hostnames inside the allocation. A plain</span>
+<span class="c1"># `submit drain` with no --max-inflight releases jobs one at a time, leaving every</span>
+<span class="c1"># node but one idle.</span>
+<span class="c1">#</span>
+<span class="c1"># The body is a pure drainer, written to be re-runnable. Resubmitting the same</span>
+<span class="c1"># pilot after a walltime kill resumes the sweep in three moves:</span>
+<span class="c1">#   1. job reconcile --- a hard kill leaves jobs stuck in `running`/`submitting`;</span>
+<span class="c1">#      reconcile asks the scheduler their true fate and corrects them to `killed`.</span>
+<span class="c1">#   2. job reset --- move those `killed` jobs back to `prepared` so they re-run.</span>
+<span class="c1">#   3. submit drain --- drain the still-`prepared` remainder of the sweep, N jobs</span>
+<span class="c1">#      at a time, where N is the allocation's node count.</span>
+<span class="c1"># On the first run reconcile and reset find nothing and are no-ops; on a resume</span>
+<span class="c1"># they recover the interrupted jobs. The sweep's product is prepared once; this</span>
+<span class="c1"># pilot just chews through it across as many walltime windows as it takes.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sweep-pilot"</span><span class="w"> </span>_sweep_pilot_job<span class="w"> </span><span class="s2">"Drain a prepared sweep inside one pilot allocation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_pilot</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"group:string"</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span><span class="s2">"Sweep group to drain."</span>
+_sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>group<span class="w"> </span>nodes
+<span class="w">    </span><span class="nv">group</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>group<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="c1"># One single-node `train` job per node: size the drain's concurrency to the</span>
+<span class="w">    </span><span class="c1"># pilot's allocation so the whole allocation works at once.</span>
+<span class="w">    </span><span class="nv">nodes</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reset<span class="w">     </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>drain<span class="w">  </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The pilot trains nothing itself, so it declares <code class="docutils literal notranslate"><span class="pre">&#64;without_setup</span></code>; each
+<code class="docutils literal notranslate"><span class="pre">train</span></code> job it drains still carries the <code class="docutils literal notranslate"><span class="pre">--setup</span> <span class="pre">cnnenv</span></code> frozen into it at
+prepare time. Prepare the sweep as in Step 5, then submit the pilot over as many
+nodes as you want the jobs to pack onto:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>sweep-pilot<span class="w"> </span>--group<span class="w"> </span>grid
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> call is the part that does the draining. The two calls
+before it — <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> and <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> — are there for a different
+reason: surviving a walltime kill, which is the subject of the next step.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default the daemon shares the pilot’s first node with the jobs it drains onto
+the allocation. The daemon is not compute-intensive, so this is usually fine. But
+if there is any chance it perturbs the sub-jobs in a way that matters — most
+often when a sub-job’s own run time is part of what the experiment measures —
+it is better to keep that node for the daemon alone: allocate one extra node and
+declare the pilot with <code class="docutils literal notranslate"><span class="pre">&#64;with_pilot</span> <span class="pre">--exclude-launch-host</span></code>, which drops the
+daemon’s host from the pool so the sub-jobs run on the other nodes only.</p>
+</div>
+</section>
+<section id="step-7-one-pilot-resumed-until-the-sweep-is-done">
+<span id="tutorial-part3-step7"></span><h2>Step 7 — One pilot, resumed until the sweep is done<a class="headerlink" href="#step-7-one-pilot-resumed-until-the-sweep-is-done" title="Link to this heading">#</a></h2>
+<p>A pilot runs under a wall-clock limit. A large sweep may not finish inside one
+allocation’s walltime, and when the limit is reached the scheduler kills the
+pilot with <code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code>. That hard kill gives the compute-side bookkeeping no
+chance to run, so the jobs that happened to be mid-flight are left stranded:
+their rows stay in <code class="docutils literal notranslate"><span class="pre">running</span></code> or <code class="docutils literal notranslate"><span class="pre">submitting</span></code> state forever, even though
+nothing is running them. The still-<code class="docutils literal notranslate"><span class="pre">prepared</span></code> remainder of the sweep is
+untouched, but those stranded jobs would never run again on their own.</p>
+<p>The pilot body handles this in three moves, which is why it is written the way it
+is:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> asks the scheduler the true fate of every <code class="docutils literal notranslate"><span class="pre">running</span></code> /
+<code class="docutils literal notranslate"><span class="pre">submitting</span></code> job in the group and corrects the stranded rows to <code class="docutils literal notranslate"><span class="pre">killed</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> moves those <code class="docutils literal notranslate"><span class="pre">killed</span></code> jobs back to <code class="docutils literal notranslate"><span class="pre">prepared</span></code>, so they are
+eligible to run again.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> drains the whole <code class="docutils literal notranslate"><span class="pre">prepared</span></code> set — the recovered jobs plus
+whatever never got released the first time.</p></li>
+</ol>
+<p>On the pilot’s <strong>first</strong> run there is nothing stranded and nothing killed, so the
+first two calls are no-ops and the third simply drains the sweep. On a <strong>resume</strong>
+they recover the interrupted jobs and the drain carries on. So resuming a sweep
+that ran out of walltime is just resubmitting the very same pilot, with more
+walltime, or as many times as it takes:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--walltime<span class="w"> </span><span class="m">06</span>:00:00<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>sweep-pilot<span class="w"> </span>--group<span class="w"> </span>grid
+</pre></div>
+</div>
+<p>The sweep’s product is <strong>prepared once</strong> and lives durably in the database; the
+pilot is a stateless drainer that re-enters the reconcile → reset → drain cycle
+every time it starts. That division — a durable plan, a disposable runner — is
+the operational payoff of the whole prepare/drain design.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The three calls can be collapsed into one command: <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> takes
+<code class="docutils literal notranslate"><span class="pre">--reconcile</span></code> (do the reconcile pass first) and <code class="docutils literal notranslate"><span class="pre">--retry</span> <span class="pre">killed,failed</span></code>
+(re-queue those states before draining), so the body could read simply
+<code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--group</span> <span class="pre">grid</span> <span class="pre">--reconcile</span> <span class="pre">--retry</span> <span class="pre">killed,failed</span></code>. The
+three-step form is spelled out here because it shows exactly which state each
+call repairs.</p>
+</div>
+</section>
+<section id="step-8-when-the-grid-explodes-bayesian-optimization">
+<span id="tutorial-part3-step8"></span><h2>Step 8 — When the grid explodes: Bayesian optimization<a class="headerlink" href="#step-8-when-the-grid-explodes-bayesian-optimization" title="Link to this heading">#</a></h2>
+<p>The grid in Steps 3–5 swept two parameters. A good architecture depends on more
+than two, though. Suppose we also let the search vary the dropout rate, the
+activation function, whether the network uses residual connections, the learning
+rate, and the batch size — five more parameters on the <code class="docutils literal notranslate"><span class="pre">train</span></code> job:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">               </span><span class="s2">"0.001"</span><span class="w">   </span><span class="s2">"Initial learning rate."</span><span class="w">              </span>--domain<span class="w"> </span><span class="s1">'[0.0001..0.1]'</span><span class="w"> </span>--log
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"batch-size:integer"</span><span class="w">    </span><span class="s2">"128"</span><span class="w">     </span><span class="s2">"Mini-batch size."</span><span class="w">                    </span>--domain<span class="w"> </span><span class="s1">'{32,64,128,256}'</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">               </span><span class="s2">"0.001"</span><span class="w">   </span><span class="s2">"Initial learning rate."</span><span class="w">              </span>--domain<span class="w"> </span><span class="s1">'[0.0001..0.1]'</span><span class="w"> </span>--log
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"batch-size:integer"</span><span class="w">    </span><span class="s2">"128"</span><span class="w">     </span><span class="s2">"Mini-batch size."</span><span class="w">                    </span>--domain<span class="w"> </span><span class="s1">'{32,64,128,256}'</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The search space is now eight-dimensional. Even at a handful of values per
+parameter the cartesian product runs to <strong>thousands</strong> of trainings — days or
+weeks of compute to enumerate exhaustively, most of it spent on architectures
+that were never going to be good. A grid is the wrong tool at this size.</p>
+<p>The right tool is <strong>adaptive</strong> search: instead of enumerating every point, build
+a model of how the parameters affect accuracy, and let it propose the next
+architecture to try based on everything seen so far. That is Bayesian
+optimization, and Knit provides it through the <strong>ax</strong> plugin (<code class="docutils literal notranslate"><span class="pre">knit_import</span>
+<span class="pre">ax</span></code>). It drives the <em>same</em> <code class="docutils literal notranslate"><span class="pre">train</span></code> job — it only changes how the next set of
+parameters is chosen.</p>
+<p>Like the durable sweep, an ax search is prepared, then run. <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">prepare</span></code>
+records a <em>campaign</em>: the objective column and its direction (<code class="docutils literal notranslate"><span class="pre">--objective</span>
+<span class="pre">val_accuracy</span> <span class="pre">--maximize</span></code>), the campaign’s lifetime trial budget
+(<code class="docutils literal notranslate"><span class="pre">--max-trials</span></code>), a quasi-random warm-up (<code class="docutils literal notranslate"><span class="pre">--sobol-trials</span></code>), and an RNG
+<code class="docutils literal notranslate"><span class="pre">--seed</span></code> for reproducibility. The downstream is an ordinary <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">--</span> <span class="pre">train</span></code>
+line, with <code class="docutils literal notranslate"><span class="pre">&#64;domain</span></code> on each parameter ax should search (drawing from the
+<code class="docutils literal notranslate"><span class="pre">--domain</span></code> declared in Step 2) and a fixed value on the rest:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--objective<span class="w"> </span>val_accuracy<span class="w"> </span>--maximize<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--max-trials<span class="w"> </span><span class="m">40</span><span class="w"> </span>--sobol-trials<span class="w"> </span><span class="m">8</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--<span class="w"> </span>submit<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--num-blocks<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--base-channels<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--dropout<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--activation<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--residual<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--lr<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--batch-size<span class="w"> </span><span class="nd">@domain</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span></code> then runs the loop: it asks the model for a set of parameters,
+submits a <code class="docutils literal notranslate"><span class="pre">train</span></code> job with them, reads back <code class="docutils literal notranslate"><span class="pre">val_accuracy</span></code>, tells the model
+the result, and repeats until the budget is spent — converging on a strong
+architecture in dozens of trainings rather than thousands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>tune
+</pre></div>
+</div>
+<p>The optimizer runs in a private uv-backed environment that is built during bootstrap.
+It is resumable: interrupt it and run the same command
+again to continue from the campaign’s persisted state. Two per-call options shape
+a run: <code class="docutils literal notranslate"><span class="pre">--max-inflight</span> <span class="pre">N</span></code> keeps <code class="docutils literal notranslate"><span class="pre">N</span></code> trials in flight at once, and <code class="docutils literal notranslate"><span class="pre">--trials</span>
+<span class="pre">K</span></code> stops after <code class="docutils literal notranslate"><span class="pre">K</span></code> more trials (handy for advancing a long campaign in bounded
+chunks). When a campaign reaches its <code class="docutils literal notranslate"><span class="pre">--max-trials</span></code> budget but you want to keep
+searching, raise the budget with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">extend</span> <span class="pre">--campaign</span> <span class="pre">tune</span> <span class="pre">--max-trials</span> <span class="pre">80</span></code>
+and run <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span></code> again.</p>
+<p>Running it inside a pilot works exactly as in Step 6 — a pilot will call
+<code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span></code> instead of <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code>, so every trial the loop submits
+packs onto the pilot’s allocation:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ax equivalent of the sweep-draining pilot from Step 6. Its body runs</span>
+<span class="c1"># `ax optimize` instead of `submit drain`: the ask -&gt; submit -&gt; observe loop</span>
+<span class="c1"># submits each trial job, and inside the pilot allocation those submits pack onto</span>
+<span class="c1"># the pilot's own nodes. The pilot trains nothing itself (@without_setup); each</span>
+<span class="c1"># trial job carries the --setup frozen into the campaign at prepare time.</span>
+<span class="c1"># Resuming is just resubmitting the same pilot at the same campaign: ax reads its</span>
+<span class="c1"># persisted state and continues from the trials already done.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"tune-pilot"</span><span class="w"> </span><span class="s2">"Optimize an ax campaign inside one pilot allocation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_pilot</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"campaign:string"</span><span class="w"> </span><span class="s2">"tune"</span><span class="w"> </span><span class="s2">"Name of a prepared ax campaign to optimize."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"max-inflight:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Trials to keep in flight on the pilot's nodes."</span>
+_tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--campaign<span class="w">     </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>campaign<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>max-inflight<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ax equivalent of the sweep-draining pilot from Step 6. Its body runs</span>
+<span class="c1"># `ax optimize` instead of `submit drain`: the ask -&gt; submit -&gt; observe loop</span>
+<span class="c1"># submits each trial job, and inside the pilot allocation those submits pack onto</span>
+<span class="c1"># the pilot's own nodes. The pilot trains nothing itself (@without_setup); each</span>
+<span class="c1"># trial job carries the --setup frozen into the campaign at prepare time.</span>
+<span class="c1"># Resuming is just resubmitting the same pilot at the same campaign: ax reads its</span>
+<span class="c1"># persisted state and continues from the trials already done.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"tune-pilot"</span><span class="w"> </span>_tune_pilot_job<span class="w"> </span><span class="s2">"Optimize an ax campaign inside one pilot allocation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_pilot</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"campaign:string"</span><span class="w"> </span><span class="s2">"tune"</span><span class="w"> </span><span class="s2">"Name of a prepared ax campaign to optimize."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"max-inflight:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Trials to keep in flight on the pilot's nodes."</span>
+_tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--campaign<span class="w">     </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>campaign<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>max-inflight<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Prepare the campaign, then submit the pilot over enough nodes for the trials to
+overlap — the pilot’s <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span> <span class="pre">--max-inflight</span></code> (see the job body above)
+decides how many run at once. Resuming a campaign the walltime cut short is,
+again, just resubmitting the same pilot at the same campaign — ax keeps the
+trials already done and continues the rest:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>tune-p<span class="w"> </span>--objective<span class="w"> </span>val_accuracy<span class="w"> </span>--maximize<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--max-trials<span class="w"> </span><span class="m">40</span><span class="w"> </span>--sobol-trials<span class="w"> </span><span class="m">8</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--<span class="w"> </span>submit<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--num-blocks<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--base-channels<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--dropout<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--activation<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--residual<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--lr<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--batch-size<span class="w"> </span><span class="nd">@domain</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>tune-pilot<span class="w"> </span>--campaign<span class="w"> </span>tune-p<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Trial run times can spread widely: a small <code class="docutils literal notranslate"><span class="pre">--batch-size</span></code> does more steps
+per epoch, and a large <code class="docutils literal notranslate"><span class="pre">--base-channels</span></code> or <code class="docutils literal notranslate"><span class="pre">--num-blocks</span></code> makes a heavier
+CNN, so one trial can take many times longer than another. Size the
+<code class="docutils literal notranslate"><span class="pre">--max-trials</span></code> budget and the walltime for the slow end of the range, not the
+average.</p>
+</div>
+</section>
+<section id="step-9-state-the-finding">
+<span id="tutorial-part3-step9"></span><h2>Step 9 — State the finding<a class="headerlink" href="#step-9-state-the-finding" title="Link to this heading">#</a></h2>
+<p>The search is done; now let’s read the answer back. <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">show</span></code> summarizes a campaign
+— its status, how many trials ran, and the best objective value seen:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>show<span class="w"> </span>--campaign<span class="w"> </span>tune
+<span class="go">campaign:   tune</span>
+<span class="go">status:     completed</span>
+<span class="go">objective:  val_accuracy (maximize)</span>
+<span class="go">trials:     40/40</span>
+<span class="go">seed:       1</span>
+<span class="go">best:       78.4</span>
+<span class="go">opt-id:     tune</span>
+<span class="go">command:    submit --setup cnnenv -- train --data cifar --num-blocks @domain ...</span>
+</pre></div>
+</div>
+<p>That gives the best <em>score</em>, but we asked a question about an <em>architecture</em>.
+Every <code class="docutils literal notranslate"><span class="pre">train</span></code> run recorded its parameters and accuracy in the <code class="docutils literal notranslate"><span class="pre">train</span></code> table
+(as in Part I), so a one-line query returns the winning configuration — the best
+of everything we tried, grid and campaign alike:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--format<span class="w"> </span>column<span class="w"> </span>--header<span class="w"> </span>--exec<span class="w"> </span><span class="s2">"</span>
+<span class="go">    SELECT num_blocks, base_channels, kernel_size, activation, residual,</span>
+<span class="go">           round(lr, 4) AS lr, batch_size, val_accuracy</span>
+<span class="go">    FROM train ORDER BY val_accuracy DESC LIMIT 1"</span>
+<span class="go">num_blocks  base_channels  kernel_size  activation  residual  lr      batch_size  val_accuracy</span>
+<span class="go">----------  -------------  -----------  ----------  --------  ------  ----------  ------------</span>
+<span class="go">4           64             3            gelu        true      0.0123  128         78.4</span>
+</pre></div>
+</div>
+<p>We can now answer the question this part opened with, in one plain sentence: <em>on
+CIFAR-10, the best architecture we found is a four-block CNN with 64 base
+channels, 3×3 kernels, GELU activations and residual connections, trained at a
+learning rate near 0.012 — it reaches 78.4% validation accuracy.</em> Record the
+finding alongside the runs so it travels with the experiment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>metadata<span class="w"> </span>store<span class="w"> </span>--key<span class="w"> </span>best-architecture<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--value<span class="w"> </span><span class="s2">"4 blocks, 64 channels, k3, gelu, residual, lr~0.012 -&gt; 78.4% val acc (campaign tune)"</span>
+</pre></div>
+</div>
+<p>That is where Part III ends: a finding, stated in English and backed by every
+recorded run that led to it.</p>
+</section>
+<section id="the-complete-experiment-part-iii">
+<h2>The complete experiment (Part III)<a class="headerlink" href="#the-complete-experiment-part-iii" title="Link to this heading">#</a></h2>
+<p>Here is the whole experiment in one file — the setup, the resource, the
+eight-parameter <code class="docutils literal notranslate"><span class="pre">train</span></code> job, and the two pilots (<code class="docutils literal notranslate"><span class="pre">sweep-pilot</span></code> for the grid,
+<code class="docutils literal notranslate"><span class="pre">tune-pilot</span></code> for the campaign). Save it as <code class="docutils literal notranslate"><span class="pre">exp.sh</span></code> next to a copy of
+<code class="docutils literal notranslate"><span class="pre">knit.sh</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># doc-check: source-only</span>
+<span class="c1">#</span>
+<span class="c1"># The complete Part III experiment in one file: a uv-backed setup that installs</span>
+<span class="c1"># the cifar-cnn classifier, a cifar resource, the train job with its full</span>
+<span class="c1"># eight-parameter search space, and the two pilot jobs --- sweep-pilot (drains a</span>
+<span class="c1"># prepared grid, resumable) and tune-pilot (runs an ax campaign). This is the</span>
+<span class="c1"># final state of the experiment built up over Steps 1--8.</span>
+<span class="c1">#</span>
+<span class="c1"># Source-only: training needs uv, the dataset, and real compute, pilots need a</span>
+<span class="c1"># scheduler, and "ax optimize" drives a real Ax environment, none of which run in</span>
+<span class="c1"># plain CI, so check-docs only syntax-checks this file. Behavior was validated</span>
+<span class="c1"># end to end during development; the ax loop's convergence is covered live by the</span>
+<span class="c1"># 40_ax_optimize integration test.</span>
+
+<span class="nb">source</span><span class="w"> </span>knit.sh
+
+<span class="c1"># uv and ax ship as plugins. Importing uv adds the uv environment manager the</span>
+<span class="c1"># setup uses; importing ax adds the `ax` optimizer commands (ax imports uv too).</span>
+<span class="nb">knit_import</span><span class="w"> </span>uv
+<span class="nb">knit_import</span><span class="w"> </span>ax
+
+<span class="nb">knit_set_program_description</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"Tune a CNN image classifier on CIFAR-10 with a sweep and Bayesian optimization."</span>
+
+<span class="c1"># --- Setup ------------------------------------------------------------------</span>
+<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@empty</span>
+<span class="nd">@done</span>
+
+<span class="c1"># --- Resource ---------------------------------------------------------------</span>
+<span class="c1"># The CIFAR-10 dataset, downloaded and unpacked by `knit fetch`.</span>
+<span class="nd">@resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
+<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nd">@done</span>
+
+<span class="c1"># --- Job: train -------------------------------------------------------------</span>
+<span class="c1"># Trains one architecture and records its validation accuracy. Every searchable</span>
+<span class="c1"># parameter carries a --domain; dataset and epochs are fixed.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span><span class="s2">"Train the CNN and record its validation accuracy."</span>
+<span class="nd">@with_setup</span><span class="w">    </span><span class="s2">"cnnenv"</span>
+<span class="nd">@with_resource</span><span class="w"> </span><span class="s2">"data:cifar"</span><span class="w"> </span><span class="s2">"Name of the fetched CIFAR instance."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"dataset:string"</span><span class="w">        </span><span class="s2">"cifar10"</span><span class="w"> </span><span class="s2">"Dataset loader (not searched)."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"num-blocks:integer"</span><span class="w">    </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution blocks."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'[1..5]'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"base-channels:integer"</span><span class="w"> </span><span class="s2">"32"</span><span class="w">      </span><span class="s2">"Channels in the first block."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{16,32,64}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"kernel-size:integer"</span><span class="w">   </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution kernel size."</span><span class="w">     </span>--domain<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">               </span><span class="s2">"0.001"</span><span class="w">   </span><span class="s2">"Initial learning rate."</span><span class="w">              </span>--domain<span class="w"> </span><span class="s1">'[0.0001..0.1]'</span><span class="w"> </span>--log
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"batch-size:integer"</span><span class="w">    </span><span class="s2">"128"</span><span class="w">     </span><span class="s2">"Mini-batch size."</span><span class="w">                    </span>--domain<span class="w"> </span><span class="s1">'{32,64,128,256}'</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"epochs:integer"</span><span class="w">        </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Training epochs (not searched)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"val_accuracy:real"</span><span class="w">     </span><span class="s2">"0"</span><span class="w">       </span><span class="s2">"Final-epoch validation accuracy (%)."</span>
+_train_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>datadir<span class="w"> </span>dataset<span class="w"> </span>residual<span class="w"> </span>out<span class="w"> </span>acc
+<span class="w">    </span><span class="nv">datadir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">dataset</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dataset<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">resflag</span><span class="o">=()</span>
+<span class="w">    </span><span class="nv">residual</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>residual<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">residual</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">resflag</span><span class="o">=(</span>--residual<span class="o">)</span>
+
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cifar-cnn<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--model<span class="w">         </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/model.pt"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dataset<span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">dataset</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--data<span class="w">          </span><span class="s2">"</span><span class="si">${</span><span class="nv">datadir</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--num-blocks<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>num-blocks<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--base-channels<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>base-channels<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--kernel-size<span class="w">   </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>kernel-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dropout<span class="w">       </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dropout<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--activation<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>activation<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">resflag</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--lr<span class="w">            </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>lr<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--batch-size<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>batch-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--epochs<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>epochs<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/dev/stderr<span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">acc</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>grep<span class="w"> </span>-oE<span class="w"> </span><span class="s1">'RESULT val_accuracy=[0-9.]+'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="o">=</span><span class="w"> </span>-f2<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"val_accuracy"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">acc</span><span class="k">:-</span><span class="nv">0</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+
+<span class="c1"># --- Job: sweep-pilot -------------------------------------------------------</span>
+<span class="c1"># Drains a prepared sweep inside one allocation, resuming across walltime</span>
+<span class="c1"># windows: job reconcile -&gt; job reset -&gt; submit drain. The drain's --max-inflight</span>
+<span class="c1"># is sized to the pilot's node count (one single-node `train` per node) so the</span>
+<span class="c1"># whole allocation works at once instead of one job at a time.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"sweep-pilot"</span><span class="w"> </span><span class="s2">"Drain a prepared sweep inside one pilot allocation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_pilot</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"group:string"</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span><span class="s2">"Sweep group to drain."</span>
+_sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>group<span class="w"> </span>nodes
+<span class="w">    </span><span class="nv">group</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>group<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">nodes</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reset<span class="w">     </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>drain<span class="w">  </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+
+<span class="c1"># --- Job: tune-pilot --------------------------------------------------------</span>
+<span class="c1"># Runs an ax campaign inside one allocation; resuming is resubmitting at the</span>
+<span class="c1"># same campaign.</span>
+<span class="nd">@job</span><span class="w"> </span><span class="s2">"tune-pilot"</span><span class="w"> </span><span class="s2">"Optimize an ax campaign inside one pilot allocation."</span>
+<span class="nd">@without_setup</span>
+<span class="nd">@with_pilot</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"campaign:string"</span><span class="w"> </span><span class="s2">"tune"</span><span class="w"> </span><span class="s2">"Name of a prepared ax campaign to optimize."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"max-inflight:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Trials to keep in flight on the pilot's nodes."</span>
+_tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--campaign<span class="w">     </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>campaign<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>max-inflight<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+
+<span class="nb">knit</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># doc-check: source-only</span>
+<span class="c1">#</span>
+<span class="c1"># The complete Part III experiment in one file: a uv-backed setup that installs</span>
+<span class="c1"># the cifar-cnn classifier, a cifar resource, the train job with its full</span>
+<span class="c1"># eight-parameter search space, and the two pilot jobs --- sweep-pilot (drains a</span>
+<span class="c1"># prepared grid, resumable) and tune-pilot (runs an ax campaign). This is the</span>
+<span class="c1"># final state of the experiment built up over Steps 1--8.</span>
+<span class="c1">#</span>
+<span class="c1"># Source-only: training needs uv, the dataset, and real compute, pilots need a</span>
+<span class="c1"># scheduler, and "ax optimize" drives a real Ax environment, none of which run in</span>
+<span class="c1"># plain CI, so check-docs only syntax-checks this file. Behavior was validated</span>
+<span class="c1"># end to end during development; the ax loop's convergence is covered live by the</span>
+<span class="c1"># 40_ax_optimize integration test.</span>
+
+<span class="nb">source</span><span class="w"> </span>knit.sh
+
+<span class="c1"># uv and ax ship as plugins. Importing uv adds the uv environment manager the</span>
+<span class="c1"># setup uses; importing ax adds the `ax` optimizer commands (ax imports uv too).</span>
+<span class="nb">knit_import</span><span class="w"> </span>uv
+<span class="nb">knit_import</span><span class="w"> </span>ax
+
+<span class="nb">knit_set_program_description</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"Tune a CNN image classifier on CIFAR-10 with a sweep and Bayesian optimization."</span>
+
+<span class="c1"># --- Setup ------------------------------------------------------------------</span>
+<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nb">knit_done</span>
+
+<span class="c1"># --- Resource ---------------------------------------------------------------</span>
+<span class="c1"># The CIFAR-10 dataset, downloaded and unpacked by `knit fetch`.</span>
+<span class="nb">knit_register_resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
+<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nb">knit_done</span>
+
+<span class="c1"># --- Job: train -------------------------------------------------------------</span>
+<span class="c1"># Trains one architecture and records its validation accuracy. Every searchable</span>
+<span class="c1"># parameter carries a --domain; dataset and epochs are fixed.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"train"</span><span class="w"> </span>_train_job<span class="w"> </span><span class="s2">"Train the CNN and record its validation accuracy."</span>
+<span class="nb">knit_with_setup</span><span class="w">    </span><span class="s2">"cnnenv"</span>
+<span class="nb">knit_with_resource</span><span class="w"> </span><span class="s2">"data:cifar"</span><span class="w"> </span><span class="s2">"Name of the fetched CIFAR instance."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"dataset:string"</span><span class="w">        </span><span class="s2">"cifar10"</span><span class="w"> </span><span class="s2">"Dataset loader (not searched)."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"num-blocks:integer"</span><span class="w">    </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution blocks."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'[1..5]'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"base-channels:integer"</span><span class="w"> </span><span class="s2">"32"</span><span class="w">      </span><span class="s2">"Channels in the first block."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{16,32,64}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"kernel-size:integer"</span><span class="w">   </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Convolution kernel size."</span><span class="w">     </span>--domain<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"lr:real"</span><span class="w">               </span><span class="s2">"0.001"</span><span class="w">   </span><span class="s2">"Initial learning rate."</span><span class="w">              </span>--domain<span class="w"> </span><span class="s1">'[0.0001..0.1]'</span><span class="w"> </span>--log
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"batch-size:integer"</span><span class="w">    </span><span class="s2">"128"</span><span class="w">     </span><span class="s2">"Mini-batch size."</span><span class="w">                    </span>--domain<span class="w"> </span><span class="s1">'{32,64,128,256}'</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"epochs:integer"</span><span class="w">        </span><span class="s2">"3"</span><span class="w">       </span><span class="s2">"Training epochs (not searched)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"val_accuracy:real"</span><span class="w">     </span><span class="s2">"0"</span><span class="w">       </span><span class="s2">"Final-epoch validation accuracy (%)."</span>
+_train_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>datadir<span class="w"> </span>dataset<span class="w"> </span>residual<span class="w"> </span>out<span class="w"> </span>acc
+<span class="w">    </span><span class="nv">datadir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">dataset</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dataset<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>-a<span class="w"> </span><span class="nv">resflag</span><span class="o">=()</span>
+<span class="w">    </span><span class="nv">residual</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>residual<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">residual</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"true"</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">resflag</span><span class="o">=(</span>--residual<span class="o">)</span>
+
+<span class="w">    </span><span class="nv">out</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>cifar-cnn<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--model<span class="w">         </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_JOB_PREFIX</span><span class="p">%/</span><span class="si">}</span><span class="s2">/model.pt"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dataset<span class="w">       </span><span class="s2">"</span><span class="si">${</span><span class="nv">dataset</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--data<span class="w">          </span><span class="s2">"</span><span class="si">${</span><span class="nv">datadir</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--num-blocks<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>num-blocks<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--base-channels<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>base-channels<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--kernel-size<span class="w">   </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>kernel-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--dropout<span class="w">       </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>dropout<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--activation<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>activation<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">resflag</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--lr<span class="w">            </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>lr<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--batch-size<span class="w">    </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>batch-size<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--epochs<span class="w">        </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>epochs<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>/dev/stderr<span class="k">)</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="nv">acc</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>grep<span class="w"> </span>-oE<span class="w"> </span><span class="s1">'RESULT val_accuracy=[0-9.]+'</span><span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="s2">"</span><span class="si">${</span><span class="nv">out</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="o">=</span><span class="w"> </span>-f2<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit_output</span><span class="w"> </span><span class="s2">"val_accuracy"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">acc</span><span class="k">:-</span><span class="nv">0</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+
+<span class="c1"># --- Job: sweep-pilot -------------------------------------------------------</span>
+<span class="c1"># Drains a prepared sweep inside one allocation, resuming across walltime</span>
+<span class="c1"># windows: job reconcile -&gt; job reset -&gt; submit drain. The drain's --max-inflight</span>
+<span class="c1"># is sized to the pilot's node count (one single-node `train` per node) so the</span>
+<span class="c1"># whole allocation works at once instead of one job at a time.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sweep-pilot"</span><span class="w"> </span>_sweep_pilot_job<span class="w"> </span><span class="s2">"Drain a prepared sweep inside one pilot allocation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_pilot</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"group:string"</span><span class="w"> </span><span class="s2">"grid"</span><span class="w"> </span><span class="s2">"Sweep group to drain."</span>
+_sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>group<span class="w"> </span>nodes
+<span class="w">    </span><span class="nv">group</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>group<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nv">nodes</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_job_hostnames</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reconcile<span class="w"> </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>job<span class="w"> </span>reset<span class="w">     </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>submit<span class="w"> </span>drain<span class="w">  </span>--group<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">group</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">nodes</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+
+<span class="c1"># --- Job: tune-pilot --------------------------------------------------------</span>
+<span class="c1"># Runs an ax campaign inside one allocation; resuming is resubmitting at the</span>
+<span class="c1"># same campaign.</span>
+<span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"tune-pilot"</span><span class="w"> </span>_tune_pilot_job<span class="w"> </span><span class="s2">"Optimize an ax campaign inside one pilot allocation."</span>
+<span class="nb">knit_without_setup</span>
+<span class="nb">knit_with_pilot</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"campaign:string"</span><span class="w"> </span><span class="s2">"tune"</span><span class="w"> </span><span class="s2">"Name of a prepared ax campaign to optimize."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"max-inflight:integer"</span><span class="w"> </span><span class="s2">"4"</span><span class="w"> </span><span class="s2">"Trials to keep in flight on the pilot's nodes."</span>
+_tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--campaign<span class="w">     </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>campaign<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>--max-inflight<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>max-inflight<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+
+<span class="nb">knit</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From a cluster login node, the full arc is: provision, fetch the data, build the
+environment, prepare and drain a grid inside a pilot, then prepare and run a
+Bayesian campaign inside a pilot, and read the result:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w">  </span><span class="c1"># on a cluster, add --profile &lt;machine&gt;</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>fetch<span class="w"> </span>--name<span class="w"> </span>cifar<span class="w"> </span>--<span class="w"> </span>cifar<span class="w"> </span>--uncompress
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>setup<span class="w"> </span>--name<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>cnnenv
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>sweep-pilot<span class="w"> </span>--group<span class="w"> </span>grid
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--objective<span class="w"> </span>val_accuracy<span class="w"> </span>--maximize<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--max-trials<span class="w"> </span><span class="m">40</span><span class="w"> </span>--sobol-trials<span class="w"> </span><span class="m">8</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--<span class="w"> </span>submit<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--num-blocks<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--base-channels<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--dropout<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--activation<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--residual<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--lr<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--batch-size<span class="w"> </span><span class="nd">@domain</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>tune-pilot<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>show<span class="w"> </span>--campaign<span class="w"> </span>tune
+</pre></div>
+</div>
+<p>On a laptop it is the same script with no pilots: drain the grid directly with
+<code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--group</span> <span class="pre">grid</span></code> and run the campaign with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span> <span class="pre">--campaign</span>
+<span class="pre">tune</span></code>. The experiment script never changes.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="part2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Part II — Refining the experiment</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../stitch/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stitch Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-program">The program</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-one-training-run">Step 1 — One training run</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-declare-the-search-space">Step 2 — Declare the search space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-a-sweep-by-hand">Step 3 — A sweep by hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-knit-sweep">Step 4 — <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-durable-prepare-and-drain">Step 5 — Durable prepare and drain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-run-the-sweep-inside-a-pilot-job">Step 6 — Run the sweep inside a pilot job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-one-pilot-resumed-until-the-sweep-is-done">Step 7 — One pilot, resumed until the sweep is done</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-when-the-grid-explodes-bayesian-optimization">Step 8 — When the grid explodes: Bayesian optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-state-the-finding">Step 9 — State the finding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complete-experiment-part-iii">The complete experiment (Part III)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthieu Dorier
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, UChicago Argonne, LLC.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -218,6 +218,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorial/part1.html">Part I — The guided tour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorial/part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/part3.html">Part III — Searching for the best architecture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Stitch Guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
@@ -550,7 +551,7 @@ through. The downstream command carries an ordinary job here:</p>
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
 Shorthand</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
-<span class="c1"># can draw its values from the declaration (--fill sweep / --n @sweep) as well as</span>
+<span class="c1"># can draw its values from the declaration (--fill domain / --n @domain) as well as</span>
 <span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>
 <span class="nd">@job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
 <span class="nd">@without_setup</span>
@@ -571,7 +572,7 @@ _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
 Long form</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
-<span class="c1"># can draw its values from the declaration (--fill sweep / --n @sweep) as well as</span>
+<span class="c1"># can draw its values from the declaration (--fill domain / --n @domain) as well as</span>
 <span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>
 <span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span>_sim<span class="w"> </span><span class="s2">"Run one trivial simulation."</span>
 <span class="nb">knit_without_setup</span>
@@ -592,33 +593,37 @@ _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <p><strong>Ephemeral: run the product now.</strong> Write the real invocation after <code class="docutils literal notranslate"><span class="pre">--</span></code> and
 mark the swept values. The dispatcher you use (<code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">run</span></code>, or a plain
 command) selects what each point does; the sweep launches them in-process,
-keeping at most <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> in flight (default 1):</p>
+keeping at most <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> in flight (default 1):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>a<span class="w"> </span>job<span class="w"> </span>per<span class="w"> </span>point<span class="w"> </span><span class="o">(</span><span class="m">3</span><span class="w"> </span>submissions<span class="o">)</span>,<span class="w"> </span>grouped<span class="w"> </span>as<span class="w"> </span>a<span class="w"> </span>campaign:
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="o">{</span><span class="m">1</span>,2<span class="o">}</span><span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--nodes<span class="w"> </span><span class="o">{</span><span class="m">1</span>,2<span class="o">}</span><span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
 <span class="gp"># </span>an<span class="w"> </span>app<span class="w"> </span>per<span class="w"> </span>point,<span class="w"> </span>inside<span class="w"> </span>one<span class="w"> </span>allocation:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>run<span class="w"> </span>--procs<span class="w"> </span><span class="o">{</span><span class="m">1</span>,2,4<span class="o">}</span><span class="w"> </span>--<span class="w"> </span>stencil<span class="w"> </span>--tile<span class="w"> </span><span class="s1">'{64,128}'</span>
 <span class="gp"># </span>a<span class="w"> </span>plain<span class="w"> </span><span class="nb">command</span><span class="w"> </span>per<span class="w"> </span>point:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">--group</span></code> is spliced into each <code class="docutils literal notranslate"><span class="pre">submit</span></code> line, so the campaign’s jobs share a
-<code class="docutils literal notranslate"><span class="pre">jobs.group</span></code>; every point also records an automatic <code class="docutils literal notranslate"><span class="pre">call</span></code> edge back to the
-sweep’s row, so a query can walk a campaign to its children. <code class="docutils literal notranslate"><span class="pre">--on-failure</span>
-<span class="pre">stop</span></code> aborts on the first failed child (<code class="docutils literal notranslate"><span class="pre">continue</span></code>, the default, runs the
-whole product). <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> prints each reconstructed command line and exits
-without recording or running — the quickest way to see exactly what a sweep
-would do.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">--group</span></code> you put on the <code class="docutils literal notranslate"><span class="pre">submit</span></code> line tags the jobs the sweep produces, so
+the campaign’s jobs share a <code class="docutils literal notranslate"><span class="pre">jobs.group</span></code> you can later drain, inspect, or
+remove as a unit. The sweep does <strong>not</strong> forward its own <code class="docutils literal notranslate"><span class="pre">--group</span></code> onto that
+line: a <code class="docutils literal notranslate"><span class="pre">--group</span></code> on <code class="docutils literal notranslate"><span class="pre">sweep</span></code> labels only the sweeps (parent) row, and the two
+are kept independent so you can gather jobs from several submits — by hand or
+under one or more sweeps — under one job-level group. Independently of any
+group, every point records an automatic <code class="docutils literal notranslate"><span class="pre">call</span></code> edge back to the sweep’s row, so
+a query can always walk a campaign to its children. <code class="docutils literal notranslate"><span class="pre">--on-failure</span> <span class="pre">stop</span></code> aborts
+on the first failed child (<code class="docutils literal notranslate"><span class="pre">continue</span></code>, the default, runs the whole product).
+<code class="docutils literal notranslate"><span class="pre">--dry-run</span></code> prints each reconstructed command line and exits without recording
+or running — the quickest way to see exactly what a sweep would do.</p>
 <p><strong>Vary a declared domain.</strong> When a parameter declares a <code class="docutils literal notranslate"><span class="pre">--domain</span></code> (see <em>Declare
 a parameter’s search domain</em>), the sweep can draw its values from the
-declaration instead of the command line: <code class="docutils literal notranslate"><span class="pre">--param</span> <span class="pre">&#64;sweep</span></code> opts one parameter in,
-<code class="docutils literal notranslate"><span class="pre">--fill</span> <span class="pre">sweep</span></code> opts in <em>every</em> unspecified parameter with an enumerable domain,
+declaration instead of the command line: <code class="docutils literal notranslate"><span class="pre">--param</span> <span class="pre">&#64;domain</span></code> opts one parameter in,
+<code class="docutils literal notranslate"><span class="pre">--fill</span> <span class="pre">domain</span></code> opts in <em>every</em> unspecified parameter with an enumerable domain,
 and <code class="docutils literal notranslate"><span class="pre">--param</span> <span class="pre">&#64;default</span></code> opts one back out. A real-interval range is bounds-only
 and cannot be enumerated, so sweeping one is a hard error with a fix message.
 This is the one point where the sweep introspects the target, through the same
 accessors a Bayesian-optimization proposer uses (<code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code> /
 <code class="docutils literal notranslate"><span class="pre">knit_command_parameters</span></code>):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--fill<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w">          </span><span class="c1"># sim --n over its {1,2,4} domain</span>
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="nd">@sweep</span><span class="w">             </span><span class="c1"># same, opting --n in explicitly</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--fill<span class="w"> </span>domain<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w">          </span><span class="c1"># sim --n over its {1,2,4} domain</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="nd">@domain</span><span class="w">            </span><span class="c1"># same, opting --n in explicitly</span>
 </pre></div>
 </div>
 <p><strong>Durable: prepare now, drain later (resumable).</strong> Swap <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">submit</span></code> for
@@ -629,8 +634,9 @@ campaign, or whenever you want to resume after an interruption: a drainer that
 dies leaves the un-started points still <code class="docutils literal notranslate"><span class="pre">prepared</span></code>, so re-running drain resumes
 exactly the remainder (see <em>Drain a prepared batch with submit drain</em> and <em>Retry
 failed or killed jobs</em>):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span>.<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once<span class="w"> </span><span class="o">(</span>durable,<span class="w"> </span>grouped<span class="o">)</span>:
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span>.<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once<span class="w"> </span><span class="o">(</span>durable,<span class="w"> </span>grouped<span class="w"> </span>--<span class="w"> </span>--group<span class="w"> </span>on<span class="w"> </span>prepare<span class="w"> </span>labels
+<span class="gp">#    </span>the<span class="w"> </span>prepared<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>so<span class="w"> </span>the<span class="w"> </span>drain<span class="w"> </span>can<span class="w"> </span><span class="k">select</span><span class="w"> </span>them<span class="o">)</span>:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
 <span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>--<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node,<span class="w"> </span>or<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span>pilot<span class="w"> </span>job:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
 </pre></div>
@@ -640,7 +646,7 @@ prepare/drain queue the sweep writes into. Draining inside a <code class="docuti
 job packs the swept jobs onto the pilot’s nodes with no second queue wait; a
 pilot killed at walltime is resumed by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code>
 first corrects the sub-jobs the hard kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code>
-re-queues them. The sweep’s own <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the
+re-queues them. The sweep’s own <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the
 ephemeral forms; durable concurrency, recovery, and failure policy are drain’s.</p>
 </section>
 <section id="optimize-a-job-with-bayesian-search">
@@ -716,28 +722,34 @@ space, and records the campaign without running a trial; <code class="docutils l
 are the same call, so a campaign interrupted at walltime continues from its
 persisted state:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>define<span class="w"> </span>the<span class="w"> </span>campaign<span class="w"> </span><span class="o">(</span>runs<span class="w"> </span>nothing<span class="o">)</span><span class="p">;</span><span class="w"> </span>the<span class="w"> </span>objective<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>declared<span class="w"> </span>output,
-<span class="gp"># </span>the<span class="w"> </span>varying<span class="w"> </span>knob<span class="w"> </span>is<span class="w"> </span>drawn<span class="w"> </span>from<span class="w"> </span>its<span class="w"> </span>domain<span class="w"> </span>with<span class="w"> </span>@sweep:
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--objective<span class="w"> </span>score<span class="w"> </span>--maximize<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>--trials<span class="w"> </span><span class="m">20</span><span class="w"> </span>--parallel<span class="w"> </span><span class="m">4</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>quad<span class="w"> </span>--x<span class="w"> </span><span class="nd">@sweep</span>
-<span class="gp"># </span>drive<span class="w"> </span>the<span class="w"> </span>loop<span class="w"> </span><span class="o">(</span>re-run<span class="w"> </span>to<span class="w"> </span>resume<span class="w"> </span>after<span class="w"> </span>an<span class="w"> </span>interruption<span class="o">)</span>:
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>tune
+<span class="gp"># </span>the<span class="w"> </span>varying<span class="w"> </span>parameter<span class="w"> </span>is<span class="w"> </span>drawn<span class="w"> </span>from<span class="w"> </span>its<span class="w"> </span>domain<span class="w"> </span>with<span class="w"> </span>@domain.<span class="w"> </span>--max-trials
+<span class="gp"># </span>is<span class="w"> </span>the<span class="w"> </span>campaign<span class="s1">'s lifetime budget:</span>
+<span class="gp">$ </span><span class="s1">./exp.sh ax prepare --campaign tune --objective score --maximize \</span>
+<span class="s1">      --max-trials 20 --seed 1 -- submit -- quad --x @domain</span>
+<span class="gp"># </span><span class="s1">drive the loop (re-run to resume); --max-inflight sets this call'</span>s<span class="w"> </span>concurrency:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>list<span class="w">                  </span><span class="c1"># one line per campaign: status, trials, best</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>show<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w">  </span><span class="c1"># one campaign's detail and current optimum</span>
+<span class="gp"># </span>reached<span class="w"> </span>the<span class="w"> </span>budget<span class="w"> </span>but<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>keep<span class="w"> </span>searching?<span class="w"> </span>raise<span class="w"> </span>it,<span class="w"> </span><span class="k">then</span><span class="w"> </span>optimize<span class="w"> </span>again:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>extend<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--max-trials<span class="w"> </span><span class="m">40</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>tune
 </pre></div>
 </div>
 <p>Each trial is a real <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">submit</span></code> into the campaign’s group, so the trials
-are ordinary tracked jobs: <code class="docutils literal notranslate"><span class="pre">--parallel</span></code> keeps that many in flight, and every
-trial records a <code class="docutils literal notranslate"><span class="pre">call</span></code> edge back to the campaign’s <code class="docutils literal notranslate"><span class="pre">optimizations</span></code> row, so a
-query can walk a campaign to its children. <code class="docutils literal notranslate"><span class="pre">ax</span></code> reads each trial’s objective
-from the declared output column, feeds it to the Ax model, and records the best
-trial on the campaign row and in <code class="docutils literal notranslate"><span class="pre">campaigns/&lt;name&gt;/result.json</span></code>. <code class="docutils literal notranslate"><span class="pre">--minimize</span></code>
-(the default) or <code class="docutils literal notranslate"><span class="pre">--maximize</span></code> sets the sense; <code class="docutils literal notranslate"><span class="pre">--sobol-trials</span></code> sets how many
-quasi-random trials explore before the model engages; <code class="docutils literal notranslate"><span class="pre">--on-failure</span> <span class="pre">penalize</span></code>
-tells the model a fixed penalty for a failed trial instead of dropping it.</p>
+are ordinary tracked jobs: on <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span></code>, <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> keeps that many
+in flight (per call, default 1) and <code class="docutils literal notranslate"><span class="pre">--trials</span> <span class="pre">K</span></code> runs at most K more this call
+(default: run to the campaign’s <code class="docutils literal notranslate"><span class="pre">--max-trials</span></code>); every trial records a <code class="docutils literal notranslate"><span class="pre">call</span></code>
+edge back to the campaign’s <code class="docutils literal notranslate"><span class="pre">optimizations</span></code> row, so a query can walk a campaign
+to its children. <code class="docutils literal notranslate"><span class="pre">ax</span></code> reads each trial’s objective from the declared output
+column, feeds it to the Ax model, and records the best trial on the campaign row
+and in <code class="docutils literal notranslate"><span class="pre">campaigns/&lt;name&gt;/result.json</span></code>. <code class="docutils literal notranslate"><span class="pre">--minimize</span></code> (the default) or
+<code class="docutils literal notranslate"><span class="pre">--maximize</span></code> sets the sense; <code class="docutils literal notranslate"><span class="pre">--sobol-trials</span></code> sets how many quasi-random
+trials explore before the model engages; <code class="docutils literal notranslate"><span class="pre">--on-failure</span> <span class="pre">penalize</span></code> tells the
+model a fixed penalty for a failed trial instead of dropping it.</p>
 <p>The same campaign optimizes an <strong>app</strong> inside one allocation: swap <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">submit</span></code>
 for <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">run</span></code> and give the launch fields, as in <code class="docutils literal notranslate"><span class="pre">--</span> <span class="pre">run</span> <span class="pre">--procs</span> <span class="pre">8</span> <span class="pre">--</span> <span class="pre">bench</span>
-<span class="pre">--msg-size</span> <span class="pre">&#64;sweep</span></code>. App trials share the allocation, so they run sequentially
-(<code class="docutils literal notranslate"><span class="pre">--parallel</span></code> is job-mode only), and the objective is read from the app’s own
+<span class="pre">--msg-size</span> <span class="pre">&#64;domain</span></code>. App trials share the allocation, so they run sequentially
+(<code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> is job-mode only), and the objective is read from the app’s own
 table. Declare a parameter’s domain with <code class="docutils literal notranslate"><span class="pre">--domain</span></code> (see <em>Declare a parameter’s
 search domain</em>); <code class="docutils literal notranslate"><span class="pre">ax</span></code> and <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code> read the very same domains, so a space
 written for one proposer serves the other unchanged.</p>

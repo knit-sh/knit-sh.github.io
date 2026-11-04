@@ -213,6 +213,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/part1.html">Part I — The guided tour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/part3.html">Part III — Searching for the best architecture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="stitch/index.html">Stitch Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -942,6 +943,8 @@
 </li>
       <li><a href="api/private.html#c._knit_job_discover">_knit_job_discover (C function)</a>
 </li>
+      <li><a href="api/private.html#c._knit_job_fatal_record">_knit_job_fatal_record (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_job_follow_file">_knit_job_follow_file (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_job_in_clause">_knit_job_in_clause (C function)</a>
@@ -1074,6 +1077,8 @@
 </li>
       <li><a href="api/private.html#c._knit_name_normalize">_knit_name_normalize (C function)</a>
 </li>
+      <li><a href="api/private.html#c._KNIT_ON_FATAL">_KNIT_ON_FATAL (C var)</a>
+</li>
       <li><a href="api/private.html#c._knit_output_artifact_quantifier">_knit_output_artifact_quantifier (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_output_default">_knit_output_default (C function)</a>
@@ -1094,10 +1099,10 @@
 </li>
       <li><a href="api/private.html#c._KNIT_PARAMETER_SETS">_KNIT_PARAMETER_SETS (C var)</a>
 </li>
-      <li><a href="api/private.html#c._knit_pilot_after_cb">_knit_pilot_after_cb (C function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/private.html#c._knit_pilot_after_cb">_knit_pilot_after_cb (C function)</a>
+</li>
       <li><a href="api/private.html#c._knit_pilot_before_cb">_knit_pilot_before_cb (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_pilot_build_nodelist">_knit_pilot_build_nodelist (C function)</a>
@@ -1119,6 +1124,8 @@
       <li><a href="api/private.html#c._knit_plugin_bootstrap">_knit_plugin_bootstrap (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_PLUGIN_CACHE_ROOT">_KNIT_PLUGIN_CACHE_ROOT (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_plugin_cached_commit">_knit_plugin_cached_commit (C function)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_PLUGIN_CHECKSUM">_KNIT_PLUGIN_CHECKSUM (C var)</a>
 </li>
@@ -1925,6 +1932,8 @@
       <li><a href="api/public.html#c.KNIT_MPI_SIZE">KNIT_MPI_SIZE (C var)</a>
 </li>
       <li><a href="api/public.html#c.knit_no_record_on_failure">knit_no_record_on_failure (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_on_fatal">knit_on_fatal (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_output">knit_output (C function)</a>
 </li>

@@ -194,6 +194,9 @@ Functions
 .. doxygenfunction:: knit_no_record_on_failure
    :project: knit
 
+.. doxygenfunction:: knit_on_fatal
+   :project: knit
+
 .. doxygenfunction:: knit_output
    :project: knit
 

@@ -975,6 +975,9 @@ Variables
 .. doxygenvariable:: _KNIT_IS_BOOTSTRAPPING
    :project: knit
 
+.. doxygenvariable:: _KNIT_ON_FATAL
+   :project: knit
+
 .. doxygenvariable:: _KNIT_SCRIPT_ARGV
    :project: knit
 
@@ -997,6 +1000,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_job_before_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_job_fatal_record
    :project: knit
 
 .. doxygenfunction:: _knit_job_killed_trap
@@ -1369,6 +1375,9 @@ Functions
 ~~~~~~~~~
 
 .. doxygenfunction:: _knit_plugin_bootstrap
+   :project: knit
+
+.. doxygenfunction:: _knit_plugin_cached_commit
    :project: knit
 
 .. doxygenfunction:: _knit_plugin_defer

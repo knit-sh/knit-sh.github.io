@@ -214,6 +214,7 @@
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="part1.html">Part I — The guided tour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html">Part III — Searching for the best architecture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../stitch/index.html">Stitch Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -458,7 +459,7 @@ plain command that tries to run it and turn it, step by step, into a
 Spack-backed, MPI-parallel, fully recorded experiment. Along the way you use
 setups, jobs, apps, and the query and provenance surfaces together on a single
 realistic workload.</p>
-<p>The tutorial comes in two parts:</p>
+<p>The tutorial comes in three parts:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="part1.html"><span class="doc">Part I — The guided tour</span></a> — the essential. It builds the experiment end to end, from a
 plain command to a Spack-backed, MPI-parallel, recorded workload running on a
@@ -466,6 +467,9 @@ supercomputer, introducing exactly one new concept per step.</p></li>
 <li><p><a class="reference internal" href="part2.html"><span class="doc">Part II — Refining the experiment</span></a> — a refinement pass over the <em>same</em> experiment. It follows the
 same setup→run order and, section by section, improves each piece with a Knit
 capability that makes it cleaner, safer, or more reproducible.</p></li>
+<li><p><a class="reference internal" href="part3.html"><span class="doc">Part III — Searching for the best architecture</span></a> — a new experiment built around a <em>search</em>. It tunes a CNN
+image classifier, moving from one training run to a grid sweep to Bayesian
+optimization, and runs the whole campaign inside a resumable pilot job.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
@@ -495,6 +499,20 @@ capability that makes it cleaner, safer, or more reproducible.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="part2.html#step-8-bundle-ship-the-finished-experiment">Step 8 — Bundle: ship the finished experiment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="part2.html#step-9-querying-across-machines">Step 9 — Querying across machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="part2.html#the-complete-experiment-part-ii">The complete experiment (Part II)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="part3.html">Part III — Searching for the best architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#the-program">The program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-1-one-training-run">Step 1 — One training run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-2-declare-the-search-space">Step 2 — Declare the search space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-3-a-sweep-by-hand">Step 3 — A sweep by hand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-4-knit-sweep">Step 4 — <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-5-durable-prepare-and-drain">Step 5 — Durable prepare and drain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-6-run-the-sweep-inside-a-pilot-job">Step 6 — Run the sweep inside a pilot job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-7-one-pilot-resumed-until-the-sweep-is-done">Step 7 — One pilot, resumed until the sweep is done</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-8-when-the-grid-explodes-bayesian-optimization">Step 8 — When the grid explodes: Bayesian optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#step-9-state-the-finding">Step 9 — State the finding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="part3.html#the-complete-experiment-part-iii">The complete experiment (Part III)</a></li>
 </ul>
 </li>
 </ul>

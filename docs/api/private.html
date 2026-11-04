@@ -217,6 +217,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/part1.html">Part I — The guided tour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/part2.html">Part II — Refining the experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/part3.html">Part III — Searching for the best architecture</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../stitch/index.html">Stitch Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -842,6 +843,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_COLORS"><code class="docutils literal notranslate"><span class="pre">_KNIT_COLORS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_IS_BOOTSTRAPPING"><code class="docutils literal notranslate"><span class="pre">_KNIT_IS_BOOTSTRAPPING</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_ON_FATAL"><code class="docutils literal notranslate"><span class="pre">_KNIT_ON_FATAL</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCRIPT_ARGV"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCRIPT_ARGV</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCRIPT_PATH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCRIPT_PATH</span></code></a></li>
 </ul>
@@ -854,6 +856,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_declare_submit_options"><code class="docutils literal notranslate"><span class="pre">_knit_declare_submit_options()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_job_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_job_before_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_fatal_record"><code class="docutils literal notranslate"><span class="pre">_knit_job_fatal_record()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_killed_trap"><code class="docutils literal notranslate"><span class="pre">_knit_job_killed_trap()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_record_hostnames"><code class="docutils literal notranslate"><span class="pre">_knit_job_record_hostnames()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_set_state"><code class="docutils literal notranslate"><span class="pre">_knit_job_set_state()</span></code></a></li>
@@ -1043,6 +1046,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_bootstrap"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_bootstrap()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_cached_commit"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_cached_commit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_defer"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_defer()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_ensure_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_fetch"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_fetch()</span></code></a></li>
@@ -5479,6 +5483,13 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_ON_FATAL">
+<span class="target" id="global_8sh_1a8cb9c236707fedec40eefb98b8ece8ea"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_ON_FATAL</span></span></span><a class="headerlink" href="#c._KNIT_ON_FATAL" title="Link to this definition">#</a><br /></dt>
+<dd><p>List of callback command strings run by knit_fatal just before it exits. Each entry is a single command, pre-escaped with printf q (as knit_run_before / knit_run_after store their callbacks), so it can be re-run with eval. A callback registers via knit_on_fatal.</p>
+<p>The list is empty in almost every context (the login side, bootstrap, any ordinary command), so knit_fatal's drain is a no-op there. It exists so a compute-side job can record a terminal &quot;failed&quot; state when its body or a before-callback aborts with knit_fatal, which exits the process before the normal after-callback (that would record the state) can run. </p>
+</dd></dl>
+
+<dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SCRIPT_ARGV">
 <span class="target" id="global_8sh_1af7fcaed4198906f58d0bf32bdbe4eaa5"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SCRIPT_ARGV</span></span></span><a class="headerlink" href="#c._KNIT_SCRIPT_ARGV" title="Link to this definition">#</a><br /></dt>
 <dd><p>The positional parameters the experiment script was invoked with, captured at the very top of the concatenated knit.sh (which is sourced with no arguments of its own, so &quot;$&#64;&quot; here is the experiment's own argv). Plugin import and bootstrap materialization consult this to tell the current command apart (for example &quot;bootstrap&quot;, which must also materialize into .knit/, from an ordinary run) without re-parsing the command line. </p>
@@ -5528,8 +5539,15 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_before_cb">
 <span class="target" id="job_8sh_1a3a904bde15565bf8aeb6ec9c7528ecff"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_before_cb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_before_cb" title="Link to this definition">#</a><br /></dt>
-<dd><p>Before-callback installed on every setup subcommand by knit_register_job. Verifies that KNIT_JOB_PREFIX is set, ensuring the job was invoked through <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> rather than called directly, installs the pre-termination signal handler, marks the job &quot;running&quot;, and records the allocated hostnames.</p>
+<dd><p>Before-callback installed on every setup subcommand by knit_register_job. Verifies that KNIT_JOB_PREFIX is set, ensuring the job was invoked through <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> rather than called directly, installs the pre-termination signal handler, marks the job &quot;running&quot;, registers the on-fatal state recorder, and records the allocated hostnames.</p>
 <p>It does NOT source the setup environment: the jobscript already sources the setup's .activate.sh before it re-enters the experiment (see _knit_sched_write_jobscript), and the exports survive the exec, so the environment is already active here. Sourcing again would re-apply the composable env_append/env_prepend lines and double their entries. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_fatal_record">
+<span class="target" id="job_8sh_1a79eb0a08ec50dd060c62871e62199952"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_fatal_record</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_fatal_record" title="Link to this definition">#</a><br /></dt>
+<dd><p>On-fatal callback (registered via knit_on_fatal in _knit_job_before_cb) that records the running job as &quot;failed&quot; when it aborts through knit_fatal. A knit_fatal in the job body or in a before-callback (e.g. a missing resource or setup) exits the process before the normal after-callback can record a terminal state, which would otherwise strand the row at &quot;running&quot;. Recording &quot;failed&quot; here mirrors _knit_job_after_cb's &quot;non-zero body =&gt; failed&quot; rule.</p>
+<p>It records &quot;failed&quot; ONLY when the row is still in a non-terminal state (running/submitted): a job that already recorded a terminal state — most importantly &quot;killed&quot; via the signal trap — keeps it, so a kill followed by a fatal cannot downgrade &quot;killed&quot; to &quot;failed&quot;. Best-effort and guarded like _knit_job_set_state, so it never itself aborts the already-aborting process. </p>
 </dd></dl>
 
 <dl class="c function">
@@ -5606,7 +5624,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_submit_dispatch">
 <span class="target" id="job_8sh_1a6af272f9339f11591b83bc9b7551f92d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_submit_dispatch</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_submit_dispatch" title="Link to this definition">#</a><br /></dt>
-<dd><p>Release a built submission to the scheduler: the second phase of <code class="docutils literal notranslate"><span class="pre">submit</span></code>, and the whole of <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">prepared</span></code> / <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code>. It reads the resolved backend and options from the job directory's .submit metadata (frozen by _knit_prepare_build), builds the (non-blocking) scheduler submission command, records it as the row's native-cmd, advances the row to &quot;submitted&quot;, issues the command, and handles a scheduler rejection (removing the never-run job, exactly as a direct submit does). On success it records the backend job id in .job.id, prints the job UUID to stdout, and — when the resolved &quot;wait&quot; option is true — blocks until the job reaches a terminal state via _knit_sched_wait.</p>
+<dd><p>Release a built submission to the scheduler: the second phase of <code class="docutils literal notranslate"><span class="pre">submit</span></code>, and the whole of <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">prepared</span></code> / <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code>. It reads the resolved backend and options from the job directory's .submit metadata (frozen by _knit_prepare_build), builds the (non-blocking) scheduler submission command, records it as the row's native-cmd, advances the row to &quot;submitted&quot;, issues the command, and handles a scheduler rejection (removing the never-run job, exactly as a direct submit does). On success it records the backend job id in .job.id, prints the job UUID to stdout, and — when the resolved &quot;wait&quot; option is true — blocks until the job reaches a terminal state and returns non-zero if that state is &quot;failed&quot; or &quot;killed&quot; (via _knit_job_wait_one), so a blocking submit honors the --wait contract of returning the job's exit code.</p>
 <p>The submission is always issued non-blocking so the UUID can be printed as soon as the scheduler accepts the job, before any wait blocks; a caller who captures stdout still receives exactly the one UUID line.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -6769,6 +6787,23 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_plugin_bootstrap">
 <span class="target" id="plugin_8sh_1a4ebf93dbc660d90d8d8fe852b1402f28"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_plugin_bootstrap</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_plugin_bootstrap" title="Link to this definition">#</a><br /></dt>
 <dd><p>Bootstrap-time integration for imported plugins, run from _knit_bootstrap (both first bootstrap and update mode). For every plugin imported by the experiment this invocation it writes the committed lockfile, ensures the plugins table, records a provenance row (idempotent), and materializes the pinned tree under .knit for a self-contained experiment directory. A no-op when nothing was imported. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_plugin_cached_commit">
+<span class="target" id="plugin_8sh_1afa07c2f53b9eaa74c6ee2e0709389327"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_plugin_cached_commit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_plugin_cached_commit" title="Link to this definition">#</a><br /></dt>
+<dd><p>Find a usable cached commit for a plugin id when its ref cannot be resolved upstream (rate-limited or a transient network error). The content-addressed cache keys trees by commit SHA with no record of which ref produced which, so this returns the most recently fetched commit tree (the best guess for the ref's current tip) that still carries a plugin.sh. It looks in the bootstrapped &quot;.knit&quot; tree and the shared cache, since knit_import can source from either. Returns 1 (output untouched) when nothing is cached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>commit_out</strong> -- <strong>[out]</strong> Nameref receiving the cached commit SHA. </p></li>
+<li><p><strong>id</strong> -- <strong>[in]</strong> Canonical plugin id (&quot;&lt;host&gt;/&lt;org&gt;/&lt;repo&gt;&quot;). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 and sets the output when a cached commit exists; 1 otherwise. </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -10540,7 +10575,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_ask">
 <span class="target" id="sweep_8sh_1adb7a2dc3f22df8ca20ba8920e277a4a8"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_ask</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_ask" title="Link to this definition">#</a><br /></dt>
-<dd><p>The sweep's &quot;ask&quot; callback for knit_search_loop: yield the next cartesian product combination as a reconstructed downstream command line, then advance the odometer cursor. Like every search proposer (see the fake proposer in tests/test_search_loop.sh), it reads its state from the enclosing dispatcher frame through dynamic scope -- here _knit_sweep's locals: the plan arrays (template/axes/flat/offsets/counts), the product size (total), the campaign group spliced into a submit/prepare line, and the cursor it advances. Returns 1 when the product is exhausted.</p>
+<dd><p>The sweep's &quot;ask&quot; callback for knit_search_loop: yield the next cartesian product combination as a reconstructed downstream command line, then advance the odometer cursor. Like every search proposer (see the fake proposer in tests/test_search_loop.sh), it reads its state from the enclosing dispatcher frame through dynamic scope -- here _knit_sweep's locals: the plan arrays (template/axes/flat/offsets/counts), the product size (total), and the cursor it advances. Returns 1 when the product is exhausted.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -10675,7 +10710,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_reconstruct">
 <span class="target" id="sweep_8sh_1a6ea0d30d4f15d797443fcfb292a6c4a9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_reconstruct</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_reconstruct" title="Link to this definition">#</a><br /></dt>
-<dd><p>Rebuild one combination's downstream command line from the template: copy the template, then overwrite each axis's template slot with that axis's value for the given combination index. The index is decoded as a mixed-radix odometer in which the last axis varies fastest (so the product enumerates in a stable, row-major order). The caller applies the --group splice afterwards.</p>
+<dd><p>Rebuild one combination's downstream command line from the template: copy the template, then overwrite each axis's template slot with that axis's value for the given combination index. The index is decoded as a mixed-radix odometer in which the last axis varies fastest (so the product enumerates in a stable, row-major order).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -10694,11 +10729,11 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_resolve_domains">
 <span class="target" id="sweep_8sh_1a371eaf739adba54ddf4c9e781486afdb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_resolve_domains</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_resolve_domains" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve the declared-domain axes (&#64;sweep / &#64;default / --fill) against the downstream target's parameters, splicing the results into the M2 scan. This is the one point where the sweep introspects the target, and it runs only when it must: --fill sweep, or a &#64;sweep/&#64;default marker at the call site. With --fill default and no marker it returns at once, having read nothing.</p>
-<p>For each target parameter, the call-site classification (explicit / sweep / default / unspecified, from the seen map) and the parameter's declared-domain presence feed the shared knit_search_resolve_fill precedence rule:<ul class="simple">
+<dd><p>Resolve the declared-domain axes (&#64;domain / &#64;default / --fill) against the downstream target's parameters, splicing the results into the M2 scan. This is the one point where the sweep introspects the target, and it runs only when it must: --fill domain, or a &#64;domain/&#64;default marker at the call site. With --fill default and no marker it returns at once, having read nothing.</p>
+<p>For each target parameter, the call-site classification (explicit / domain / default / unspecified, from the seen map) and the parameter's declared-domain presence feed the shared knit_search_resolve_fill precedence rule:<ul class="simple">
 <li><p>explicit: left as the M2 scan already has it (a literal axis, or a scalar that passes through);</p></li>
-<li><p>sweep: enumerate the declared domain (via _knit_sweep_enumerate_domain) and either fill the call-site &#64;sweep marker axis in place, or, for a parameter left unspecified under --fill sweep, append a new &quot;--param &lt;value&gt;&quot; axis to the template;</p></li>
-<li><p>default: a call-site &#64;default marker is pinned to the resolved default value in the template (and drops out as an axis); an unspecified parameter keeps its default, which the downstream fills when the reconstructed line runs. An explicit &#64;sweep on a parameter with no declared domain is a fatal; a &#64;sweep / &#64;default naming a parameter the target does not have is a fatal.</p></li>
+<li><p>domain: enumerate the declared domain (via _knit_sweep_enumerate_domain) and either fill the call-site &#64;domain marker axis in place, or, for a parameter left unspecified under --fill domain, append a new &quot;--param &lt;value&gt;&quot; axis to the template;</p></li>
+<li><p>default: a call-site &#64;default marker is pinned to the resolved default value in the template (and drops out as an axis); an unspecified parameter keeps its default, which the downstream fills when the reconstructed line runs. An explicit &#64;domain on a parameter with no declared domain is a fatal; a &#64;domain / &#64;default naming a parameter the target does not have is a fatal.</p></li>
 </ul>
 </p>
 <dl class="field-list simple">
@@ -10708,7 +10743,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li><p><strong>__knit_ret2</strong> -- <strong>[inout]</strong> Name of the axis-descriptor array. </p></li>
 <li><p><strong>__knit_ret3</strong> -- <strong>[inout]</strong> Name of the per-axis value-list array. </p></li>
 <li><p><strong>__knit_seen</strong> -- <strong>[in]</strong> Name of the seen map (option -&gt; classification). </p></li>
-<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy (&quot;default&quot; or &quot;sweep&quot;). </p></li>
+<li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy (&quot;default&quot; or &quot;domain&quot;). </p></li>
 <li><p><strong>mangled</strong> -- <strong>[in]</strong> The resolved downstream target (mangled command name). </p></li>
 </ul>
 </dd>
@@ -10718,13 +10753,13 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_scan">
 <span class="target" id="sweep_8sh_1aace8d7f22641cdb0374c3dc7ca88c204"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_scan</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_scan" title="Link to this definition">#</a><br /></dt>
-<dd><p>Thin wrapper around knit_search_scan that adds literal-axis enumeration. Delegates classification to knit_search_scan, then for each axis whose kind is &quot;literal&quot; calls _knit_sweep_enumerate on the raw token and stores the newline-joined value list in __knit_ret3. The output contract is unchanged from before the refactor: __knit_ret3[i] is a newline-joined value list for a &quot;literal&quot; axis and empty for a &quot;sweep&quot;/&quot;default&quot; marker.</p>
+<dd><p>Thin wrapper around knit_search_scan that adds literal-axis enumeration. Delegates classification to knit_search_scan, then for each axis whose kind is &quot;literal&quot; calls _knit_sweep_enumerate on the raw token and stores the newline-joined value list in __knit_ret3. The output contract is unchanged from before the refactor: __knit_ret3[i] is a newline-joined value list for a &quot;literal&quot; axis and empty for a &quot;domain&quot;/&quot;default&quot; marker.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the array to receive the reconstruction template (a copy of the downstream tokens). </p></li>
 <li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive the axis descriptors. </p></li>
-<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive the per-axis value lists (newline-joined; empty for &quot;sweep&quot;/&quot;default&quot;). </p></li>
+<li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive the per-axis value lists (newline-joined; empty for &quot;domain&quot;/&quot;default&quot;). </p></li>
 <li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map. </p></li>
 <li><p><strong>passthrough_csv</strong> -- <strong>[in]</strong> Comma-separated option names whose values are never treated as sweep-syntax (may be empty). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
@@ -10739,7 +10774,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SWEEPS_TABLE">
 <span class="target" id="sweep_8sh_1ab0bf11cd977ba0d2f5b5ddcc54dba382"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SWEEPS_TABLE</span></span></span><a class="headerlink" href="#c._KNIT_SWEEPS_TABLE" title="Link to this definition">#</a><br /></dt>
-<dd><p>Name of the table recording every sweep campaign. The row id is the sweep's own UUID. Each child point (a submitted/run/command invocation, or a prepared row) records an automatic &quot;call&quot; edge back to this row through the provenance graph, so a campaign's children are found by walking the edges, not by a stored column. The column set is fixed and kind-independent: id, the recorded &quot;group&quot; label, and the &quot;target&quot;/&quot;dispatcher&quot;/&quot;dimensions&quot;/&quot;count&quot; outputs. The control options (--on-failure/--parallel/--passthrough/--fill/--dry-run) are declared with &quot;--no-record&quot; so they are parsed and validated but add no column. </p>
+<dd><p>Name of the table recording every sweep campaign. The row id is the sweep's own UUID. Each child point (a submitted/run/command invocation, or a prepared row) records an automatic &quot;call&quot; edge back to this row through the provenance graph, so a campaign's children are found by walking the edges, not by a stored column. The column set is fixed and kind-independent: id, the recorded &quot;group&quot; label, and the &quot;target&quot;/&quot;dispatcher&quot;/&quot;dimensions&quot;/&quot;count&quot; outputs. The control options (--on-failure/--max-inflight/--passthrough/--fill/--dry-run) are declared with &quot;--no-record&quot; so they are parsed and validated but add no column. </p>
 </dd></dl>
 
 </section>
@@ -11317,6 +11352,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_COLORS"><code class="docutils literal notranslate"><span class="pre">_KNIT_COLORS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_IS_BOOTSTRAPPING"><code class="docutils literal notranslate"><span class="pre">_KNIT_IS_BOOTSTRAPPING</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_ON_FATAL"><code class="docutils literal notranslate"><span class="pre">_KNIT_ON_FATAL</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCRIPT_ARGV"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCRIPT_ARGV</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SCRIPT_PATH"><code class="docutils literal notranslate"><span class="pre">_KNIT_SCRIPT_PATH</span></code></a></li>
 </ul>
@@ -11329,6 +11365,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_declare_submit_options"><code class="docutils literal notranslate"><span class="pre">_knit_declare_submit_options()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_job_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_job_before_cb()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_fatal_record"><code class="docutils literal notranslate"><span class="pre">_knit_job_fatal_record()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_killed_trap"><code class="docutils literal notranslate"><span class="pre">_knit_job_killed_trap()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_record_hostnames"><code class="docutils literal notranslate"><span class="pre">_knit_job_record_hostnames()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_set_state"><code class="docutils literal notranslate"><span class="pre">_knit_job_set_state()</span></code></a></li>
@@ -11518,6 +11555,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plugin-sh">plugin.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_bootstrap"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_bootstrap()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_cached_commit"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_cached_commit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_defer"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_defer()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_ensure_table"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_ensure_table()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_plugin_fetch"><code class="docutils literal notranslate"><span class="pre">_knit_plugin_fetch()</span></code></a></li>
