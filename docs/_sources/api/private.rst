@@ -885,6 +885,9 @@ Functions
 .. doxygenfunction:: _knit_drain_serial
    :project: knit
 
+.. doxygenfunction:: _knit_drain_total
+   :project: knit
+
 .. doxygenfunction:: _knit_drain_validate_retry_states
    :project: knit
 
@@ -945,6 +948,81 @@ Variables
 .. doxygenvariable:: _KNIT_ENV_MANAGERS
    :project: knit
 
+frame.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_progress_bar_counts
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_bar_legend
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_bar_render
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_clip
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_colored
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_draw
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_gate
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_hbar
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_inner_width
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_rule_bottom
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_rule_top
+   :project: knit
+
+.. doxygenfunction:: _knit_progress_side
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_PROGRESS_BL
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_BR
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_FULL
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_H
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_LINES
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_RUN
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_TL
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_TR
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_V
+   :project: knit
+
+.. doxygenvariable:: _KNIT_PROGRESS_WIDTH
+   :project: knit
+
 github.sh
 ---------
 
@@ -960,14 +1038,26 @@ global.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_brand_color
+   :project: knit
+
 .. doxygenfunction:: _knit_stdout_is_terminal
    :project: knit
 
 .. doxygenfunction:: _knit_terminal_width
    :project: knit
 
+.. doxygenfunction:: _knit_truecolor
+   :project: knit
+
 Variables
 ~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_BRAND_FALLBACK
+   :project: knit
+
+.. doxygenvariable:: _KNIT_BRAND_TRUECOLOR
+   :project: knit
 
 .. doxygenvariable:: _KNIT_COLORS
    :project: knit

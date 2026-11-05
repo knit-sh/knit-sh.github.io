@@ -1203,7 +1203,7 @@ are the same recorded artifact.</p>
 <section id="drain-a-prepared-batch-with-submit-drain">
 <span id="stitch-drain-prepared-jobs"></span><h2>Drain a prepared batch with submit drain<a class="headerlink" href="#drain-a-prepared-batch-with-submit-drain" title="Link to this heading">#</a></h2>
 <p><em>Release a whole prepared batch in one command, throttled to N jobs at once.</em></p>
-<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">submit:drain</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_progress_bar</span></code></p>
 <p>Once a batch is prepared (see <em>Prepare a job instead of submitting it</em>), you
 could release it by hand with a loop over <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code> (see <em>Release prepared
 jobs</em>). <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> wraps that loop as one command: it releases prepared
@@ -1234,6 +1234,18 @@ anything, and <code class="docutils literal notranslate"><span class="pre">--jso
 <span class="go">{"released":2,"completed":2,"failed":0,"drained":true,"stopped":false,"dry_run":false}</span>
 </pre></div>
 </div>
+<p>On a terminal, add <code class="docutils literal notranslate"><span class="pre">--show-progress</span></code> for a live, full-width progress bar that
+fills as the batch drains — a framed bar split into <em>failed</em>, <em>done</em>, <em>running</em>,
+and <em>remaining</em> sections, with a count line beneath it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span><span class="w"> </span>--show-progress
+<span class="go">┌─ draining ──────────────────────────────────────────────────────────────┐</span>
+<span class="go">│████████████████████████████████████████████████▒▒▒▒                      │</span>
+<span class="go">└──────────────────────────────────────────────────────────────────────────┘</span>
+<span class="go">  █ failed   █ done   ▒ running      10 done  2 run  0 fail  0 left  (12)  83%</span>
+</pre></div>
+</div>
+<p>The bar is drawn to stderr only (so a piped <code class="docutils literal notranslate"><span class="pre">--json-summary</span></code> on stdout stays
+clean), appears only on a terminal, and is skipped entirely under <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code>.</p>
 <p>Like <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code>, draining records nothing of its own — each release
 advances an existing <code class="docutils literal notranslate"><span class="pre">jobs</span></code> row — so the jobs you prepared and the jobs that
 ran are the same recorded rows.</p>

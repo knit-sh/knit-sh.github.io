@@ -224,6 +224,15 @@ Functions
 .. doxygenfunction:: knit_prefix
    :project: knit
 
+.. doxygenfunction:: knit_progress_bar
+   :project: knit
+
+.. doxygenfunction:: knit_progress_bar2
+   :project: knit
+
+.. doxygenfunction:: knit_progress_bar_finish
+   :project: knit
+
 .. doxygenfunction:: knit_provides_launcher
    :project: knit
 

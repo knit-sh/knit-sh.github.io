@@ -153,7 +153,7 @@ Drain a prepared batch with submit drain
 
 *Release a whole prepared batch in one command, throttled to N jobs at once.*
 
-**APIs:** ``submit:drain``
+**APIs:** ``submit:drain``, ``knit_progress_bar``
 
 .. include:: /stitch/recipes/drain-prepared-jobs.rst
 

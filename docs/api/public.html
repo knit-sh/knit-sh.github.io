@@ -524,6 +524,9 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_platform_name"><code class="docutils literal notranslate"><span class="pre">knit_platform_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_popd"><code class="docutils literal notranslate"><span class="pre">knit_popd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_prefix"><code class="docutils literal notranslate"><span class="pre">knit_prefix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar2"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar_finish"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar_finish()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_launcher"><code class="docutils literal notranslate"><span class="pre">knit_provides_launcher()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_push_done_cb"><code class="docutils literal notranslate"><span class="pre">knit_push_done_cb()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_pushd"><code class="docutils literal notranslate"><span class="pre">knit_pushd()</span></code></a></li>
@@ -1336,6 +1339,7 @@ local extra=("${args[@]:extra_index}")
 <dt class="sig sig-object c" id="c.knit_github_download_asset">
 <span class="target" id="github_8sh_1a096ab184c15c7a4c7ea21066cfc36f5f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_github_download_asset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_github_download_asset" title="Link to this definition">#</a><br /></dt>
 <dd><p>Download one published asset of a GitHub release to a destination file, compute its sha256, and return the digest by nameref. The stable release-asset URL (releases/download/&lt;tag&gt;/&lt;asset&gt;) is built directly, so no API call is needed once the tag and asset name are known. Uses curl (as the other GitHub helpers do) so knit needs no git, and frames the transfer with knit_framed_run (shown live at trace level). Release assets are public, so no token is sent.</p>
+<p>The transfer retries on a transient failure (connection reset, 5xx, timeout), like knit_github_api: an asset download is a large transfer over a possibly flaky network (CI runners especially), and a single blip must not abort a whole bootstrap. --retry-all-errors covers connection-level failures that --retry alone would not; the connect/low-speed timeouts turn a stalled transfer into a retryable failure rather than an indefinite hang.</p>
 <p>This complements knit_github_download, which fetches a repository <em>source</em> archive by commit. A tool shipped as a prebuilt per-platform release binary (for example uv) is fetched with this function instead. The destination is a file (the asset verbatim); the caller unpacks it as the asset format requires, since a release asset may be a tarball, a zip, or a raw binary. The tag should name an immutable published release so the download is reproducible; pair the returned digest with a recorded checksum to pin the asset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1689,6 +1693,46 @@ for csv in "${tables[@]}"; do cat "${csv}" &gt;&gt; combined.csv; done
 </div>
 </p>
 <p>The path is always set (it defaults to &quot;&lt;cwd&gt;/.knit&quot; before bootstrap), and is returned whether or not the directory yet exists; a caller that needs it present should create it. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_progress_bar">
+<span class="target" id="frame_8sh_1acdc43f1e86101d4322eeb770d22068e3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_progress_bar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_progress_bar" title="Link to this definition">#</a><br /></dt>
+<dd><p>Draw one full-width framed progress bar live to stderr, in place. A no-op unless stderr is a TTY and KNIT_LOG_LEVEL &lt;= info (see _knit_progress_gate). Call once per observable state change; call knit_progress_bar_finish once at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> -- <strong>[in]</strong> Title shown in the frame's top rule. </p></li>
+<li><p><strong>completed</strong> -- <strong>[in]</strong> Number of completed items. </p></li>
+<li><p><strong>running</strong> -- <strong>[in]</strong> Number of running items. </p></li>
+<li><p><strong>failed</strong> -- <strong>[in]</strong> Number of failed/killed items. </p></li>
+<li><p><strong>remaining</strong> -- <strong>[in]</strong> Number of not-yet-started items. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_progress_bar2">
+<span class="target" id="frame_8sh_1a55b2035a9bb56d83b3205f47b9572b16"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_progress_bar2</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_progress_bar2" title="Link to this definition">#</a><br /></dt>
+<dd><p>Draw two stacked framed progress bars sharing one frame, live to stderr, in place. Each bar is a labelled interior row; the legend and two labelled count lines sit below the frame. A no-op under the same gate as knit_progress_bar. Used for the two-budget case (e.g. a &quot;current&quot; bar and a &quot;campaign&quot; bar).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> -- <strong>[in]</strong> Title shown in the frame's top rule. </p></li>
+<li><p><strong>c1</strong> -- <strong>[in]</strong> r1 f1 rem1 Counts for the first bar. </p></li>
+<li><p><strong>label1</strong> -- <strong>[in]</strong> Label for the first bar. </p></li>
+<li><p><strong>c2</strong> -- <strong>[in]</strong> r2 f2 rem2 Counts for the second bar. </p></li>
+<li><p><strong>label2</strong> -- <strong>[in]</strong> Label for the second bar. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_progress_bar_finish">
+<span class="target" id="frame_8sh_1affac184238ab7652a339350b47b9a9d0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_progress_bar_finish</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_progress_bar_finish" title="Link to this definition">#</a><br /></dt>
+<dd><p>Finish a progress-bar sequence: reset the redraw state and emit a trailing newline so a following knit_info prints on a fresh line below the final frame. A no-op under the same gate as knit_progress_bar. </p>
 </dd></dl>
 
 <dl class="c function">
@@ -3002,6 +3046,9 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_platform_name"><code class="docutils literal notranslate"><span class="pre">knit_platform_name()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_popd"><code class="docutils literal notranslate"><span class="pre">knit_popd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_prefix"><code class="docutils literal notranslate"><span class="pre">knit_prefix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar2"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar2()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar_finish"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar_finish()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_launcher"><code class="docutils literal notranslate"><span class="pre">knit_provides_launcher()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_push_done_cb"><code class="docutils literal notranslate"><span class="pre">knit_push_done_cb()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_pushd"><code class="docutils literal notranslate"><span class="pre">knit_pushd()</span></code></a></li>
