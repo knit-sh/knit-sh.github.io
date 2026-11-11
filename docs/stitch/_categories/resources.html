@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/resources';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/resources.html" />
@@ -478,8 +478,8 @@ what the artifact is and, through exactly one download decorator, how to acquire
 it. There is no body to write; knit supplies the download itself.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource TYPE declares HOW to acquire an artifact --- exactly one download</span>
 <span class="c1"># decorator selects the backend. The local backend links (or, with --copy, snapshots)</span>
 <span class="c1"># a path already on disk; swap in @with_git &lt;url&gt; &lt;ref&gt; or @with_url &lt;url&gt;</span>
@@ -491,8 +491,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource TYPE declares HOW to acquire an artifact --- exactly one download</span>
 <span class="c1"># decorator selects the backend. The local backend links (or, with --copy, snapshots)</span>
 <span class="c1"># a path already on disk; swap in @with_git &lt;url&gt; &lt;ref&gt; or @with_url &lt;url&gt;</span>
@@ -539,8 +539,8 @@ then records a <code class="docutils literal notranslate"><span class="pre">used
 Inside the body, <code class="docutils literal notranslate"><span class="pre">knit_resource_path</span></code> turns the name into an on-disk path.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command declares the resources it needs with @with_resource</span>
 <span class="c1"># "&lt;param&gt;:&lt;type&gt;". The value the user passes is the instance NAME, not a path;</span>
 <span class="c1"># knit validates that the named instance exists and is of the right type before the</span>
@@ -563,8 +563,8 @@ _summarize<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command declares the resources it needs with @with_resource</span>
 <span class="c1"># "&lt;param&gt;:&lt;type&gt;". The value the user passes is the instance NAME, not a path;</span>
 <span class="c1"># knit validates that the named instance exists and is of the right type before the</span>

@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/part2';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/tutorial/part2.html" />
@@ -510,8 +510,8 @@ and records.</p>
 One download decorator says where it comes from:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input --- here the julia-fractal source,</span>
 <span class="c1"># as a git repository pinned to a default ref. It has no body: `knit fetch`</span>
 <span class="c1"># clones it once into the resources directory, makes it read-only, and records</span>
@@ -525,8 +525,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input --- here the julia-fractal source,</span>
 <span class="c1"># as a git repository pinned to a default ref. It has no body: `knit fetch`</span>
 <span class="c1"># clones it once into the resources directory, makes it read-only, and records</span>
@@ -554,8 +554,8 @@ idempotent by name: re-fetching <code class="docutils literal notranslate"><span
 <p>Now the setup declares the resource it needs instead of cloning it:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The setup no longer clones anything. It DECLARES that it needs the source with</span>
 <span class="c1"># @with_resource "src:julia_code": Knit checks the named instance was fetched</span>
 <span class="c1"># (and is of type julia_code) before the body runs, and records a used_by edge</span>
@@ -584,8 +584,8 @@ _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The setup no longer clones anything. It DECLARES that it needs the source with</span>
 <span class="c1"># @with_resource "src:julia_code": Knit checks the named instance was fetched</span>
 <span class="c1"># (and is of type julia_code) before the body runs, and records a used_by edge</span>
@@ -650,8 +650,8 @@ declarations with no command of its own, defined like a command — open it,
 declare parameters, close it — but with no body:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A parameter set is a named group of parameter declarations with no command of</span>
 <span class="c1"># its own. It is defined like a command --- @parameter_set, then any number of</span>
 <span class="c1"># @with_required / @with_optional / @with_flag lines, then @done --- but it has</span>
@@ -668,8 +668,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A parameter set is a named group of parameter declarations with no command of</span>
 <span class="c1"># its own. It is defined like a command --- @parameter_set, then any number of</span>
 <span class="c1"># @with_required / @with_optional / @with_flag lines, then @done --- but it has</span>
@@ -692,8 +692,8 @@ point. The job imports the shared six and keeps its own <code class="docutils li
 which the app does not share:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job imports the shared parameters with @with_parameter_set instead of</span>
 <span class="c1"># repeating them. It still declares its own `output` parameter, which the app</span>
 <span class="c1"># does not share, and keeps its setup dependency.</span>
@@ -726,8 +726,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job imports the shared parameters with @with_parameter_set instead of</span>
 <span class="c1"># repeating them. It still declares its own `output` parameter, which the app</span>
 <span class="c1"># does not share, and keeps its setup dependency.</span>
@@ -765,8 +765,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 — so it stays a per-command declaration:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The app imports the SAME parameter set. `output` differs from the job's ---</span>
 <span class="c1"># here it is required (the job supplies one absolute path per run) --- so it</span>
 <span class="c1"># stays a per-command declaration, alongside the recorded `inside` output.</span>
@@ -798,8 +798,8 @@ _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The app imports the SAME parameter set. `output` differs from the job's ---</span>
 <span class="c1"># here it is required (the job supplies one absolute path per run) --- so it</span>
 <span class="c1"># stays a per-command declaration, alongside the recorded `inside` output.</span>
@@ -853,8 +853,8 @@ moves that check to the front. It is a named type with a fixed set of values,
 declared once:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An enum is a named type with a fixed set of values. Declaring `colormap` here</span>
 <span class="c1"># lets any parameter be typed `:colormap`; Knit then rejects a value outside the</span>
 <span class="c1"># set before the command body runs.</span>
@@ -863,8 +863,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An enum is a named type with a fixed set of values. Declaring `colormap` here</span>
 <span class="c1"># lets any parameter be typed `:colormap`; Knit then rejects a value outside the</span>
 <span class="c1"># set before the command body runs.</span>
@@ -880,8 +880,8 @@ from the same declaration, so the list of palettes in the description can never
 drift from the type:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The shared set is unchanged except for `colormap`, which is now typed with the</span>
 <span class="c1"># enum above instead of a free `string`. `knit_enum_values` builds the help text</span>
 <span class="c1"># from the same source, so the list of palettes cannot drift from the type.</span>
@@ -897,8 +897,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The shared set is unchanged except for `colormap`, which is now typed with the</span>
 <span class="c1"># enum above instead of a free `string`. `knit_enum_values` builds the help text</span>
 <span class="c1"># from the same source, so the list of palettes cannot drift from the type.</span>
@@ -959,8 +959,8 @@ fingerprint what is actually there.</p>
 right category. Bind the produced PNG with <code class="docutils literal notranslate"><span class="pre">knit_output</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># `output` is a `filename` INPUT: the location the job hands in. `filename` is the</span>
 <span class="c1"># unchecked counterpart of `file` --- Knit does not require it to exist, because</span>
 <span class="c1"># the render has not written it yet. `image:file` is the OUTPUT: `knit_output</span>
@@ -998,8 +998,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># `output` is a `filename` INPUT: the location the job hands in. `filename` is the</span>
 <span class="c1"># unchecked counterpart of `file` --- Knit does not require it to exist, because</span>
 <span class="c1"># the render has not written it yet. `image:file` is the OUTPUT: `knit_output</span>
@@ -1097,8 +1097,8 @@ level. Here <code class="docutils literal notranslate"><span class="pre">insidec
 consumer can later require that kind rather than merely “a file”:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A KIND gives an artifact a semantic label backed by one physical type. Declared</span>
 <span class="c1"># once at the top level, `insidecsv` marks a file as *the inside-metric table*, so</span>
 <span class="c1"># a consumer can require that kind rather than merely "a file".</span>
@@ -1107,8 +1107,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A KIND gives an artifact a semantic label backed by one physical type. Declared</span>
 <span class="c1"># once at the top level, `insidecsv` marks a file as *the inside-metric table*, so</span>
 <span class="c1"># a consumer can require that kind rather than merely "a file".</span>
@@ -1122,8 +1122,8 @@ Long form</label><div class="sd-tab-content docutils">
 declare the table it writes as an output artifact of that kind:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-18">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-18-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-18">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-18-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part I's aggregate was read-only bookkeeping (@without_provenance): it printed a</span>
 <span class="c1"># sum and left no trace. Now it produces a result. Dropping @without_provenance</span>
 <span class="c1"># lets it record its own row and provenance; @with_table gives it that row, and</span>
@@ -1160,8 +1160,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-19">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-19-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-19">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-19-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part I's aggregate was read-only bookkeeping (@without_provenance): it printed a</span>
 <span class="c1"># sum and left no trace. Now it produces a result. Dropping @without_provenance</span>
 <span class="c1"># lets it record its own row and provenance; @with_table gives it that row, and</span>
@@ -1254,8 +1254,8 @@ To showcase this, we will now add a <code class="docutils literal notranslate"><
 produced and names the render with the largest inside metric:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-20">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-20-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-20">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-20-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># `report` CONSUMES the artifact `aggregate` produced. @with_input_artifact</span>
 <span class="c1"># requires a recorded artifact of kind `insidecsv`; the parameter value is its</span>
 <span class="c1"># artifacts-relative path. Before the body runs, Knit resolves the path, refuses a</span>
@@ -1283,8 +1283,8 @@ _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-21">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-21-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-21">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-21-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># `report` CONSUMES the artifact `aggregate` produced. @with_input_artifact</span>
 <span class="c1"># requires a recorded artifact of kind `insidecsv`; the parameter value is its</span>
 <span class="c1"># artifacts-relative path. Before the body runs, Knit resolves the path, refuses a</span>
@@ -1673,8 +1673,8 @@ Save it as <code class="docutils literal notranslate"><span class="pre">exp.sh</
 (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">exp.sh</span></code>):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-22">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-22-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-22">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-22-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>
@@ -1865,8 +1865,8 @@ _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-23">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-23-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-23">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-23-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>

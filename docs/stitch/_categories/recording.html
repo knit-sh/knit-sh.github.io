@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/recording';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/recording.html" />
@@ -482,8 +482,8 @@
 records <strong>one row per invocation</strong> of the command in a SQLite table:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
@@ -501,8 +501,8 @@ _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span>_add<span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
@@ -546,8 +546,8 @@ recorded alongside them. Declare an output at registration with
 body with <code class="docutils literal notranslate"><span class="pre">knit_output</span> <span class="pre">name</span> <span class="pre">value</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
@@ -564,8 +564,8 @@ _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span>_scale<span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
@@ -604,8 +604,8 @@ than a string: knit checks it exists at runtime and, by default, fingerprints it
 content with a sha256. Declare them as usual — no extra call is needed:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A file/directory parameter is checked for existence and, unless declared</span>
 <span class="c1"># --no-checksum, fingerprinted: knit records the path AND a sha256 of the content</span>
 <span class="c1"># in a companion &lt;name&gt;_checksum column. An input is hashed before the body runs</span>
@@ -629,8 +629,8 @@ _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A file/directory parameter is checked for existence and, unless declared</span>
 <span class="c1"># --no-checksum, fingerprinted: knit records the path AND a sha256 of the content</span>
 <span class="c1"># in a companion &lt;name&gt;_checksum column. An input is hashed before the body runs</span>
@@ -705,8 +705,8 @@ what the experiment was for. Append <code class="docutils literal notranslate"><
 declaration to say so:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
 <span class="nd">@with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
@@ -724,8 +724,8 @@ _measure<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span>_measure<span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
 <span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
@@ -768,8 +768,8 @@ output or artifact it produced before failing — so a failure deep in a chain
 stays queryable instead of vanishing:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command that records a row and may fail. Because it declares a table and is</span>
 <span class="c1"># NOT @no_record_on_failure, knit adds a reserved __exit_status__ column and</span>
 <span class="c1"># records it on every invocation: 0 on success, the non-zero code on failure. A</span>
@@ -786,8 +786,8 @@ _boom<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A command that records a row and may fail. Because it declares a table and is</span>
 <span class="c1"># NOT @no_record_on_failure, knit adds a reserved __exit_status__ column and</span>
 <span class="c1"># records it on every invocation: 0 on success, the non-zero code on failure. A</span>

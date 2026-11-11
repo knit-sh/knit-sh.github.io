@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/public';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/api/public.html" />
@@ -545,6 +545,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resource_path"><code class="docutils literal notranslate"><span class="pre">knit_resource_path()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_after"><code class="docutils literal notranslate"><span class="pre">knit_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_before"><code class="docutils literal notranslate"><span class="pre">knit_run_before()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_axis_qualify"><code class="docutils literal notranslate"><span class="pre">knit_search_axis_qualify()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_group_forward"><code class="docutils literal notranslate"><span class="pre">knit_search_group_forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_launch"><code class="docutils literal notranslate"><span class="pre">knit_search_launch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_loop"><code class="docutils literal notranslate"><span class="pre">knit_search_loop()</span></code></a></li>
@@ -553,6 +554,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_resolve_fill"><code class="docutils literal notranslate"><span class="pre">knit_search_resolve_fill()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_resolve_target"><code class="docutils literal notranslate"><span class="pre">knit_search_resolve_target()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_scan"><code class="docutils literal notranslate"><span class="pre">knit_search_scan()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_segment_command"><code class="docutils literal notranslate"><span class="pre">knit_search_segment_command()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_set_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_parameter"><code class="docutils literal notranslate"><span class="pre">knit_set_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_program_description"><code class="docutils literal notranslate"><span class="pre">knit_set_program_description()</span></code></a></li>
@@ -2056,6 +2058,21 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_search_axis_qualify">
+<span class="target" id="search_8sh_1a15ad0d16c11f91044d5951ce6bfb3384"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_axis_qualify</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_axis_qualify" title="Link to this definition">#</a><br /></dt>
+<dd><p>Compose a command-qualified axis identity from a segment and a bare option name: &quot;&lt;segment&gt;.&lt;option&gt;&quot;. This is the uniform spelling a search proposer uses to label an axis (e.g. in a recorded dimensions map, an Ax parameter name, or an error message) so the same option name in two segments (&quot;submit.nodes&quot; vs &quot;job.nodes&quot;) stays distinct. The &quot;.&quot; separator is used because the identity is passed verbatim to Ax as a parameter name and &quot;:&quot; is reserved by knit's command-name mangling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> The qualified identity &quot;&lt;segment&gt;.&lt;option&gt;&quot;. </p></li>
+<li><p><strong>segment</strong> -- <strong>[in]</strong> The command segment the axis belongs to. </p></li>
+<li><p><strong>option</strong> -- <strong>[in]</strong> The bare option name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_search_group_forward">
 <span class="target" id="search_8sh_1a3ecaa28a938032c3826e9bbf9bc695ee"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_group_forward</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_group_forward" title="Link to this definition">#</a><br /></dt>
 <dd><p>Forward a campaign --group label into one trial's downstream command line, in place, so a job trial lands in the existing jobs.group column (which makes &quot;submit next --group&quot; and &quot;remove --group&quot; operate on the campaign with no new code). The group is a submission field, so it is inserted among the submit options -- right after the leading &quot;submit&quot; or &quot;prepare&quot; token, before its &quot;--&quot;. Both are job dispatchers that share the submit option surface (and so accept --group). The line is left unchanged when the group is empty or the line is neither a submit nor a prepare line (a &quot;run ... -- app&quot; or a bare command has no scheduler, so its group lives only on the parent row and the call edges).</p>
@@ -2192,16 +2209,38 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 <li><p>any other &quot;&#64;...&quot; -&gt; a fatal (unknown directive).</p></li>
 </ul>
 </p>
-<p>An axis is named by its preceding &quot;--option&quot; (hyphens folded to underscores); a swept positional token is named &quot;#&lt;index&gt;&quot; by its position in the downstream. The &quot;seen&quot; map records, for every &quot;--option&quot; that carried a value, how the call site referenced it (&quot;explicit&quot;, &quot;domain&quot;, or &quot;default&quot;); a literal axis folds to &quot;explicit&quot;. The inline &quot;--opt=value&quot; form is self-contained and recorded as &quot;explicit&quot;. All four outputs are reset on entry, so the &quot;seen&quot; map need not be empty, but it MUST be declared as an associative array (declare -A).</p>
+<p>An axis is named by its preceding &quot;--option&quot; (hyphens folded to underscores); a swept positional token is named &quot;#&lt;index&gt;&quot; by its position in the downstream. Each axis also records the command segment it belongs to: the dispatcher keyword (e.g. &quot;submit&quot;) before the inner &quot;--&quot;, or the target command name (e.g. &quot;train&quot;) after it; a bare command is its own segment. The segment lets a consumer build a command-qualified axis identity (&quot;&lt;segment&gt;.&lt;option&gt;&quot;) that stays unique when the same option name appears in two segments (e.g. &quot;submit --nodes ... -- job --nodes ...&quot;). The &quot;seen&quot; map records, for every &quot;--option&quot; that carried a value, how the call site referenced it (&quot;explicit&quot;, &quot;domain&quot;, or &quot;default&quot;); a literal axis folds to &quot;explicit&quot;. The inline &quot;--opt=value&quot; form is self-contained and recorded as &quot;explicit&quot;. All four outputs are reset on entry, so the &quot;seen&quot; map need not be empty, but it MUST be declared as an associative array (declare -A).</p>
 <p>Unlike _knit_sweep_scan, this function stores the verbatim token text (not an enumerated value list) in rawtokens-out for literal axes. Callers that need the enumerated list enumerate each raw token themselves.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the array to receive the reconstruction template (a copy of the downstream tokens). </p></li>
-<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive the axis descriptors, each the string &quot;&lt;kind&gt; &lt;slot&gt; &lt;name&gt;&quot;. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the array to receive the axis descriptors, each the string &quot;&lt;kind&gt; &lt;slot&gt; &lt;name&gt; &lt;segment&gt;&quot;. </p></li>
 <li><p><strong>__knit_ret3</strong> -- <strong>[out]</strong> Name of the array to receive per-axis raw tokens: the verbatim token text for a &quot;literal&quot; axis, empty for &quot;domain&quot;/&quot;default&quot;. </p></li>
 <li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map (option -&gt; &quot;explicit&quot;|&quot;domain&quot;|&quot;default&quot;). </p></li>
 <li><p><strong>passthrough_csv</strong> -- <strong>[in]</strong> Comma-separated option names whose values are never treated as sweep-syntax (may be empty). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_search_segment_command">
+<span class="target" id="search_8sh_1a5ab02bdbc03fccd9db8889c64655ab1c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_search_segment_command</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_search_segment_command" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the mangled command to introspect for a given downstream segment. A search axis records the segment it belongs to (knit_search_scan); this maps that segment to the command whose parameters and declared domains govern the axis, so a &quot;&#64;domain&quot;/&quot;&#64;default&quot; axis is resolved against its OWN segment's command instead of a single global target. This is the one place both search proposers (knit sweep and the knit-ax plugin) route a per-segment domain lookup, so the same option name in two segments (e.g. &quot;submit --nodes &#64;domain -- job --nodes &#64;domain&quot;) resolves against two different commands.</p>
+<p>Segments and their commands:<ul class="simple">
+<li><p>the dispatcher segment (&quot;submit&quot;/&quot;prepare&quot;/&quot;run&quot;) -&gt; the dispatcher command whose option surface it shares (submit and prepare both -&gt; submit; run -&gt; run);</p></li>
+<li><p>the target segment (the &lt;job&gt;/&lt;app&gt; after the inner &quot;--&quot;) -&gt; the mangled &quot;submit:&lt;job&gt;&quot; / &quot;run:&lt;app&gt;&quot;;</p></li>
+<li><p>a bare command -&gt; the command itself.</p></li>
+</ul>
+</p>
+<p>Returns the empty string when the segment matches neither the dispatcher nor the target of the downstream (an unknown segment), leaving the caller to report it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Mangled command name for the segment (empty if none). </p></li>
+<li><p><strong>segment</strong> -- <strong>[in]</strong> The segment name, as recorded in an axis descriptor. </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
 </ul>
 </dd>
@@ -3067,6 +3106,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_resource_path"><code class="docutils literal notranslate"><span class="pre">knit_resource_path()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_after"><code class="docutils literal notranslate"><span class="pre">knit_run_after()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_run_before"><code class="docutils literal notranslate"><span class="pre">knit_run_before()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_axis_qualify"><code class="docutils literal notranslate"><span class="pre">knit_search_axis_qualify()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_group_forward"><code class="docutils literal notranslate"><span class="pre">knit_search_group_forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_launch"><code class="docutils literal notranslate"><span class="pre">knit_search_launch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_loop"><code class="docutils literal notranslate"><span class="pre">knit_search_loop()</span></code></a></li>
@@ -3075,6 +3115,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_resolve_fill"><code class="docutils literal notranslate"><span class="pre">knit_search_resolve_fill()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_resolve_target"><code class="docutils literal notranslate"><span class="pre">knit_search_resolve_target()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_scan"><code class="docutils literal notranslate"><span class="pre">knit_search_scan()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_search_segment_command"><code class="docutils literal notranslate"><span class="pre">knit_search_segment_command()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_invocation_args"><code class="docutils literal notranslate"><span class="pre">knit_set_invocation_args()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_parameter"><code class="docutils literal notranslate"><span class="pre">knit_set_parameter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_set_program_description"><code class="docutils literal notranslate"><span class="pre">knit_set_program_description()</span></code></a></li>

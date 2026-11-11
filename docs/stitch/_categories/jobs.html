@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/jobs';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/jobs.html" />
@@ -498,8 +498,8 @@ command: bind it to a software environment with <code class="docutils literal no
 parameters, and define the body:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -531,8 +531,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -706,8 +706,8 @@ it the default for every submission by storing it at bootstrap, or by setting
 placement the scheduler gave the job — which nodes it got and how many:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -746,8 +746,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -815,8 +815,8 @@ current directory. Anything the job writes there travels with the run’s record
 so this is where output files belong:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -848,8 +848,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -976,8 +976,8 @@ jobs you submit — but stops before the scheduler, leaving a row in state
 <code class="docutils literal notranslate"><span class="pre">prepared</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job you prepare now and release later. Nothing about it is special: `prepare`</span>
 <span class="c1"># and `submit` share one job registry, so any job you can submit you can prepare.</span>
 <span class="nd">@job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span><span class="s2">"Run one simulation."</span>
@@ -998,8 +998,8 @@ _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job you prepare now and release later. Nothing about it is special: `prepare`</span>
 <span class="c1"># and `submit` share one job registry, so any job you can submit you can prepare.</span>
 <span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"sim"</span><span class="w"> </span>_sim<span class="w"> </span><span class="s2">"Run one simulation."</span>
@@ -1061,8 +1061,8 @@ waits on the whole batch with <code class="docutils literal notranslate"><span c
 comma-separated list):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body, `knit submit` targets the</span>
 <span class="c1"># in-allocation daemon (started over the job's own nodes) instead of the machine</span>
 <span class="c1"># scheduler, so the sub-jobs pack onto the allocation and run concurrently.</span>
@@ -1088,8 +1088,8 @@ _campaign_job<span class="o">()</span><span class="w"> </span><span class="o">{<
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body, `knit submit` targets the</span>
 <span class="c1"># in-allocation daemon (started over the job's own nodes) instead of the machine</span>
 <span class="c1"># scheduler, so the sub-jobs pack onto the allocation and run concurrently.</span>
@@ -1120,8 +1120,8 @@ its own row and a provenance <code class="docutils literal notranslate"><span cl
 queryable as a normal parent/child job graph:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A small, ordinary sub-job. Nothing marks it "for pilots only" — a pilot simply</span>
 <span class="c1"># submits many of them. @without_setup keeps it self-contained (no --setup).</span>
 <span class="nd">@job</span><span class="w"> </span><span class="s2">"worker"</span><span class="w"> </span><span class="s2">"A small sub-job."</span>
@@ -1137,8 +1137,8 @@ _worker_job<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A small, ordinary sub-job. Nothing marks it "for pilots only" — a pilot simply</span>
 <span class="c1"># submits many of them. @without_setup keeps it self-contained (no --setup).</span>
 <span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"worker"</span><span class="w"> </span>_worker_job<span class="w"> </span><span class="s2">"A small sub-job."</span>
@@ -1282,8 +1282,8 @@ and succeeds on the retry, because <code class="docutils literal notranslate"><s
 left a marker):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that fails on its first attempt and succeeds on the retry. It records an</span>
 <span class="c1"># ".attempted" marker in its own directory (KNIT_JOB_PREFIX), which `job reset`</span>
 <span class="c1"># preserves, so the second run sees the marker and completes. A real job does not</span>
@@ -1304,8 +1304,8 @@ _flaky<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that fails on its first attempt and succeeds on the retry. It records an</span>
 <span class="c1"># ".attempted" marker in its own directory (KNIT_JOB_PREFIX), which `job reset`</span>
 <span class="c1"># preserves, so the second run sees the marker and completes. A real job does not</span>
@@ -1485,8 +1485,8 @@ the entire database:</p>
 as <code class="docutils literal notranslate"><span class="pre">killed</span></code> (the scheduler reports its PID gone with no exit record):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job that always completes. It only does arithmetic, so it runs</span>
 <span class="c1"># fast on any backend and is suitable as the "victim" job whose state we</span>
 <span class="c1"># manipulate to simulate a hard-kill scenario.</span>
@@ -1506,8 +1506,8 @@ _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job that always completes. It only does arithmetic, so it runs</span>
 <span class="c1"># fast on any backend and is suitable as the "victim" job whose state we</span>
 <span class="c1"># manipulate to simulate a hard-kill scenario.</span>
@@ -1569,8 +1569,8 @@ braces and brackets so the shell does not expand them. Everything else passes
 through. The downstream command carries an ordinary job here:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
 <span class="c1"># can draw its values from the declaration (--fill domain / --n @domain) as well as</span>
 <span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>
@@ -1590,8 +1590,8 @@ _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An ordinary job whose tunable parameter carries a search --domain, so the sweep</span>
 <span class="c1"># can draw its values from the declaration (--fill domain / --n @domain) as well as</span>
 <span class="c1"># from an explicit set on the command line (--n '{1,2,4}').</span>

@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/part1';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/tutorial/part1.html" />
@@ -529,8 +529,8 @@ command, and ends with <code class="docutils literal notranslate"><span class="p
 optional with a sensible default, so it can be run bare:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
 <span class="nb">source</span><span class="w"> </span>knit.sh
 
@@ -566,8 +566,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
 <span class="nb">source</span><span class="w"> </span>knit.sh
 
@@ -656,8 +656,8 @@ installs it. This setup must come before our earlier definition of the <code cla
 command:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
 <span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
@@ -692,8 +692,8 @@ _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal from source."</span>
 <span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"ref:string"</span><span class="w"> </span><span class="s2">"v1.1.0"</span><span class="w"> </span><span class="s2">"git ref to build (tag, branch, or commit)."</span>
@@ -776,15 +776,15 @@ This is where the environment was installed.</p>
 <code class="docutils literal notranslate"><span class="pre">&#64;command</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;done</span></code>, does it:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 </pre></div>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 </pre></div>
 </div>
@@ -828,8 +828,8 @@ with one addition — it writes its image under <code class="docutils literal no
 remove the <code class="docutils literal notranslate"><span class="pre">output</span></code> parameter of the command, alway outputing <em>fractal.png</em>):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 </span><span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -861,8 +861,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 </span><span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -954,8 +954,8 @@ what is in the <em>environment</em>. So making the experiment MPI-capable is a c
 the <strong>setup</strong>, not to the experiment code. Two lines change:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span><span class="s2">"Build and install julia-fractal with MPI."</span>
 <span class="hll"><span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
 </span><span class="hll"><span class="nd">@provides_launcher</span>
@@ -987,8 +987,8 @@ _juliaenv_setup<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span><span class="w"> </span>_juliaenv_setup<span class="w"> </span><span class="s2">"Build and install julia-fractal with MPI."</span>
 <span class="hll"><span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"cmake"</span><span class="w"> </span><span class="s2">"libpng"</span><span class="w"> </span><span class="s2">"mpi"</span>
 </span><span class="hll"><span class="nb">knit_provides_launcher</span>
@@ -1080,8 +1080,8 @@ Knit to launch it, with <code class="docutils literal notranslate"><span class="
 only the body changes:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -1120,8 +1120,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"julia"</span><span class="w"> </span>_julia<span class="w"> </span><span class="s2">"Render a Julia-set fractal as a submitted job."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
@@ -1180,8 +1180,8 @@ app called <code class="docutils literal notranslate"><span class="pre">render</
 it, with <code class="docutils literal notranslate"><span class="pre">&#64;app</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
@@ -1223,8 +1223,8 @@ _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_app<span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w">    </span><span class="s2">"800"</span><span class="w">    </span><span class="s2">"Image width in pixels."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"height:integer"</span><span class="w">   </span><span class="s2">"600"</span><span class="w">    </span><span class="s2">"Image height in pixels."</span>
@@ -1387,8 +1387,8 @@ job produced it — a <em>fan-in</em>, the counterpart to the fan-out of submitt
 jobs:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"aggregate"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="s2">"Fan-in: total the inside metric across every recorded render."</span>
 <span class="nd">@without_provenance</span>
@@ -1407,8 +1407,8 @@ _aggregate<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"aggregate"</span><span class="w"> </span>_aggregate<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="s2">"Fan-in: total the inside metric across every recorded render."</span>
 <span class="nb">knit_without_provenance</span>
@@ -1787,8 +1787,8 @@ parallel placement, querying, or the AI tools — you can also continue to
 experiment this part built:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>
@@ -1928,8 +1928,8 @@ _aggregate<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>

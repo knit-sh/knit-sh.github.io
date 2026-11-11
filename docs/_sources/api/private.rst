@@ -2505,6 +2505,9 @@ Functions
 .. doxygenfunction:: _knit_sweep_scan
    :project: knit
 
+.. doxygenfunction:: _knit_sweep_segment_has_param
+   :project: knit
+
 Variables
 ~~~~~~~~~
 

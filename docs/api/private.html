@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/private';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/api/private.html" />
@@ -1528,6 +1528,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_reconstruct"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_reconstruct()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_domains"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_domains()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_scan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_scan()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_segment_has_param"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_segment_has_param()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Variables</a><ul class="nav section-nav flex-column">
@@ -10904,7 +10905,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_dimensions_json">
 <span class="target" id="sweep_8sh_1ac0433f43621e4c0a1870e2445e1dc124"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_dimensions_json</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_dimensions_json" title="Link to this definition">#</a><br /></dt>
-<dd><p>Build the campaign's &quot;dimensions&quot; JSON object: one key per axis (its name) mapping to the ordered array of that axis's values, e.g. {&quot;nodes&quot;:[1,2,4],&quot;samples&quot;:[1000,100000]}. Numeric-looking values are emitted as JSON numbers, others as strings. This is the single JSON column recorded on the sweeps row (so a 1-node command and a 1024-node job produce rows of the same shape).</p>
+<dd><p>Build the campaign's &quot;dimensions&quot; JSON object: one key per axis (its command-qualified &quot;&lt;segment&gt;.&lt;option&gt;&quot; name) mapping to the ordered array of that axis's values, e.g. {&quot;submit.nodes&quot;:[1,2,4],&quot;montecarlo.samples&quot;:[1000,100000]}. The qualified key keeps two same-named axes in different segments distinct. Numeric-looking values are emitted as JSON numbers, others as strings. This is the single JSON column recorded on the sweeps row (so a 1-node command and a 1024-node job produce rows of the same shape).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -11044,13 +11045,15 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep_resolve_domains">
 <span class="target" id="sweep_8sh_1a371eaf739adba54ddf4c9e781486afdb"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_resolve_domains</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_resolve_domains" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve the declared-domain axes (&#64;domain / &#64;default / --fill) against the downstream target's parameters, splicing the results into the M2 scan. This is the one point where the sweep introspects the target, and it runs only when it must: --fill domain, or a &#64;domain/&#64;default marker at the call site. With --fill default and no marker it returns at once, having read nothing.</p>
-<p>For each target parameter, the call-site classification (explicit / domain / default / unspecified, from the seen map) and the parameter's declared-domain presence feed the shared knit_search_resolve_fill precedence rule:<ul class="simple">
-<li><p>explicit: left as the M2 scan already has it (a literal axis, or a scalar that passes through);</p></li>
-<li><p>domain: enumerate the declared domain (via _knit_sweep_enumerate_domain) and either fill the call-site &#64;domain marker axis in place, or, for a parameter left unspecified under --fill domain, append a new &quot;--param &lt;value&gt;&quot; axis to the template;</p></li>
-<li><p>default: a call-site &#64;default marker is pinned to the resolved default value in the template (and drops out as an axis); an unspecified parameter keeps its default, which the downstream fills when the reconstructed line runs. An explicit &#64;domain on a parameter with no declared domain is a fatal; a &#64;domain / &#64;default naming a parameter the target does not have is a fatal.</p></li>
+<dd><p>Resolve the declared-domain axes (&#64;domain / &#64;default / --fill), splicing the results into the M2 scan. It runs only when it must: --fill domain, or a &#64;domain/&#64;default marker at the call site. With --fill default and no marker it returns at once, having read nothing.</p>
+<p>Two passes:<ul class="simple">
+<li><p><p>markers: each call-site &#64;domain/&#64;default axis is resolved against the command of the segment it sits in (knit_search_segment_command), so the same option name in two segments (e.g. &quot;submit --nodes &#64;domain -- job</p>
+<p>--nodes &#64;domain&quot;) resolves against two different commands. A &#64;domain enumerates the declared domain (via _knit_sweep_enumerate_domain) and fills the marker axis in place; a &#64;default pins the marker to the resolved default and drops it as an axis.</p>
+</p></li>
+<li><p>--fill domain: for each parameter of the downstream TARGET left unspecified on the line that has a declared domain, append a new &quot;--param &lt;value&gt;&quot; axis. (A dispatcher-segment parameter is varied only when marked explicitly, not by --fill.)</p></li>
 </ul>
 </p>
+<p>An explicit &#64;domain on a parameter with no declared domain is a fatal; a &#64;domain / &#64;default naming a parameter its segment does not have is a fatal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -11059,7 +11062,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li><p><strong>__knit_ret3</strong> -- <strong>[inout]</strong> Name of the per-axis value-list array. </p></li>
 <li><p><strong>__knit_seen</strong> -- <strong>[in]</strong> Name of the seen map (option -&gt; classification). </p></li>
 <li><p><strong>fill</strong> -- <strong>[in]</strong> The --fill policy (&quot;default&quot; or &quot;domain&quot;). </p></li>
-<li><p><strong>mangled</strong> -- <strong>[in]</strong> The resolved downstream target (mangled command name). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens (used to resolve each axis's segment to its own command). </p></li>
 </ul>
 </dd>
 </dl>
@@ -11078,6 +11081,20 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li><p><strong>__knit_ret4</strong> -- <strong>[out]</strong> Name of the associative array to receive the seen map. </p></li>
 <li><p><strong>passthrough_csv</strong> -- <strong>[in]</strong> Comma-separated option names whose values are never treated as sweep-syntax (may be empty). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The downstream tokens. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sweep_segment_has_param">
+<span class="target" id="sweep_8sh_1a0b7a48e600381eb68b087b894a32c1f9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep_segment_has_param</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep_segment_has_param" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return success when command $1 declares a parameter named $2 (normalized).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> The mangled command name. </p></li>
+<li><p><strong>want</strong> -- <strong>[in]</strong> The normalized parameter name to look for. </p></li>
 </ul>
 </dd>
 </dl>
@@ -12352,6 +12369,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_reconstruct"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_reconstruct()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_resolve_domains"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_resolve_domains()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_scan"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_scan()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_segment_has_param"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_segment_has_param()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id74">Variables</a><ul class="nav section-nav flex-column">

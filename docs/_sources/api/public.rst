@@ -287,6 +287,9 @@ Functions
 .. doxygenfunction:: knit_run_before
    :project: knit
 
+.. doxygenfunction:: knit_search_axis_qualify
+   :project: knit
+
 .. doxygenfunction:: knit_search_group_forward
    :project: knit
 
@@ -309,6 +312,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_search_scan
+   :project: knit
+
+.. doxygenfunction:: knit_search_segment_command
    :project: knit
 
 .. doxygenfunction:: knit_set_invocation_args

@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/part3';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/tutorial/part3.html" />
@@ -530,8 +530,8 @@ installed directly from its Git repository — and has no body of its own; uv
 building and activating the environment is all it does:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A uv-backed setup installs the classifier. @with_uv_specs declares a uv Python</span>
 <span class="c1"># environment whose single requirement is the cifar-cnn package, installed</span>
 <span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
@@ -547,8 +547,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A uv-backed setup installs the classifier. @with_uv_specs declares a uv Python</span>
 <span class="c1"># environment whose single requirement is the cifar-cnn package, installed</span>
 <span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
@@ -573,8 +573,8 @@ and (with <code class="docutils literal notranslate"><span class="pre">--uncompr
 URL:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input. @with_url makes `cifar` a</span>
 <span class="c1"># downloadable resource whose default URL is the CIFAR-10 python archive;</span>
 <span class="c1"># `knit fetch --name cifar -- cifar --uncompress` downloads and unpacks it into</span>
@@ -587,8 +587,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A resource declares HOW to acquire an input. @with_url makes `cifar` a</span>
 <span class="c1"># downloadable resource whose default URL is the CIFAR-10 python archive;</span>
 <span class="c1"># `knit fetch --name cifar -- cifar --uncompress` downloads and unpacks it into</span>
@@ -612,8 +612,8 @@ parses the <code class="docutils literal notranslate"><span class="pre">RESULT</
 <strong>output</strong> — the column every later step reads as the objective:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job that trains one network and records its validation accuracy. It</span>
 <span class="c1"># declares the cnnenv setup (so cifar-cnn is on PATH) and the cifar resource (so</span>
 <span class="c1"># the dataset is staged). Its body runs `cifar-cnn train`, reads the</span>
@@ -659,8 +659,8 @@ _train_job<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The job that trains one network and records its validation accuracy. It</span>
 <span class="c1"># declares the cnnenv setup (so cifar-cnn is on PATH) and the cifar resource (so</span>
 <span class="c1"># the dataset is staged). Its body runs `cifar-cnn train`, reads the</span>
@@ -873,8 +873,8 @@ single-node <code class="docutils literal notranslate"><span class="pre">train</
 pilot:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body every `knit submit` --- here</span>
 <span class="c1"># the ones `submit drain` issues --- targets the in-allocation knit-pilotd daemon</span>
 <span class="c1"># over the pilot's own nodes, not the machine scheduler, so the prepared sweep</span>
@@ -917,8 +917,8 @@ _sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o"
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_pilot marks this job a pilot. Inside its body every `knit submit` --- here</span>
 <span class="c1"># the ones `submit drain` issues --- targets the in-allocation knit-pilotd daemon</span>
 <span class="c1"># over the pilot's own nodes, not the machine scheduler, so the prepared sweep</span>
@@ -1033,8 +1033,8 @@ activation function, whether the network uses residual connections, the learning
 rate, and the batch size — five more parameters on the <code class="docutils literal notranslate"><span class="pre">train</span></code> job:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
@@ -1044,8 +1044,8 @@ Shorthand</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"dropout:real"</span><span class="w">          </span><span class="s2">"0.3"</span><span class="w">     </span><span class="s2">"Dropout before the classifier head."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'[0.0..0.5]'</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"activation:string"</span><span class="w">     </span><span class="s2">"relu"</span><span class="w">    </span><span class="s2">"Activation function."</span><span class="w">                </span>--domain<span class="w"> </span><span class="s1">'{relu,gelu,leaky-relu}'</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"residual:string"</span><span class="w">       </span><span class="s2">"false"</span><span class="w">   </span><span class="s2">"Residual skip connections."</span><span class="w">          </span>--domain<span class="w"> </span><span class="s1">'{false,true}'</span>
@@ -1100,8 +1100,8 @@ and run <code class="docutils literal notranslate"><span class="pre">ax</span> <
 packs onto the pilot’s allocation:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ax equivalent of the sweep-draining pilot from Step 6. Its body runs</span>
 <span class="c1"># `ax optimize` instead of `submit drain`: the ask -&gt; submit -&gt; observe loop</span>
 <span class="c1"># submits each trial job, and inside the pilot allocation those submits pack onto</span>
@@ -1124,8 +1124,8 @@ _tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># The ax equivalent of the sweep-draining pilot from Step 6. Its body runs</span>
 <span class="c1"># `ax optimize` instead of `submit drain`: the ask -&gt; submit -&gt; observe loop</span>
 <span class="c1"># submits each trial job, and inside the pilot allocation those submits pack onto</span>
@@ -1219,8 +1219,8 @@ eight-parameter <code class="docutils literal notranslate"><span class="pre">tra
 <code class="docutils literal notranslate"><span class="pre">knit.sh</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>
@@ -1345,8 +1345,8 @@ _tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># doc-check: source-only</span>

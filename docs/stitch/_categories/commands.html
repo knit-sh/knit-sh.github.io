@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/commands';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/commands.html" />
@@ -502,8 +502,8 @@ takes only <code class="docutils literal notranslate"><span class="pre">&lt;name
 defined just beneath the declaration — and <code class="docutils literal notranslate"><span class="pre">&#64;done</span></code> closes it:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"hello"</span><span class="w"> </span><span class="s2">"Print a greeting."</span>
 _hello<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello World"</span>
@@ -519,8 +519,8 @@ _hello<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"hello"</span><span class="w"> </span>_hello<span class="w"> </span><span class="s2">"Print a greeting."</span>
 _hello<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hello World"</span>
@@ -559,8 +559,8 @@ children) and, optionally, rename the section they appear under in <code class="
 <code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_title</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A parent command that only groups subcommands: register it with @empty and</span>
 <span class="c1"># (optionally) rename the section its children appear under in --help.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"say"</span><span class="w"> </span><span class="s2">"Say something."</span>
@@ -585,8 +585,8 @@ _say_goodbye<span class="o">()</span><span class="w"> </span><span class="o">{</
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A parent command that only groups subcommands: register it with @empty and</span>
 <span class="c1"># (optionally) rename the section its children appear under in --help.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"say"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"Say something."</span>
@@ -625,8 +625,8 @@ is actually reached (resolved on the command line, listed in the parent’s
 <code class="docutils literal notranslate"><span class="pre">--help</span></code>, or walked by <code class="docutils literal notranslate"><span class="pre">describe</span></code>).</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a larger subtree, register the children lazily. Attach a discovery function</span>
 <span class="c1"># to the parent with @with_subcommand_discovery: knit calls it at most once, the</span>
 <span class="c1"># first time a subcommand of "widget" is reached (resolved, listed in --help, or</span>
@@ -657,8 +657,8 @@ _widget_discover<span class="o">()</span><span class="w"> </span><span class="o"
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a larger subtree, register the children lazily. Attach a discovery function</span>
 <span class="c1"># to the parent with @with_subcommand_discovery: knit calls it at most once, the</span>
 <span class="c1"># first time a subcommand of "widget" is reached (resolved, listed in --help, or</span>
@@ -710,8 +710,8 @@ setup, job, or app name after <code class="docutils literal notranslate"><span c
 trailing arguments), and the body reads them with <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A dispatcher forwards everything after "--" to a target it looks up itself.</span>
 <span class="c1"># @with_dispatch changes the --help usage line to "tool [OPTIONS] -- &lt;tool&gt;"</span>
 <span class="c1"># and allows the trailing arguments; the body reads them with knit_extra_index.</span>
@@ -728,8 +728,8 @@ _run_tool<span class="o">()</span><span class="w"> </span><span class="o">{</spa
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A dispatcher forwards everything after "--" to a target it looks up itself.</span>
 <span class="c1"># @with_dispatch changes the --help usage line to "tool [OPTIONS] -- &lt;tool&gt;"</span>
 <span class="c1"># and allows the trailing arguments; the body reads them with knit_extra_index.</span>
@@ -758,8 +758,8 @@ invokable; <code class="docutils literal notranslate"><span class="pre">knit_usa
 holds, showing its description as the error otherwise:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide a command from --help. It stays fully invokable.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"internal"</span><span class="w"> </span><span class="s2">"Internal helper."</span>
 <span class="nd">@hidden</span>
@@ -784,8 +784,8 @@ _danger_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hide a command from --help. It stays fully invokable.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"internal"</span><span class="w"> </span>_internal_cmd<span class="w"> </span><span class="s2">"Internal helper."</span>
 <span class="nb">knit_hidden</span>
@@ -832,8 +832,8 @@ purely cosmetic: it never affects whether the command runs, its provenance, or h
 <code class="docutils literal notranslate"><span class="pre">describe</span></code> sees it.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bold a command's name in --help when a predicate holds and output is a</span>
 <span class="c1"># terminal. Purely cosmetic: it never affects whether the command runs.</span>
 _is_featured<span class="o">()</span><span class="w"> </span><span class="o">{</span>
@@ -849,8 +849,8 @@ _featured_cmd<span class="o">()</span><span class="w"> </span><span class="o">{<
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bold a command's name in --help when a predicate holds and output is a</span>
 <span class="c1"># terminal. Purely cosmetic: it never affects whether the command runs.</span>
 _is_featured<span class="o">()</span><span class="w"> </span><span class="o">{</span>

@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/artifacts';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/artifacts.html" />
@@ -484,8 +484,8 @@ what the experiment was for. Append <code class="docutils literal notranslate"><
 declaration to say so:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
 <span class="nd">@with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
@@ -503,8 +503,8 @@ _measure<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span>_measure<span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
 <span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
@@ -546,8 +546,8 @@ export — a dataset, a plot, a captured config. Declare it with
 <code class="docutils literal notranslate"><span class="pre">knit_artifact_dir</span></code>, then bind it from the body with <code class="docutils literal notranslate"><span class="pre">knit_artifact</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span><span class="s2">"Write a data table as an artifact."</span>
 <span class="nd">@with_output</span><span class="w">   </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"How many rows were written."</span><span class="w"> </span>--result
 <span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"table:file"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
@@ -567,8 +567,8 @@ _tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</spa
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"tabulate"</span><span class="w"> </span>_tabulate<span class="w"> </span><span class="s2">"Write a data table as an artifact."</span>
 <span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"rows:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"How many rows were written."</span><span class="w"> </span>--result
 <span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"table:file"</span><span class="w"> </span><span class="s2">"The data table (CSV)."</span><span class="w"> </span>--result
@@ -623,8 +623,8 @@ number of times, and each binding is its own <code class="docutils literal notra
 frames, per-seed outputs — that you do not know the count of up front:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
 <span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
 <span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
@@ -649,8 +649,8 @@ _shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
 <span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
 <span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
@@ -697,8 +697,8 @@ artifacts root by hand. <code class="docutils literal notranslate"><span class="
 <code class="docutils literal notranslate"><span class="pre">--link-from</span></code> references it in place through an absolute-target symlink:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"collect"</span><span class="w"> </span><span class="s2">"Bind artifacts by copy and by reference."</span>
 <span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"figure:file"</span><span class="w">  </span><span class="s2">"A small file, copied in for durability."</span>
 <span class="nd">@with_output_artifact</span><span class="w"> </span><span class="s2">"dataset:file"</span><span class="w"> </span><span class="s2">"A large file, referenced in place."</span><span class="w"> </span>--result
@@ -719,8 +719,8 @@ _collect<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"collect"</span><span class="w"> </span>_collect<span class="w"> </span><span class="s2">"Bind artifacts by copy and by reference."</span>
 <span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"figure:file"</span><span class="w">  </span><span class="s2">"A small file, copied in for durability."</span>
 <span class="nb">knit_with_output_artifact</span><span class="w"> </span><span class="s2">"dataset:file"</span><span class="w"> </span><span class="s2">"A large file, referenced in place."</span><span class="w"> </span>--result
@@ -841,8 +841,8 @@ CSV table</em> rather than merely <em>a file</em>. Declare a kind once at the to
 kind in place of the bare physical type:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A kind is a semantic label for an artifact, backed by exactly one physical</span>
 <span class="c1"># type (file or directory). Declare it once at the top level; a producer then</span>
 <span class="c1"># names the kind in place of the bare physical type.</span>
@@ -865,8 +865,8 @@ _tabulate<span class="o">()</span><span class="w"> </span><span class="o">{</spa
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A kind is a semantic label for an artifact, backed by exactly one physical</span>
 <span class="c1"># type (file or directory). Declare it once at the top level; a producer then</span>
 <span class="c1"># names the kind in place of the bare physical type.</span>
@@ -912,8 +912,8 @@ artifact of that kind. In the body, <code class="docutils literal notranslate"><
 path to the on-disk file:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A consumer requires an artifact of a given kind. The parameter value is the</span>
 <span class="c1"># artifacts-relative path of a recorded artifact; Knit resolves it, refuses a</span>
 <span class="c1"># missing artifact or a kind mismatch, and --- with --verify-checksum ---</span>
@@ -935,8 +935,8 @@ _summarize<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A consumer requires an artifact of a given kind. The parameter value is the</span>
 <span class="c1"># artifacts-relative path of a recorded artifact; Knit resolves it, refuses a</span>
 <span class="c1"># missing artifact or a kind mismatch, and --- with --verify-checksum ---</span>
@@ -986,8 +986,8 @@ artifacts-relative paths, and any element holding a glob metacharacter
 fills a bash array with the resolved on-disk paths, in order, de-duplicated:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
 <span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
 <span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
@@ -1012,8 +1012,8 @@ _merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
 <span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
 <span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
@@ -1061,8 +1061,8 @@ hard-coding how many members there are. The producer binds one collection name
 per member:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
 <span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
 <span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
@@ -1087,8 +1087,8 @@ _shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "*" (zero or more) output is a COLLECTION: the body may bind the same name</span>
 <span class="c1"># any number of times, and each binding is its own artifacts row with its own</span>
 <span class="c1"># "produced" edge. (Use "+" for one-or-more, which is fatal if the body binds</span>
@@ -1116,8 +1116,8 @@ _shard<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <p>The consumer discovers them with a glob and merges what it finds:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
 <span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
 <span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>
@@ -1142,8 +1142,8 @@ _merge<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "+" (one or more) input requires at least one member. Its argument is a</span>
 <span class="c1"># comma-separated list of artifacts-relative paths, and any element holding a</span>
 <span class="c1"># glob metacharacter (*, ?, [) is expanded against the artifacts root --- so one</span>

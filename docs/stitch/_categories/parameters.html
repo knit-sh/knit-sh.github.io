@@ -35,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=2a7796de" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=023473e4" />
   
   <!-- So that users can add custom icons -->
@@ -50,7 +50,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=b8bcef97"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'stitch/_categories/parameters';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="canonical" href="https://knit.sh/docs/stitch/_categories/parameters.html" />
@@ -484,8 +484,8 @@
 as <code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">value</span></code>. The body reads it back with <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A required parameter must be supplied; the body reads it with knit_get_parameter.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"greet"</span><span class="w"> </span><span class="s2">"Greet someone."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
@@ -499,8 +499,8 @@ _greet<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-1">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A required parameter must be supplied; the body reads it with knit_get_parameter.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"greet"</span><span class="w"> </span>_greet<span class="w"> </span><span class="s2">"Greet someone."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"name:string"</span><span class="w"> </span><span class="s2">"Who to greet."</span>
@@ -543,8 +543,8 @@ that falls back to a default when omitted. <code class="docutils literal notrans
 declares a boolean flag that is either present or not:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An optional parameter has a default; a flag is either present or not and reads</span>
 <span class="c1"># back as "true"/"false".</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"shout"</span><span class="w"> </span><span class="s2">"Greet someone, optionally louder."</span>
@@ -563,8 +563,8 @@ _shout<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An optional parameter has a default; a flag is either present or not and reads</span>
 <span class="c1"># back as "true"/"false".</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"shout"</span><span class="w"> </span>_shout<span class="w"> </span><span class="s2">"Greet someone, optionally louder."</span>
@@ -598,8 +598,8 @@ passed) or <code class="docutils literal notranslate"><span class="pre">false</s
 when <code class="docutils literal notranslate"><span class="pre">NAME</span></code> is unset):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An "ENV[NAME]" default falls back to the NAME environment variable when the</span>
 <span class="c1"># parameter is not passed (empty if NAME is unset). Resolved when the parameter</span>
 <span class="c1"># is filled in, so a job picks up a value exported by its setup.</span>
@@ -613,8 +613,8 @@ _roll<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># An "ENV[NAME]" default falls back to the NAME environment variable when the</span>
 <span class="c1"># parameter is not passed (empty if NAME is unset). Resolved when the parameter</span>
 <span class="c1"># is filled in, so a job picks up a value exported by its setup.</span>
@@ -644,8 +644,8 @@ a parameter sweep or a Bayesian-optimization run may explore. Declare it with
 quoting the descriptor so the shell does not brace-expand it:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare each tunable parameter's search domain with --domain. Quote the</span>
 <span class="c1"># descriptor: the shell would otherwise brace-expand {a,b,c}. --log marks a real</span>
 <span class="c1"># range as log-scaled (a hint a Bayesian-optimization proposer reads; a sweep</span>
@@ -664,8 +664,8 @@ _train<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare each tunable parameter's search domain with --domain. Quote the</span>
 <span class="c1"># descriptor: the shell would otherwise brace-expand {a,b,c}. --log marks a real</span>
 <span class="c1"># range as log-scaled (a hint a Bayesian-optimization proposer reads; a sweep</span>
@@ -707,8 +707,8 @@ parameter set and import the set wherever you need it. A set is opened with
 closed with <code class="docutils literal notranslate"><span class="pre">knit_done</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nd">@parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
@@ -729,8 +729,8 @@ _area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </div>
 </div>
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nb">knit_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
@@ -764,8 +764,8 @@ Pass <code class="docutils literal notranslate"><span class="pre">--only</span><
 parameters and leave the rest behind:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span><span class="s2">"Report just the grid width."</span>
@@ -778,8 +778,8 @@ _width_only<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span>_width_only<span class="w"> </span><span class="s2">"Report just the grid width."</span>
@@ -805,8 +805,8 @@ declare it itself with a different kind or default — here a parameter that is
 required in the set becomes optional on this command:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
@@ -823,8 +823,8 @@ _flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </div>
 </div>
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span>_flat_area<span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
@@ -853,8 +853,8 @@ them to another program), document them with <code class="docutils literal notra
 the body starting at <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
@@ -870,8 +870,8 @@ _forward<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </div>
 </div>
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span>_forward<span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
@@ -911,8 +911,8 @@ a value, the second names flags, and it returns 1 on the first unexpected
 argument (logging an error attributed to the caller):</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
 <span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
@@ -931,8 +931,8 @@ _render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </div>
 </div>
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
 <span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
