@@ -453,7 +453,10 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-parameter-sweep">Run a parameter sweep</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-a-job-with-bayesian-search">Optimize a job with Bayesian search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-a-job-with-bayesian-search">Optimize a job with Bayesian search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-the-objective-instead-of-optimizing-it">Model the objective instead of optimizing it</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -651,7 +654,7 @@ ephemeral forms; durable concurrency, recovery, and failure policy are drain’s
 </section>
 <section id="optimize-a-job-with-bayesian-search">
 <span id="stitch-optimize-a-job-with-bayesian-search"></span><h2>Optimize a job with Bayesian search<a class="headerlink" href="#optimize-a-job-with-bayesian-search" title="Link to this heading">#</a></h2>
-<p><em>Tune a job’s recorded output with the knit-ax plugin’s Bayesian ask/tell loop over a declared search domain.</em></p>
+<p><em>Tune a job’s recorded output with the knit-ax plugin’s Bayesian ask/tell loop over a declared search domain, or fit a surrogate model and query it with ax predict.</em></p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_import</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_table</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code></p>
 <p>The <strong>knit-ax</strong> plugin runs Bayesian optimization over a knit command. Where
 <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code> tries every point in a product, <code class="docutils literal notranslate"><span class="pre">ax</span></code> fits a model to the results
@@ -753,6 +756,38 @@ for <code class="docutils literal notranslate"><span class="pre">--</span> <span
 table. Declare a parameter’s domain with <code class="docutils literal notranslate"><span class="pre">--domain</span></code> (see <em>Declare a parameter’s
 search domain</em>); <code class="docutils literal notranslate"><span class="pre">ax</span></code> and <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">sweep</span></code> read the very same domains, so a space
 written for one proposer serves the other unchanged.</p>
+<section id="model-the-objective-instead-of-optimizing-it">
+<h3>Model the objective instead of optimizing it<a class="headerlink" href="#model-the-objective-instead-of-optimizing-it" title="Link to this heading">#</a></h3>
+<p>Sometimes the goal is not the best point but a <em>model</em> of how the objective
+behaves across the whole space. Prepare with <code class="docutils literal notranslate"><span class="pre">--model</span></code> in place of
+<code class="docutils literal notranslate"><span class="pre">--minimize</span></code> / <code class="docutils literal notranslate"><span class="pre">--maximize</span></code>: the campaign then fits a surrogate by <strong>active
+learning</strong>, sending each trial where the model is least certain rather than toward
+an optimum. A model campaign records no best, so <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">show</span></code> lists its varying axes
+instead:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>surf<span class="w"> </span>--objective<span class="w"> </span>score<span class="w"> </span>--model<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--max-trials<span class="w"> </span><span class="m">20</span><span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>quad<span class="w"> </span>--x<span class="w"> </span><span class="nd">@domain</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>surf<span class="w">   </span><span class="c1"># spends the budget on active learning</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>show<span class="w"> </span>--campaign<span class="w"> </span>surf
+<span class="go">...</span>
+<span class="go">axes:       quad.x</span>
+</pre></div>
+</div>
+<p>Ask the fitted model for the objective at a point with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">predict</span></code>. Write the
+point as the prepare command with a concrete value in each varying position; the
+value must be in its domain (a member of a <code class="docutils literal notranslate"><span class="pre">{...}</span></code> set, or inside a <code class="docutils literal notranslate"><span class="pre">[lo..hi]</span></code>
+range). It prints the predicted value by default; <code class="docutils literal notranslate"><span class="pre">--variance</span></code>, <code class="docutils literal notranslate"><span class="pre">--std</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--interval</span></code> (the 95% confidence interval), and <code class="docutils literal notranslate"><span class="pre">--json</span></code> add detail:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>predict<span class="w"> </span>--campaign<span class="w"> </span>surf<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>quad<span class="w"> </span>--x<span class="w"> </span><span class="m">6</span>
+<span class="go">93.8</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>predict<span class="w"> </span>--campaign<span class="w"> </span>surf<span class="w"> </span>--std<span class="w"> </span>--interval<span class="w"> </span>--<span class="w"> </span>submit<span class="w"> </span>--<span class="w"> </span>quad<span class="w"> </span>--x<span class="w"> </span><span class="m">6</span>
+<span class="go">93.8  (±6.7, 95% CI 80.7–106.9)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">predict</span></code> works on any campaign that has run trials — a <code class="docutils literal notranslate"><span class="pre">--model</span></code> campaign
+or a <code class="docutils literal notranslate"><span class="pre">--minimize</span></code> / <code class="docutils literal notranslate"><span class="pre">--maximize</span></code> one — and reads the model only, recording
+nothing. <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">show</span> <span class="pre">--diagnostics</span></code> cross-validates the fitted surrogate and reports
+its fit quality (R² / RMSE); it refits the model, so it is opt-in.</p>
+</section>
 </section>
 </section>
 
@@ -805,7 +840,10 @@ written for one proposer serves the other unchanged.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-parameter-sweep">Run a parameter sweep</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-a-job-with-bayesian-search">Optimize a job with Bayesian search</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimize-a-job-with-bayesian-search">Optimize a job with Bayesian search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-the-objective-instead-of-optimizing-it">Model the objective instead of optimizing it</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

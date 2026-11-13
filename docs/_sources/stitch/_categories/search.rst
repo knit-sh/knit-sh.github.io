@@ -26,7 +26,7 @@ Run a parameter sweep
 Optimize a job with Bayesian search
 -----------------------------------
 
-*Tune a job's recorded output with the knit-ax plugin's Bayesian ask/tell loop over a declared search domain.*
+*Tune a job's recorded output with the knit-ax plugin's Bayesian ask/tell loop over a declared search domain, or fit a surrogate model and query it with ax predict.*
 
 **APIs:** ``knit_import``, ``knit_with_optional``, ``knit_with_output``, ``knit_with_table``, ``knit_get_parameter``, ``knit_output``
 

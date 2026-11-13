@@ -1210,6 +1210,17 @@ finding alongside the runs so it travels with the experiment:</p>
 </div>
 <p>That is where Part III ends: a finding, stated in English and backed by every
 recorded run that led to it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Beyond finding the best point.</strong> The same campaign machinery can fit a
+<em>surrogate model</em> of the objective instead of chasing its optimum. Prepare with
+<code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">prepare</span> <span class="pre">--model</span></code> (in place of <code class="docutils literal notranslate"><span class="pre">--maximize</span></code> / <code class="docutils literal notranslate"><span class="pre">--minimize</span></code>) and the
+loop explores where the model is least certain. You then ask the fitted model
+for the objective at any in-space point with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">predict</span></code> — written as the
+prepare command with a concrete value in each varying position — and check
+the model’s fit with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">show</span> <span class="pre">--diagnostics</span></code>. The <em>Optimize a job with
+Bayesian search</em> recipe in the Stitch Guide covers it.</p>
+</div>
 </section>
 <section id="the-complete-experiment-part-iii">
 <h2>The complete experiment (Part III)<a class="headerlink" href="#the-complete-experiment-part-iii" title="Link to this heading">#</a></h2>
