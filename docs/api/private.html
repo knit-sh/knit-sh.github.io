@@ -812,14 +812,20 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_option_names"><code class="docutils literal notranslate"><span class="pre">_knit_env_option_names()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_provision_all"><code class="docutils literal notranslate"><span class="pre">_knit_env_provision_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_provision_one"><code class="docutils literal notranslate"><span class="pre">_knit_env_provision_one()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_record_contribution"><code class="docutils literal notranslate"><span class="pre">_knit_env_record_contribution()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_register_shorthands"><code class="docutils literal notranslate"><span class="pre">_knit_env_register_shorthands()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_render_tokens"><code class="docutils literal notranslate"><span class="pre">_knit_env_render_tokens()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_require_context"><code class="docutils literal notranslate"><span class="pre">_knit_env_require_context()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_require_setup_context"><code class="docutils literal notranslate"><span class="pre">_knit_env_require_setup_context()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_resolve_manifest"><code class="docutils literal notranslate"><span class="pre">_knit_env_resolve_manifest()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_setup_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_env_setup_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_setup_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_env_setup_before_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_update_all"><code class="docutils literal notranslate"><span class="pre">_knit_env_update_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_update_one"><code class="docutils literal notranslate"><span class="pre">_knit_env_update_one()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_env"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_env()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_env_from"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_env_from()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_specs"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_specs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_specs_from"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_specs_from()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Variables</a><ul class="nav section-nav flex-column">
@@ -5261,7 +5267,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_env_is_manager_shorthand">
 <span class="target" id="env_8sh_1a31d18a153c07ff8b5f7759333af43215"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_is_manager_shorthand</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_is_manager_shorthand" title="Link to this definition">#</a><br /></dt>
-<dd><p>Return 0 when the token is the &quot;with_&lt;nm&gt;_env&quot; or &quot;with_&lt;nm&gt;_specs&quot; shorthand of a registered environment manager. The source-time shorthand generator uses it so a KNIT_WITHOUT_SHORTHAND opt-out of such a token is recognised rather than warned about as an unknown token.</p>
+<dd><p>Return 0 when the token is the &quot;with_&lt;nm&gt;_env&quot;, &quot;with_&lt;nm&gt;_env_from&quot;, &quot;with_&lt;nm&gt;_specs&quot;, or &quot;with_&lt;nm&gt;_specs_from&quot; shorthand of a registered environment manager. The source-time shorthand generator uses it so a KNIT_WITHOUT_SHORTHAND opt-out of such a token is recognised rather than warned about as an unknown token.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -5340,13 +5346,52 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
-<dt class="sig sig-object c" id="c._knit_env_register_shorthands">
-<span class="target" id="env_8sh_1a71bc8d498190ba19a278dfe257f43db9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_register_shorthands</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_register_shorthands" title="Link to this definition">#</a><br /></dt>
-<dd><p>Register the &quot;&#64;with_&lt;nm&gt;_env&quot; and &quot;&#64;with_&lt;nm&gt;_specs&quot; shorthands for a manager, each forwarding to the directive knit_env_done generated. KNIT_WITHOUT_SHORTHAND and collision rejection are handled by knit_register_shorthand. Called from knit_env_done for a plugin's manager (declared after the shorthand layer exists) and from the source-time shorthand generator for a core manager (declared before it).</p>
+<dt class="sig sig-object c" id="c._knit_env_record_contribution">
+<span class="target" id="env_8sh_1a3c95e7a9075f2d947f5eb68257e510d3"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_record_contribution</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_record_contribution" title="Link to this definition">#</a><br /></dt>
+<dd><p>Generic recorder shared by every setup environment directive. It (1) validates the A/B mode rule against what the setup has already declared for this manager, (2) appends the contribution to the per-command, per-manager contribution list, and (3) on the FIRST contribution for a manager, installs the build/activation callbacks, declares the __&lt;nm&gt;_manifest__ / __&lt;nm&gt;_lock__ provenance outputs and the --help note, and flags the manager required so bootstrap provisions it.</p>
+<p>A setup declares, per manager, EITHER world A (one complete manifest, mode &quot;env&quot;) OR world B (an accumulating spec list, mode &quot;specs&quot;); the two cannot be mixed, and world A is exactly one contribution. The caller passes the mode its directive belongs to; a conflicting or duplicate world-A declaration is fatal.</p>
+<p>The contribution list <code class="docutils literal notranslate"><span class="pre">_KNIT_CMD_&lt;cmd&gt;_envcontrib_&lt;nm&gt;</span></code> holds two array elements per contribution — a tag then its payload — so a payload (such as an inline manifest) may carry spaces and newlines without any escaping. The mode is kept in the scalar <code class="docutils literal notranslate"><span class="pre">_KNIT_CMD_&lt;cmd&gt;_envmode_&lt;nm&gt;</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name. </p></li>
+<li><p><strong>mode</strong> -- <strong>[in]</strong> &quot;env&quot; (world A, exclusive) or &quot;specs&quot; (world B, additive). </p></li>
+<li><p><strong>tag</strong> -- <strong>[in]</strong> Contribution tag (literal-spec / fn-spec / file-manifest / stdin-manifest / fn-manifest). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> One payload per remaining argument; each appended as its own contribution with the same tag (so knit_with_&lt;nm&gt;_specs can pass several specs at once). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_register_shorthands">
+<span class="target" id="env_8sh_1a71bc8d498190ba19a278dfe257f43db9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_register_shorthands</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_register_shorthands" title="Link to this definition">#</a><br /></dt>
+<dd><p>Register the &quot;&#64;with_&lt;nm&gt;_env&quot;, &quot;&#64;with_&lt;nm&gt;_env_from&quot;, &quot;&#64;with_&lt;nm&gt;_specs&quot;, and &quot;&#64;with_&lt;nm&gt;_specs_from&quot; shorthands for a manager, each forwarding to the directive knit_env_done generated. KNIT_WITHOUT_SHORTHAND and collision rejection are handled by knit_register_shorthand. Called from knit_env_done for a plugin's manager (declared after the shorthand layer exists) and from the source-time shorthand generator for a core manager (declared before it).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_render_tokens">
+<span class="target" id="env_8sh_1a11914a10e9245b9436fa88a887fef49b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_render_tokens</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_render_tokens" title="Link to this definition">#</a><br /></dt>
+<dd><p>Render the &quot;{{parameter-name}}&quot; placeholders in a manifest (or spec) text, replacing each with the value of the named setup parameter. The parameter values are read with knit_get_parameter from the setup's expanded invocation arguments (passed as the trailing arguments). This is the one rendering point shared by the specs sugar, here-doc/stdin manifests, and file manifests.</p>
+<p>A token is &quot;{{&quot; + optional whitespace + a parameter name + optional whitespace<ul class="simple">
+<li><p>&quot;}}&quot;. The name may use hyphens or underscores interchangeably (as everywhere in Knit). Substitution is textual and literal: the value is inserted verbatim, with no recursion over an inserted value and no shell evaluation. Text with no &quot;{{&quot; is returned unchanged by a cheap early check, so the common, non-parameterized case pays almost nothing.</p></li>
+</ul>
+</p>
+<p>A token whose name does not resolve to a declared parameter of the setup (knit_get_parameter returns non-zero) is almost always a typo; it is fatal, naming the unresolved placeholder and the manager.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the rendered text. </p></li>
+<li><p><strong>display</strong> -- <strong>[in]</strong> Manager display name, used only in the fatal message. </p></li>
+<li><p><strong>text</strong> -- <strong>[in]</strong> The manifest/spec text that may contain &quot;{{...}}&quot; tokens. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The setup's expanded invocation arguments. </p></li>
 </ul>
 </dd>
 </dl>
@@ -5360,6 +5405,35 @@ compatibility guarantee.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fn</strong> -- <strong>[in]</strong> Name of the calling function, used in the error message. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_require_setup_context">
+<span class="target" id="env_8sh_1a5408c75aceb9747cafe11f351f83c809"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_require_setup_context</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_require_setup_context" title="Link to this definition">#</a><br /></dt>
+<dd><p>Guard shared by the setup directives (knit_with_&lt;nm&gt;_env / _specs / _env_from / _specs_from): fatal unless a setup registration is currently open. Returns normally when the context is a setup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directive</strong> -- <strong>[in]</strong> Full directive name, used in the error message. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_resolve_manifest">
+<span class="target" id="env_8sh_1a0e8719cd741d94f340a77f201046382c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_resolve_manifest</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_resolve_manifest" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the setup's contribution list for one manager into the concrete manifest text, at invocation time. World A (a single file / stdin / function manifest) yields the document verbatim (rendered); world B (a spec list) runs any spec-generating functions, collects every spec, and synthesizes one manifest via the manager's specs verb. &quot;{{parameter}}&quot; placeholders are rendered against the setup's invocation arguments throughout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the rendered manifest text. </p></li>
+<li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name. </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name of the executing setup (holds the list). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The setup's expanded invocation arguments. </p></li>
 </ul>
 </dd>
 </dl>
@@ -5383,14 +5457,14 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_env_setup_before_cb">
 <span class="target" id="env_8sh_1a83e73fe0c39f1be305923a1d3e128f7c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_setup_before_cb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_setup_before_cb" title="Link to this definition">#</a><br /></dt>
-<dd><p>Before-callback installed by _knit_env_with_env. Runs as the setup's first step (before-cbs execute in the setup's own shell, so the activated environment persists into the setup body and the after-callbacks). It sources the platform, provisions the manager on demand, materializes the manifest to ${KNIT_SETUP_PREFIX}/&lt;manifest&gt;, builds the environment into ${KNIT_SETUP_PREFIX}/&lt;nm&gt;-env via the install verb, and activates it in the current shell (by eval-ing the activate verb's lines) so the body builds against the installed packages.</p>
-<p>On an install failure it returns non-zero WITHOUT activating: the non-zero status propagates so the setup body never runs and the setup dispatcher removes the half-built directory.</p>
+<dd><p>Before-callback installed by the first environment contribution. Runs as the setup's first step (before-cbs execute in the setup's own shell, so the activated environment persists into the setup body and the after-callbacks). It sources the platform, provisions the manager on demand, resolves the setup's contribution list into a concrete manifest, writes it to ${KNIT_SETUP_PREFIX}/&lt;manifest&gt;, builds the environment into ${KNIT_SETUP_PREFIX}/&lt;nm&gt;-env via the install verb, and activates it in the current shell (by eval-ing the activate verb's lines) so the body builds against the installed packages.</p>
+<p>On an install failure (or a spec/manifest function exiting non-zero) it returns non-zero WITHOUT activating: the non-zero status propagates so the setup body never runs and the setup dispatcher removes the half-built directory.</p>
+<p>The resolved specs/manifest may contain &quot;{{parameter}}&quot; placeholders; they are rendered against the setup's expanded invocation arguments (the trailing arguments) while the contribution list is resolved, so a spec or manifest can depend on a setup parameter. A file manifest is rendered on read (the file on disk is never modified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name. </p></li>
-<li><p><strong>mode</strong> -- <strong>[in]</strong> &quot;file&quot; (source is a path to copy) or &quot;stdin&quot; (source is the literal manifest content captured at registration). </p></li>
-<li><p><strong>source</strong> -- <strong>[in]</strong> Manifest path (mode=file) or content (mode=stdin). Trailing arguments are the setup's runtime arguments and are ignored. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The setup's expanded invocation arguments, used to run spec / manifest functions and resolve &quot;{{parameter}}&quot; placeholders. </p></li>
 </ul>
 </dd>
 </dl>
@@ -5440,8 +5514,8 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_env_with_env">
 <span class="target" id="env_8sh_1a1af001e90525664d7550ba5e54f9272a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_with_env</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_with_env" title="Link to this definition">#</a><br /></dt>
-<dd><p>Generic implementation of knit_with_&lt;nm&gt;<em>env: declare that the setup currently being registered needs a &lt;nm&gt; environment, built as the setup's first step and inherited by jobs via re-activation. Valid only inside a setup registration (fatal otherwise), at most once per manager per setup (a shared marker also makes it mutually exclusive with knit_with</em>&lt;nm&gt;_specs, which funnels through here).</p>
-<p>The environment is described by a manifest file (non-empty first argument, resolved absolute at registration and recorded with knit_bundle_auto_require) or, with no argument, by a here-doc / stdin manifest consumed at registration. The stdin form fails fast on an interactive terminal (nothing to read) and rejects an empty manifest. It installs the build/activation callbacks, declares the __&lt;nm&gt;_manifest__ / __&lt;nm&gt;_lock__ provenance outputs, advertises the requirement in --help, and flags the manager required so bootstrap provisions it.</p>
+<dd><p>Generic implementation of knit_with_&lt;nm&gt;_env: declare that the setup currently being registered needs a &lt;nm&gt; environment described by a complete manifest (world A). The manifest is a file (non-empty first argument, resolved absolute at registration and recorded with knit_bundle_auto_require) or, with no argument, a here-doc / stdin manifest consumed at registration. The stdin form fails fast on an interactive terminal (nothing to read) and rejects an empty manifest.</p>
+<p>Valid only inside a setup registration (fatal otherwise). World A is exactly one contribution per manager and mutually exclusive with the world-B spec directives (enforced by the shared recorder).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -5453,14 +5527,46 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_with_env_from">
+<span class="target" id="env_8sh_1aced7068989b2be221d62df5ef53477e9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_with_env_from</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_with_env_from" title="Link to this definition">#</a><br /></dt>
+<dd><p>Generic implementation of knit_with_&lt;nm&gt;<em>env_from: the programmatic twin of knit_with</em>&lt;nm&gt;_env (world A). Instead of a file or an inline document, a user function produces the complete manifest at setup-invocation time. The function is called as <code class="docutils literal notranslate"><span class="pre">&lt;fn&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> with the setup's expanded invocation arguments, reads its parameters with knit_get_parameter, and prints the whole manifest (spack.yaml / pyproject.toml) on stdout; the document is then rendered for &quot;{{parameter}}&quot; and materialized.</p>
+<p>Valid only inside a setup registration (fatal otherwise). World A is exactly one contribution per manager and mutually exclusive with the world-B spec directives (enforced by the shared recorder). The function name is captured here and resolved when the setup runs; the function must be defined by then.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name (bound by the wrapper). </p></li>
+<li><p><strong>fn</strong> -- <strong>[in]</strong> Name of the manifest-generating function. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_env_with_specs">
 <span class="target" id="env_8sh_1a4160788c19872bafaad9bdfcf375713c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_with_specs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_with_specs" title="Link to this definition">#</a><br /></dt>
-<dd><p>Generic implementation of knit_with_&lt;nm&gt;<em>specs: lightweight sugar over knit_with</em>&lt;nm&gt;<em>env for the common &quot;just install these specs&quot; case. It calls the manager's specs verb to synthesize a manifest from the given spec list and feeds it to _knit_env_with_env via a here-string, so provenance capture, activation, and auto-provisioning all apply identically. Valid only inside a setup registration, and mutually exclusive with knit_with</em>&lt;nm&gt;_env on one setup (shared marker).</p>
+<dd><p><p>Generic implementation of knit_with_&lt;nm&gt;_specs: the common &quot;just install these</p>
+<p>specs&quot; case (world B). Each spec is appended to the setup's accumulating spec list; at build time the manager's specs verb synthesizes one manifest from the whole list, so provenance capture, activation, and auto-provisioning all apply identically. Valid only inside a setup registration; additive with other world-B directives and mutually exclusive with the world-A manifest directives (enforced by the shared recorder).</p>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name (bound by the wrapper). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> One or more specs. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_env_with_specs_from">
+<span class="target" id="env_8sh_1a764190e9bd46c9a7c2feb6df3be5bc93"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_env_with_specs_from</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_env_with_specs_from" title="Link to this definition">#</a><br /></dt>
+<dd><p>Generic implementation of knit_with_&lt;nm&gt;<em>specs_from: like knit_with</em>&lt;nm&gt;<em>specs (world B) but the specs are produced by a user function at setup-invocation time instead of being literal. The function is called as <code class="docutils literal notranslate"><span class="pre">&lt;fn&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> with the setup's expanded invocation arguments, reads its parameters with knit_get_parameter, and prints newline-separated specs on stdout; each non-blank line is rendered for &quot;{{parameter}}&quot; and appended to the setup's accumulating spec list. It composes freely with knit_with</em>&lt;nm&gt;<em>specs and other knit_with</em>&lt;nm&gt;_specs_from calls (any order), and is mutually exclusive with the world-A manifest directives.</p>
+<p>The function name is captured here and resolved when the setup runs; the function must be defined by then.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nm</strong> -- <strong>[in]</strong> Normalized (underscore) manager name (bound by the wrapper). </p></li>
+<li><p><strong>fn</strong> -- <strong>[in]</strong> Name of the spec-generating function. </p></li>
 </ul>
 </dd>
 </dl>
@@ -9123,7 +9229,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_resource_set_method">
 <span class="target" id="resource_8sh_1a6e3782ad607b1dbb4f5e9dfe9c489b76"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_resource_set_method</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_resource_set_method" title="Link to this definition">#</a><br /></dt>
-<dd><p>Record the download method chosen by a download decorator in the current resource type's per-command marker (<em>KNIT_CMD</em>&lt;cmd&gt;<em>fetch_method), enforcing the &quot;exactly one download decorator per resource type&quot; rule: a second call (whether the same decorator twice or two different backends) is fatal. Mirrors the _KNIT_CMD</em>&lt;cmd&gt;<em>env</em>&lt;nm&gt; at-most-once marker pattern.</p>
+<dd><p>Record the download method chosen by a download decorator in the current resource type's per-command marker (<em>KNIT_CMD</em>&lt;cmd&gt;_fetch_method), enforcing the &quot;exactly one download decorator per resource type&quot; rule: a second call (whether the same decorator twice or two different backends) is fatal. Mirrors the per-command marker pattern used elsewhere for at-most-once declarations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -11653,14 +11759,20 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_option_names"><code class="docutils literal notranslate"><span class="pre">_knit_env_option_names()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_provision_all"><code class="docutils literal notranslate"><span class="pre">_knit_env_provision_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_provision_one"><code class="docutils literal notranslate"><span class="pre">_knit_env_provision_one()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_record_contribution"><code class="docutils literal notranslate"><span class="pre">_knit_env_record_contribution()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_register_shorthands"><code class="docutils literal notranslate"><span class="pre">_knit_env_register_shorthands()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_render_tokens"><code class="docutils literal notranslate"><span class="pre">_knit_env_render_tokens()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_require_context"><code class="docutils literal notranslate"><span class="pre">_knit_env_require_context()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_require_setup_context"><code class="docutils literal notranslate"><span class="pre">_knit_env_require_setup_context()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_resolve_manifest"><code class="docutils literal notranslate"><span class="pre">_knit_env_resolve_manifest()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_setup_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_env_setup_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_setup_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_env_setup_before_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_update_all"><code class="docutils literal notranslate"><span class="pre">_knit_env_update_all()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_update_one"><code class="docutils literal notranslate"><span class="pre">_knit_env_update_one()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_env"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_env()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_env_from"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_env_from()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_specs"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_specs()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_env_with_specs_from"><code class="docutils literal notranslate"><span class="pre">_knit_env_with_specs_from()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Variables</a><ul class="nav section-nav flex-column">

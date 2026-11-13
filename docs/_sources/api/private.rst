@@ -918,10 +918,22 @@ Functions
 .. doxygenfunction:: _knit_env_provision_one
    :project: knit
 
+.. doxygenfunction:: _knit_env_record_contribution
+   :project: knit
+
 .. doxygenfunction:: _knit_env_register_shorthands
    :project: knit
 
+.. doxygenfunction:: _knit_env_render_tokens
+   :project: knit
+
 .. doxygenfunction:: _knit_env_require_context
+   :project: knit
+
+.. doxygenfunction:: _knit_env_require_setup_context
+   :project: knit
+
+.. doxygenfunction:: _knit_env_resolve_manifest
    :project: knit
 
 .. doxygenfunction:: _knit_env_setup_after_cb
@@ -939,7 +951,13 @@ Functions
 .. doxygenfunction:: _knit_env_with_env
    :project: knit
 
+.. doxygenfunction:: _knit_env_with_env_from
+   :project: knit
+
 .. doxygenfunction:: _knit_env_with_specs
+   :project: knit
+
+.. doxygenfunction:: _knit_env_with_specs_from
    :project: knit
 
 Variables

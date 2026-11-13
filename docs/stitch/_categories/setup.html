@@ -453,6 +453,8 @@
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-setup">Register a setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-setup-functions-thin">Keep setup functions thin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-spec-depend-on-a-parameter">Make a spec depend on a parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-specs-or-a-manifest-with-a-function">Generate specs or a manifest with a function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-setup-s-environment">Declare a setup’s environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depend-on-a-setup">Depend on a setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>
@@ -590,6 +592,204 @@ other dependency, and the setup body shrinks to nothing.</p>
 params file, declaring an environment variable with <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span></code>, or
 creating a directory under <code class="docutils literal notranslate"><span class="pre">KNIT_SETUP_PREFIX</span></code>.</p>
 </section>
+<section id="make-a-spec-depend-on-a-parameter">
+<h2>Make a spec depend on a parameter<a class="headerlink" href="#make-a-spec-depend-on-a-parameter" title="Link to this heading">#</a></h2>
+<p><em>Reference a setup parameter from a spec or manifest with a {{placeholder}}.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_uv_specs</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_optional</span></code></p>
+<p>A setup’s environment can depend on its parameters. Write a
+<code class="docutils literal notranslate"><span class="pre">{{parameter-name}}</span></code> placeholder anywhere in a spec (or a manifest) and Knit
+replaces it, when the setup runs, with the value of that setup parameter — so
+one setup definition builds whatever version the invocation asks for:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "{{parameter}}" placeholder in a spec is replaced, when the setup runs, with</span>
+<span class="c1"># the value of the named setup parameter. @with_spack_specs takes one or more</span>
+<span class="c1"># specs, and several calls add up into one spec list.</span>
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"mathlibs"</span><span class="w"> </span><span class="s2">"Build math libraries at chosen versions."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"fftw-spec:string"</span><span class="w"> </span><span class="s2">"fftw"</span><span class="w"> </span><span class="s2">"fftw spec (e.g. 'fftw@3.3.10 +openmp')."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"openblas@{{openblas-version}}"</span><span class="w"> </span><span class="s2">"{{fftw-spec}}"</span>
+_mathlibs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># openblas and fftw at the chosen versions are on PATH / LD_LIBRARY_PATH here.</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A "{{parameter}}" placeholder in a spec is replaced, when the setup runs, with</span>
+<span class="c1"># the value of the named setup parameter. @with_spack_specs takes one or more</span>
+<span class="c1"># specs, and several calls add up into one spec list.</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mathlibs"</span><span class="w"> </span>_mathlibs_setup<span class="w"> </span><span class="s2">"Build math libraries at chosen versions."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"fftw-spec:string"</span><span class="w"> </span><span class="s2">"fftw"</span><span class="w"> </span><span class="s2">"fftw spec (e.g. 'fftw@3.3.10 +openmp')."</span>
+<span class="nd">@with_spack_specs</span><span class="w"> </span><span class="s2">"openblas@{{openblas-version}}"</span><span class="w"> </span><span class="s2">"{{fftw-spec}}"</span>
+_mathlibs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># openblas and fftw at the chosen versions are on PATH / LD_LIBRARY_PATH here.</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Invoking <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">setup</span> <span class="pre">--</span> <span class="pre">mathlibs</span> <span class="pre">--openblas-version</span> <span class="pre">0.3.28</span></code> renders the spec to
+<code class="docutils literal notranslate"><span class="pre">openblas&#64;0.3.28</span></code> before the environment is built. The <em>rendered</em> (concrete)
+manifest is what Knit records as provenance, so a reproducer reads
+<code class="docutils literal notranslate"><span class="pre">openblas&#64;0.3.28</span></code>, not the template.</p>
+<p><code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> takes one or more specs, and several calls on the same
+setup <strong>add up</strong> into one spec list (group them however reads best). A setup can
+instead declare a complete manifest with <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>; the two forms
+are mutually exclusive on one setup. To choose specs <em>structurally</em> — one spec
+per computed item, or a spec added only under a flag — a function can generate
+them (see the <em>Generate specs or a manifest with a function</em> recipe).</p>
+<p>The same <code class="docutils literal notranslate"><span class="pre">{{placeholder}}</span></code> works wherever an environment comes from — the
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> sugar above, a here-doc or file manifest passed to
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>, and the matching directives of any other environment
+manager (for example <code class="docutils literal notranslate"><span class="pre">knit_with_uv_specs</span> <span class="pre">&quot;numpy=={{numpy-version}}&quot;</span></code>). A
+placeholder whose name does not match a declared parameter is a fatal error when
+the setup runs, naming the offending <code class="docutils literal notranslate"><span class="pre">{{token}}</span></code>. The placeholder name follows
+Knit’s usual rule that hyphens and underscores are interchangeable
+(<code class="docutils literal notranslate"><span class="pre">{{openblas-version}}</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">{{openblas_version}}</span></code>).</p>
+</section>
+<section id="generate-specs-or-a-manifest-with-a-function">
+<h2>Generate specs or a manifest with a function<a class="headerlink" href="#generate-specs-or-a-manifest-with-a-function" title="Link to this heading">#</a></h2>
+<p><em>Let a function produce a setup’s specs (or whole manifest) at invocation time.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs_from</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env_from</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_uv_specs_from</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_uv_env_from</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_flag</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_with_required</span></code></p>
+<p>A <code class="docutils literal notranslate"><span class="pre">{{placeholder}}</span></code> fills a <em>value</em> into a fixed shape. When the <strong>shape</strong>
+itself depends on a parameter — add a spec only under a flag, emit one spec per
+computed item — let a function build it. <code class="docutils literal notranslate"><span class="pre">knit_with_&lt;manager&gt;_specs_from</span></code>
+names a function that prints newline-separated specs on stdout when the setup
+runs:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A spec-generating function is called when the setup runs, with the setup's</span>
+<span class="c1"># arguments as "$@"; it reads parameters with knit_get_parameter and prints</span>
+<span class="c1"># newline-separated specs on stdout. It chooses specs *structurally* --- here a</span>
+<span class="c1"># spec is added only when the --use-cuda flag is set --- and "{{...}}" still fills</span>
+<span class="c1"># in values, so the two compose.</span>
+mllibs_specs<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"openblas@{{openblas-version}}"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>use-cuda<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"py-torch +cuda"</span>
+<span class="o">}</span>
+
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"mllibs"</span><span class="w"> </span><span class="s2">"Build an ML environment, optionally with CUDA."</span>
+<span class="nd">@with_flag</span><span class="w">     </span><span class="s2">"use-cuda"</span><span class="w"> </span><span class="s2">"Build the CUDA-enabled variant."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nd">@with_spack_specs_from</span><span class="w"> </span>mllibs_specs
+_mllibs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A spec-generating function is called when the setup runs, with the setup's</span>
+<span class="c1"># arguments as "$@"; it reads parameters with knit_get_parameter and prints</span>
+<span class="c1"># newline-separated specs on stdout. It chooses specs *structurally* --- here a</span>
+<span class="c1"># spec is added only when the --use-cuda flag is set --- and "{{...}}" still fills</span>
+<span class="c1"># in values, so the two compose.</span>
+mllibs_specs<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"openblas@{{openblas-version}}"</span>
+<span class="w">    </span><span class="o">[[</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>use-cuda<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">]]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"py-torch +cuda"</span>
+<span class="o">}</span>
+
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mllibs"</span><span class="w"> </span>_mllibs_setup<span class="w"> </span><span class="s2">"Build an ML environment, optionally with CUDA."</span>
+<span class="nb">knit_with_flag</span><span class="w">     </span><span class="s2">"use-cuda"</span><span class="w"> </span><span class="s2">"Build the CUDA-enabled variant."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nd">@with_spack_specs_from</span><span class="w"> </span>mllibs_specs
+_mllibs_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The function is called with the setup’s arguments as <code class="docutils literal notranslate"><span class="pre">&quot;$&#64;&quot;</span></code>, so it reads
+parameters with <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code> exactly as a setup body does (a flag
+arrives as the string <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>). Each non-blank line it prints is a
+spec, still rendered for <code class="docutils literal notranslate"><span class="pre">{{...}}</span></code> — so the function chooses <em>which</em> specs and
+<code class="docutils literal notranslate"><span class="pre">{{...}}</span></code> fills in <em>values</em>. The printed specs join the setup’s spec list, so
+<code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs_from</span></code> and plain <code class="docutils literal notranslate"><span class="pre">knit_with_spack_specs</span></code> compose in any
+order.</p>
+<p>To generate a <strong>whole manifest</strong> (a complete <code class="docutils literal notranslate"><span class="pre">spack.yaml</span></code> or
+<code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>) rather than a spec list, use <code class="docutils literal notranslate"><span class="pre">knit_with_&lt;manager&gt;_env_from</span></code>
+— the programmatic twin of <code class="docutils literal notranslate"><span class="pre">knit_with_spack_env</span></code>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a whole document (a complete spack.yaml / pyproject.toml), a function prints</span>
+<span class="c1"># it on stdout. @with_spack_env_from is the programmatic twin of @with_spack_env;</span>
+<span class="c1"># "{{...}}" is rendered on the printed document too.</span>
+mlenv_manifest<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>cat<span class="w"> </span><span class="s">&lt;&lt;YAML</span>
+<span class="s">spack:</span>
+<span class="s">  specs:</span>
+<span class="s">    - openblas@{{openblas-version}}</span>
+<span class="s">  view: true</span>
+<span class="s">  concretizer:</span>
+<span class="s">    unify: true</span>
+<span class="s">YAML</span>
+<span class="o">}</span>
+
+<span class="nd">@setup</span><span class="w"> </span><span class="s2">"mlenv"</span><span class="w"> </span><span class="s2">"Build an ML environment from a generated manifest."</span>
+<span class="nd">@with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nd">@with_spack_env_from</span><span class="w"> </span>mlenv_manifest
+_mlenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a whole document (a complete spack.yaml / pyproject.toml), a function prints</span>
+<span class="c1"># it on stdout. @with_spack_env_from is the programmatic twin of @with_spack_env;</span>
+<span class="c1"># "{{...}}" is rendered on the printed document too.</span>
+mlenv_manifest<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>cat<span class="w"> </span><span class="s">&lt;&lt;YAML</span>
+<span class="s">spack:</span>
+<span class="s">  specs:</span>
+<span class="s">    - openblas@{{openblas-version}}</span>
+<span class="s">  view: true</span>
+<span class="s">  concretizer:</span>
+<span class="s">    unify: true</span>
+<span class="s">YAML</span>
+<span class="o">}</span>
+
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"mlenv"</span><span class="w"> </span>_mlenv_setup<span class="w"> </span><span class="s2">"Build an ML environment from a generated manifest."</span>
+<span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"openblas-version:string"</span><span class="w"> </span><span class="s2">"OpenBLAS version to build."</span>
+<span class="nd">@with_spack_env_from</span><span class="w"> </span>mlenv_manifest
+_mlenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"building in </span><span class="si">${</span><span class="nv">KNIT_SETUP_PREFIX</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A setup declares <strong>either</strong> a spec list (any number of <code class="docutils literal notranslate"><span class="pre">..._specs</span></code> /
+<code class="docutils literal notranslate"><span class="pre">..._specs_from</span></code> calls, which add up) <strong>or</strong> one complete manifest (a single
+<code class="docutils literal notranslate"><span class="pre">..._env</span></code> / <code class="docutils literal notranslate"><span class="pre">..._env_from</span></code>); the two forms are mutually exclusive on one
+setup. A function that exits non-zero aborts the setup before anything is built,
+and an empty final spec list is a fatal error. The <code class="docutils literal notranslate"><span class="pre">_from</span></code> directives exist for
+every environment manager (<code class="docutils literal notranslate"><span class="pre">knit_with_uv_specs_from</span></code>,
+<code class="docutils literal notranslate"><span class="pre">knit_with_uv_env_from</span></code>, and so on), each with its <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> shorthand.</p>
+</section>
 <section id="declare-a-setup-s-environment">
 <span id="stitch-declare-a-setup-environment"></span><h2>Declare a setup’s environment<a class="headerlink" href="#declare-a-setup-s-environment" title="Link to this heading">#</a></h2>
 <p><em>Declare environment changes a setup passes to dependent commands, composably.</em></p>
@@ -612,9 +812,9 @@ line keeps the <code class="docutils literal notranslate"><span class="pre">${VA
 set above it.</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
-<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@setup</span><span class="w"> </span><span class="s2">"toolenv"</span><span class="w"> </span><span class="s2">"Declare a composable software environment."</span>
 _toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># Each call changes THIS build shell now and records one composable line in</span>
@@ -641,9 +841,9 @@ _toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
-<label aria-controls="sd-tab-item-3-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-3">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content">
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"toolenv"</span><span class="w"> </span>_toolenv_setup<span class="w"> </span><span class="s2">"Declare a composable software environment."</span>
 _toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># Each call changes THIS build shell now and records one composable line in</span>
@@ -673,9 +873,9 @@ _toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{
 </div>
 <p>A dependent command reads the composed environment with no extra work:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
-<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
 <span class="nd">@with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
@@ -696,9 +896,9 @@ _probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
-<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span>_probe<span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
 <span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
@@ -730,16 +930,16 @@ to a setup. Before the command’s body runs, Knit activates that setup’s
 environment — its <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, libraries, and any Spack packages — so the
 command finds the software the setup installed.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-<label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-<label aria-controls="sd-tab-item-7-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-7">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"juliaenv"</span>
 </pre></div>
 </div>
@@ -759,9 +959,9 @@ environment. Calling <code class="docutils literal notranslate"><span class="pre
 MPI as the launcher, so <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> can place ranks even on a machine that has no
 MPI of its own:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
 <span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
 <span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
@@ -776,9 +976,9 @@ _mpienv_setup<span class="o">()</span><span class="w"> </span><span class="o">{<
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ask Spack for MPICH and expose it as the launcher. Activating the Spack</span>
 <span class="c1"># environment (which knit does before the body runs) puts mpicc / mpirun on PATH,</span>
 <span class="c1"># and @provides_launcher advertises that MPI to "knit run" --- so the body has</span>
@@ -815,9 +1015,9 @@ declares neither <code class="docutils literal notranslate"><span class="pre">kn
 default setup automatically, so it inherits the platform environment with no
 boilerplate:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that declares NEITHER @with_setup NOR @without_setup adopts the</span>
 <span class="c1"># builtin "default" setup automatically, inheriting the platform environment.</span>
 <span class="nd">@job</span><span class="w"> </span><span class="s2">"adopt"</span><span class="w"> </span><span class="s2">"Runs in the builtin default setup."</span>
@@ -826,9 +1026,9 @@ _adopt<span class="o">()</span><span class="w"> </span><span class="o">{</span><
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A job that declares NEITHER @with_setup NOR @without_setup adopts the</span>
 <span class="c1"># builtin "default" setup automatically, inheriting the platform environment.</span>
 <span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"adopt"</span><span class="w"> </span>_adopt<span class="w"> </span><span class="s2">"Runs in the builtin default setup."</span>
@@ -842,9 +1042,9 @@ _adopt<span class="o">()</span><span class="w"> </span><span class="o">{</span><
 activation — opt out with <code class="docutils literal notranslate"><span class="pre">knit_without_setup</span></code> (mutually exclusive with
 <code class="docutils literal notranslate"><span class="pre">knit_with_setup</span></code>):</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
+<label aria-controls="sd-tab-item-18-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-18">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-18-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @without_setup makes a job run with no setup at all: no setup directory and</span>
 <span class="c1"># no platform activation. It is mutually exclusive with @with_setup.</span>
 <span class="nd">@job</span><span class="w"> </span><span class="s2">"optout"</span><span class="w"> </span><span class="s2">"Runs with no setup."</span>
@@ -854,9 +1054,9 @@ _optout<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
+<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
+<label aria-controls="sd-tab-item-19-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-19">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-19-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @without_setup makes a job run with no setup at all: no setup directory and</span>
 <span class="c1"># no platform activation. It is mutually exclusive with @with_setup.</span>
 <span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"optout"</span><span class="w"> </span>_optout<span class="w"> </span><span class="s2">"Runs with no setup."</span>
@@ -870,9 +1070,9 @@ _optout<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <p>The default setup is a setup type like any other, so a command can also require
 it explicitly by name:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
+<label aria-controls="sd-tab-item-20-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-20">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-20-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any command (not just jobs) can require the default setup explicitly, exactly</span>
 <span class="c1"># like a named setup type.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Requires the builtin default setup."</span>
@@ -882,9 +1082,9 @@ _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
+<input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
+<label aria-controls="sd-tab-item-21-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-21">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-21-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Any command (not just jobs) can require the default setup explicitly, exactly</span>
 <span class="c1"># like a named setup type.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Requires the builtin default setup."</span>
@@ -955,6 +1155,8 @@ dispatcher:</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-a-setup">Register a setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-setup-functions-thin">Keep setup functions thin</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-spec-depend-on-a-parameter">Make a spec depend on a parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-specs-or-a-manifest-with-a-function">Generate specs or a manifest with a function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-setup-s-environment">Declare a setup’s environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#depend-on-a-setup">Depend on a setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-an-mpi-environment-and-provide-a-launcher">Build an MPI environment and provide a launcher</a></li>

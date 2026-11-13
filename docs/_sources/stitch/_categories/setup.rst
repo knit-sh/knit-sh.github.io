@@ -25,6 +25,24 @@ Keep setup functions thin
 
 .. include:: /stitch/recipes/keep-setups-thin.rst
 
+Make a spec depend on a parameter
+---------------------------------
+
+*Reference a setup parameter from a spec or manifest with a {{placeholder}}.*
+
+**APIs:** ``knit_with_spack_specs``, ``knit_with_spack_env``, ``knit_with_uv_specs``, ``knit_with_required``, ``knit_with_optional``
+
+.. include:: /stitch/recipes/parameterize-a-spec.rst
+
+Generate specs or a manifest with a function
+--------------------------------------------
+
+*Let a function produce a setup's specs (or whole manifest) at invocation time.*
+
+**APIs:** ``knit_with_spack_specs_from``, ``knit_with_spack_env_from``, ``knit_with_uv_specs_from``, ``knit_with_uv_env_from``, ``knit_get_parameter``, ``knit_with_flag``, ``knit_with_required``
+
+.. include:: /stitch/recipes/generate-specs-with-a-function.rst
+
 .. _stitch-declare-a-setup-environment:
 
 Declare a setup's environment
