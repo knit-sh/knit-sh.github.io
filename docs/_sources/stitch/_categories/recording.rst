@@ -64,3 +64,14 @@ Find and erase failed invocations
 **APIs:** ``knit_with_table``, ``knit_no_record_on_failure``, ``remove``
 
 .. include:: /stitch/recipes/erase-failed-invocations.rst
+
+.. _stitch-replay-history:
+
+Replay a session from its history
+---------------------------------
+
+*knit history show prints the top-level commands you ran, in time order, as plain lines, a bash replay script, or json.*
+
+**APIs:** ``history:show``
+
+.. include:: /stitch/recipes/replay-history.rst

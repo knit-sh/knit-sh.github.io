@@ -1092,6 +1092,81 @@ Variables
 .. doxygenvariable:: _KNIT_SCRIPT_PATH
    :project: knit
 
+.. doxygenvariable:: _KNIT_UUIDV7_MONOTONIC
+   :project: knit
+
+history.sh
+----------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_history_bound_clause
+   :project: knit
+
+.. doxygenfunction:: _knit_history_command_clause
+   :project: knit
+
+.. doxygenfunction:: _knit_history_create_table
+   :project: knit
+
+.. doxygenfunction:: _knit_history_discover
+   :project: knit
+
+.. doxygenfunction:: _knit_history_emit
+   :project: knit
+
+.. doxygenfunction:: _knit_history_ensure_table
+   :project: knit
+
+.. doxygenfunction:: _knit_history_flags_json
+   :project: knit
+
+.. doxygenfunction:: _knit_history_insert
+   :project: knit
+
+.. doxygenfunction:: _knit_history_json_array
+   :project: knit
+
+.. doxygenfunction:: _knit_history_json_to_tokens
+   :project: knit
+
+.. doxygenfunction:: _knit_history_pop_frame
+   :project: knit
+
+.. doxygenfunction:: _knit_history_push_frame
+   :project: knit
+
+.. doxygenfunction:: _knit_history_record
+   :project: knit
+
+.. doxygenfunction:: _knit_history_render_line
+   :project: knit
+
+.. doxygenfunction:: _knit_history_row_sql
+   :project: knit
+
+.. doxygenfunction:: _knit_history_show
+   :project: knit
+
+.. doxygenfunction:: _knit_history_show_json
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_EXECUTING_INVOKED
+   :project: knit
+
+.. doxygenvariable:: _KNIT_EXECUTING_INVOKED_LEN
+   :project: knit
+
+.. doxygenvariable:: _KNIT_HISTORY_TABLE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_HISTORY_TABLE_ENSURED
+   :project: knit
+
 job.sh
 ------
 

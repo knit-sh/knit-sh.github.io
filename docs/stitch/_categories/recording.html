@@ -460,6 +460,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-it-to-one-kind">Scope it to one kind</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replay-a-session-from-its-history">Replay a session from its history</a></li>
 </ul>
             </nav>
         </div>
@@ -851,6 +852,52 @@ on failure, so it has no <code class="docutils literal notranslate"><span class=
 <code class="docutils literal notranslate"><span class="pre">--failed</span></code> set.</p>
 </section>
 </section>
+<section id="replay-a-session-from-its-history">
+<span id="stitch-replay-history"></span><h2>Replay a session from its history<a class="headerlink" href="#replay-a-session-from-its-history" title="Link to this heading">#</a></h2>
+<p><em>knit history show prints the top-level commands you ran, in time order, as plain lines, a bash replay script, or json.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">history:show</span></code></p>
+<p>Every top-level command you run against an experiment is recorded, in time
+order, as a replayable <strong>history</strong> — just the commands <em>you</em> invoked, not the
+work they spun off (a submitted job’s compute-side app, a drain’s internal
+<code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code>, a sweep’s fan-out are all left out). <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">history</span> <span class="pre">show</span></code>
+prints it:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span><span class="nb">history</span><span class="w"> </span>show
+<span class="go">setup --name env -- mcenv</span>
+<span class="go">submit --nodes 4 -- montecarlo --samples 100000</span>
+<span class="go">analyze</span>
+</pre></div>
+</div>
+<p>By default only successful commands appear; pass <code class="docutils literal notranslate"><span class="pre">--status</span> <span class="pre">all</span></code> to include
+failures (or <code class="docutils literal notranslate"><span class="pre">--status</span> <span class="pre">failure</span></code> for just those). Narrow the list with
+<code class="docutils literal notranslate"><span class="pre">--command</span></code> (comma-separated, colon notation; a <code class="docutils literal notranslate"><span class="pre">:*</span></code> suffix also matches
+subcommands), a <code class="docutils literal notranslate"><span class="pre">--since</span></code>/<code class="docutils literal notranslate"><span class="pre">--until</span></code> time window (a UUID or an ISO-8601
+timestamp), <code class="docutils literal notranslate"><span class="pre">--first</span></code>/<code class="docutils literal notranslate"><span class="pre">--last</span> <span class="pre">N</span></code>, or <code class="docutils literal notranslate"><span class="pre">--id</span></code>.</p>
+<p><strong>Replay the session.</strong> <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">bash</span></code> turns the history into a runnable
+script — a shebang followed by one <code class="docutils literal notranslate"><span class="pre">./&lt;script&gt;</span> <span class="pre">...</span></code> line per command — so
+piping it to a file reproduces the whole session:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span><span class="nb">history</span><span class="w"> </span>show<span class="w"> </span>--format<span class="w"> </span>bash<span class="w"> </span>&gt;<span class="w"> </span>replay.sh
+<span class="gp">$ </span>bash<span class="w"> </span>replay.sh
+</pre></div>
+</div>
+<p>The lines record the arguments exactly as you typed them. Add <code class="docutils literal notranslate"><span class="pre">--resolved</span></code> to
+pin instead the values each command actually ran with (optional defaults filled,
+flags normalized, <code class="docutils literal notranslate"><span class="pre">ENV[...]</span></code> defaults resolved), so a replay reproduces the
+original behavior even if a default later changes. Knit does not resolve the
+dispatched target after <code class="docutils literal notranslate"><span class="pre">--</span></code> (a job or setup’s own defaults): what each
+dispatched command actually ran with is recorded in its own table and the
+provenance graph.</p>
+<p><strong>Structured output.</strong> <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">json</span></code> emits one <code class="docutils literal notranslate"><span class="pre">{name,</span> <span class="pre">args,</span> <span class="pre">extra}</span></code> object
+per command — <code class="docutils literal notranslate"><span class="pre">args</span></code> is the map of options before <code class="docutils literal notranslate"><span class="pre">--</span></code> (a flag renders as a
+boolean), <code class="docutils literal notranslate"><span class="pre">extra</span></code> the tokens after it (the dispatched target and its
+arguments):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span><span class="nb">history</span><span class="w"> </span>show<span class="w"> </span>--format<span class="w"> </span>json
+<span class="go">[{"name":"analyze","args":{"digits":"5"},"extra":[]}]</span>
+</pre></div>
+</div>
+<p>Annotate any format with <code class="docutils literal notranslate"><span class="pre">--annotate</span></code> to prefix each entry with its id, time,
+and exit status, and write to a file instead of standard output with
+<code class="docutils literal notranslate"><span class="pre">--output</span></code>.</p>
+</section>
 </section>
 
 
@@ -909,6 +956,7 @@ on failure, so it has no <code class="docutils literal notranslate"><span class=
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope-it-to-one-kind">Scope it to one kind</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#replay-a-session-from-its-history">Replay a session from its history</a></li>
 </ul>
   </nav></div>
 
