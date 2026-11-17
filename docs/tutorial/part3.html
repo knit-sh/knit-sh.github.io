@@ -582,7 +582,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content"
 <span class="c1"># resources/cifar/ once, then records the URL for provenance. The train job</span>
 <span class="c1"># reads the staged directory back through knit_resource_path.</span>
 <span class="nd">@resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
-<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://github.com/knit-sh/image-classifier-example/releases/download/datasets-v1/cifar-10-python.tar.gz"</span>
 <span class="nd">@done</span>
 </pre></div>
 </div>
@@ -596,7 +596,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content"
 <span class="c1"># resources/cifar/ once, then records the URL for provenance. The train job</span>
 <span class="c1"># reads the staged directory back through knit_resource_path.</span>
 <span class="nb">knit_register_resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
-<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://github.com/knit-sh/image-classifier-example/releases/download/datasets-v1/cifar-10-python.tar.gz"</span>
 <span class="nb">knit_done</span>
 </pre></div>
 </div>
@@ -1269,7 +1269,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
 <span class="c1"># The CIFAR-10 dataset, downloaded and unpacked by `knit fetch`.</span>
 <span class="nd">@resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
-<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nd">@with_url</span><span class="w"> </span><span class="s2">"https://github.com/knit-sh/image-classifier-example/releases/download/datasets-v1/cifar-10-python.tar.gz"</span>
 <span class="nd">@done</span>
 
 <span class="c1"># --- Job: train -------------------------------------------------------------</span>
@@ -1394,7 +1394,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
 <span class="c1"># The CIFAR-10 dataset, downloaded and unpacked by `knit fetch`.</span>
 <span class="nb">knit_register_resource</span><span class="w"> </span><span class="s2">"cifar"</span><span class="w"> </span><span class="s2">"The CIFAR-10 dataset, downloaded and unpacked."</span>
-<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"</span>
+<span class="nb">knit_with_url</span><span class="w"> </span><span class="s2">"https://github.com/knit-sh/image-classifier-example/releases/download/datasets-v1/cifar-10-python.tar.gz"</span>
 <span class="nb">knit_done</span>
 
 <span class="c1"># --- Job: train -------------------------------------------------------------</span>
