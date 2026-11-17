@@ -235,6 +235,7 @@
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/profiles.html">Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/metadata.html">Metadata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stitch/_categories/claims.html">Claims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/ai.html">AI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/logging.html">Logging &amp; output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stitch/_categories/plugins.html">Plugins</a></li>
@@ -592,6 +593,32 @@
       <li><a href="api/private.html#c._knit_checksum_stash_from_env">_knit_checksum_stash_from_env (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_checksum_target_exists">_knit_checksum_target_exists (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_before_cb">_knit_claim_before_cb (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_check">_knit_claim_check (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_CLAIM_EVALUATING">_KNIT_CLAIM_EVALUATING (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_glyph">_knit_claim_glyph (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_paint">_knit_claim_paint (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_print">_knit_claim_print (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_record">_knit_claim_record (C function)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_render">_knit_claim_render (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_CLAIM_STATEMENT_COLUMN">_KNIT_CLAIM_STATEMENT_COLUMN (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_token_value">_knit_claim_token_value (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_CLAIM_VERDICT_COLUMN">_KNIT_CLAIM_VERDICT_COLUMN (C var)</a>
+</li>
+      <li><a href="api/private.html#c._knit_claim_verdict_from_code">_knit_claim_verdict_from_code (C function)</a>
+</li>
+      <li><a href="api/private.html#c._KNIT_CLAIMS">_KNIT_CLAIMS (C var)</a>
 </li>
       <li><a href="api/private.html#c._KNIT_COLORS">_KNIT_COLORS (C var)</a>
 </li>
@@ -1143,6 +1170,8 @@
 </li>
       <li><a href="api/private.html#c._knit_output_artifact_quantifier">_knit_output_artifact_quantifier (C function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_output_default">_knit_output_default (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_output_description">_knit_output_description (C function)</a>
@@ -1155,8 +1184,6 @@
 </li>
       <li><a href="api/private.html#c._knit_param_description">_knit_param_description (C function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/private.html#c._knit_param_is_norecord">_knit_param_is_norecord (C function)</a>
 </li>
       <li><a href="api/private.html#c._knit_param_type">_knit_param_type (C function)</a>
@@ -1929,6 +1956,12 @@
 </li>
       <li><a href="api/public.html#c.knit_check_subcommand_exists">knit_check_subcommand_exists (C function)</a>
 </li>
+      <li><a href="api/public.html#c.KNIT_CLAIM_HOLDS">KNIT_CLAIM_HOLDS (C var)</a>
+</li>
+      <li><a href="api/public.html#c.KNIT_CLAIM_INSUFFICIENT">KNIT_CLAIM_INSUFFICIENT (C var)</a>
+</li>
+      <li><a href="api/public.html#c.KNIT_CLAIM_REFUTED">KNIT_CLAIM_REFUTED (C var)</a>
+</li>
       <li><a href="api/public.html#c.knit_command_has_marker">knit_command_has_marker (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_command_outputs">knit_command_outputs (C function)</a>
@@ -2059,10 +2092,10 @@
 </li>
       <li><a href="api/public.html#c.knit_parameter_type">knit_parameter_type (C function)</a>
 </li>
-      <li><a href="api/public.html#c.KNIT_PILOT_SOCK">KNIT_PILOT_SOCK (C var)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/public.html#c.KNIT_PILOT_SOCK">KNIT_PILOT_SOCK (C var)</a>
+</li>
       <li><a href="api/public.html#c.knit_platform_name">knit_platform_name (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_popd">knit_popd (C function)</a>
@@ -2086,6 +2119,8 @@
       <li><a href="api/public.html#c.knit_register_app">knit_register_app (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_register_artifact">knit_register_artifact (C function)</a>
+</li>
+      <li><a href="api/public.html#c.knit_register_claim">knit_register_claim (C function)</a>
 </li>
       <li><a href="api/public.html#c.knit_register_env_manager">knit_register_env_manager (C function)</a>
 </li>

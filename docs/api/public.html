@@ -240,6 +240,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/profiles.html">Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/metadata.html">Metadata</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/query.html">Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/claims.html">Claims</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/ai.html">AI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/logging.html">Logging &amp; output</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../stitch/_categories/plugins.html">Plugins</a></li>
@@ -533,6 +534,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register"><code class="docutils literal notranslate"><span class="pre">knit_register()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_app"><code class="docutils literal notranslate"><span class="pre">knit_register_app()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_artifact"><code class="docutils literal notranslate"><span class="pre">knit_register_artifact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_claim"><code class="docutils literal notranslate"><span class="pre">knit_register_claim()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_env_manager"><code class="docutils literal notranslate"><span class="pre">knit_register_env_manager()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_job"><code class="docutils literal notranslate"><span class="pre">knit_register_job()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_resource"><code class="docutils literal notranslate"><span class="pre">knit_register_resource()</span></code></a></li>
@@ -595,6 +597,9 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_HOLDS"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_HOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_INSUFFICIENT"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_INSUFFICIENT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_REFUTED"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_REFUTED</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_IGNORE_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_IGNORE_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_JOB_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_JOB_PREFIX</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LOG_LEVEL"><code class="docutils literal notranslate"><span class="pre">KNIT_LOG_LEVEL</span></code></a></li>
@@ -1837,6 +1842,11 @@ Fatal when the annotation has no &quot;:type&quot;, when the kind name is invali
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_register_claim">
+<span class="target" id="claim_8sh_1a06b7952c4f619976fda338e41400af18"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_register_claim</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_register_claim" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_register_env_manager">
 <span class="target" id="env_8sh_1a6a0530dd507b0e70c08e9818dad51195"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_register_env_manager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_register_env_manager" title="Link to this definition">#</a><br /></dt>
 <dd><p>Open an environment-manager registration. Must be followed by the mandatory knit_env_* declarations (provision, install, activate, specs, manifest, lockfile) and closed with knit_env_done. A manager's per-registration state is kept in <em>KNIT_ENV</em>&lt;nm&gt;<em>* globals, where &lt;nm&gt; is the normalized (underscore) name; the as-typed name is preserved in _KNIT_ENV</em>&lt;nm&gt;_display and is used for the on-disk directory (.knit/&lt;name&gt;) and for messages.</p>
@@ -2885,6 +2895,24 @@ knit_done
 <section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h2>
 <dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_CLAIM_HOLDS">
+<span class="target" id="claim_8sh_1ac6a017ac79c3d2e49c7feaabc087fa3d"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_CLAIM_HOLDS</span></span></span><a class="headerlink" href="#c.KNIT_CLAIM_HOLDS" title="Link to this definition">#</a><br /></dt>
+<dd><p>Verdict exit code a claim checker returns when the finding holds for the evaluated binding. Return it from a checker body instead of a bare 0, so the verdict reads for itself: <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">&quot;${</span><a class="reference internal" href="#claim_8sh_1ac6a017ac79c3d2e49c7feaabc087fa3d"><span class="std std-ref"><span class="pre">KNIT_CLAIM_HOLDS</span></span></a><span class="pre">}&quot;</span></code>. See the verdict table in the claim documentation (design §3.4). </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_CLAIM_INSUFFICIENT">
+<span class="target" id="claim_8sh_1a0755a90bf290e1686cb0adb6b992ada8"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_CLAIM_INSUFFICIENT</span></span></span><a class="headerlink" href="#c.KNIT_CLAIM_INSUFFICIENT" title="Link to this definition">#</a><br /></dt>
+<dd><p>Verdict exit code a claim checker returns when there is not enough data to decide the finding yet: <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">&quot;${</span><a class="reference internal" href="#claim_8sh_1a0755a90bf290e1686cb0adb6b992ada8"><span class="std std-ref"><span class="pre">KNIT_CLAIM_INSUFFICIENT</span></span></a><span class="pre">}&quot;</span></code>. The honesty signal — &quot;you cannot make this claim yet&quot; — distinct from a refutation. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_CLAIM_REFUTED">
+<span class="target" id="claim_8sh_1a3e62c8c777f23bba56ccedc04b2e216b"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_CLAIM_REFUTED</span></span></span><a class="headerlink" href="#c.KNIT_CLAIM_REFUTED" title="Link to this definition">#</a><br /></dt>
+<dd><p>Verdict exit code a claim checker returns when the finding is false for the evaluated binding: <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">&quot;${</span><a class="reference internal" href="#claim_8sh_1a3e62c8c777f23bba56ccedc04b2e216b"><span class="std std-ref"><span class="pre">KNIT_CLAIM_REFUTED</span></span></a><span class="pre">}&quot;</span></code>. </p>
+</dd></dl>
+
+<dl class="c var">
 <dt class="sig sig-object c" id="c.KNIT_IGNORE_CHECKSUM">
 <span class="target" id="resource_8sh_1a8b1ea9ce361d3aa0eea07854e403fc7b"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_IGNORE_CHECKSUM</span></span></span><a class="headerlink" href="#c.KNIT_IGNORE_CHECKSUM" title="Link to this definition">#</a><br /></dt>
 <dd><p>Public environment variable exported into a resource download body: &quot;true&quot; when checksum verification is disabled for this fetch, &quot;false&quot; otherwise. A download body reads it to decide whether to skip its own integrity check. </p>
@@ -3094,6 +3122,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register"><code class="docutils literal notranslate"><span class="pre">knit_register()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_app"><code class="docutils literal notranslate"><span class="pre">knit_register_app()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_artifact"><code class="docutils literal notranslate"><span class="pre">knit_register_artifact()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_claim"><code class="docutils literal notranslate"><span class="pre">knit_register_claim()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_env_manager"><code class="docutils literal notranslate"><span class="pre">knit_register_env_manager()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_job"><code class="docutils literal notranslate"><span class="pre">knit_register_job()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register_resource"><code class="docutils literal notranslate"><span class="pre">knit_register_resource()</span></code></a></li>
@@ -3156,6 +3185,9 @@ knit_done
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_HOLDS"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_HOLDS</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_INSUFFICIENT"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_INSUFFICIENT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_REFUTED"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_REFUTED</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_IGNORE_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_IGNORE_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_JOB_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_JOB_PREFIX</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LOG_LEVEL"><code class="docutils literal notranslate"><span class="pre">KNIT_LOG_LEVEL</span></code></a></li>

@@ -32,6 +32,7 @@ name-discovery rule the registration shorthands use).
    _categories/profiles
    _categories/metadata
    _categories/query
+   _categories/claims
    _categories/ai
    _categories/logging
    _categories/plugins

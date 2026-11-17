@@ -251,6 +251,9 @@ Functions
 .. doxygenfunction:: knit_register_artifact
    :project: knit
 
+.. doxygenfunction:: knit_register_claim
+   :project: knit
+
 .. doxygenfunction:: knit_register_env_manager
    :project: knit
 
@@ -430,6 +433,15 @@ Functions
 
 Variables
 ---------
+
+.. doxygenvariable:: KNIT_CLAIM_HOLDS
+   :project: knit
+
+.. doxygenvariable:: KNIT_CLAIM_INSUFFICIENT
+   :project: knit
+
+.. doxygenvariable:: KNIT_CLAIM_REFUTED
+   :project: knit
 
 .. doxygenvariable:: KNIT_IGNORE_CHECKSUM
    :project: knit

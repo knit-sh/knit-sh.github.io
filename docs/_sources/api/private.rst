@@ -330,6 +330,54 @@ Variables
 .. doxygenvariable:: _KNIT_BUNDLE_REQUIRES
    :project: knit
 
+claim.sh
+--------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_claim_before_cb
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_check
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_glyph
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_paint
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_print
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_record
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_render
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_token_value
+   :project: knit
+
+.. doxygenfunction:: _knit_claim_verdict_from_code
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_CLAIMS
+   :project: knit
+
+.. doxygenvariable:: _KNIT_CLAIM_EVALUATING
+   :project: knit
+
+.. doxygenvariable:: _KNIT_CLAIM_STATEMENT_COLUMN
+   :project: knit
+
+.. doxygenvariable:: _KNIT_CLAIM_VERDICT_COLUMN
+   :project: knit
+
 cli.sh
 ------
 
