@@ -549,7 +549,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content"
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"summarize"</span><span class="w"> </span><span class="s2">"Summarize a fetched dataset."</span>
 <span class="nd">@with_resource</span><span class="w"> </span><span class="s2">"data:dataset"</span><span class="w"> </span><span class="s2">"Name of the dataset instance to read."</span>
 <span class="nd">@with_table</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"lines:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of lines in the dataset."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"lines:integer"</span><span class="w"> </span><span class="s2">"Number of lines in the dataset."</span>
 _summarize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>dir
 <span class="w">    </span><span class="nv">dir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -573,7 +573,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content"
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"summarize"</span><span class="w"> </span>_summarize<span class="w"> </span><span class="s2">"Summarize a fetched dataset."</span>
 <span class="nb">knit_with_resource</span><span class="w"> </span><span class="s2">"data:dataset"</span><span class="w"> </span><span class="s2">"Name of the dataset instance to read."</span>
 <span class="nb">knit_with_table</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"lines:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of lines in the dataset."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"lines:integer"</span><span class="w"> </span><span class="s2">"Number of lines in the dataset."</span>
 _summarize<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>dir
 <span class="w">    </span><span class="nv">dir</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_resource_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span>data<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>

@@ -486,8 +486,8 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content"
 <span class="nd">@claim</span><span class="w"> </span><span class="s2">"mean-above"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="s2">"The mean sample is at least @floor (mean @mean over @n samples)."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"floor:real"</span><span class="w">  </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Lower bound the mean must meet."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"mean:real"</span><span class="w">   </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Mean of the recorded samples."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"n:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of recorded samples."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"mean:real"</span><span class="w"> </span><span class="s2">"Mean of the recorded samples."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"Number of recorded samples."</span>
 _mean_above<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>floor<span class="w"> </span>n<span class="w"> </span>mean
 <span class="w">    </span><span class="nv">floor</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"floor"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -519,8 +519,8 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content"
 <span class="nb">knit_register_claim</span><span class="w"> </span><span class="s2">"mean-above"</span><span class="w"> </span>_mean_above<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="s2">"The mean sample is at least @floor (mean @mean over @n samples)."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"floor:real"</span><span class="w">  </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Lower bound the mean must meet."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"mean:real"</span><span class="w">   </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Mean of the recorded samples."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"n:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Number of recorded samples."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"mean:real"</span><span class="w"> </span><span class="s2">"Mean of the recorded samples."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"n:integer"</span><span class="w"> </span><span class="s2">"Number of recorded samples."</span>
 _mean_above<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>floor<span class="w"> </span>n<span class="w"> </span>mean
 <span class="w">    </span><span class="nv">floor</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"floor"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>

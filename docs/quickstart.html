@@ -708,9 +708,10 @@ off unless given:</p>
 <section id="emitting-an-output">
 <h2>Emitting an output<a class="headerlink" href="#emitting-an-output" title="Link to this heading">#</a></h2>
 <p>A command can declare one or more <strong>outputs</strong>: a named, typed result it computes.
-<code class="docutils literal notranslate"><span class="pre">&#64;with_output</span> <span class="pre">&quot;name:type&quot;</span> <span class="pre">&lt;default&gt;</span> <span class="pre">&lt;description&gt;</span></code> declares it (the default
-is used if the command exits before setting it), and <code class="docutils literal notranslate"><span class="pre">knit_output</span> <span class="pre">&lt;name&gt;</span>
-<span class="pre">&lt;value&gt;</span></code> emits it from the body:</p>
+<code class="docutils literal notranslate"><span class="pre">&#64;with_output</span> <span class="pre">&quot;name:type&quot;</span> <span class="pre">&lt;description&gt;</span></code> declares it and <code class="docutils literal notranslate"><span class="pre">knit_output</span> <span class="pre">&lt;name&gt;</span>
+<span class="pre">&lt;value&gt;</span></code> emits it from the body. An output the body never emits records SQL
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> (the honest “not produced”); add <code class="docutils literal notranslate"><span class="pre">--unset</span> <span class="pre">&lt;value&gt;</span></code> only when a fixed
+fallback is genuinely meaningful:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
 <label aria-controls="sd-tab-item-6-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-6">
@@ -718,7 +719,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -736,7 +737,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span>_scale<span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -770,7 +771,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nd">@with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y
@@ -789,7 +790,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span>_add<span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nb">knit_with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y
@@ -880,7 +881,7 @@ _greet<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -893,7 +894,7 @@ _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nd">@with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y
@@ -962,7 +963,7 @@ _greet<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span>_scale<span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -975,7 +976,7 @@ _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span>_add<span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nb">knit_with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y

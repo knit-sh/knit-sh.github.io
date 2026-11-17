@@ -774,7 +774,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content"
 <span class="nd">@app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="hll"><span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 </span><span class="nd">@with_required</span><span class="w"> </span><span class="s2">"output:string"</span><span class="w">           </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
 _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -807,7 +807,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content"
 <span class="nb">knit_register_app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_app<span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="hll"><span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 </span><span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"output:string"</span><span class="w">           </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
 _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -970,8 +970,8 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content
 <span class="nd">@app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 <span class="hll"><span class="nd">@with_required</span><span class="w"> </span><span class="s2">"output:filename"</span><span class="w">         </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-</span><span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
-<span class="hll"><span class="nd">@with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w">       </span><span class="s2">""</span><span class="w">     </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
+</span><span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="hll"><span class="nd">@with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w"> </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
 </span>_render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -1009,8 +1009,8 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content
 <span class="nb">knit_register_app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_app<span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 <span class="hll"><span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"output:filename"</span><span class="w">         </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-</span><span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
-<span class="hll"><span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w">       </span><span class="s2">""</span><span class="w">     </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
+</span><span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="hll"><span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w"> </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
 </span>_render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -1267,7 +1267,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-20-content
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Read the inside-metric table and name the peak render."</span>
 <span class="hll"><span class="nd">@with_input_artifact</span><span class="w"> </span><span class="s2">"table:insidecsv"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the table to read."</span><span class="w"> </span>--verify-checksum
 </span><span class="nd">@with_table</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># Resolve the recorded artifacts-relative path to the on-disk file.</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv
@@ -1296,7 +1296,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-21-content
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Read the inside-metric table and name the peak render."</span>
 <span class="hll"><span class="nb">knit_with_input_artifact</span><span class="w"> </span><span class="s2">"table:insidecsv"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the table to read."</span><span class="w"> </span>--verify-checksum
 </span><span class="nb">knit_with_table</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># Resolve the recorded artifacts-relative path to the on-disk file.</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv
@@ -1785,8 +1785,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nd">@app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nd">@with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"output:filename"</span><span class="w">         </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w">       </span><span class="s2">""</span><span class="w">     </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w"> </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
 _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -1849,7 +1849,7 @@ _aggregate<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Read the inside-metric table and name the peak render."</span>
 <span class="nd">@with_input_artifact</span><span class="w"> </span><span class="s2">"table:insidecsv"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the table to read."</span><span class="w"> </span>--verify-checksum
 <span class="nd">@with_table</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv
 <span class="w">    </span><span class="nv">csv</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_input_artifact_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -1977,8 +1977,8 @@ _julia<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="nb">knit_register_app</span><span class="w"> </span><span class="s2">"render"</span><span class="w"> </span>_render_app<span class="w"> </span><span class="s2">"Render one MPI-parallel Julia-set image."</span>
 <span class="nb">knit_with_parameter_set</span><span class="w"> </span><span class="s2">"julia-params"</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"output:filename"</span><span class="w">         </span><span class="s2">"Absolute PNG path (the job supplies one per run)."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w">   </span><span class="s2">"0"</span><span class="w">    </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w">       </span><span class="s2">""</span><span class="w">     </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"inside:integer"</span><span class="w"> </span><span class="s2">"Grid points inside the set (recorded by rank 0)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"image:file"</span><span class="w"> </span><span class="s2">"The PNG this render produced (checksummed intermediate)."</span>
 _render_app<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>width<span class="w"> </span>height<span class="w"> </span>c_re<span class="w"> </span>c_im<span class="w"> </span>max_iter<span class="w"> </span>colormap<span class="w"> </span>output
 <span class="w">    </span><span class="nv">width</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"width"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -2041,7 +2041,7 @@ _aggregate<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Read the inside-metric table and name the peak render."</span>
 <span class="nb">knit_with_input_artifact</span><span class="w"> </span><span class="s2">"table:insidecsv"</span><span class="w"> </span><span class="s2">"Artifacts-relative path of the table to read."</span><span class="w"> </span>--verify-checksum
 <span class="nb">knit_with_table</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"peak:real"</span><span class="w"> </span><span class="s2">"Largest inside metric across the rendered images."</span><span class="w"> </span>--result
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>csv
 <span class="w">    </span><span class="nv">csv</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_input_artifact_path</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"table"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>

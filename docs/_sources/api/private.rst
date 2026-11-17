@@ -507,13 +507,16 @@ Functions
 .. doxygenfunction:: _knit_name_normalize
    :project: knit
 
-.. doxygenfunction:: _knit_output_default
-   :project: knit
-
 .. doxygenfunction:: _knit_output_description
    :project: knit
 
+.. doxygenfunction:: _knit_output_has_unset
+   :project: knit
+
 .. doxygenfunction:: _knit_output_type
+   :project: knit
+
+.. doxygenfunction:: _knit_output_unset_value
    :project: knit
 
 .. doxygenfunction:: _knit_param_check_declaration

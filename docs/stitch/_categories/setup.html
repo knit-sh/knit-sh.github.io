@@ -879,11 +879,11 @@ _toolenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{
 Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
 <span class="nd">@with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w">      </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
 _probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># The setup's environment is already composed onto this job's own shell: its</span>
 <span class="w">    </span><span class="c1"># variables are set and its PATH entry is prepended to the job's own PATH.</span>
@@ -902,11 +902,11 @@ _probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"probe"</span><span class="w"> </span>_probe<span class="w"> </span><span class="s2">"Run inside the setup and report the composed environment."</span>
 <span class="nb">knit_with_setup</span><span class="w"> </span><span class="s2">"toolenv"</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w">  </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w">      </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"greeting:string"</span><span class="w"> </span><span class="s2">"TOOL_GREETING declared by the setup."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"banner:string"</span><span class="w"> </span><span class="s2">"TOOL_BANNER built by the activate line."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"data_path:string"</span><span class="w"> </span><span class="s2">"TOOL_DATA_PATH appended by the setup."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"legacy:string"</span><span class="w"> </span><span class="s2">"TOOL_LEGACY (unset by the setup; empty here)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"path:string"</span><span class="w"> </span><span class="s2">"The job's PATH after activation."</span>
 _probe<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="c1"># The setup's environment is already composed onto this job's own shell: its</span>
 <span class="w">    </span><span class="c1"># variables are set and its PATH entry is prepended to the job's own PATH.</span>

@@ -489,7 +489,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nd">@with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y
@@ -508,7 +508,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"add"</span><span class="w"> </span>_add<span class="w"> </span><span class="s2">"Add two integers and record the run."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"First value."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"y:integer"</span><span class="w"> </span><span class="s2">"Second value."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"x + y."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"total:integer"</span><span class="w"> </span><span class="s2">"x + y."</span>
 <span class="nb">knit_with_table</span>
 _add<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>y
@@ -544,8 +544,8 @@ with <code class="docutils literal notranslate"><span class="pre">knit</span> <s
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_with_output</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code></p>
 <p>A command’s parameters are its inputs; its <strong>outputs</strong> are the results you want
 recorded alongside them. Declare an output at registration with
-<code class="docutils literal notranslate"><span class="pre">knit_with_output</span> <span class="pre">name:type</span> <span class="pre">default</span> <span class="pre">description</span></code>, then set its value from the
-body with <code class="docutils literal notranslate"><span class="pre">knit_output</span> <span class="pre">name</span> <span class="pre">value</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">knit_with_output</span> <span class="pre">name:type</span> <span class="pre">description</span></code>, then set its value from the body with
+<code class="docutils literal notranslate"><span class="pre">knit_output</span> <span class="pre">name</span> <span class="pre">value</span></code>:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
 <label aria-controls="sd-tab-item-2-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-2">
@@ -553,7 +553,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -571,7 +571,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content"
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"scale"</span><span class="w"> </span>_scale<span class="w"> </span><span class="s2">"Multiply an integer by a factor."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"value:integer"</span><span class="w"> </span><span class="s2">"The value to scale."</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"factor:integer"</span><span class="w"> </span><span class="s2">"2"</span><span class="w"> </span><span class="s2">"The multiplier (defaults to 2)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"value * factor."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"value * factor."</span>
 _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>value<span class="w"> </span>factor
 <span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"value"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
@@ -588,6 +588,19 @@ _scale<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 value that does not match its declared type is a fatal error. <code class="docutils literal notranslate"><span class="pre">knit_output</span></code>
 may only set an output the command declared, and only from within the command’s
 own function.</p>
+<p><strong>Unset outputs record NULL.</strong> An output the body never emits with
+<code class="docutils literal notranslate"><span class="pre">knit_output</span></code> is recorded as SQL <code class="docutils literal notranslate"><span class="pre">NULL</span></code> — the honest “not produced” —
+rather than a fabricated value, so a run that crashes or returns early before
+computing <code class="docutils literal notranslate"><span class="pre">result</span></code> never leaves a misleading number behind. Prefer that for a
+measured quantity. When a fixed fallback is genuinely meaningful, declare it with
+<code class="docutils literal notranslate"><span class="pre">--unset</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">knit_with_output</span> <span class="s2">"retries:integer"</span> <span class="s2">"Times this job was re-queued."</span> <span class="o">--</span><span class="n">unset</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--unset</span></code> value is type-checked against the output’s type, so
+<code class="docutils literal notranslate"><span class="pre">--unset</span> <span class="pre">foo</span></code> on an <code class="docutils literal notranslate"><span class="pre">:integer</span></code> output is a fatal error. Reading NULL back with
+<code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">query</span></code> renders per output mode (empty in <code class="docutils literal notranslate"><span class="pre">csv</span></code>, the literal <code class="docutils literal notranslate"><span class="pre">NULL</span></code> in
+a display mode); <code class="docutils literal notranslate"><span class="pre">--nullvalue</span> <span class="pre">&lt;text&gt;</span></code> overrides it.</p>
 <p>On its own, <code class="docutils literal notranslate"><span class="pre">scale</span></code> just computes <code class="docutils literal notranslate"><span class="pre">result</span></code> and prints it — an emitted
 output is not persisted until the command has somewhere to record it. Give the
 command a table and each declared output becomes one of its columns, filled from
@@ -615,8 +628,8 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content"
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
 <span class="nd">@with_table</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
 <span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -640,8 +653,8 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content"
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
 <span class="nb">knit_with_table</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
 <span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -711,8 +724,8 @@ declaration to say so:</p>
 Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@command</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">  </span><span class="s2">"An intermediate note (not a result)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w"> </span><span class="s2">"An intermediate note (not a result)."</span>
 <span class="nd">@with_table</span>
 _measure<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x
@@ -730,8 +743,8 @@ _measure<span class="o">()</span><span class="w"> </span><span class="o">{</span
 Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register</span><span class="w"> </span><span class="s2">"measure"</span><span class="w"> </span>_measure<span class="w"> </span><span class="s2">"Square a value and mark the result."</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"x:integer"</span><span class="w"> </span><span class="s2">"The value to square."</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w">    </span><span class="s2">""</span><span class="w">  </span><span class="s2">"An intermediate note (not a result)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"square:integer"</span><span class="w"> </span><span class="s2">"The squared value (the result)."</span><span class="w"> </span>--result
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"note:string"</span><span class="w"> </span><span class="s2">"An intermediate note (not a result)."</span>
 <span class="nb">knit_with_table</span>
 _measure<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x

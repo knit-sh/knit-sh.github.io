@@ -2637,10 +2637,12 @@ knit_done
 <dt class="sig sig-object c" id="c.knit_with_output">
 <span class="target" id="cli_8sh_1a53cffdb047b3247ad6bb29d27d77634a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_output</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_output" title="Link to this definition">#</a><br /></dt>
 <dd><p>This function should be called right after a call to knit_register (or one of its variants) to declare an output that the command produces. The output name must include a type annotation using the &quot;name:type&quot; syntax (e.g. &quot;result:integer&quot;).</p>
+<p>An output the command body never sets with knit_output records SQL NULL, the honest &quot;never produced&quot; state. The optional &quot;--unset &lt;value&gt;&quot; declares a fallback to record instead of NULL when the body does not set the output; the value must match the declared type. Prefer NULL (no --unset) over an optimistic fallback: a fallback is only honest when it genuinely holds for a body that measured nothing.</p>
 <p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">knit_register</span> <span class="s2">"compute"</span> <span class="s2">"compute"</span> <span class="s2">"Compute something."</span>
-<span class="n">knit_with_output</span> <span class="s2">"result:real"</span> <span class="s2">"0.0"</span> <span class="s2">"The computed result."</span>
+<span class="n">knit_with_output</span> <span class="s2">"result:real"</span> <span class="s2">"The computed result."</span>
 <span class="n">compute</span><span class="p">()</span> <span class="p">{</span>
    <span class="o">...</span>
+   <span class="n">knit_output</span> <span class="n">result</span> <span class="s2">"$</span><span class="si">{value}</span><span class="s2">"</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2649,8 +2651,8 @@ knit_done
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>param</strong> -- <strong>[in]</strong> Output name followed by &quot;:type&quot;. </p></li>
-<li><p><strong>default</strong> -- <strong>[in]</strong> Default value. </p></li>
 <li><p><strong>description</strong> -- <strong>[in]</strong> Description of the output. </p></li>
+<li><p><strong>--unset</strong> -- <strong>[in]</strong> Optional &quot;--unset &lt;value&gt;&quot;; value to record when the body does not set the output (default: SQL NULL). Must match the output type. </p></li>
 <li><p><strong>--no-checksum</strong> -- <strong>[in]</strong> Optional flag; for a file/directory output, disable the content checksum and its companion column. </p></li>
 <li><p><strong>--result</strong> -- <strong>[in]</strong> Optional flag; mark the output as a result (what the experiment was for). Valid on an output of any type. </p></li>
 </ul>

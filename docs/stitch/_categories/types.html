@@ -635,8 +635,8 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-6-content"
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
 <span class="nd">@with_table</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
-<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nd">@with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
 <span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -660,8 +660,8 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-7-content"
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"report"</span><span class="w"> </span>_report<span class="w"> </span><span class="s2">"Summarize a data file into a report."</span>
 <span class="nb">knit_with_table</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"input:file"</span><span class="w"> </span><span class="s2">"The data file to summarize."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
-<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"summary:file"</span><span class="w"> </span><span class="s2">"The written summary (path + sha256 recorded)."</span>
+<span class="nb">knit_with_output</span><span class="w"> </span><span class="s2">"workdir:directory"</span><span class="w"> </span><span class="s2">"Scratch tree, recorded by path only."</span><span class="w"> </span>--no-checksum
 _report<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>input
 <span class="w">    </span><span class="nv">input</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"input"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>

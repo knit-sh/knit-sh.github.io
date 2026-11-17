@@ -561,7 +561,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content"
 <span class="nd">@without_setup</span>
 <span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Number of steps."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{1,2,4}'</span>
 <span class="nd">@with_table</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
 _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
 <span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -582,7 +582,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-3-content"
 <span class="nb">knit_without_setup</span>
 <span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"n:integer"</span><span class="w">      </span><span class="s2">"1"</span><span class="w"> </span><span class="s2">"Number of steps."</span><span class="w"> </span>--domain<span class="w"> </span><span class="s1">'{1,2,4}'</span>
 <span class="nb">knit_with_table</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"result:integer"</span><span class="w"> </span><span class="s2">"Twice the step count (a stand-in result)."</span>
 _sim<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>n
 <span class="w">    </span><span class="nv">n</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"n"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -678,7 +678,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content"
 <span class="c1"># @job already declares the job's table (named "quad"); do not add @with_table,</span>
 <span class="c1"># which would re-point it at the "submit:quad" command name and split recording</span>
 <span class="c1"># from where the objective is read.</span>
-<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"score:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Objective = 100 - (x - 6)^2 (max 100 at x = 6)."</span>
+<span class="nd">@with_output</span><span class="w">   </span><span class="s2">"score:real"</span><span class="w"> </span><span class="s2">"Objective = 100 - (x - 6)^2 (max 100 at x = 6)."</span>
 _quad<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>score
 <span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"x"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
@@ -704,7 +704,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content"
 <span class="c1"># @job already declares the job's table (named "quad"); do not add @with_table,</span>
 <span class="c1"># which would re-point it at the "submit:quad" command name and split recording</span>
 <span class="c1"># from where the objective is read.</span>
-<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"score:real"</span><span class="w"> </span><span class="s2">"0"</span><span class="w"> </span><span class="s2">"Objective = 100 - (x - 6)^2 (max 100 at x = 6)."</span>
+<span class="nb">knit_with_output</span><span class="w">   </span><span class="s2">"score:real"</span><span class="w"> </span><span class="s2">"Objective = 100 - (x - 6)^2 (max 100 at x = 6)."</span>
 _quad<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="w">    </span><span class="nb">local</span><span class="w"> </span>x<span class="w"> </span>score
 <span class="w">    </span><span class="nv">x</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_get_parameter</span><span class="w"> </span><span class="s2">"x"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
