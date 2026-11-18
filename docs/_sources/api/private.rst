@@ -1569,6 +1569,9 @@ Functions
 .. doxygenfunction:: _knit_pilot_require_sock
    :project: knit
 
+.. doxygenfunction:: _knit_pilot_socket_dir
+   :project: knit
+
 .. doxygenfunction:: _knit_pilot_teardown_kill
    :project: knit
 

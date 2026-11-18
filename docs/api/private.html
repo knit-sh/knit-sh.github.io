@@ -1124,6 +1124,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_record_subjob"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_record_subjob()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_reject_nested_submit"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_reject_nested_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_require_sock"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_require_sock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_socket_dir"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_socket_dir()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_teardown_kill"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_teardown_kill()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
@@ -7522,7 +7523,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_pilot_before_cb">
 <span class="target" id="pilot_8sh_1a42fd5ef6be66d6d63f4604821542e334"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_before_cb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_before_cb" title="Link to this definition">#</a><br /></dt>
-<dd><p>Before-callback installed by knit_with_pilot, run after the generic job before-callback (so the allocation's hostnames are already discoverable). It builds the resource inventory — the node pool (knit_job_hostnames, less the launch host when --exclude-launch-host) plus the per-node core/GPU counts from bootstrap metadata — starts knit-pilotd on a control socket under the job directory, waits for the socket to appear, and exports KNIT_PILOT / KNIT_PILOT_SOCK so the body's <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> calls reach the daemon. The node pool is built before KNIT_PILOT is exported so host discovery still resolves the real scheduler backend. Daemon output goes to &lt;jobdir&gt;/pilot.log.</p>
+<dd><p>Before-callback installed by knit_with_pilot, run after the generic job before-callback (so the allocation's hostnames are already discoverable). It builds the resource inventory — the node pool (knit_job_hostnames, less the launch host when --exclude-launch-host) plus the per-node core/GPU counts from bootstrap metadata — starts knit-pilotd on a control socket on a node-local filesystem (see _knit_pilot_socket_dir), waits for the socket to appear, and exports KNIT_PILOT / KNIT_PILOT_SOCK so the body's <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> calls reach the daemon. The node pool is built before KNIT_PILOT is exported so host discovery still resolves the real scheduler backend. Daemon output goes to &lt;jobdir&gt;/pilot.log.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -7581,6 +7582,19 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_pilot_require_sock">
 <span class="target" id="pilot_8sh_1ab92bdff12057edcaeb84f26b5094d944"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_require_sock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_require_sock" title="Link to this definition">#</a><br /></dt>
 <dd><p>Fatal unless KNIT_PILOT_SOCK names a control socket to talk to the daemon. Guards the pilot backend's submit/wait/cancel paths, which are only reachable from inside a pilot job body; a missing socket means one of those was reached outside a pilot, which is a programming error worth a clear message. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_pilot_socket_dir">
+<span class="target" id="pilot_8sh_1a93d4e8a2daca3142f89ae34bd1cf7006"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_pilot_socket_dir</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_pilot_socket_dir" title="Link to this definition">#</a><br /></dt>
+<dd><p>Pick the directory to hold the knit-pilotd control socket. A unix-domain socket must live on a node-local filesystem: binding one on a parallel filesystem (GPFS/Lustre) is a slow metadata operation that can block for seconds under load, and the AF_UNIX sun_path limit (~108 bytes) rules out long shared paths. Prefer the scheduler's per-job node-local TMPDIR, then /dev/shm, then /tmp, taking the first that exists and is writable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ret</strong> -- <strong>[out]</strong> Nameref set to the chosen directory. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -12570,6 +12584,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_record_subjob"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_record_subjob()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_reject_nested_submit"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_reject_nested_submit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_require_sock"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_require_sock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_socket_dir"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_socket_dir()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_pilot_teardown_kill"><code class="docutils literal notranslate"><span class="pre">_knit_pilot_teardown_kill()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_cancel"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_cancel()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_pilot_directives"><code class="docutils literal notranslate"><span class="pre">_knit_sched_pilot_directives()</span></code></a></li>
