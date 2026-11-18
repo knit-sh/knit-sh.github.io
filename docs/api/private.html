@@ -7803,6 +7803,7 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_plugin_lock_set">
 <span class="target" id="plugin_8sh_1aa0d7adf3028fe335a5875fd411cb0fa5"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_plugin_lock_set</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_plugin_lock_set" title="Link to this definition">#</a><br /></dt>
 <dd><p>Record (or update) a plugin's pin in the lockfile, then rewrite the file with its entries sorted by canonical id for a stable, review-friendly diff. An empty checksum is written as a two-field line; a present checksum as three fields.</p>
+<p>The lockfile lives under .knit, so this is a no-op until that directory exists: writing it must never create .knit itself, because a bare .knit (no database) makes bootstrap mistake the experiment for an existing install. Pre-bootstrap the pin is held in memory (_KNIT_PLUGIN_COMMITS) and written by _knit_plugin_bootstrap once bootstrap has created .knit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
