@@ -663,7 +663,14 @@ knit uses to write directives and submit; <code class="docutils literal notransl
 <code class="docutils literal notranslate"><span class="pre">queues</span></code> records each queue’s node/walltime bounds so <code class="docutils literal notranslate"><span class="pre">submit</span></code> can validate
 a request against the queue before it reaches the scheduler. Setting
 <code class="docutils literal notranslate"><span class="pre">default_queue</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> (or passing <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">--queue</span> <span class="pre">auto</span></code>) makes knit
-choose the first queue in <code class="docutils literal notranslate"><span class="pre">queues</span></code> whose bounds accept the job.</p></li>
+choose the first queue in <code class="docutils literal notranslate"><span class="pre">queues</span></code> whose bounds accept the job. On Slurm, the
+companion field <code class="docutils literal notranslate"><span class="pre">queue_as</span></code> chooses which directive carries the queue value:
+<code class="docutils literal notranslate"><span class="pre">&quot;partition&quot;</span></code> (the default) emits <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--partition=&lt;queue&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;qos&quot;</span></code>
+emits <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--qos=&lt;queue&gt;</span></code>, and a list such as
+<code class="docutils literal notranslate"><span class="pre">[&quot;partition&quot;,</span> <span class="pre">&quot;qos&quot;]</span></code> emits both. Set it to <code class="docutils literal notranslate"><span class="pre">&quot;qos&quot;</span></code> on sites whose queues
+are Slurm QOS classes rather than partitions (for example NERSC Perlmutter,
+where the pool is selected separately with a <code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">cpu</span></code> / <code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">gpu</span></code> constraint
+in <code class="docutils literal notranslate"><span class="pre">default_args</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">launcher</span></code> — how MPI ranks are launched. <code class="docutils literal notranslate"><span class="pre">type</span></code> (<code class="docutils literal notranslate"><span class="pre">pals</span></code>) picks the
 launcher backend for <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code>, and <code class="docutils literal notranslate"><span class="pre">command</span></code> is its binary
 (<code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>).</p></li>
