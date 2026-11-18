@@ -741,7 +741,7 @@ of the experiment, right after <code class="docutils literal notranslate"><span 
 <p>That single line is what makes the <code class="docutils literal notranslate"><span class="pre">&#64;with_spack_*</span></code> directives — and a
 <code class="docutils literal notranslate"><span class="pre">spack</span></code> command you meet in Step 8 — available. Importing it unpinned is fine
 for the tutorial; <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> freezes the exact version in
-<code class="docutils literal notranslate"><span class="pre">knit-plugins.lock</span></code>. Other environment managers can be imported the same way;
+<code class="docutils literal notranslate"><span class="pre">.knit/plugins.lock</span></code>. Other environment managers can be imported the same way;
 this tutorial uses Spack as the worked example.</p>
 <p>Two things make this reproducible. <code class="docutils literal notranslate"><span class="pre">&#64;with_spack_specs</span></code> declares a
 <a class="reference external" href="https://spack.io/">Spack</a> environment: Knit uses the Spack plugin to build

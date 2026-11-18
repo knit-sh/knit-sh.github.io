@@ -482,7 +482,7 @@ before using what the plugin provides:</p>
 <span class="nb">knit_import</span><span class="w"> </span>spack
 
 <span class="c1"># Pin a ref (tag, branch, or commit). A mutable ref is resolved to a commit on</span>
-<span class="c1"># the first bootstrap and frozen in knit-plugins.lock.</span>
+<span class="c1"># the first bootstrap and frozen in .knit/plugins.lock.</span>
 <span class="nb">knit_import</span><span class="w"> </span>spack@v1.2.0
 
 <span class="c1"># Full form names the host, owner, and repository.</span>
@@ -495,7 +495,7 @@ before using what the plugin provides:</p>
 </div>
 <p>The short form expands to <code class="docutils literal notranslate"><span class="pre">github.com/knit-sh/knit-&lt;name&gt;</span></code>. A mutable ref such
 as a branch resolves to a commit on the first bootstrap and is frozen in
-<code class="docutils literal notranslate"><span class="pre">knit-plugins.lock</span></code>, so a later run and a fresh checkout use the same code.
+<code class="docutils literal notranslate"><span class="pre">.knit/plugins.lock</span></code>, so a later run (and a bundle) use the same code.
 Bootstrap also records each plugin in the <code class="docutils literal notranslate"><span class="pre">plugins</span></code> table and materializes its
 pinned tree under <code class="docutils literal notranslate"><span class="pre">.knit/plugins/</span></code> for a self-contained experiment directory.</p>
 <p>The worked example throughout this guide is the Spack <strong>environment manager</strong>,

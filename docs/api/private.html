@@ -7982,7 +7982,7 @@ plugin.sh knows which plugin imported it (the stack top) and records the depende
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_PLUGIN_LOCKFILE">
 <span class="target" id="plugin_8sh_1a1186bac89fad726847d621fd35fac459"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_PLUGIN_LOCKFILE</span></span></span><a class="headerlink" href="#c._KNIT_PLUGIN_LOCKFILE" title="Link to this definition">#</a><br /></dt>
-<dd><p>Path to the committed lockfile that pins every imported plugin (canonical id -&gt; resolved commit + checksum). It lives next to the experiment script and ships in the experiment's VCS, so a fresh checkout resolves the exact commits before bootstrap, for both introspection and reproduction. A resolution prefers a lockfile pin over the ref; a mutable ref with no pin is resolved once and written back here. A test or reproducer may override the path. </p>
+<dd><p>Path to the lockfile that pins every imported plugin (canonical id -&gt; resolved commit + checksum). It lives under .knit, alongside the rest of knit's managed state, and is carried inside an exported bundle (see _knit_bundle_required_paths) so a reproducer resolves the exact commits before bootstrap, for both introspection and reproduction. A resolution prefers a lockfile pin over the ref; a mutable ref with no pin is resolved once and written back here. A test or reproducer may override the path. </p>
 </dd></dl>
 
 <dl class="c var">
