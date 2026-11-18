@@ -1725,6 +1725,12 @@ Functions
 .. doxygenfunction:: _knit_prepare_claim_next
    :project: knit
 
+.. doxygenfunction:: _knit_prepare_mismatched
+   :project: knit
+
+.. doxygenfunction:: _knit_prepare_releasable_where
+   :project: knit
+
 .. doxygenfunction:: _knit_prepare_release
    :project: knit
 

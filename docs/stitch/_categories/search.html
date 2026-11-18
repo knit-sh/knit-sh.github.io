@@ -641,17 +641,26 @@ failed or killed jobs</em>):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span>.<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once<span class="w"> </span><span class="o">(</span>durable,<span class="w"> </span>grouped<span class="w"> </span>--<span class="w"> </span>--group<span class="w"> </span>on<span class="w"> </span>prepare<span class="w"> </span>labels
 <span class="gp">#    </span>the<span class="w"> </span>prepared<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>so<span class="w"> </span>the<span class="w"> </span>drain<span class="w"> </span>can<span class="w"> </span><span class="k">select</span><span class="w"> </span>them<span class="o">)</span>:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
-<span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>--<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node,<span class="w"> </span>or<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span>pilot<span class="w"> </span>job:
+<span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">prepare</span></code> freezes the <em>target scheduler</em> where it runs, and a job is released
+only where its frozen backend is live. The command above prepares for the login
+node’s scheduler, so it must be drained there. To instead drain <strong>inside a pilot
+job</strong> — packing the swept jobs onto the pilot’s nodes with no second queue wait
+— prepare for the pilot and run the drain in the pilot’s body:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--backend<span class="w"> </span>pilot<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="gp"># </span>...<span class="w"> </span><span class="k">then</span>,<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span><span class="nb">knit_with_pilot</span><span class="w"> </span>job<span class="w"> </span>body:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
 </pre></div>
 </div>
 <p>Resumability is not a sweep feature at all — it is a property of the
-prepare/drain queue the sweep writes into. Draining inside a <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>
-job packs the swept jobs onto the pilot’s nodes with no second queue wait; a
-pilot killed at walltime is resumed by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code>
-first corrects the sub-jobs the hard kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code>
-re-queues them. The sweep’s own <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the
-ephemeral forms; durable concurrency, recovery, and failure policy are drain’s.</p>
+prepare/drain queue the sweep writes into. A pilot killed at walltime is resumed
+by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code> first corrects the sub-jobs the hard
+kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code> re-queues them. The sweep’s own
+<code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the ephemeral forms; durable
+concurrency, recovery, and failure policy are drain’s.</p>
 </section>
 <section id="optimize-a-job-with-bayesian-search">
 <span id="stitch-optimize-a-job-with-bayesian-search"></span><h2>Optimize a job with Bayesian search<a class="headerlink" href="#optimize-a-job-with-bayesian-search" title="Link to this heading">#</a></h2>

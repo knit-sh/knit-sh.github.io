@@ -1028,12 +1028,23 @@ free-form label you can filter on later:</p>
 <span class="go">018f9c3a-7b2e-7c41-9d0a-1f2e3d4c5b6a</span>
 </pre></div>
 </div>
-<p>The whole submission spec — nodes, walltime, queue, setup, and the job’s own
-arguments — is frozen at prepare time and baked into the batch script, so
-releasing the job never re-opens those options. A prepared job is an ordinary
+<p>The whole submission spec — backend, nodes, walltime, queue, setup, and the
+job’s own arguments — is frozen at prepare time and baked into the batch script,
+so releasing the job never re-opens those options. A prepared job is an ordinary
 <code class="docutils literal notranslate"><span class="pre">jobs</span></code> row, so it needs no new listing command: <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">list</span> <span class="pre">--status</span> <span class="pre">prepared</span></code>
 shows them (add <code class="docutils literal notranslate"><span class="pre">--types</span></code> to narrow by job type):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>list<span class="w"> </span>--status<span class="w"> </span>prepared
+</pre></div>
+</div>
+<p>The frozen <strong>backend</strong> is the scheduler <code class="docutils literal notranslate"><span class="pre">prepare</span></code> detected where you ran it. That
+is wrong when the job will be released somewhere else — most often a job prepared
+on a login node but drained <em>inside a pilot allocation</em>, where the real backend is
+the pilot daemon, not Slurm/PBS. Pass <code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> to freeze it for the
+pilot instead (no site queue, no wall-clock cap). A release only happens where the
+ambient backend matches the frozen one, so a pilot-bound job is drained inside the
+pilot and skipped (with a count) by a drain run anywhere else — never replayed
+against the wrong scheduler:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>prepare<span class="w"> </span>--backend<span class="w"> </span>pilot<span class="w"> </span>--group<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 <p>A prepared job has contacted no scheduler, so <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">cancel</span></code> simply removes it —
@@ -1169,6 +1180,12 @@ sub-jobs still outstanding when the body returns instead of the default, which
 sub-tree down: every running sub-job is signalled and every queued one dropped,
 and all are recorded <code class="docutils literal notranslate"><span class="pre">killed</span></code> — a killed pilot never leaves a sub-job running
 or lost.</p>
+<p>Instead of fanning the sub-jobs out from the body, you can <strong>prepare</strong> them on the
+login node and <strong>drain</strong> them from inside the pilot. Prepare with
+<code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> so each job freezes for the in-allocation daemon (see <em>Prepare
+a job instead of submitting it</em>), then run <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> in the pilot body: it
+releases exactly the <code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> jobs, and a drain run anywhere else skips
+them.</p>
 </section>
 <section id="release-prepared-jobs">
 <span id="stitch-release-prepared-jobs"></span><h2>Release prepared jobs<a class="headerlink" href="#release-prepared-jobs" title="Link to this heading">#</a></h2>
@@ -1659,17 +1676,26 @@ failed or killed jobs</em>):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span><span class="m">1</span>.<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once<span class="w"> </span><span class="o">(</span>durable,<span class="w"> </span>grouped<span class="w"> </span>--<span class="w"> </span>--group<span class="w"> </span>on<span class="w"> </span>prepare<span class="w"> </span>labels
 <span class="gp">#    </span>the<span class="w"> </span>prepared<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>so<span class="w"> </span>the<span class="w"> </span>drain<span class="w"> </span>can<span class="w"> </span><span class="k">select</span><span class="w"> </span>them<span class="o">)</span>:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
-<span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>--<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node,<span class="w"> </span>or<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span>pilot<span class="w"> </span>job:
+<span class="gp"># </span><span class="m">2</span>.<span class="w"> </span>drain<span class="w"> </span>it<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>login<span class="w"> </span>node:
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">prepare</span></code> freezes the <em>target scheduler</em> where it runs, and a job is released
+only where its frozen backend is live. The command above prepares for the login
+node’s scheduler, so it must be drained there. To instead drain <strong>inside a pilot
+job</strong> — packing the swept jobs onto the pilot’s nodes with no second queue wait
+— prepare for the pilot and run the drain in the pilot’s body:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--backend<span class="w"> </span>pilot<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--<span class="w"> </span>sim<span class="w"> </span>--n<span class="w"> </span><span class="s1">'{1,2,4}'</span>
+<span class="gp"># </span>...<span class="w"> </span><span class="k">then</span>,<span class="w"> </span>inside<span class="w"> </span>a<span class="w"> </span><span class="nb">knit_with_pilot</span><span class="w"> </span>job<span class="w"> </span>body:
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>mc<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">8</span><span class="w"> </span>--reconcile<span class="w"> </span>--retry<span class="w"> </span>killed,failed
 </pre></div>
 </div>
 <p>Resumability is not a sweep feature at all — it is a property of the
-prepare/drain queue the sweep writes into. Draining inside a <code class="docutils literal notranslate"><span class="pre">knit_with_pilot</span></code>
-job packs the swept jobs onto the pilot’s nodes with no second queue wait; a
-pilot killed at walltime is resumed by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code>
-first corrects the sub-jobs the hard kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code>
-re-queues them. The sweep’s own <code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the
-ephemeral forms; durable concurrency, recovery, and failure policy are drain’s.</p>
+prepare/drain queue the sweep writes into. A pilot killed at walltime is resumed
+by re-submitting it, where <code class="docutils literal notranslate"><span class="pre">--reconcile</span></code> first corrects the sub-jobs the hard
+kill stranded at <code class="docutils literal notranslate"><span class="pre">running</span></code> and <code class="docutils literal notranslate"><span class="pre">--retry</span></code> re-queues them. The sweep’s own
+<code class="docutils literal notranslate"><span class="pre">--max-inflight</span></code> / <code class="docutils literal notranslate"><span class="pre">--on-failure</span></code> govern only the ephemeral forms; durable
+concurrency, recovery, and failure policy are drain’s.</p>
 </section>
 </section>
 

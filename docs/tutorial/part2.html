@@ -1375,10 +1375,10 @@ new <code class="docutils literal notranslate"><span class="pre">prepared</span>
 <span class="go">018f9c3a-7b2e-7c41-9d0a-1f2e3d4c5b6a</span>
 </pre></div>
 </div>
-<p>The whole submission spec — setup, nodes, walltime, queue, and the job’s own
-arguments — is frozen at prepare time and baked into the batch script, so
-releasing the job never re-opens those options. The UUID it prints is the same
-stable identifier <code class="docutils literal notranslate"><span class="pre">submit</span></code> would have given it.</p>
+<p>The whole submission spec — the target backend, setup, nodes, walltime, queue,
+and the job’s own arguments — is frozen at prepare time and baked into the batch
+script, so releasing the job never re-opens those options. The UUID it prints is
+the same stable identifier <code class="docutils literal notranslate"><span class="pre">submit</span></code> would have given it.</p>
 <p><strong>Prepare the whole sweep from a plan.</strong> Typing one <code class="docutils literal notranslate"><span class="pre">prepare</span></code> per constant is
 no better than typing one <code class="docutils literal notranslate"><span class="pre">submit</span></code> per constant. <code class="docutils literal notranslate"><span class="pre">prepare</span> <span class="pre">from</span></code> reads the
 whole batch as a JSON plan — from a file with <code class="docutils literal notranslate"><span class="pre">--file</span></code>, or on stdin — and

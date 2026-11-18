@@ -964,13 +964,23 @@ _sweep_pilot_job<span class="o">()</span><span class="w"> </span><span class="o"
 </div>
 <p>The pilot trains nothing itself, so it declares <code class="docutils literal notranslate"><span class="pre">&#64;without_setup</span></code>; each
 <code class="docutils literal notranslate"><span class="pre">train</span></code> job it drains still carries the <code class="docutils literal notranslate"><span class="pre">--setup</span> <span class="pre">cnnenv</span></code> frozen into it at
-prepare time. Prepare the sweep as in Step 5, then submit the pilot over as many
-nodes as you want the jobs to pack onto:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+prepare time. Prepare the sweep as in Step 5 — but add <code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> —
+then submit the pilot over as many nodes as you want the jobs to pack onto:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--backend<span class="w"> </span>pilot<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>sweep-pilot<span class="w"> </span>--group<span class="w"> </span>grid
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> is the one change from Step 5, and it matters. <code class="docutils literal notranslate"><span class="pre">prepare</span></code>
+freezes the <em>target scheduler</em> along with the rest of the spec, and it freezes
+whatever scheduler it detects where it runs — on a login node, the batch
+scheduler. But these jobs will not run on the batch scheduler; they will run on
+the pilot’s daemon. <code class="docutils literal notranslate"><span class="pre">--backend</span> <span class="pre">pilot</span></code> freezes that target instead (which is also
+why no site queue or wall-clock limit is attached: a pilot sub-job runs for as
+long as the allocation lasts). A job is released only where its frozen backend
+matches the one that is live, so without this flag the pilot’s <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code>
+would find a backlog frozen for the batch scheduler, skip all of it as a mismatch,
+and run nothing. With it, the drain inside the pilot claims exactly these jobs.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> call is the part that does the draining. The two calls
 before it — <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> and <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> — are there for a different
 reason: surviving a walltime kill, which is the subject of the next step.</p>
@@ -1483,27 +1493,53 @@ _tune_pilot_job<span class="o">()</span><span class="w"> </span><span class="o">
 </div>
 </div>
 <p>From a cluster login node, the full arc is: provision, fetch the data, build the
-environment, prepare and drain a grid inside a pilot, then prepare and run a
-Bayesian campaign inside a pilot, and read the result:</p>
+environment, run the grid, run the Bayesian campaign, and read the result. The
+grid can be run two ways — straight on the machine’s scheduler, or packed into
+one pilot allocation — and the only command that changes is the <code class="docutils literal notranslate"><span class="pre">--backend</span></code> of
+the <code class="docutils literal notranslate"><span class="pre">prepare</span></code> step:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w">  </span><span class="c1"># on a cluster, add --profile &lt;machine&gt;</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>fetch<span class="w"> </span>--name<span class="w"> </span>cifar<span class="w"> </span>--<span class="w"> </span>cifar<span class="w"> </span>--uncompress
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>setup<span class="w"> </span>--name<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>cnnenv
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
+
+<span class="gp"># </span>The<span class="w"> </span>grid<span class="w"> </span>sweep:<span class="w"> </span>prepare<span class="w"> </span>the<span class="w"> </span>product<span class="w"> </span>once,<span class="w"> </span><span class="k">then</span><span class="w"> </span>drain<span class="w"> </span>it.<span class="w"> </span>Pick<span class="w"> </span>ONE<span class="w"> </span>of<span class="w"> </span><span class="o">(</span>a<span class="o">)</span>/<span class="o">(</span>b<span class="o">)</span>
+<span class="gp"># </span>---<span class="w"> </span>the<span class="w"> </span>prepare<span class="err">'</span>s<span class="w"> </span>backend<span class="w"> </span>has<span class="w"> </span>to<span class="w"> </span>match<span class="w"> </span>where<span class="w"> </span>the<span class="w"> </span>drain<span class="w"> </span>runs.
+
+<span class="gp"># </span><span class="o">(</span>a<span class="o">)</span><span class="w"> </span>Native<span class="w"> </span>scheduler:<span class="w"> </span>prepare<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>machine<span class="s1">'s own scheduler (the default),</span>
+<span class="gp">#     </span><span class="s1">then drain straight to it. Each job waits its own turn in the batch queue.</span>
+<span class="gp">$ </span><span class="s1">./exp.sh sweep -- prepare --group grid --setup cnnenv -- train \</span>
+<span class="s1">      --data cifar --num-blocks '</span><span class="o">{</span><span class="m">2</span>,3,4<span class="o">}</span><span class="s1">' --kernel-size '</span><span class="o">{</span><span class="m">3</span>,5<span class="o">}</span><span class="err">'</span>
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>drain<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+
+<span class="gp"># </span><span class="o">(</span>b<span class="o">)</span><span class="w"> </span>Pilot:<span class="w"> </span>prepare<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>in-allocation<span class="w"> </span>daemon<span class="w"> </span><span class="o">(</span>--backend<span class="w"> </span>pilot<span class="o">)</span>,<span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">let</span><span class="w"> </span>a
+<span class="gp">#     </span>single<span class="w"> </span>pilot<span class="w"> </span>drain<span class="w"> </span>the<span class="w"> </span>whole<span class="w"> </span>grid<span class="w"> </span>onto<span class="w"> </span>its<span class="w"> </span>own<span class="w"> </span>nodes<span class="w"> </span>--<span class="w"> </span>one<span class="w"> </span>queue<span class="w"> </span>wait,
+<span class="gp">#     </span>the<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>packed<span class="w"> </span>N-at-a-time<span class="w"> </span>across<span class="w"> </span>the<span class="w"> </span>allocation.
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="w"> </span>--backend<span class="w"> </span>pilot<span class="w"> </span>--group<span class="w"> </span>grid<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--data<span class="w"> </span>cifar<span class="w"> </span>--num-blocks<span class="w"> </span><span class="s1">'{2,3,4}'</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="s1">'{3,5}'</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>sweep-pilot<span class="w"> </span>--group<span class="w"> </span>grid
+
+<span class="gp"># </span>The<span class="w"> </span>Bayesian<span class="w"> </span>campaign.<span class="w"> </span><span class="sb">`</span>ax<span class="w"> </span>prepare<span class="sb">`</span><span class="w"> </span>records<span class="w"> </span>the<span class="w"> </span>campaign<span class="w"> </span>only<span class="w"> </span>--<span class="w"> </span>it<span class="w"> </span>runs<span class="w"> </span>no
+<span class="gp"># </span><span class="nb">jobs</span><span class="w"> </span>--<span class="w"> </span>so,<span class="w"> </span>unlike<span class="w"> </span><span class="sb">`</span>sweep<span class="w"> </span>--<span class="w"> </span>prepare<span class="sb">`</span>,<span class="w"> </span>it<span class="w"> </span>takes<span class="w"> </span>no<span class="w"> </span>--backend:<span class="w"> </span><span class="sb">`</span>ax<span class="w"> </span>optimize<span class="sb">`</span>
+<span class="gp"># </span>generates<span class="w"> </span>each<span class="w"> </span>trial<span class="w"> </span>and<span class="w"> </span>submits<span class="w"> </span>it<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>fly<span class="w"> </span><span class="o">(</span>a<span class="w"> </span>direct<span class="w"> </span>submit<span class="o">)</span>,<span class="w"> </span>so<span class="w"> </span>a<span class="w"> </span>trial
+<span class="gp"># </span>simply<span class="w"> </span>adopts<span class="w"> </span>whatever<span class="w"> </span>backend<span class="w"> </span>is<span class="w"> </span>live<span class="w"> </span>where<span class="w"> </span>it<span class="w"> </span>runs.
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>prepare<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--objective<span class="w"> </span>val_accuracy<span class="w"> </span>--maximize<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--max-trials<span class="w"> </span><span class="m">40</span><span class="w"> </span>--sobol-trials<span class="w"> </span><span class="m">8</span><span class="w"> </span>--seed<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--<span class="w"> </span>submit<span class="w"> </span>--setup<span class="w"> </span>cnnenv<span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--data<span class="w"> </span>cifar<span class="w"> </span><span class="se">\</span>
 <span class="w">         </span>--num-blocks<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--base-channels<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--kernel-size<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
 <span class="w">         </span>--dropout<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--activation<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--residual<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span><span class="se">\</span>
 <span class="w">         </span>--lr<span class="w"> </span><span class="nd">@domain</span><span class="w"> </span>--batch-size<span class="w"> </span><span class="nd">@domain</span>
+<span class="gp"># </span><span class="o">(</span>a<span class="o">)</span><span class="w"> </span>Native<span class="w"> </span>scheduler:<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>submits<span class="w"> </span>each<span class="w"> </span>trial<span class="w"> </span>straight<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>queue.
+<span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>optimize<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+<span class="gp"># </span><span class="o">(</span>b<span class="o">)</span><span class="w"> </span>Pilot:<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>campaign<span class="w"> </span>inside<span class="w"> </span>one<span class="w"> </span>allocation<span class="w"> </span><span class="o">(</span>tune-pilot<span class="w"> </span>calls<span class="w"> </span>ax<span class="w"> </span>optimize,
+<span class="gp">#     </span>so<span class="w"> </span>its<span class="w"> </span>trials<span class="w"> </span>land<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>daemon<span class="w"> </span>--<span class="w"> </span>no<span class="w"> </span>--backend<span class="w"> </span>needed<span class="w"> </span>either<span class="w"> </span>way<span class="o">)</span>.
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>submit<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span><span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>tune-pilot<span class="w"> </span>--campaign<span class="w"> </span>tune<span class="w"> </span>--max-inflight<span class="w"> </span><span class="m">4</span>
+
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>ax<span class="w"> </span>show<span class="w"> </span>--campaign<span class="w"> </span>tune
 </pre></div>
 </div>
-<p>On a laptop it is the same script with no pilots: drain the grid directly with
-<code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span> <span class="pre">--group</span> <span class="pre">grid</span></code> and run the campaign with <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span> <span class="pre">--campaign</span>
-<span class="pre">tune</span></code>. The experiment script never changes.</p>
+<p>On a laptop there are no pilots at all: use form (a) throughout — <code class="docutils literal notranslate"><span class="pre">prepare</span></code>
+(no <code class="docutils literal notranslate"><span class="pre">--backend</span></code>) freezes the local backend and <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> /
+<code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">optimize</span></code> run the jobs directly on the one host. The experiment script never
+changes — only whether you route the work through a pilot does.</p>
 </section>
 </section>
 

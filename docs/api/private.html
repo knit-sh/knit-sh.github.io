@@ -1187,6 +1187,8 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare"><code class="docutils literal notranslate"><span class="pre">_knit_prepare()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_id"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_id()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_next"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_next()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_mismatched"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_mismatched()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_releasable_where"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_releasable_where()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_release"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_release()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_remove"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_remove()</span></code></a></li>
 </ul>
@@ -8061,6 +8063,37 @@ plugin.sh knows which plugin imported it (the stack top) and records the depende
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_prepare_mismatched">
+<span class="target" id="prepare_8sh_1ada1cc02e718c538620d36b8013c57e6f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_prepare_mismatched</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_prepare_mismatched" title="Link to this definition">#</a><br /></dt>
+<dd><p>Summarize the prepared jobs this environment CANNOT release: those whose frozen backend differs from the ambient backend, within the optional job/group scope. Returns the count and a comma-separated list of the distinct target backends. A <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">drain</span></code> reports these as skipped; a direct <code class="docutils literal notranslate"><span class="pre">submit</span> <span class="pre">next</span></code> names them in its fatal when it finds nothing else to release.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret1</strong> -- <strong>[out]</strong> Name of the variable to receive the count. </p></li>
+<li><p><strong>__knit_ret2</strong> -- <strong>[out]</strong> Name of the variable to receive the comma-joined list of distinct frozen backends (empty when the count is 0). </p></li>
+<li><p><strong>job</strong> -- <strong>[in]</strong> Optional job-name filter (empty means any). </p></li>
+<li><p><strong>group</strong> -- <strong>[in]</strong> Optional group filter (empty means any). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_prepare_releasable_where">
+<span class="target" id="prepare_8sh_1a7126476e91d00df64a78c2a7a7e5b76e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_prepare_releasable_where</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_prepare_releasable_where" title="Link to this definition">#</a><br /></dt>
+<dd><p>Build the SQL WHERE clause selecting the prepared jobs THIS environment can release: state 'prepared', frozen target backend equal to the ambient backend (_knit_sched_backend), and the optional job/group filters. A job frozen for a different backend (for example prepared for &quot;pilot&quot; but looked at from the login node) is excluded — its batch script is backend-specific and cannot replay here. Shared by the claim, the drain backlog count, and the dry-run peek so all three agree on exactly which jobs are releasable here; a mismatched job is therefore skipped, never stranded in &quot;submitting&quot; or re-claimed in a loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to receive the WHERE clause. </p></li>
+<li><p><strong>job</strong> -- <strong>[in]</strong> Optional job-name filter (the &quot;job&quot; column; empty means any). </p></li>
+<li><p><strong>group</strong> -- <strong>[in]</strong> Optional group filter (the &quot;group&quot; column; empty means any). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_prepare_release">
 <span class="target" id="prepare_8sh_1a77deb7f46e4b4a7ab48efcf5598cdf1d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_prepare_release</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_prepare_release" title="Link to this definition">#</a><br /></dt>
 <dd><p>Release a claimed prepared job (already moved to state &quot;submitting&quot; by one of the claim helpers) to the scheduler. The submission spec was frozen at prepare time, so this reconstructs the job name and any --name alias from the jobs row, then hands off to _knit_submit_dispatch, which builds the submit command, advances the row &quot;submitting&quot; -&gt; &quot;submitted&quot;, and issues it (cleaning up on a scheduler rejection exactly as a direct submit does). _knit_submit_dispatch prints the released job's UUID (before any --wait blocks) and then waits when asked.</p>
@@ -12648,6 +12681,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare"><code class="docutils literal notranslate"><span class="pre">_knit_prepare()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_id"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_id()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_claim_next"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_claim_next()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_mismatched"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_mismatched()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_releasable_where"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_releasable_where()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_release"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_release()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_prepare_remove"><code class="docutils literal notranslate"><span class="pre">_knit_prepare_remove()</span></code></a></li>
 </ul>
