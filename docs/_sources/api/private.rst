@@ -669,6 +669,9 @@ Functions
 Variables
 ~~~~~~~~~
 
+.. doxygenvariable:: _KNIT_DB_ENSURED
+   :project: knit
+
 .. doxygenvariable:: _KNIT_DB_REGISTERED_TABLES
    :project: knit
 
@@ -1537,6 +1540,12 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_metadata_store
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_METADATA_CACHE
    :project: knit
 
 pilot.sh
@@ -2437,6 +2446,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_set_remove
+   :project: knit
+
+.. doxygenfunction:: _knit_set_sorted_array
    :project: knit
 
 setup.sh
