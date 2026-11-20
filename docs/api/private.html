@@ -549,6 +549,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_on_exit"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_on_exit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_relocate_path"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_relocate_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_lock"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_lock()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_meta"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_meta()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_profile"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_profile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_warn_absolute_root"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_warn_absolute_root()</span></code></a></li>
@@ -1565,8 +1566,16 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_lock_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_lock_mode()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_flock"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_flock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_mkdir"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_mkdir()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_LOCK_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_LOCK_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_URL"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_URL</span></code></a></li>
@@ -1575,7 +1584,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -1584,7 +1593,7 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sweep-sh">sweep.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep"><code class="docutils literal notranslate"><span class="pre">_knit_sweep()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_ask"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_ask()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_dimensions_json"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_dimensions_json()</span></code></a></li>
@@ -1601,14 +1610,14 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_segment_has_param"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_segment_has_param()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SWEEPS_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SWEEPS_TABLE</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -1616,7 +1625,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>
@@ -2543,13 +2552,30 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_bootstrap_update">
 <span class="target" id="boostrap_8sh_1adb85a59b85b60e2df50eef5c322a3b30"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bootstrap_update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bootstrap_update" title="Link to this definition">#</a><br /></dt>
 <dd><p>Run bootstrap in update mode on an experiment that is already bootstrapped. It changes only the options the user typed on this call and leaves the database and every other setting untouched; it installs no destructive exit trap. A .knit/ directory without a database is malformed and fatals with a hint to remove it.</p>
-<p>It handles the free-to-update options (project, platform, account, default walltime, default cpus-per-node, default nodefile, scheduler, launcher), the AI provider options (--ai-*), each written per key so one AI field can change without clearing the rest, and the path-root options (--setup-path, --job-path, --resource-path), which relocate only when the current root is empty of its kind. It also handles the environment-manager options (any imported manager's, e.g. the spack plugin's --spack/--spack-packages, via _knit_env_update_all: add a manager when absent, or re-provision on a changed ref only while no environment is built) and --profile (a changed profile is out of scope and fatals), and the tooling options: --ignore-system-sqlite/--ignore-system-jq (rebuild a system-symlinked tool from source) and --knit-cypher-to-sql-version/--knit-cypher-to-sql-url (re-provision knit-cypher-to-sql on a changed version or URL). When no handled option was typed, it reports that there is nothing to update and succeeds.</p>
+<p>It handles the free-to-update options (project, platform, account, default walltime, default cpus-per-node, default nodefile, scheduler, launcher), the AI provider options (--ai-*), each written per key so one AI field can change without clearing the rest, and the path-root options (--setup-path, --job-path, --resource-path), which relocate only when the current root is empty of its kind. It also handles the environment-manager options (any imported manager's, e.g. the spack plugin's --spack/--spack-packages, via _knit_env_update_all: add a manager when absent, or re-provision on a changed ref only while no environment is built) and --profile (a changed profile is out of scope and fatals), and the tooling options: --ignore-system-sqlite/--ignore-system-jq (rebuild a system-symlinked tool from source), --db-lock (switch the database write-lock mechanism — pure configuration, no migration) and --knit-cypher-to-sql-version/--knit-cypher-to-sql-url (re-provision knit-cypher-to-sql on a changed version or URL). When no handled option was typed, it reports that there is nothing to update and succeeds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>raw_args</strong> -- <strong>[in]</strong> Name of an array holding the raw, pre-expansion argument tokens (the caller's copy of _KNIT_INVOCATION_RAW_ARGS). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The expanded argument list (defaults injected), as read with knit_get_parameter. </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_bootstrap_update_db_lock">
+<span class="target" id="boostrap_8sh_1a685c3106fcf79dbb23d05f2fb4f40a8c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bootstrap_update_db_lock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bootstrap_update_db_lock" title="Link to this definition">#</a><br /></dt>
+<dd><p>Update-mode handler for --db-lock. When the option is typed and its value differs from the stored one (read from the .knit/db-lock marker, the source of truth), rewrite the marker, mirror the new value to metadata, and clear the process lock-mode cache. Switching the write-lock mechanism is pure configuration — there is nothing in the database to migrate — so this is allowed at any time (e.g. to move from the default &quot;flock&quot; to &quot;mkdir&quot; before running on compute nodes whose filesystem has no flock). A typed value equal to the stored one, or an untyped option, is a no-op.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> -- <strong>[in]</strong> Resolved value typed for --db-lock. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> Raw argument tokens of this invocation (see _KNIT_INVOCATION_RAW_ARGS), used to tell a typed option from a defaulted one. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 when the mode was changed, 1 otherwise. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -11493,11 +11519,86 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <section id="sqlite-sh">
 <h2>sqlite.sh<a class="headerlink" href="#sqlite-sh" title="Link to this heading">#</a></h2>
 <section id="id76">
-<h3>Variables<a class="headerlink" href="#id76" title="Link to this heading">#</a></h3>
+<h3>Functions<a class="headerlink" href="#id76" title="Link to this heading">#</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_db_lock_mode">
+<span class="target" id="sqlite_8sh_1a949a2b4ef97a14c386acbca0dc28ddf1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_lock_mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_lock_mode" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the database write-lock mechanism chosen at bootstrap and cache it for the rest of the process. The mode is read from the plain marker file &quot;${_KNIT_PREFIX}/db-lock&quot; (written by bootstrap before the first database write, so the mechanism is knowable without touching the database it guards). A missing or unreadable marker resolves to &quot;flock&quot;, the pre-feature default, so a database created before this feature — or a .knit copied without the marker — keeps working. An unrecognized value warns and also falls back to &quot;flock&quot;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out</strong> -- <strong>[out]</strong> Name of the variable to receive the mode (nameref output). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sqlite3_write">
+<span class="target" id="sqlite_8sh_1a1b10ed944fd232fe1407267b7e7709e7"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sqlite3_write</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sqlite3_write" title="Link to this definition">#</a><br /></dt>
+<dd><p>Run a database write (INSERT/UPDATE/CREATE/migrate) while serializing writes across the independent processes that may touch the same database at once (e.g. many jobs finishing simultaneously on compute nodes). The serialization mechanism is chosen at bootstrap and resolved by _knit_db_lock_mode:</p>
+<p><ul class="simple">
+<li><p>&quot;flock&quot; (default): an advisory flock on a lock file next to the database. Needs a filesystem that supports flock.</p></li>
+<li><p>&quot;mkdir&quot;: an atomic directory lock that works on filesystems without flock (e.g. NERSC DVS-projected home); see _knit_sqlite3_write_mkdir.</p></li>
+<li><p>&quot;none&quot;: no lock at all — only safe when no two Knit writes ever overlap.</p></li>
+</ul>
+</p>
+<p>The busy timeout set by _knit_sqlite3 remains a second line of defence under &quot;flock&quot;/&quot;mkdir&quot; (and the only one under &quot;none&quot;). Standard input is inherited, so heredoc-fed statements work unchanged in every mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> Parameters to forward to _knit_sqlite3. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sqlite3_write_flock">
+<span class="target" id="sqlite_8sh_1a1d3445ae612bbea1ba7b3dc0fdfcc29b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sqlite3_write_flock</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sqlite3_write_flock" title="Link to this definition">#</a><br /></dt>
+<dd><p>&quot;flock&quot; write-lock mode. Take an advisory flock on a lock file next to the database; flock blocks until it is acquired, so writers queue rather than collide, and the kernel releases the lock automatically when the holder exits. Standard input is inherited by the subshell, so heredoc-fed statements work unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> Parameters to forward to _knit_sqlite3. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_sqlite3_write_mkdir">
+<span class="target" id="sqlite_8sh_1a8cffa00aa214df4ec1607e45ab40482e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sqlite3_write_mkdir</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sqlite3_write_mkdir" title="Link to this definition">#</a><br /></dt>
+<dd><p>&quot;mkdir&quot; write-lock mode, for filesystems whose flock/fcntl locking is unsupported (NERSC DVS-projected home, some NFS/Lustre/GPFS mounts). The lock is a directory next to the database: &quot;mkdir&quot; is atomic (exactly one racer succeeds, the rest get EEXIST), and that atomicity survives on the filesystems where flock does not, because the metadata operation is forwarded to the backing server while the separate advisory-lock protocol is not.</p>
+<p>A writer spins on &quot;mkdir&quot; until it wins or _KNIT_DB_LOCK_TIMEOUT_S elapses; on timeout it fails (knit_fatal) and tells the user to remove a stray lock by hand. Knit NEVER removes a lock it did not create — auto-breaking a still-held lock is the only route back to concurrent writers and therefore to corruption, so that path does not exist; a stranded lock (only an untrappable SIGKILL can leave one) surfaces as the timeout message instead. The lock is released on normal completion and on a trappable INT/TERM.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>...</strong> -- <strong>[in]</strong> Parameters to forward to _knit_sqlite3. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id77">
+<h3>Variables<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_DATABASE">
 <span class="target" id="sqlite_8sh_1a62d86c888b30a1cbfecd194799f38fb0"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DATABASE</span></span></span><a class="headerlink" href="#c._KNIT_DATABASE" title="Link to this definition">#</a><br /></dt>
 <dd><p>Path to the Knit database file. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_DB_LOCK_MODE">
+<span class="target" id="sqlite_8sh_1a7b82cc8502537bbb9bf866b3ae6ac141"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DB_LOCK_MODE</span></span></span><a class="headerlink" href="#c._KNIT_DB_LOCK_MODE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Process-level cache for <a class="reference internal" href="#sqlite_8sh_1a949a2b4ef97a14c386acbca0dc28ddf1"><span class="std std-ref">_knit_db_lock_mode()</span></a>: the resolved database write-lock mechanism (&quot;flock&quot;, &quot;mkdir&quot;, or &quot;none&quot;). Empty means &quot;not yet resolved&quot;. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c">
+<span class="target" id="sqlite_8sh_1a3a38de4daa80f9c596f1062b4fe0ec3f"></span><span class="sig-name descname"><span class="pre">_KNIT_SQLITE_BUSY_TIMEOUT_MS</span></span></dt>
+<dd><p>Busy timeout (milliseconds) applied to every sqlite3 invocation. If another writer holds the database lock, sqlite retries for up to this long before giving up with &quot;database is locked&quot;. A second line of defence behind the write lock taken by _knit_sqlite3_write. </p>
 </dd></dl>
 
 <dl class="c var">
@@ -11522,8 +11623,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="str-sh">
 <h2>str.sh<a class="headerlink" href="#str-sh" title="Link to this heading">#</a></h2>
-<section id="id77">
-<h3>Functions<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
+<section id="id78">
+<h3>Functions<a class="headerlink" href="#id78" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_str_hyphens_to_underscores">
 <span class="target" id="str_8sh_1a072c6cd9c03eeb8ca2c09d6890613caa"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_str_hyphens_to_underscores</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_str_hyphens_to_underscores" title="Link to this definition">#</a><br /></dt>
@@ -11569,8 +11670,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="sweep-sh">
 <h2>sweep.sh<a class="headerlink" href="#sweep-sh" title="Link to this heading">#</a></h2>
-<section id="id78">
-<h3>Functions<a class="headerlink" href="#id78" title="Link to this heading">#</a></h3>
+<section id="id79">
+<h3>Functions<a class="headerlink" href="#id79" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_sweep">
 <span class="target" id="sweep_8sh_1a27ca7f4fe2436e59523a6e1d9be3e4cd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_sweep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_sweep" title="Link to this definition">#</a><br /></dt>
@@ -11795,8 +11896,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id79">
-<h3>Variables<a class="headerlink" href="#id79" title="Link to this heading">#</a></h3>
+<section id="id80">
+<h3>Variables<a class="headerlink" href="#id80" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_SWEEPS_TABLE">
 <span class="target" id="sweep_8sh_1ab0bf11cd977ba0d2f5b5ddcc54dba382"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_SWEEPS_TABLE</span></span></span><a class="headerlink" href="#c._KNIT_SWEEPS_TABLE" title="Link to this definition">#</a><br /></dt>
@@ -11807,8 +11908,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </section>
 <section id="types-sh">
 <h2>types.sh<a class="headerlink" href="#types-sh" title="Link to this heading">#</a></h2>
-<section id="id80">
-<h3>Functions<a class="headerlink" href="#id80" title="Link to this heading">#</a></h3>
+<section id="id81">
+<h3>Functions<a class="headerlink" href="#id81" title="Link to this heading">#</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_type_check_date">
 <span class="target" id="types_8sh_1a0f817490c515510026abf95ececa624c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_type_check_date</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_type_check_date" title="Link to this definition">#</a><br /></dt>
@@ -11905,8 +12006,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 </section>
-<section id="id81">
-<h3>Variables<a class="headerlink" href="#id81" title="Link to this heading">#</a></h3>
+<section id="id82">
+<h3>Variables<a class="headerlink" href="#id82" title="Link to this heading">#</a></h3>
 <dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_BUILTIN_ENUMS">
 <span class="target" id="types_8sh_1a00e0eb4404a66580d11543cb4fcbec8c"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_BUILTIN_ENUMS</span></span></span><a class="headerlink" href="#c._KNIT_BUILTIN_ENUMS" title="Link to this definition">#</a><br /></dt>
@@ -12083,6 +12184,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_on_exit"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_on_exit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_relocate_path"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_relocate_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_lock"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_lock()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_meta"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_meta()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_profile"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_profile()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_warn_absolute_root"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_warn_absolute_root()</span></code></a></li>
@@ -13099,8 +13201,16 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id76">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_lock_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_lock_mode()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_flock"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_flock()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_mkdir"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_mkdir()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_LOCK_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_LOCK_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_URL"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_URL</span></code></a></li>
@@ -13109,7 +13219,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#str-sh">str.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_hyphens_to_underscores"><code class="docutils literal notranslate"><span class="pre">_knit_str_hyphens_to_underscores()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_render_cmd"><code class="docutils literal notranslate"><span class="pre">_knit_str_render_cmd()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_str_underscores_to_hyphens"><code class="docutils literal notranslate"><span class="pre">_knit_str_underscores_to_hyphens()</span></code></a></li>
@@ -13118,7 +13228,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sweep-sh">sweep.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep"><code class="docutils literal notranslate"><span class="pre">_knit_sweep()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_ask"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_ask()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_dimensions_json"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_dimensions_json()</span></code></a></li>
@@ -13135,14 +13245,14 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sweep_segment_has_param"><code class="docutils literal notranslate"><span class="pre">_knit_sweep_segment_has_param()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id79">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SWEEPS_TABLE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SWEEPS_TABLE</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-sh">types.sh</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id80">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_date"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_date()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_check_time"><code class="docutils literal notranslate"><span class="pre">_knit_type_check_time()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_is_checksummable"><code class="docutils literal notranslate"><span class="pre">_knit_type_is_checksummable()</span></code></a></li>
@@ -13150,7 +13260,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_type_to_sqlite"><code class="docutils literal notranslate"><span class="pre">_knit_type_to_sqlite()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id81">Variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_ENUMS"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_ENUMS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_BUILTIN_TYPES"><code class="docutils literal notranslate"><span class="pre">_KNIT_BUILTIN_TYPES</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_CURRENT_ENUM"><code class="docutils literal notranslate"><span class="pre">_KNIT_CURRENT_ENUM</span></code></a></li>

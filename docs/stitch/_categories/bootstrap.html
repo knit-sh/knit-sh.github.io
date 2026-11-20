@@ -456,6 +456,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-scheduler-project-and-account">Set the scheduler project and account</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-where-setups-and-jobs-live">Choose where setups and jobs live</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-batch-scheduler">Select the batch scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-a-filesystem-without-flock">Run on a filesystem without flock</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
@@ -546,6 +547,39 @@ pair it with <code class="docutils literal notranslate"><span class="pre">--defa
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span>--scheduler<span class="w"> </span>none<span class="w"> </span>--default-nodefile<span class="w"> </span>hosts.txt
 </pre></div>
 </div>
+</section>
+<section id="run-on-a-filesystem-without-flock">
+<span id="stitch-bootstrap-db-lock"></span><h2>Run on a filesystem without flock<a class="headerlink" href="#run-on-a-filesystem-without-flock" title="Link to this heading">#</a></h2>
+<p><em>Choose the database write-lock mechanism when the default flock is unsupported.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p>Knit uses a file lock so that only one process writes to its database at a time.
+The default lock is <code class="docutils literal notranslate"><span class="pre">flock</span></code>. It needs a filesystem that supports file locking.
+Most filesystems do. Some HPC filesystems do not. On NERSC Perlmutter, for
+example, a compute node sees <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> through a layer (DVS) that does not
+support <code class="docutils literal notranslate"><span class="pre">flock</span></code>, so a job that writes to the database fails with
+<code class="docutils literal notranslate"><span class="pre">flock:</span> <span class="pre">...</span> <span class="pre">Unknown</span> <span class="pre">error</span> <span class="pre">524</span></code>.</p>
+<p>You have two choices. The easier one is to put the experiment on a filesystem
+that supports locking (on Perlmutter, <code class="docutils literal notranslate"><span class="pre">$PSCRATCH</span></code>). If you must keep the
+experiment on a filesystem without <code class="docutils literal notranslate"><span class="pre">flock</span></code>, bootstrap with <code class="docutils literal notranslate"><span class="pre">--db-lock</span>
+<span class="pre">mkdir</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span>--db-lock<span class="w"> </span>mkdir
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code> mode uses an atomic directory as the lock. This works on a filesystem
+that does not support <code class="docutils literal notranslate"><span class="pre">flock</span></code>. If a process cannot get the lock in 60 seconds,
+it stops and tells you to remove a stray lock by hand. Only a hard kill
+(<code class="docutils literal notranslate"><span class="pre">SIGKILL</span></code>) can leave such a lock.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--db-lock</span></code> has three values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flock</span></code> (default): advisory file locks. Needs a filesystem that supports
+them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span></code>: an atomic directory lock. Works without <code class="docutils literal notranslate"><span class="pre">flock</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>: no lock. Use it only when no two Knit writes can happen at the same
+time.</p></li>
+</ul>
+<p>You set the mechanism once, at bootstrap. To change it later, run <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>
+again with a different <code class="docutils literal notranslate"><span class="pre">--db-lock</span></code>. Knit rewrites the stored choice. There is
+nothing to migrate.</p>
 </section>
 <section id="select-the-mpi-launcher">
 <span id="stitch-bootstrap-select-launcher"></span><h2>Select the MPI launcher<a class="headerlink" href="#select-the-mpi-launcher" title="Link to this heading">#</a></h2>
@@ -718,6 +752,7 @@ here: a typed tool option that differs from the stored value rebuilds that tool.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-scheduler-project-and-account">Set the scheduler project and account</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-where-setups-and-jobs-live">Choose where setups and jobs live</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-batch-scheduler">Select the batch scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-a-filesystem-without-flock">Run on a filesystem without flock</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>

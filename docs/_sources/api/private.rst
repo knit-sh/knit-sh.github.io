@@ -246,6 +246,9 @@ Functions
 .. doxygenfunction:: _knit_bootstrap_update
    :project: knit
 
+.. doxygenfunction:: _knit_bootstrap_update_db_lock
+   :project: knit
+
 .. doxygenfunction:: _knit_bootstrap_update_meta
    :project: knit
 
@@ -2595,10 +2598,31 @@ Variables
 sqlite.sh
 ---------
 
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_db_lock_mode
+   :project: knit
+
+.. doxygenfunction:: _knit_sqlite3_write
+   :project: knit
+
+.. doxygenfunction:: _knit_sqlite3_write_flock
+   :project: knit
+
+.. doxygenfunction:: _knit_sqlite3_write_mkdir
+   :project: knit
+
 Variables
 ~~~~~~~~~
 
 .. doxygenvariable:: _KNIT_DATABASE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_DB_LOCK_MODE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_SQLITE_BUSY_TIMEOUT_MS
    :project: knit
 
 .. doxygenvariable:: _KNIT_SQLITE_EXE

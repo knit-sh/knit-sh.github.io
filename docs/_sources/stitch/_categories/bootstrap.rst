@@ -47,6 +47,17 @@ Select the batch scheduler
 
 .. include:: /stitch/recipes/bootstrap-select-scheduler.rst
 
+.. _stitch-bootstrap-db-lock:
+
+Run on a filesystem without flock
+---------------------------------
+
+*Choose the database write-lock mechanism when the default flock is unsupported.*
+
+**APIs:** ``bootstrap``
+
+.. include:: /stitch/recipes/bootstrap-db-lock.rst
+
 .. _stitch-bootstrap-select-launcher:
 
 Select the MPI launcher

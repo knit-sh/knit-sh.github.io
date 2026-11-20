@@ -625,6 +625,15 @@ the experiment. This tutorial follows that convention throughout
 <p>This failure is normal at this stage. Knit found our command and ran it, but
 the command itself failed, because nothing has built or installed
 <code class="docutils literal notranslate"><span class="pre">julia-fractal</span></code> yet. It is not on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, so the shell cannot find it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A reminder from the quickstart: Knit locks its database with <code class="docutils literal notranslate"><span class="pre">flock</span></code> by
+default. If this experiment is on a shared filesystem that does not support
+<code class="docutils literal notranslate"><span class="pre">flock</span></code> — such as a compute-node <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> at some HPC centers — run it
+from a lock-capable filesystem (for example <code class="docutils literal notranslate"><span class="pre">$PSCRATCH</span></code>), or add
+<code class="docutils literal notranslate"><span class="pre">--db-lock</span> <span class="pre">mkdir</span></code> to <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>. See the <em>Run on a filesystem without
+flock</em> stitch.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You may wonder why we wrap julia-fractal in a command like we did. After all,
