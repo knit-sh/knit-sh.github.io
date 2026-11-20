@@ -380,6 +380,9 @@ Functions
 .. doxygenfunction:: knit_with_git
    :project: knit
 
+.. doxygenfunction:: knit_with_history
+   :project: knit
+
 .. doxygenfunction:: knit_with_input_artifact
    :project: knit
 
@@ -423,6 +426,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_with_url
+   :project: knit
+
+.. doxygenfunction:: knit_without_history
    :project: knit
 
 .. doxygenfunction:: knit_without_provenance

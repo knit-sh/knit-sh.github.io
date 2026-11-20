@@ -651,6 +651,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_format_option_alternatives"><code class="docutils literal notranslate"><span class="pre">_knit_format_option_alternatives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_help_render_entry"><code class="docutils literal notranslate"><span class="pre">_knit_help_render_entry()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_hidden_if_not_usable_pred"><code class="docutils literal notranslate"><span class="pre">_knit_hidden_if_not_usable_pred()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_history_enabled"><code class="docutils literal notranslate"><span class="pre">_knit_history_enabled()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_invoke_command"><code class="docutils literal notranslate"><span class="pre">_knit_invoke_command()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_is_builtin"><code class="docutils literal notranslate"><span class="pre">_knit_is_builtin()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_name_is_valid"><code class="docutils literal notranslate"><span class="pre">_knit_name_is_valid()</span></code></a></li>
@@ -3676,6 +3677,28 @@ compatibility guarantee.</p>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_history_enabled">
+<span class="target" id="cli_8sh_1a9573e25bd2eae0be1e878540c164ac6f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_history_enabled</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_history_enabled" title="Link to this definition">#</a><br /></dt>
+<dd><p>Decide whether a root (top-level) invocation of a command is recorded in the replayable command history (&quot;__history__&quot;). This is an independent recording axis from provenance (_knit_provenance_enabled) and data-row recording (knit_with_table).</p>
+<p>The effective setting is resolved in this order (innermost/most-specific wins):</p>
+<p><ol class="loweralpha simple">
+<li><p>the command's own explicit mark (knit_with_history -&gt; &quot;with&quot;, knit_without_history -&gt; &quot;without&quot;), if any;</p></li>
+<li><p>otherwise the nearest marked lexical ancestor's mark, walking the colon-nested command name up via _knit_command_get_parents (e.g. &quot;a:b:c&quot; -&gt; &quot;a:b&quot; -&gt; &quot;a&quot;), so one mark on a parent governs a whole subtree;</p></li>
+<li><p>otherwise the default: ON (every command is history-eligible). Unlike provenance, visibility does not change the default — a hidden or nested command is kept out of the history by the root gate in _knit_history_record, not by this predicate.</p></li>
+</ol>
+</p>
+<p>Inheritance is over the lexical command hierarchy (the names), not the runtime call stack. Data-row recording (knit_with_table) is orthogonal to this.</p>
+<p>Returns 0 (success) when the command is history-eligible, 1 otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_invoke_command">
 <span class="target" id="cli_8sh_1ae009e05db9b5ecc0fb21e817e368ddd2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_invoke_command</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_invoke_command" title="Link to this definition">#</a><br /></dt>
 <dd><p>Invoke a command.</p>
@@ -6270,7 +6293,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_history_emit">
 <span class="target" id="history_8sh_1ac2c60364736bc8b3c65cb0f8ced0312b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_history_emit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_history_emit" title="Link to this definition">#</a><br /></dt>
-<dd><p>Emit the history to standard output in the requested format. For &quot;default&quot; and &quot;bash&quot;, one line per invocation (bash prefixes a shebang and &quot;./&lt;script&gt;&quot;); with --annotate, each line is preceded by a &quot;# &lt;id&gt;  &lt;iso-time&gt;  (exit N)&quot; comment. For &quot;json&quot;, delegate to _knit_history_show_json. An absent table (a database predating this feature) is an empty history (an empty JSON array for the JSON format).</p>
+<dd><p>Emit the history to standard output in the requested format. For &quot;default&quot; and &quot;bash&quot;, one line per invocation (bash prefixes a shebang, a warning comment block, and &quot;./&lt;script&gt;&quot;); with --annotate, each line is preceded by a &quot;# &lt;id&gt;  &lt;iso-time&gt;  (exit N)&quot; comment. For &quot;json&quot;, delegate to _knit_history_show_json. An absent table (a database predating this feature) is an empty history (an empty JSON array for the JSON format).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6372,7 +6395,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_history_record">
 <span class="target" id="history_8sh_1ac37c788ca35cdd5141c9d9de3c609b2f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_history_record</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_history_record" title="Link to this definition">#</a><br /></dt>
-<dd><p>Record one history row for the current invocation, but only when it is a top-level user invocation (a root: no provenance source) of a provenance-participating command. Called from _knit_invoke_command's after-phase while the frame is still on the executing stacks, separately from _knit_record_invocation so the data-row dedup (the eager &quot;knit submit&quot; record path) cannot short-circuit it, and with the body's exit status and end time already known.</p>
+<dd><p>Record one history row for the current invocation, but only when it is a top-level user invocation (a root: no provenance source) of a history-eligible command (knit_with_history / knit_without_history — see _knit_history_enabled; an independent axis from provenance). Called from _knit_invoke_command's after-phase while the frame is still on the executing stacks, separately from _knit_record_invocation so the data-row dedup (the eager &quot;knit submit&quot; record path) cannot short-circuit it, and with the body's exit status and end time already known.</p>
 <p>The resolved (expanded) argument form is passed in by the caller; the invoked (raw) form is read from the flat history stack. Gated like the other recording writes: disabled globally by KNIT_DISABLE_RECORDING, suppressed on non-root ranks of a run, and skipped until the experiment is bootstrapped.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -6417,7 +6440,7 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_history_show">
 <span class="target" id="history_8sh_1a78ec65994d7612ca2e5022f725ad647e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_history_show</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_history_show" title="Link to this definition">#</a><br /></dt>
-<dd><p>Body of &quot;knit history show&quot;: print the recorded top-level user invocations in time order (by start_time, then id). &quot;--format default&quot; prints one &quot;command args...&quot; line per invocation; &quot;--format bash&quot; prefixes a &quot;#!/usr/bin/env bash&quot; header and each line with &quot;./&lt;script&gt;&quot;, so piping the output to a file produces a runnable replay script; &quot;--format json&quot; prints a JSON array of {name, args, extra} objects. The as-invoked form (the tokens the user typed) is rendered by default; &quot;--resolved&quot; renders the resolved form instead (defaults, flags, and ENV[...] pinned). &quot;--annotate&quot; adds an id, time, and exit status to each entry; &quot;--output &lt;file&gt;&quot; writes to a file instead of standard output. The experiment is guaranteed bootstrapped by the framework's central guard. </p>
+<dd><p>Body of &quot;knit history show&quot;: print the recorded top-level user invocations in time order (by start_time, then id). &quot;--format default&quot; prints one &quot;command args...&quot; line per invocation; &quot;--format bash&quot; prefixes a &quot;#!/usr/bin/env bash&quot; header plus a warning comment block, and each line with &quot;./&lt;script&gt;&quot;, so piping the output to a file produces an indicative (not guaranteed-runnable) replay script; &quot;--format json&quot; prints a JSON array of {name, args, extra} objects. The as-invoked form (the tokens the user typed) is rendered by default; &quot;--resolved&quot; renders the resolved form instead (defaults, flags, and ENV[...] pinned). &quot;--annotate&quot; adds an id, time, and exit status to each entry; &quot;--output &lt;file&gt;&quot; writes to a file instead of standard output. The experiment is guaranteed bootstrapped by the framework's central guard. </p>
 </dd></dl>
 
 <dl class="c function">
@@ -8270,17 +8293,17 @@ Error when parsing function declaration.
 If the function has no return type:
   Error in declarator or parameters-and-qualifiers
   Invalid C++ declaration: Expecting &quot;(&quot; in parameters-and-qualifiers. [error at 14]
-    knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
+    knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_without_provenance knit_without_history knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
     --------------^
 If the function has a return type:
   Error in declarator or parameters-and-qualifiers
   If pointer to member declarator:
     Invalid C++ declaration: Expected '::' in pointer to member (function). [error at 22]
-      knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
+      knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_without_provenance knit_without_history knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
       ----------------------^
   If declarator-id:
     Invalid C++ declaration: Expecting &quot;(&quot; in parameters-and-qualifiers. [error at 22]
-      knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
+      knit_register profile knit_empty List and inspect machine profiles _knit_is_builtin knit_without_provenance knit_without_history knit_usable_before_bootstrap knit_with_subcommand_discovery _knit_profile_discover knit_done _knit_profile_list ()
       ----------------------^
 </p>
 </div>
@@ -12286,6 +12309,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_format_option_alternatives"><code class="docutils literal notranslate"><span class="pre">_knit_format_option_alternatives()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_help_render_entry"><code class="docutils literal notranslate"><span class="pre">_knit_help_render_entry()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_hidden_if_not_usable_pred"><code class="docutils literal notranslate"><span class="pre">_knit_hidden_if_not_usable_pred()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_history_enabled"><code class="docutils literal notranslate"><span class="pre">_knit_history_enabled()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_invoke_command"><code class="docutils literal notranslate"><span class="pre">_knit_invoke_command()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_is_builtin"><code class="docutils literal notranslate"><span class="pre">_knit_is_builtin()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_name_is_valid"><code class="docutils literal notranslate"><span class="pre">_knit_name_is_valid()</span></code></a></li>

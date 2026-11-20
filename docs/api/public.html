@@ -577,6 +577,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_extra"><code class="docutils literal notranslate"><span class="pre">knit_with_extra()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_flag"><code class="docutils literal notranslate"><span class="pre">knit_with_flag()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_git"><code class="docutils literal notranslate"><span class="pre">knit_with_git()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_history"><code class="docutils literal notranslate"><span class="pre">knit_with_history()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_input_artifact"><code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_local"><code class="docutils literal notranslate"><span class="pre">knit_with_local()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_optional"><code class="docutils literal notranslate"><span class="pre">knit_with_optional()</span></code></a></li>
@@ -592,6 +593,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_title"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_title()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_table"><code class="docutils literal notranslate"><span class="pre">knit_with_table()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_url"><code class="docutils literal notranslate"><span class="pre">knit_with_url()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_history"><code class="docutils literal notranslate"><span class="pre">knit_without_history()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_provenance"><code class="docutils literal notranslate"><span class="pre">knit_without_provenance()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_setup"><code class="docutils literal notranslate"><span class="pre">knit_without_setup()</span></code></a></li>
 </ul>
@@ -2561,6 +2563,13 @@ Example: <div class="highlight-default notranslate"><div class="highlight"><pre>
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_with_history">
+<span class="target" id="cli_8sh_1ae238adb3a38ba41aef3f038ff9b15dbe"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_history</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_history" title="Link to this definition">#</a><br /></dt>
+<dd><p>Mark the command being registered as eligible for the replayable command history: a top-level (root) user invocation of it is recorded in the &quot;__history__&quot; table. This is an explicit override of the default (every command is history-eligible unless marked otherwise — see _knit_history_enabled), so it restores eligibility to a command whose lexical ancestor opted out. The mark also propagates to unmarked lexical descendants (e.g. &quot;a&quot; marked &quot;with&quot; makes an unmarked &quot;a:b&quot; eligible).</p>
+<p>History eligibility is independent of provenance (knit_with_provenance) and of data-row recording (knit_with_table): the three are orthogonal recording axes. </p>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_with_input_artifact">
 <span class="target" id="artifact_8sh_1a2297b350e0618bf7cb886c350dff82cf"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_with_input_artifact</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_with_input_artifact" title="Link to this definition">#</a><br /></dt>
 <dd><p>Declare that the command currently being registered consumes a recorded artifact of a given kind, given as <code class="docutils literal notranslate"><span class="pre">&quot;name:kind&quot;</span></code> (e.g. &quot;input_table:csvfile&quot;). Must be called between a knit_register* call and knit_done; a command may declare several input artifacts. The <code class="docutils literal notranslate"><span class="pre">kind</span></code> must be a registered artifact kind (see knit_register_artifact); the builtin kinds &quot;file&quot;, &quot;directory&quot;, and the &quot;dir&quot; alias are always available. It is the consuming counterpart of knit_with_output_artifact.</p>
@@ -2880,6 +2889,13 @@ knit_done
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c.knit_without_history">
+<span class="target" id="cli_8sh_1a0ca41a30388c0240f0e20e09ede6d692"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_without_history</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_without_history" title="Link to this definition">#</a><br /></dt>
+<dd><p>Mark the command being registered as excluded from the replayable command history: no &quot;__history__&quot; row is recorded for it, even as a root user invocation. This is an explicit override of the default (every command is history-eligible — see _knit_history_enabled), so it silences a command that only reads, inspects, or repairs. The mark also propagates to unmarked lexical descendants (e.g. &quot;a&quot; marked &quot;without&quot; silences an unmarked &quot;a:b&quot;).</p>
+<p>History eligibility is independent of provenance (knit_without_provenance) and of data-row recording (knit_with_table): the three are orthogonal recording axes. </p>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c.knit_without_provenance">
 <span class="target" id="cli_8sh_1a2c7a381929a402565a7dbc750e0e3e9f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_without_provenance</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_without_provenance" title="Link to this definition">#</a><br /></dt>
 <dd><p>Mark the command being registered as excluded from the provenance graph: an invocation of it records no &quot;call&quot; edge and is transparent when a command it invokes resolves its parent (the child links to the nearest participating ancestor instead). This is an explicit override of the default, so it silences a visible command. The mark also propagates to unmarked lexical descendants (e.g. &quot;a&quot; marked &quot;without&quot; silences an unmarked &quot;a:b&quot;). Data-row recording (knit_with_table) is orthogonal and still happens. </p>
@@ -3167,6 +3183,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_extra"><code class="docutils literal notranslate"><span class="pre">knit_with_extra()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_flag"><code class="docutils literal notranslate"><span class="pre">knit_with_flag()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_git"><code class="docutils literal notranslate"><span class="pre">knit_with_git()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_history"><code class="docutils literal notranslate"><span class="pre">knit_with_history()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_input_artifact"><code class="docutils literal notranslate"><span class="pre">knit_with_input_artifact()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_local"><code class="docutils literal notranslate"><span class="pre">knit_with_local()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_optional"><code class="docutils literal notranslate"><span class="pre">knit_with_optional()</span></code></a></li>
@@ -3182,6 +3199,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_subcommand_title"><code class="docutils literal notranslate"><span class="pre">knit_with_subcommand_title()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_table"><code class="docutils literal notranslate"><span class="pre">knit_with_table()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_with_url"><code class="docutils literal notranslate"><span class="pre">knit_with_url()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_history"><code class="docutils literal notranslate"><span class="pre">knit_without_history()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_provenance"><code class="docutils literal notranslate"><span class="pre">knit_without_provenance()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_without_setup"><code class="docutils literal notranslate"><span class="pre">knit_without_setup()</span></code></a></li>
 </ul>

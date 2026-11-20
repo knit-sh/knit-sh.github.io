@@ -498,6 +498,9 @@ Functions
 .. doxygenfunction:: _knit_hidden_if_not_usable_pred
    :project: knit
 
+.. doxygenfunction:: _knit_history_enabled
+   :project: knit
+
 .. doxygenfunction:: _knit_invoke_command
    :project: knit
 

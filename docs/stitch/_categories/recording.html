@@ -886,14 +886,18 @@ failures (or <code class="docutils literal notranslate"><span class="pre">--stat
 <code class="docutils literal notranslate"><span class="pre">--command</span></code> (comma-separated, colon notation; a <code class="docutils literal notranslate"><span class="pre">:*</span></code> suffix also matches
 subcommands), a <code class="docutils literal notranslate"><span class="pre">--since</span></code>/<code class="docutils literal notranslate"><span class="pre">--until</span></code> time window (a UUID or an ISO-8601
 timestamp), <code class="docutils literal notranslate"><span class="pre">--first</span></code>/<code class="docutils literal notranslate"><span class="pre">--last</span> <span class="pre">N</span></code>, or <code class="docutils literal notranslate"><span class="pre">--id</span></code>.</p>
-<p><strong>Replay the session.</strong> <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">bash</span></code> turns the history into a runnable
-script — a shebang followed by one <code class="docutils literal notranslate"><span class="pre">./&lt;script&gt;</span> <span class="pre">...</span></code> line per command — so
-piping it to a file reproduces the whole session:</p>
+<p><strong>Replay the session.</strong> <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">bash</span></code> turns the history into an <em>indicative</em>
+replay script — a shebang, a warning comment block, then one <code class="docutils literal notranslate"><span class="pre">./&lt;script&gt;</span>
+<span class="pre">...</span></code> line per command. It is a guide, not a guaranteed-runnable script: the
+history records each command you typed, but not the shell steps you took between
+them (for example, a job id you kept from a <code class="docutils literal notranslate"><span class="pre">submit</span></code> in a variable and reused
+in a later command). Examine and edit the script before you run it:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span><span class="nb">history</span><span class="w"> </span>show<span class="w"> </span>--format<span class="w"> </span>bash<span class="w"> </span>&gt;<span class="w"> </span>replay.sh
+<span class="gp">$ </span>less<span class="w"> </span>replay.sh<span class="w">        </span><span class="c1"># review it first --- note the warning in the header</span>
 <span class="gp">$ </span>bash<span class="w"> </span>replay.sh
 </pre></div>
 </div>
-<p>The lines record the arguments exactly as you typed them. Add <code class="docutils literal notranslate"><span class="pre">--resolved</span></code> to
+<p>The command lines record the arguments exactly as you typed them. Add <code class="docutils literal notranslate"><span class="pre">--resolved</span></code> to
 pin instead the values each command actually ran with (optional defaults filled,
 flags normalized, <code class="docutils literal notranslate"><span class="pre">ENV[...]</span></code> defaults resolved), so a replay reproduces the
 original behavior even if a default later changes. Knit does not resolve the
