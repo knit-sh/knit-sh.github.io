@@ -113,6 +113,9 @@ Functions
 .. doxygenfunction:: knit_env_provision
    :project: knit
 
+.. doxygenfunction:: knit_env_record_option
+   :project: knit
+
 .. doxygenfunction:: knit_env_specs
    :project: knit
 

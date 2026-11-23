@@ -488,6 +488,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_lockfile"><code class="docutils literal notranslate"><span class="pre">knit_env_lockfile()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_manifest"><code class="docutils literal notranslate"><span class="pre">knit_env_manifest()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_provision"><code class="docutils literal notranslate"><span class="pre">knit_env_provision()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_record_option"><code class="docutils literal notranslate"><span class="pre">knit_env_record_option()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_specs"><code class="docutils literal notranslate"><span class="pre">knit_env_specs()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_error"><code class="docutils literal notranslate"><span class="pre">knit_error()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extend"><code class="docutils literal notranslate"><span class="pre">knit_extend()</span></code></a></li>
@@ -1092,7 +1093,7 @@ remain backwards compatible across releases.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.knit_env_install">
 <span class="target" id="env_8sh_1ac59c549b1cbf0dd597bf406ce65bfc9c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_env_install</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_env_install" title="Link to this definition">#</a><br /></dt>
-<dd><p>Declare the install verb: <code class="docutils literal notranslate"><span class="pre">&lt;fn&gt;</span> <span class="pre">&lt;env_dir&gt;</span> <span class="pre">&lt;manifest_path&gt;</span></code> builds the environment into &lt;env_dir&gt; from the manifest, returning non-zero on failure.</p>
+<dd><p>Declare the install verb: <code class="docutils literal notranslate"><span class="pre">&lt;fn&gt;</span> <span class="pre">&lt;env_dir&gt;</span> <span class="pre">&lt;manifest_path&gt;</span> <span class="pre">[option...]</span></code> builds the environment into &lt;env_dir&gt; from the manifest, returning non-zero on failure. Any manager-specific options a setup recorded (via knit_env_record_option) are passed verbatim as trailing arguments, in recorded order; a manager that defines no options receives none and ignores the possibility.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1138,6 +1139,22 @@ remain backwards compatible across releases.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fn</strong> -- <strong>[in]</strong> Name of the provision function. </p></li>
 <li><p><strong>--options</strong> -- <strong>[in]</strong> Optional &quot;name:type,...&quot; list of bootstrap options. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_env_record_option">
+<span class="target" id="env_8sh_1a5cffe551b15334d4aa30c00ec713e81e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_env_record_option</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_env_record_option" title="Link to this definition">#</a><br /></dt>
+<dd><p>Record a manager-specific build option for the setup currently being registered. This is the public seam a plugin's own setup directive uses to attach a build switch to its environment manager (knit-uv's knit_with_uv_layered records &quot;layered&quot;), so a plugin never needs a private knit symbol to do so. The option is an opaque token knit stores and later forwards, verbatim and in recorded order, to the manager's install verb as a trailing argument (after &lt;env_dir&gt; and &lt;manifest_path&gt;). Knit never interprets the token; each manager defines its own vocabulary (knit-uv, for example, uses &quot;layered&quot; and &quot;no-deps&quot;).</p>
+<p>Options live per command and per manager in the ordered list <em>KNIT_CMD</em>&lt;cmd&gt;<em>envopts</em>&lt;nm&gt;, a sibling of the contribution list <em>KNIT_CMD</em>&lt;cmd&gt;<em>envcontrib</em>&lt;nm&gt;. The list is created on first use, so an option directive may be called in any order relative to the spec/manifest directives. A setup that records no option is unchanged: its install verb receives no trailing arguments.</p>
+<p>Fatal when the name is not a registered environment manager, or when it is called outside a setup registration (the only place an environment is built).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> -- <strong>[in]</strong> Environment-manager name (any spelling; normalized here). </p></li>
+<li><p><strong>option</strong> -- <strong>[in]</strong> The opaque option token to forward to the install verb. </p></li>
 </ul>
 </dd>
 </dl>
@@ -3095,6 +3112,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_lockfile"><code class="docutils literal notranslate"><span class="pre">knit_env_lockfile()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_manifest"><code class="docutils literal notranslate"><span class="pre">knit_env_manifest()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_provision"><code class="docutils literal notranslate"><span class="pre">knit_env_provision()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_record_option"><code class="docutils literal notranslate"><span class="pre">knit_env_record_option()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_env_specs"><code class="docutils literal notranslate"><span class="pre">knit_env_specs()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_error"><code class="docutils literal notranslate"><span class="pre">knit_error()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_extend"><code class="docutils literal notranslate"><span class="pre">knit_extend()</span></code></a></li>
