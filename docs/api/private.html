@@ -649,6 +649,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_expand_command_arguments"><code class="docutils literal notranslate"><span class="pre">_knit_expand_command_arguments()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_find_flag"><code class="docutils literal notranslate"><span class="pre">_knit_find_flag()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_format_option_alternatives"><code class="docutils literal notranslate"><span class="pre">_knit_format_option_alternatives()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_get_parameter_ref"><code class="docutils literal notranslate"><span class="pre">_knit_get_parameter_ref()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_help_render_entry"><code class="docutils literal notranslate"><span class="pre">_knit_help_render_entry()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_hidden_if_not_usable_pred"><code class="docutils literal notranslate"><span class="pre">_knit_hidden_if_not_usable_pred()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_history_enabled"><code class="docutils literal notranslate"><span class="pre">_knit_history_enabled()</span></code></a></li>
@@ -3105,11 +3106,13 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_arg_name">
 <span class="target" id="cli_8sh_1a3beec18037946425ee0632d330caab77"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_arg_name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_arg_name" title="Link to this definition">#</a><br /></dt>
-<dd><p>Extract the normalized parameter name from a command-line token. The token may be given as &quot;--name&quot; or &quot;--name=value&quot;; the leading &quot;--&quot; and any &quot;=value&quot; suffix are stripped and hyphens are converted to underscores. This is the single place where the &quot;=value&quot; form is recognized, so registered commands and plain helper functions (via knit_get_parameter / knit_check_arguments) accept it consistently.</p>
+<dd><p>Extract the normalized parameter name from a command-line token into a nameref output. The token may be given as &quot;--name&quot; or &quot;--name=value&quot;; the leading &quot;--&quot; and any &quot;=value&quot; suffix are stripped and hyphens are converted to underscores. This is the single place where the &quot;=value&quot; form is recognized, so registered commands and plain helper functions (via knit_get_parameter / knit_check_arguments) accept it consistently.</p>
 <p>The caller is responsible for only passing tokens that start with &quot;--&quot;; bare values must not be passed, otherwise they may be mistaken for parameter names.</p>
+<p>Returns through a nameref rather than stdout: it is called once per scanned argument on hot paths (registration, argument expansion), so the stdout form forked a subshell per call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Variable receiving the normalized name. </p></li>
 <li><p><strong>token</strong> -- <strong>[in]</strong> A raw argument token starting with &quot;--&quot;. </p></li>
 </ul>
 </dd>
@@ -3635,6 +3638,21 @@ compatibility guarantee.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the result. </p></li>
 <li><p><strong>option</strong> -- <strong>[in]</strong> Parameter name (as declared). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_get_parameter_ref">
+<span class="target" id="cli_8sh_1af63c58e10fe4e739db7ee58063c7e0ea"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_get_parameter_ref</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_get_parameter_ref" title="Link to this definition">#</a><br /></dt>
+<dd><p>Nameref (fork-free) variant of knit_get_parameter: find the value of the named option among the argument tokens and write it to the output variable. Returns 0 when the option is found, 1 otherwise (the output variable is left untouched on a miss, so a caller keeps whatever default it pre-assigned). Used on hot paths — the registration decorators at load — where capturing knit_get_parameter's stdout with &quot;$(...)&quot; forks a subshell per call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Variable receiving the option value. </p></li>
+<li><p><strong>name</strong> -- <strong>[in]</strong> Option to search for (without the -- prefix). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> Arguments in which to search for the option. </p></li>
 </ul>
 </dd>
 </dl>
@@ -12307,6 +12325,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_expand_command_arguments"><code class="docutils literal notranslate"><span class="pre">_knit_expand_command_arguments()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_find_flag"><code class="docutils literal notranslate"><span class="pre">_knit_find_flag()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_format_option_alternatives"><code class="docutils literal notranslate"><span class="pre">_knit_format_option_alternatives()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_get_parameter_ref"><code class="docutils literal notranslate"><span class="pre">_knit_get_parameter_ref()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_help_render_entry"><code class="docutils literal notranslate"><span class="pre">_knit_help_render_entry()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_hidden_if_not_usable_pred"><code class="docutils literal notranslate"><span class="pre">_knit_hidden_if_not_usable_pred()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_history_enabled"><code class="docutils literal notranslate"><span class="pre">_knit_history_enabled()</span></code></a></li>

@@ -1287,6 +1287,7 @@ local extra=("${args[@]:extra_index}")
 <span class="target" id="cli_8sh_1a6b18afa2ac952524a856ae4c9c482431"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_get_parameter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_get_parameter" title="Link to this definition">#</a><br /></dt>
 <dd><p>Search the list of arguments for a specific parameter. If found, the function will print the value associated with the parameter (flags will lead to this function printing &quot;true&quot; or &quot;false&quot;). If not found, this function will print nothing and return 1.</p>
 <p>The parameter value may be supplied either as two tokens (&quot;--name value&quot;) or inline with an equals sign (&quot;--name=value&quot;); both forms are recognized.</p>
+<p>Thin stdout wrapper over _knit_get_parameter_ref so the two cannot drift; a caller on a hot path can use the nameref form directly to avoid the subshell that capturing this function's stdout requires.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

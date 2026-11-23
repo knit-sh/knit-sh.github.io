@@ -492,6 +492,9 @@ Functions
 .. doxygenfunction:: _knit_format_option_alternatives
    :project: knit
 
+.. doxygenfunction:: _knit_get_parameter_ref
+   :project: knit
+
 .. doxygenfunction:: _knit_help_render_entry
    :project: knit
 
