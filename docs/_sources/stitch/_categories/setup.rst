@@ -65,6 +65,17 @@ Depend on a setup
 
 .. include:: /stitch/recipes/depend-on-a-setup.rst
 
+.. _stitch-provide-a-setup-role:
+
+Provide a setup role
+--------------------
+
+*Let one job accept any of several interchangeable setups by naming a shared role.*
+
+**APIs:** ``knit_register_setup``, ``knit_provides_setup_role``, ``knit_with_setup``
+
+.. include:: /stitch/recipes/provide-a-setup-role.rst
+
 .. _stitch-mpi-setup-launcher:
 
 Build an MPI environment and provide a launcher
