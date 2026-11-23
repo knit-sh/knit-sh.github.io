@@ -530,6 +530,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar2"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar2()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar_finish"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar_finish()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_launcher"><code class="docutils literal notranslate"><span class="pre">knit_provides_launcher()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_setup_role"><code class="docutils literal notranslate"><span class="pre">knit_provides_setup_role()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_push_done_cb"><code class="docutils literal notranslate"><span class="pre">knit_push_done_cb()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_pushd"><code class="docutils literal notranslate"><span class="pre">knit_pushd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register"><code class="docutils literal notranslate"><span class="pre">knit_register()</span></code></a></li>
@@ -1777,6 +1778,30 @@ for csv in "${tables[@]}"; do cat "${csv}" &gt;&gt; combined.csv; done
 </pre></div>
 </div>
 </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.knit_provides_setup_role">
+<span class="target" id="setup_8sh_1a9585a5994865c00bc6ce405cd5a5441c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">knit_provides_setup_role</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.knit_provides_setup_role" title="Link to this definition">#</a><br /></dt>
+<dd><p>Declare that the setup currently being registered provides a named role, so an instance it builds satisfies a knit_with_setup requirement for that role, not only for the exact setup type. This lets one consuming command accept any of several interchangeable setups (for example a &quot;train&quot; job accepting cnnenv-cuda / cnnenv-xpu / cnnenv-cpu, each of which provides role &quot;cnnenv&quot;). It generalizes knit_provides_launcher from the single built-in launcher capability to arbitrary, user-named roles.</p>
+<p>Must be called between knit_register_setup and knit_done. May be called more than once to provide several roles. The role is an ordinary knit name (hyphens and underscores interchangeable); it is normalized and recorded in the ordered set <em>KNIT_CMD</em>&lt;setupcmd&gt;_roles, and written to the instance's .setup.roles marker (one role per line) when the setup builds. Setups are the only valid target: wrappers and non-setup commands are rejected (a wrapper is never a &quot;setup:*&quot; command, so the setup-context check covers both).</p>
+<p>Role names and setup type names share one namespace for matching: a required name matches an instance's type first, then its roles.</p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">knit_register_setup</span> <span class="s2">"cnnenv-xpu"</span> <span class="n">_cnnenv_xpu</span> <span class="s2">"cifar-cnn on the Aurora module."</span>
+<span class="n">knit_with_uv_specs</span> <span class="s2">"cifar-cnn"</span>
+<span class="n">knit_with_uv_layered</span>
+<span class="n">knit_provides_setup_role</span> <span class="s2">"cnnenv"</span>
+<span class="n">_cnnenv_xpu</span><span class="p">()</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
+<span class="n">knit_done</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role</strong> -- <strong>[in]</strong> The role name this setup provides. </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -3154,6 +3179,7 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar2"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar2()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_progress_bar_finish"><code class="docutils literal notranslate"><span class="pre">knit_progress_bar_finish()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_launcher"><code class="docutils literal notranslate"><span class="pre">knit_provides_launcher()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_provides_setup_role"><code class="docutils literal notranslate"><span class="pre">knit_provides_setup_role()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_push_done_cb"><code class="docutils literal notranslate"><span class="pre">knit_push_done_cb()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_pushd"><code class="docutils literal notranslate"><span class="pre">knit_pushd()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.knit_register"><code class="docutils literal notranslate"><span class="pre">knit_register()</span></code></a></li>

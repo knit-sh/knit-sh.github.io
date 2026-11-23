@@ -699,6 +699,9 @@ Functions
 .. doxygenfunction:: _knit_describe_command_kind
    :project: knit
 
+.. doxygenfunction:: _knit_describe_command_roles
+   :project: knit
+
 .. doxygenfunction:: _knit_describe_default
    :project: knit
 
@@ -2521,6 +2524,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_setup_require_body
+   :project: knit
+
+.. doxygenfunction:: _knit_setup_role_is_provided
    :project: knit
 
 .. doxygenfunction:: _knit_setup_root

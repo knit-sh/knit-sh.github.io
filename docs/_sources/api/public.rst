@@ -239,6 +239,9 @@ Functions
 .. doxygenfunction:: knit_provides_launcher
    :project: knit
 
+.. doxygenfunction:: knit_provides_setup_role
+   :project: knit
+
 .. doxygenfunction:: knit_push_done_cb
    :project: knit
 

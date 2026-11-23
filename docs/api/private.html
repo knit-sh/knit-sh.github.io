@@ -730,6 +730,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe"><code class="docutils literal notranslate"><span class="pre">_knit_describe()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_children"><code class="docutils literal notranslate"><span class="pre">_knit_describe_children()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_command_kind"><code class="docutils literal notranslate"><span class="pre">_knit_describe_command_kind()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_command_roles"><code class="docutils literal notranslate"><span class="pre">_knit_describe_command_roles()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default_artifacts"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default_artifacts()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default_command"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default_command()</span></code></a></li>
@@ -1523,6 +1524,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_provides_launcher_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_setup_provides_launcher_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_setup_record_used_by_edge()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_require_body"><code class="docutils literal notranslate"><span class="pre">_knit_setup_require_body()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_role_is_provided"><code class="docutils literal notranslate"><span class="pre">_knit_setup_role_is_provided()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_root"><code class="docutils literal notranslate"><span class="pre">_knit_setup_root()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_source_platform"><code class="docutils literal notranslate"><span class="pre">_knit_setup_source_platform()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_validate_var"><code class="docutils literal notranslate"><span class="pre">_knit_setup_validate_var()</span></code></a></li>
@@ -4512,6 +4514,20 @@ compatibility guarantee.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the command kind. </p></li>
+<li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_describe_command_roles">
+<span class="target" id="describe_8sh_1ab242def89941e2ec729a8a70e602e2e0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_describe_command_roles</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_describe_command_roles" title="Link to this definition">#</a><br /></dt>
+<dd><p>Store a setup command's provided roles (in declaration order) in the caller's array, leaving it empty when the command provides none. Reads the ordered set written by knit_provides_setup_role; only setups ever have it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret_roles</strong> -- <strong>[out]</strong> Name of the array to hold the roles. </p></li>
 <li><p><strong>cmd</strong> -- <strong>[in]</strong> Mangled command name. </p></li>
 </ul>
 </dd>
@@ -11242,12 +11258,13 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_setup_check_type">
 <span class="target" id="setup_8sh_1a44ed8abc2324cdbaea639ad72900a70a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_setup_check_type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_setup_check_type" title="Link to this definition">#</a><br /></dt>
-<dd><p>Check that a setup directory was built by the required setup type. <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">setup</span></code> records the type in a <code class="docutils literal notranslate"><span class="pre">.setup.type</span></code> marker file inside the setup directory. Fatals if the marker is missing or its recorded type differs from the required one; returns normally on a match. Shared by <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> (jobs) and by the generic setup-dependency before-callback used for every other command that declares knit_with_setup.</p>
+<dd><p>Check that a setup directory satisfies a required setup name, by type OR by role. <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">setup</span></code> records the instance's type in a <code class="docutils literal notranslate"><span class="pre">.setup.type</span></code> marker and the roles it provides in a <code class="docutils literal notranslate"><span class="pre">.setup.roles</span></code> marker (one per line), both in the normalized name namespace. The requirement is met when the recorded type equals &lt;required&gt; or &lt;required&gt; appears among the provided roles. This is the single matcher shared by <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> (jobs) and by the generic setup-dependency before-callback used for every other command that declares knit_with_setup, so every enforcement point agrees. Fatals if the type marker is missing or neither the type nor any role matches; returns normally on a match.</p>
+<p>A setup that provides no role has no <code class="docutils literal notranslate"><span class="pre">.setup.roles</span></code> marker and so matches only by type, exactly as before roles existed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>setup_path</strong> -- <strong>[in]</strong> Path to the setup directory to check. </p></li>
-<li><p><strong>required</strong> -- <strong>[in]</strong> Setup type the directory must have been built by. </p></li>
+<li><p><strong>required</strong> -- <strong>[in]</strong> Setup type or role the directory must satisfy. </p></li>
 </ul>
 </dd>
 </dl>
@@ -11352,6 +11369,19 @@ If the function has a return type:
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fn</strong> -- <strong>[in]</strong> Name of the calling function, used in the error message. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_setup_role_is_provided">
+<span class="target" id="setup_8sh_1aec8075e3fc0e9869633e574aff934980"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_setup_role_is_provided</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_setup_role_is_provided" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return 0 if any registered setup provides the given role, 1 otherwise. The role name is matched in the normalized namespace (as stored in each setup's roles set). Used to word the knit_with_setup requirement note: a required name that some setup provides as a role is described as a role, otherwise as a type. The answer reflects the setups registered so far; since setups are conventionally registered before the jobs/commands that depend on them, this is accurate for the usual ordering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>role</strong> -- <strong>[in]</strong> Normalized role name to look for. </p></li>
 </ul>
 </dd>
 </dl>
@@ -12406,6 +12436,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe"><code class="docutils literal notranslate"><span class="pre">_knit_describe()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_children"><code class="docutils literal notranslate"><span class="pre">_knit_describe_children()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_command_kind"><code class="docutils literal notranslate"><span class="pre">_knit_describe_command_kind()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_command_roles"><code class="docutils literal notranslate"><span class="pre">_knit_describe_command_roles()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default_artifacts"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default_artifacts()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_describe_default_command"><code class="docutils literal notranslate"><span class="pre">_knit_describe_default_command()</span></code></a></li>
@@ -13199,6 +13230,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_provides_launcher_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_setup_provides_launcher_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_setup_record_used_by_edge()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_require_body"><code class="docutils literal notranslate"><span class="pre">_knit_setup_require_body()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_role_is_provided"><code class="docutils literal notranslate"><span class="pre">_knit_setup_role_is_provided()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_root"><code class="docutils literal notranslate"><span class="pre">_knit_setup_root()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_source_platform"><code class="docutils literal notranslate"><span class="pre">_knit_setup_source_platform()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_setup_validate_var"><code class="docutils literal notranslate"><span class="pre">_knit_setup_validate_var()</span></code></a></li>
