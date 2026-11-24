@@ -1113,7 +1113,19 @@ github.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_curl_retry_args
+   :project: knit
+
+.. doxygenfunction:: _knit_curl_supports_retry_all_errors
+   :project: knit
+
 .. doxygenfunction:: _knit_github_resolve_commit_light
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_CURL_RETRY_ARGS
    :project: knit
 
 global.sh
