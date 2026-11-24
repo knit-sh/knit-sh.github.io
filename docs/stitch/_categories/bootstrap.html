@@ -460,7 +460,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-building-the-bundled-tools-from-source">Force building the bundled tools from source</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-host-s-sqlite-jq-instead-of-the-bundled-copies">Use the host’s sqlite/jq instead of the bundled copies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-knit-cypher-to-sql-version">Pin the knit-cypher-to-sql version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-configuration-by-re-running-bootstrap">Update configuration by re-running bootstrap</a></li>
 </ul>
@@ -640,23 +640,27 @@ and <code class="docutils literal notranslate"><span class="pre">--spack-package
 release. Passing <code class="docutils literal notranslate"><span class="pre">--spack</span></code> also forces Spack to be provisioned now rather than
 lazily on first use.</p>
 </section>
-<section id="force-building-the-bundled-tools-from-source">
-<span id="stitch-bootstrap-bundled-tools"></span><h2>Force building the bundled tools from source<a class="headerlink" href="#force-building-the-bundled-tools-from-source" title="Link to this heading">#</a></h2>
-<p><em>Build sqlite/jq from source instead of symlinking the system copies.</em></p>
+<section id="use-the-host-s-sqlite-jq-instead-of-the-bundled-copies">
+<span id="stitch-bootstrap-bundled-tools"></span><h2>Use the host’s sqlite/jq instead of the bundled copies<a class="headerlink" href="#use-the-host-s-sqlite-jq-instead-of-the-bundled-copies" title="Link to this heading">#</a></h2>
+<p><em>Symlink the system sqlite/jq with –use-system-</em> instead of the default self-contained build.*</p>
 <p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
-<p>By default <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> symlinks the system <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> and <code class="docutils literal notranslate"><span class="pre">jq</span></code> when they are
-available, and only builds or downloads its own copy when they are missing. Force
-Knit to provision its own instead — for a pinned, reproducible toolchain
-independent of what the host happens to ship — with <code class="docutils literal notranslate"><span class="pre">--ignore-system-sqlite</span></code>
-and <code class="docutils literal notranslate"><span class="pre">--ignore-system-jq</span></code>:</p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> provisions its own toolchain under <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> — it
+builds <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> from source and downloads a <code class="docutils literal notranslate"><span class="pre">jq</span></code> binary — so the install is
+self-contained and reproducible, independent of what the host ships. This also
+makes it portable to an HPC compute node, which often differs from the login
+node: a symlink to a login-only binary would dangle there.</p>
+<p>On a single machine where the system copies are known good, symlink them instead
+— a faster bootstrap, with no build or download — with <code class="docutils literal notranslate"><span class="pre">--use-system-sqlite</span></code>
+and <code class="docutils literal notranslate"><span class="pre">--use-system-jq</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--ignore-system-sqlite<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--ignore-system-jq
+<span class="w">    </span>--use-system-sqlite<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--use-system-jq
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">--ignore-system-sqlite</span></code> builds SQLite from source; <code class="docutils literal notranslate"><span class="pre">--ignore-system-jq</span></code>
-downloads a <code class="docutils literal notranslate"><span class="pre">jq</span></code> binary. Either way the tool lands under <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> and is used
-in preference to any system copy.</p>
+<p>Each flag symlinks the system tool into <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> when it is on <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, and
+falls back to the default build/download when it is not. Prefer the default on a
+cluster; reach for <code class="docutils literal notranslate"><span class="pre">--use-system-*</span></code> only when the same binary is guaranteed on
+every node your jobs run on.</p>
 </section>
 <section id="pin-the-knit-cypher-to-sql-version">
 <span id="stitch-bootstrap-pin-cypher-to-sql"></span><h2>Pin the knit-cypher-to-sql version<a class="headerlink" href="#pin-the-knit-cypher-to-sql-version" title="Link to this heading">#</a></h2>
@@ -695,7 +699,7 @@ nothing to update.</p>
 of its kind — no user setup, no job, or no resource yet; otherwise Knit stops
 rather than strand existing rows. Changing the machine <code class="docutils literal notranslate"><span class="pre">--profile</span></code> is not
 supported yet. Re-provisioning a bundled tool (see
-<a class="reference internal" href="#stitch-bootstrap-bundled-tools"><span class="std std-ref">Force building the bundled tools from source</span></a> and
+<a class="reference internal" href="#stitch-bootstrap-bundled-tools"><span class="std std-ref">Use the host’s sqlite/jq instead of the bundled copies</span></a> and
 <a class="reference internal" href="#stitch-bootstrap-pin-cypher-to-sql"><span class="std std-ref">Pin the knit-cypher-to-sql version</span></a>) also happens
 here: a typed tool option that differs from the stored value rebuilds that tool.</p>
 </section>
@@ -756,7 +760,7 @@ here: a typed tool option that differs from the stored value rebuilds that tool.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#force-building-the-bundled-tools-from-source">Force building the bundled tools from source</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-host-s-sqlite-jq-instead-of-the-bundled-copies">Use the host’s sqlite/jq instead of the bundled copies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-knit-cypher-to-sql-version">Pin the knit-cypher-to-sql version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-configuration-by-re-running-bootstrap">Update configuration by re-running bootstrap</a></li>
 </ul>

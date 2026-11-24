@@ -93,10 +93,10 @@ Pin the Spack version
 
 .. _stitch-bootstrap-bundled-tools:
 
-Force building the bundled tools from source
---------------------------------------------
+Use the host's sqlite/jq instead of the bundled copies
+------------------------------------------------------
 
-*Build sqlite/jq from source instead of symlinking the system copies.*
+*Symlink the system sqlite/jq with --use-system-* instead of the default self-contained build.*
 
 **APIs:** ``bootstrap``
 
