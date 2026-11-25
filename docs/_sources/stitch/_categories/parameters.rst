@@ -58,6 +58,17 @@ Declare a parameter's search domain
 
 .. include:: /stitch/recipes/declare-a-search-domain.rst
 
+.. _stitch-forward-parameters-to-another-command:
+
+Forward parameters to another command
+-------------------------------------
+
+*Pass parameters and flags on to another command without emitting dangling options.*
+
+**APIs:** ``knit_forward_parameter_as``, ``knit_forward_flag_as``, ``knit_get_parameter_with_default``, ``knit_get_parameter``
+
+.. include:: /stitch/recipes/forward-parameters-to-another-command.rst
+
 .. _stitch-reuse-parameters-parameter-set:
 
 Reuse parameters with a parameter set

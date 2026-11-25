@@ -1184,6 +1184,30 @@ the same values as named parameters.</p>
 configure the launch (<code class="docutils literal notranslate"><span class="pre">--procs</span></code> total ranks, <code class="docutils literal notranslate"><span class="pre">--procs-per-node</span></code> how many land
 on each node), and the arguments <em>after</em> <code class="docutils literal notranslate"><span class="pre">--</span></code> select what to launch (<code class="docutils literal notranslate"><span class="pre">render</span></code>)
 and pass its parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Forwarding parameters without the sharp edges.</strong> The body above forwards
+each value by hand — <code class="docutils literal notranslate"><span class="pre">--width</span> <span class="pre">&quot;$(knit_get_parameter</span> <span class="pre">width</span> <span class="pre">&quot;$&#64;&quot;)&quot;</span></code> — which
+is clear and fine here, because every parameter is present and keeps its name.
+Two cases make that pattern fragile, and Knit has a helper for each:</p>
+<ul class="simple">
+<li><p>An <strong>absent</strong> parameter makes <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code> print nothing, so
+<code class="docutils literal notranslate"><span class="pre">--width</span> <span class="pre">&quot;$(...)&quot;</span></code> becomes a dangling <code class="docutils literal notranslate"><span class="pre">--width</span></code> with no value.
+<code class="docutils literal notranslate"><span class="pre">knit_forward_parameter_as</span> <span class="pre">--width</span> <span class="pre">width</span> <span class="pre">&quot;$&#64;&quot;</span></code> prints the whole
+<code class="docutils literal notranslate"><span class="pre">--width</span> <span class="pre">&lt;value&gt;</span></code> pair when the parameter is present and <em>nothing</em> when it
+is absent (used unquoted, so the shell drops it). It also forwards under a
+different name — <code class="docutils literal notranslate"><span class="pre">knit_forward_parameter_as</span> <span class="pre">--data</span> <span class="pre">datadir</span> <span class="pre">&quot;$&#64;&quot;</span></code> sends the
+local <code class="docutils literal notranslate"><span class="pre">datadir</span></code> parameter on as <code class="docutils literal notranslate"><span class="pre">--data</span></code>.</p></li>
+<li><p>A <strong>flag</strong> reads back as the literal string <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, which is
+rarely what the downstream program wants. <code class="docutils literal notranslate"><span class="pre">knit_forward_flag_as</span> <span class="pre">&lt;if-true&gt;</span>
+<span class="pre">&lt;if-false&gt;</span> <span class="pre">&lt;flag&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> picks the text from the flag’s value, so a flag can
+even be forwarded under its negation.</p></li>
+</ul>
+<p>A third helper, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter_with_default</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;default&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code>,
+supplies a fallback for an absent parameter (which <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code>
+cannot tell apart from an empty value). The <em>Forward parameters to another
+command</em> recipe in the Stitch Guide has the details.</p>
+</div>
 <p>But <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> launches something new: an <strong>app</strong>. An app is the unit of
 parallel work — <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> starts one copy of it per rank. Our job launches an
 app called <code class="docutils literal notranslate"><span class="pre">render</span></code> that wraps the actual <code class="docutils literal notranslate"><span class="pre">julia-fractal</span></code> call. So we register

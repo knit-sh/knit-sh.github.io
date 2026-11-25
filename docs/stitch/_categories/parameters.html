@@ -457,6 +457,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-parameters-to-another-command">Forward parameters to another command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>
@@ -698,6 +699,110 @@ in the JSON and YAML formats). A search proposer reads the same domains
 programmatically through <code class="docutils literal notranslate"><span class="pre">knit_parameter_space</span></code> (structured, by nameref) and
 <code class="docutils literal notranslate"><span class="pre">knit_parameter_space_json</span></code>.</p>
 </section>
+<section id="forward-parameters-to-another-command">
+<span id="stitch-forward-parameters-to-another-command"></span><h2>Forward parameters to another command<a class="headerlink" href="#forward-parameters-to-another-command" title="Link to this heading">#</a></h2>
+<p><em>Pass parameters and flags on to another command without emitting dangling options.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">knit_forward_parameter_as</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_forward_flag_as</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter_with_default</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code></p>
+<p>A command body often forwards some of its parameters to a downstream command or
+program. The naive <code class="docutils literal notranslate"><span class="pre">--dim</span> <span class="pre">&quot;$(knit_get_parameter</span> <span class="pre">size</span> <span class="pre">&quot;$&#64;&quot;)&quot;</span></code> breaks when the
+parameter is absent: <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code> prints an empty string, leaving a
+dangling <code class="docutils literal notranslate"><span class="pre">--dim</span></code> with no value. The forwarding helpers avoid this by printing
+whole tokens (or nothing) that the shell splits when used <strong>unquoted</strong>:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Forward parameters to another command WITHOUT emitting dangling options. Each</span>
+<span class="c1"># helper prints tokens meant to be used UNQUOTED so the shell splits them (or</span>
+<span class="c1"># drops them entirely when the helper prints nothing).</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"relay"</span><span class="w"> </span><span class="s2">"Forward its parameters on to a plain helper."</span>
+<span class="nd">@with_optional</span><span class="w"> </span><span class="s2">"size:integer"</span><span class="w"> </span><span class="s2">"8"</span><span class="w"> </span><span class="s2">"Image size to forward."</span>
+<span class="nd">@with_flag</span><span class="w"> </span><span class="s2">"quiet"</span><span class="w"> </span><span class="s2">"When set, drop the banner."</span>
+_relay<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_forward_parameter_as forwards "size" under the name "--dim" without</span>
+<span class="w">    </span><span class="c1"># hand-building the "--dim &lt;value&gt;" pair (and prints nothing if it is absent).</span>
+<span class="w">    </span><span class="c1"># knit_forward_flag_as maps the declared "quiet" flag (expanded to true/false</span>
+<span class="w">    </span><span class="c1"># in the body) to its negation: "--banner" appears only when --quiet is absent.</span>
+<span class="w">    </span>_render_opts<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="k">$(</span><span class="nb">knit_forward_parameter_as</span><span class="w"> </span><span class="s2">"--dim"</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="k">$(</span><span class="nb">knit_forward_flag_as</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"--banner"</span><span class="w"> </span><span class="s2">"quiet"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="o">}</span>
+<span class="c1"># A stand-in for a downstream command: echo the arguments it received.</span>
+_render_opts<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="c1"># knit_get_parameter_with_default fills in a fallback when a parameter is absent</span>
+<span class="c1"># from a raw list (one the CLI did not expand, such as a plain helper's own "$@").</span>
+_pick_color<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"color=</span><span class="k">$(</span><span class="nb">knit_get_parameter_with_default</span><span class="w"> </span><span class="s2">"color"</span><span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@command</span><span class="w"> </span><span class="s2">"paint"</span><span class="w"> </span><span class="s2">"Pick a color, defaulting to auto."</span>
+<span class="nd">@with_extra</span><span class="w"> </span><span class="s2">"Optional: --color NAME."</span>
+_paint<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span><span class="w"> </span>extra_index
+<span class="w">    </span><span class="nv">extra_index</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_extra_index</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span>_pick_color<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]:</span><span class="nv">extra_index</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Forward parameters to another command WITHOUT emitting dangling options. Each</span>
+<span class="c1"># helper prints tokens meant to be used UNQUOTED so the shell splits them (or</span>
+<span class="c1"># drops them entirely when the helper prints nothing).</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"relay"</span><span class="w"> </span>_relay<span class="w"> </span><span class="s2">"Forward its parameters on to a plain helper."</span>
+<span class="nb">knit_with_optional</span><span class="w"> </span><span class="s2">"size:integer"</span><span class="w"> </span><span class="s2">"8"</span><span class="w"> </span><span class="s2">"Image size to forward."</span>
+<span class="nb">knit_with_flag</span><span class="w"> </span><span class="s2">"quiet"</span><span class="w"> </span><span class="s2">"When set, drop the banner."</span>
+_relay<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># knit_forward_parameter_as forwards "size" under the name "--dim" without</span>
+<span class="w">    </span><span class="c1"># hand-building the "--dim &lt;value&gt;" pair (and prints nothing if it is absent).</span>
+<span class="w">    </span><span class="c1"># knit_forward_flag_as maps the declared "quiet" flag (expanded to true/false</span>
+<span class="w">    </span><span class="c1"># in the body) to its negation: "--banner" appears only when --quiet is absent.</span>
+<span class="w">    </span>_render_opts<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="k">$(</span><span class="nb">knit_forward_parameter_as</span><span class="w"> </span><span class="s2">"--dim"</span><span class="w"> </span><span class="s2">"size"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="k">$(</span><span class="nb">knit_forward_flag_as</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="s2">"--banner"</span><span class="w"> </span><span class="s2">"quiet"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span>
+<span class="o">}</span>
+<span class="c1"># A stand-in for a downstream command: echo the arguments it received.</span>
+_render_opts<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+
+<span class="c1"># knit_get_parameter_with_default fills in a fallback when a parameter is absent</span>
+<span class="c1"># from a raw list (one the CLI did not expand, such as a plain helper's own "$@").</span>
+_pick_color<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"color=</span><span class="k">$(</span><span class="nb">knit_get_parameter_with_default</span><span class="w"> </span><span class="s2">"color"</span><span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_register</span><span class="w"> </span><span class="s2">"paint"</span><span class="w"> </span>_paint<span class="w"> </span><span class="s2">"Pick a color, defaulting to auto."</span>
+<span class="nb">knit_with_extra</span><span class="w"> </span><span class="s2">"Optional: --color NAME."</span>
+_paint<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span><span class="nv">args</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="o">)</span><span class="w"> </span>extra_index
+<span class="w">    </span><span class="nv">extra_index</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit_extra_index</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]</span><span class="si">}</span><span class="s2">"</span><span class="k">)</span>
+<span class="w">    </span>_pick_color<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">args</span><span class="p">[@]:</span><span class="nv">extra_index</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_forward_parameter_as</span> <span class="pre">&lt;option&gt;</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> prints <code class="docutils literal notranslate"><span class="pre">&lt;option&gt;</span> <span class="pre">&lt;value&gt;</span></code>
+when the parameter is present and nothing when it is absent, so the option is
+dropped rather than left empty.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_forward_flag_as</span> <span class="pre">&lt;if-true&gt;</span> <span class="pre">&lt;if-false&gt;</span> <span class="pre">&lt;flag&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> chooses its text from
+a flag’s value. Supplying both texts lets a flag be forwarded under its
+negation — <code class="docutils literal notranslate"><span class="pre">knit_forward_flag_as</span> <span class="pre">&quot;&quot;</span> <span class="pre">&quot;--banner&quot;</span> <span class="pre">&quot;quiet&quot;</span> <span class="pre">&quot;$&#64;&quot;</span></code> emits
+<code class="docutils literal notranslate"><span class="pre">--banner</span></code> only when <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> was not set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knit_get_parameter_with_default</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;default&gt;</span> <span class="pre">&quot;$&#64;&quot;</span></code> prints a fallback for
+an absent parameter, which <code class="docutils literal notranslate"><span class="pre">knit_get_parameter</span></code> cannot distinguish from a
+parameter set to an empty value.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The output is meant to be used unquoted so the shell splits it into tokens, so
+a forwarded value containing whitespace is not supported — the same limitation
+as any unquoted command-substitution forwarding.</p>
+</div>
+</section>
 <section id="reuse-parameters-with-a-parameter-set">
 <span id="stitch-reuse-parameters-parameter-set"></span><h2>Reuse parameters with a parameter set<a class="headerlink" href="#reuse-parameters-with-a-parameter-set" title="Link to this heading">#</a></h2>
 <p><em>Declare a group of parameters once and import it into many commands.</em></p>
@@ -707,9 +812,9 @@ parameter set and import the set wherever you need it. A set is opened with
 <code class="docutils literal notranslate"><span class="pre">knit_parameter_set</span></code>, populated with the usual <code class="docutils literal notranslate"><span class="pre">knit_with_*</span></code> calls, and
 closed with <code class="docutils literal notranslate"><span class="pre">knit_done</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
-<label aria-controls="sd-tab-item-8-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-8">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-8-content">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nd">@parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
 <span class="nd">@with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
@@ -729,9 +834,9 @@ _area<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
-<label aria-controls="sd-tab-item-9-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-9">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-9-content">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a reusable set of parameters once...</span>
 <span class="nb">knit_parameter_set</span><span class="w"> </span><span class="s2">"grid"</span>
 <span class="nb">knit_with_required</span><span class="w"> </span><span class="s2">"width:integer"</span><span class="w"> </span><span class="s2">"Grid width."</span>
@@ -764,9 +869,9 @@ that collides with one already declared on the command is a fatal error.</p>
 Pass <code class="docutils literal notranslate"><span class="pre">--only</span></code> with a comma-separated allow-list to import just those
 parameters and leave the rest behind:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-<label aria-controls="sd-tab-item-10-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-10">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-10-content">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span><span class="s2">"Report just the grid width."</span>
@@ -778,9 +883,9 @@ _width_only<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-<label aria-controls="sd-tab-item-11-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-11">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-11-content">
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --only imports just the named parameters of a set (an allow-list); the rest are</span>
 <span class="c1"># left out.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"width-only"</span><span class="w"> </span>_width_only<span class="w"> </span><span class="s2">"Report just the grid width."</span>
@@ -805,9 +910,9 @@ a set but the named ones. Excluding a name also frees it, so the command can
 declare it itself with a different kind or default — here a parameter that is
 required in the set becomes optional on this command:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-<label aria-controls="sd-tab-item-12-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-12">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
@@ -823,9 +928,9 @@ _flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-<label aria-controls="sd-tab-item-13-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-13">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content">
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># --exclude imports every parameter but the named ones, freeing a name so the</span>
 <span class="c1"># command can re-declare it differently (here "height" becomes optional).</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"flat-area"</span><span class="w"> </span>_flat_area<span class="w"> </span><span class="s2">"Compute a grid area with an optional height."</span>
@@ -853,9 +958,9 @@ _flat_area<span class="o">()</span><span class="w"> </span><span class="o">{</sp
 them to another program), document them with <code class="docutils literal notranslate"><span class="pre">knit_with_extra</span></code> and read them in
 the body starting at <code class="docutils literal notranslate"><span class="pre">knit_extra_index</span></code>:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label aria-controls="sd-tab-item-14-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-14">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-14-content">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
 <span class="nd">@command</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
@@ -870,9 +975,9 @@ _forward<span class="o">()</span><span class="w"> </span><span class="o">{</span
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label aria-controls="sd-tab-item-15-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-15">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-15-content">
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># @with_extra documents the arguments accepted after "--"; the body reads them</span>
 <span class="c1"># starting at knit_extra_index.</span>
 <span class="nb">knit_register</span><span class="w"> </span><span class="s2">"forward"</span><span class="w"> </span>_forward<span class="w"> </span><span class="s2">"Echo the arguments given after --."</span>
@@ -911,9 +1016,9 @@ that parses its own <code class="docutils literal notranslate"><span class="pre"
 a value, the second names flags, and it returns 1 on the first unexpected
 argument (logging an error attributed to the caller):</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-<label aria-controls="sd-tab-item-16-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-16">
-Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-16-content">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
+<label aria-controls="sd-tab-item-18-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-18">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-18-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
 <span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
@@ -931,9 +1036,9 @@ _render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-<label aria-controls="sd-tab-item-17-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-17">
-Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-17-content">
+<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
+<label aria-controls="sd-tab-item-19-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-19">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-19-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># A plain helper (not registered) can validate its own "$@" with</span>
 <span class="c1"># knit_check_arguments: the first list names options that take a value, the second</span>
 <span class="c1"># names flags. It errors on the first unexpected argument and returns 1.</span>
@@ -1009,6 +1114,7 @@ _render_cmd<span class="o">()</span><span class="w"> </span><span class="o">{</s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameters-and-flags">Optional parameters and flags</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-a-parameter-from-the-environment">Default a parameter from the environment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declare-a-parameter-s-search-domain">Declare a parameter’s search domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-parameters-to-another-command">Forward parameters to another command</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-parameters-with-a-parameter-set">Reuse parameters with a parameter set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-only-some-parameters-of-a-set">Import only some parameters of a set</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-parameters-when-importing-a-set">Exclude parameters when importing a set</a></li>

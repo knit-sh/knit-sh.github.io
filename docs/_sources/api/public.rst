@@ -131,6 +131,12 @@ Functions
 .. doxygenfunction:: knit_fatal
    :project: knit
 
+.. doxygenfunction:: knit_forward_flag_as
+   :project: knit
+
+.. doxygenfunction:: knit_forward_parameter_as
+   :project: knit
+
 .. doxygenfunction:: knit_framed
    :project: knit
 
@@ -141,6 +147,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: knit_get_parameter
+   :project: knit
+
+.. doxygenfunction:: knit_get_parameter_with_default
    :project: knit
 
 .. doxygenfunction:: knit_get_profile_field
