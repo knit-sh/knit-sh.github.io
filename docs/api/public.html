@@ -606,6 +606,10 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_REFUTED"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_REFUTED</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_IGNORE_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_IGNORE_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_JOB_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_JOB_PREFIX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_COMMAND_TABLE"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_TABLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_COMMAND_UUID"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_UUID</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_RUN_TABLE"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_TABLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_RUN_UUID"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_UUID</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LOG_LEVEL"><code class="docutils literal notranslate"><span class="pre">KNIT_LOG_LEVEL</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_LOCAL_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code></a></li>
@@ -2986,6 +2990,30 @@ knit_done
 </dd></dl>
 
 <dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_LAST_COMMAND_TABLE">
+<span class="target" id="cli_8sh_1a06d44a60b3f1ec7fa4c8accd00dae0e1"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_LAST_COMMAND_TABLE</span></span></span><a class="headerlink" href="#c.KNIT_LAST_COMMAND_TABLE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Table the most recent command recorded its data row in (see KNIT_LAST_COMMAND_UUID). Plain shell global, not exported. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_LAST_COMMAND_UUID">
+<span class="target" id="cli_8sh_1a130eaf5d2f57c5e3ffc7810daedf40f1"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_LAST_COMMAND_UUID</span></span></span><a class="headerlink" href="#c.KNIT_LAST_COMMAND_UUID" title="Link to this definition">#</a><br /></dt>
+<dd><p>Id of the data row the most recent command recorded in this process. Set by any command that writes a data row (a command that declared a table): after a <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">submit</span></code> it names the &quot;jobs&quot; row, after a <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> the &quot;runs&quot; row, after a <code class="docutils literal notranslate"><span class="pre">metadata</span> <span class="pre">store</span></code> the &quot;metadata&quot; row, and so on. Together with KNIT_LAST_COMMAND_TABLE it lets a caller address the row a command it just invoked recorded. A table-less (provenance-only) command leaves it untouched. Plain shell global, not exported. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_LAST_RUN_TABLE">
+<span class="target" id="app_8sh_1a41dc53e52411074cb4c822acc54e78dd"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_LAST_RUN_TABLE</span></span></span><a class="headerlink" href="#c.KNIT_LAST_RUN_TABLE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Table the most recent <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> recorded its per-app row in: the app's own table (named after the app), not &quot;runs&quot; (see KNIT_LAST_RUN_UUID). Plain shell global, not exported. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c.KNIT_LAST_RUN_UUID">
+<span class="target" id="app_8sh_1adb5547bd4a1319721b22a74cb4d0c2c6"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_LAST_RUN_UUID</span></span></span><a class="headerlink" href="#c.KNIT_LAST_RUN_UUID" title="Link to this definition">#</a><br /></dt>
+<dd><p>Id of the per-app row the most recent <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> recorded (the row in the app's own table, not the &quot;runs&quot; row). Set in the caller's shell after <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> returns, so a job body can read the app's recorded outputs with a single direct lookup: <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">&lt;output&gt;</span> <span class="pre">FROM</span> <span class="pre">${</span><a class="reference internal" href="#app_8sh_1a41dc53e52411074cb4c822acc54e78dd"><span class="std std-ref"><span class="pre">KNIT_LAST_RUN_TABLE</span></span></a><span class="pre">}</span> <span class="pre">WHERE</span> <span class="pre">id='${</span><a class="reference internal" href="#app_8sh_1adb5547bd4a1319721b22a74cb4d0c2c6"><span class="std std-ref"><span class="pre">KNIT_LAST_RUN_UUID</span></span></a><span class="pre">}'</span></code>. Both are emptied when a run records no per-app row (an app that opted out of recording a failed invocation). Plain shell global, not exported — the consumer is the in-process job body that called <code class="docutils literal notranslate"><a class="reference internal" href="#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code>. </p>
+</dd></dl>
+
+<dl class="c var">
 <dt class="sig sig-object c" id="c.KNIT_LOG_LEVEL">
 <span class="target" id="log_8sh_1a1d0b773b8315e16132fba45dc958242d"></span><span class="n"><span class="pre">ExportedString</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KNIT_LOG_LEVEL</span></span></span><a class="headerlink" href="#c.KNIT_LOG_LEVEL" title="Link to this definition">#</a><br /></dt>
 <dd><p>Log level. Valid values: trace, debug, info, warning, error, critical. </p>
@@ -3255,6 +3283,10 @@ knit_done
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_CLAIM_REFUTED"><code class="docutils literal notranslate"><span class="pre">KNIT_CLAIM_REFUTED</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_IGNORE_CHECKSUM"><code class="docutils literal notranslate"><span class="pre">KNIT_IGNORE_CHECKSUM</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_JOB_PREFIX"><code class="docutils literal notranslate"><span class="pre">KNIT_JOB_PREFIX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_COMMAND_TABLE"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_TABLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_COMMAND_UUID"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_UUID</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_RUN_TABLE"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_TABLE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LAST_RUN_UUID"><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_UUID</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_LOG_LEVEL"><code class="docutils literal notranslate"><span class="pre">KNIT_LOG_LEVEL</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_LOCAL_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_LOCAL_RANK</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c.KNIT_MPI_RANK"><code class="docutils literal notranslate"><span class="pre">KNIT_MPI_RANK</span></code></a></li>

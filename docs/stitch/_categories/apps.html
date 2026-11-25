@@ -455,6 +455,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-an-mpi-app">Register an MPI app</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-a-rank-s-place-in-the-mpi-world">Read a rank’s place in the MPI world</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-an-app-from-a-job">Launch an app from a job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-an-app-s-recorded-output">Read an app’s recorded output</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-process-placement">Control process placement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-launcher-backend">Pick a launcher backend</a></li>
 </ul>
@@ -710,6 +711,82 @@ placement and the app name travel with it — and it must run <strong>inside a j
 (it reads the surrounding job’s allocation). See <em>Control process placement</em> to
 pin ranks precisely and <em>Pick a launcher backend</em> to choose the launcher.</p>
 </section>
+<section id="read-an-app-s-recorded-output">
+<span id="stitch-read-an-apps-recorded-output"></span><h2>Read an app’s recorded output<a class="headerlink" href="#read-an-app-s-recorded-output" title="Link to this heading">#</a></h2>
+<p><em>After knit run, read the app’s recorded row directly through KNIT_LAST_RUN_UUID / KNIT_LAST_RUN_TABLE.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_UUID</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_TABLE</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_UUID</span></code>, <code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_TABLE</span></code>, <code class="docutils literal notranslate"><span class="pre">knit_output</span></code></p>
+<p>An app records its outputs on its own row, in the app’s own table. A job body that
+launched the app with <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> often needs one of those values back — a
+metric to branch on, a path to pass along. <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> leaves two handles in the
+job body’s shell for exactly this:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-4-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-4">
+Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-4-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nd">@job</span><span class="w"> </span><span class="s2">"evaluate"</span><span class="w"> </span><span class="s2">"Launch the train app, then read back what it recorded."</span>
+_evaluate_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Launch the app. One local rank is enough for this example; a real job would</span>
+<span class="w">    </span><span class="c1"># derive --procs from its allocation (see "Launch an app from a job").</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--launcher<span class="w"> </span>none<span class="w"> </span>--procs<span class="w"> </span><span class="m">1</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--epochs<span class="w"> </span><span class="m">3</span>
+
+<span class="w">    </span><span class="c1"># KNIT_LAST_RUN_UUID / KNIT_LAST_RUN_TABLE name the row the app just recorded,</span>
+<span class="w">    </span><span class="c1"># in the app's own table, so a single query reads the metric back.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>accuracy
+<span class="w">    </span><span class="nv">accuracy</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit</span><span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"SELECT accuracy FROM </span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_TABLE</span><span class="si">}</span><span class="s2"> WHERE id='</span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_UUID</span><span class="si">}</span><span class="s2">'"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'the train app recorded accuracy=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">accuracy</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># The generic handle names the dispatcher's own row instead: after knit run</span>
+<span class="w">    </span><span class="c1"># that is the "runs" row (the launch itself), in the "runs" table.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'the launch is %s row %s\n'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_LAST_COMMAND_TABLE</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_LAST_COMMAND_UUID</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nd">@done</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+<label aria-controls="sd-tab-item-5-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-long" for="sd-tab-item-5">
+Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-5-content">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">knit_register_job</span><span class="w"> </span><span class="s2">"evaluate"</span><span class="w"> </span>_evaluate_job<span class="w"> </span><span class="s2">"Launch the train app, then read back what it recorded."</span>
+_evaluate_job<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="c1"># Launch the app. One local rank is enough for this example; a real job would</span>
+<span class="w">    </span><span class="c1"># derive --procs from its allocation (see "Launch an app from a job").</span>
+<span class="w">    </span><span class="nb">knit</span><span class="w"> </span>run<span class="w"> </span>--launcher<span class="w"> </span>none<span class="w"> </span>--procs<span class="w"> </span><span class="m">1</span><span class="w"> </span>--procs-per-node<span class="w"> </span><span class="m">1</span><span class="w"> </span>--<span class="w"> </span>train<span class="w"> </span>--epochs<span class="w"> </span><span class="m">3</span>
+
+<span class="w">    </span><span class="c1"># KNIT_LAST_RUN_UUID / KNIT_LAST_RUN_TABLE name the row the app just recorded,</span>
+<span class="w">    </span><span class="c1"># in the app's own table, so a single query reads the metric back.</span>
+<span class="w">    </span><span class="nb">local</span><span class="w"> </span>accuracy
+<span class="w">    </span><span class="nv">accuracy</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit</span><span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"SELECT accuracy FROM </span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_TABLE</span><span class="si">}</span><span class="s2"> WHERE id='</span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_UUID</span><span class="si">}</span><span class="s2">'"</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'the train app recorded accuracy=%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">accuracy</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="w">    </span><span class="c1"># The generic handle names the dispatcher's own row instead: after knit run</span>
+<span class="w">    </span><span class="c1"># that is the "runs" row (the launch itself), in the "runs" table.</span>
+<span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'the launch is %s row %s\n'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_LAST_COMMAND_TABLE</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">KNIT_LAST_COMMAND_UUID</span><span class="si">}</span><span class="s2">"</span>
+<span class="o">}</span>
+<span class="nb">knit_done</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_UUID</span></code> is the id of the row the app recorded and
+<code class="docutils literal notranslate"><span class="pre">KNIT_LAST_RUN_TABLE</span></code> is the app’s table, so one query reads the metric back —
+no stdout parsing, no provenance walk:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">accuracy</span><span class="o">=</span><span class="k">$(</span><span class="nb">knit</span><span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT accuracy FROM </span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_TABLE</span><span class="si">}</span><span class="s2"> WHERE id='</span><span class="si">${</span><span class="nv">KNIT_LAST_RUN_UUID</span><span class="si">}</span><span class="s2">'"</span><span class="k">)</span>
+</pre></div>
+</div>
+<p>These handles name the <strong>app</strong> row, one <code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">-&gt;</span> <span class="pre">run:&lt;app&gt;</span></code> call edge away from
+the launch, not the <code class="docutils literal notranslate"><span class="pre">runs</span></code> row. For the dispatcher’s own row instead, the generic
+<code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_UUID</span></code> / <code class="docutils literal notranslate"><span class="pre">KNIT_LAST_COMMAND_TABLE</span></code> name the last row <em>any</em>
+command recorded in this process — after <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> that is the <code class="docutils literal notranslate"><span class="pre">runs</span></code> row,
+and after a <code class="docutils literal notranslate"><span class="pre">metadata</span> <span class="pre">store</span></code> the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> row, and so on.</p>
+<p>Both run handles are left empty when a run records no app row (an app that opted
+out of recording a failed invocation), so a job body never reads a stale handle
+from an earlier run.</p>
+</section>
 <section id="control-process-placement">
 <span id="stitch-control-process-placement"></span><h2>Control process placement<a class="headerlink" href="#control-process-placement" title="Link to this heading">#</a></h2>
 <p><em>Shape how knit run places ranks with –procs, –procs-per-node, –hostnames, and per-rank CPU/GPU binding options.</em></p>
@@ -829,6 +906,7 @@ launcher command line unchanged, after the flags knit generates.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#register-an-mpi-app">Register an MPI app</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-a-rank-s-place-in-the-mpi-world">Read a rank’s place in the MPI world</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-an-app-from-a-job">Launch an app from a job</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-an-app-s-recorded-output">Read an app’s recorded output</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-process-placement">Control process placement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pick-a-launcher-backend">Pick a launcher backend</a></li>
 </ul>

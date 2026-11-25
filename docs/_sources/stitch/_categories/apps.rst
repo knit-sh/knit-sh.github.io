@@ -36,6 +36,17 @@ Launch an app from a job
 
 .. include:: /stitch/recipes/launch-an-app-from-a-job.rst
 
+.. _stitch-read-an-apps-recorded-output:
+
+Read an app's recorded output
+-----------------------------
+
+*After knit run, read the app's recorded row directly through KNIT_LAST_RUN_UUID / KNIT_LAST_RUN_TABLE.*
+
+**APIs:** ``run``, ``KNIT_LAST_RUN_UUID``, ``KNIT_LAST_RUN_TABLE``, ``KNIT_LAST_COMMAND_UUID``, ``KNIT_LAST_COMMAND_TABLE``, ``knit_output``
+
+.. include:: /stitch/recipes/read-an-apps-recorded-output.rst
+
 .. _stitch-control-process-placement:
 
 Control process placement

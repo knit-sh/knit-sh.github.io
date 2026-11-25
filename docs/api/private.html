@@ -692,6 +692,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_COMMAND"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_COMMAND</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_START_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_START_TIME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INJECTED_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_INJECTED_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_ARGS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_CMD"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_CMD</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_END_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_END_TIME</span></code></a></li>
@@ -2036,14 +2037,14 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_run_checksum_outputs">
 <span class="target" id="app_8sh_1ada4a33d1784b3e1e34f386f66c073396"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_run_checksum_outputs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_run_checksum_outputs" title="Link to this definition">#</a><br /></dt>
 <dd><p>Verify existence of, and hash, every checksummed file/directory output of an app once, on the login side, after the launcher returns — never on a rank. An app's body runs on every rank, but only rank 0 records the per-app row, and it records only the output paths (the checksum columns are left empty by the M4 output hook, which no-ops in an app worker). Hashing here, after launch, keeps it off every rank and out of every measured duration: hashing on rank 0 would keep the launcher blocked while the other ranks idle at finalize, inflating the run's measured wall-clock.</p>
-<p>Rank 0's per-app row is found through the provenance graph: the &quot;run -&gt; run:app&quot; call edge (source_id is this run's UUID) points at the row's id. For each checksummed output, the recorded path is read back from that row, its existence verified, the digest computed, and the row's companion &quot;&lt;param&gt;_checksum&quot; column updated. An output left with no value, or one that opted out with --no-checksum, is skipped. When nothing was recorded (recording disabled, or no such row) this is a no-op.</p>
+<p>Rank 0's per-app row id is passed in directly: the <code class="docutils literal notranslate"><span class="pre">run</span></code> dispatcher pre-mints it and injects it into rank 0, so it holds the id without a provenance read-back. For each checksummed output, the recorded path is read back from that row, its existence verified, the digest computed, and the row's companion &quot;&lt;param&gt;_checksum&quot; column updated. An output left with no value (including when nothing was recorded — recording disabled, or no such row), or one that opted out with --no-checksum, is skipped.</p>
 <p>When tolerant is &quot;false&quot; (a successful run) a missing output is fatal (a broken postcondition). When tolerant is &quot;true&quot; (a FAILED run whose row survives) a missing output is skipped instead — a failed app may have produced only some outputs — while one that IS present is still hashed and recorded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>subcmd</strong> -- <strong>[in]</strong> Mangled app command name (run:&lt;app&gt;). </p></li>
 <li><p><strong>app_name</strong> -- <strong>[in]</strong> The app name (its table is named after it). </p></li>
-<li><p><strong>run_uuid</strong> -- <strong>[in]</strong> This run's UUID (source of the provenance edge to the row). </p></li>
+<li><p><strong>row_id</strong> -- <strong>[in]</strong> The per-app row's id (pre-minted by the dispatcher). </p></li>
 <li><p><strong>tolerant</strong> -- <strong>[in]</strong> &quot;true&quot; to skip (not fatal on) a missing output; default &quot;false&quot; enforces existence. </p></li>
 </ul>
 </dd>
@@ -4148,8 +4149,8 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_resolve_row_id">
 <span class="target" id="cli_8sh_1a44b782d66cde1ffdfc168b0deed5e2d0"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_resolve_row_id</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_resolve_row_id" title="Link to this definition">#</a><br /></dt>
-<dd><p>Resolve the row id for an invocation of a command, used when its frame is pushed onto <em>KNIT_EXECUTING_ROW_ID. The precedence is: an explicit id already set via knit_set_row_id (_KNIT_CMD</em>&lt;cmd&gt;_row_id), otherwise a fresh uuidv7.</p>
-<p>Every invocation gets its own distinct id: the historical couplings that made a job body reuse its submission's UUID (KNIT_JOB_PREFIX) and an app's rank-0 row reuse its run's UUID (KNIT_RUN_ID) are gone — the provenance edge, not a shared id, links a child back to its parent.</p>
+<dd><p>Resolve the row id for an invocation of a command, used when its frame is pushed onto <em>KNIT_EXECUTING_ROW_ID. The precedence is: a single-use id injected for this command (_KNIT_INJECTED_ROW_ID, consumed here), otherwise a fresh uuidv7. (_KNIT_CMD</em>&lt;cmd&gt;_row_id, set via knit_set_row_id, is unset per invocation before this runs, so it carries an id only when set from within the frame's own body, not across the push.)</p>
+<p>Every invocation gets its own distinct id: the historical couplings that made a job body reuse its submission's UUID (KNIT_JOB_PREFIX) and an app's rank-0 row reuse its run's UUID (KNIT_RUN_ID) are gone — the provenance edge, not a shared id, links a child back to its parent. An injected id (used by the <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> worker so the per-app row adopts the dispatcher's pre-minted id) is still distinct from the caller's id; it is injection, not sharing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -4243,6 +4244,12 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._KNIT_EXECUTING_START_TIME">
 <span class="target" id="cli_8sh_1a68f3a488419f95e45aab544ea0226b14"></span><span class="n"><span class="pre">Array</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_EXECUTING_START_TIME</span></span></span><a class="headerlink" href="#c._KNIT_EXECUTING_START_TIME" title="Link to this definition">#</a><br /></dt>
 <dd><p>Stack of start timestamps, parallel to _KNIT_EXECUTING_COMMAND: entry i holds the epoch seconds captured when frame i was pushed (before its body ran). _knit_record_invocation reads the top entry as the call edge's start_time and pairs it with an end_time captured at record time (after the body and after-callbacks), so an invocation's duration is a plain subtraction. </p>
+</dd></dl>
+
+<dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_INJECTED_ROW_ID">
+<span class="target" id="cli_8sh_1a816f870ad89f1f5d87d2b8f6a9cff28e"></span><span class="n"><span class="pre">AssociativeArray</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_INJECTED_ROW_ID</span></span></span><a class="headerlink" href="#c._KNIT_INJECTED_ROW_ID" title="Link to this definition">#</a><br /></dt>
+<dd><p>Single-use row ids injected for a command about to be invoked, keyed by mangled command name. <em>knit_resolve_row_id consumes (and removes) the entry when it pushes that command's frame, so the frame adopts the given id. Unlike _KNIT_CMD</em>&lt;cmd&gt;_row_id (which _knit_invoke_command unsets per invocation to clear stale state, so it cannot carry an id in from outside the frame), this map is untouched by that reset. The <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">run</span></code> worker uses it on rank 0 to make the per-app row record under the id the dispatcher pre-minted (KNIT_RUN_APP_ROW_ID). </p>
 </dd></dl>
 
 <dl class="c var">
@@ -12450,6 +12457,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_COMMAND"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_COMMAND</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_EXECUTING_START_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_EXECUTING_START_TIME</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INJECTED_ROW_ID"><code class="docutils literal notranslate"><span class="pre">_KNIT_INJECTED_ROW_ID</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_ARGS"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_ARGS</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_CMD"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_CMD</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_INVOCATION_END_TIME"><code class="docutils literal notranslate"><span class="pre">_KNIT_INVOCATION_END_TIME</span></code></a></li>

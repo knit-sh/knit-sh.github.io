@@ -461,6 +461,18 @@ Variables
 .. doxygenvariable:: KNIT_JOB_PREFIX
    :project: knit
 
+.. doxygenvariable:: KNIT_LAST_COMMAND_TABLE
+   :project: knit
+
+.. doxygenvariable:: KNIT_LAST_COMMAND_UUID
+   :project: knit
+
+.. doxygenvariable:: KNIT_LAST_RUN_TABLE
+   :project: knit
+
+.. doxygenvariable:: KNIT_LAST_RUN_UUID
+   :project: knit
+
 .. doxygenvariable:: KNIT_LOG_LEVEL
    :project: knit
 
