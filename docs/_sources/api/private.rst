@@ -1455,6 +1455,12 @@ Functions
 .. doxygenfunction:: _knit_launch_openmpi_host_slots
    :project: knit
 
+.. doxygenfunction:: _knit_launch_openmpi_hostfile_lines
+   :project: knit
+
+.. doxygenfunction:: _knit_launch_openmpi_hostfile_path
+   :project: knit
+
 launch_pals.sh
 --------------
 

@@ -1054,6 +1054,8 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_env_forward"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_env_forward()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_exec"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_exec()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_host_slots"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_host_slots()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_hostfile_lines"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_hostfile_lines()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_hostfile_path"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_hostfile_path()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -7290,9 +7292,10 @@ compatibility guarantee.</p>
 <p>--procs N -&gt; -n N --procs-per-node M -&gt; --npernode M --hostnames h0,h1 -&gt; --host h0:S,h1:S (S = per-host slot count) --cpus-per-proc N -&gt; --map-by slot:PE=N --bind V -&gt; --bind-to &lt;V&gt; (V normalized by _knit_launch_bind_value) --launcher-args … -&gt; appended verbatim after the placement flags</p>
 <p>GPU placement (--gpus-per-proc / --gpu-bind) has no portable mpirun flag, so it is warned about and skipped; reach GPU affinity through --launcher-args. Note that --map-by slot:PE=N may conflict with --npernode (--procs-per-node), which is itself a mapping directive; this translation is best-effort (there is no live CI for it) and --launcher-args is the escape hatch if a site needs a different mapping.</p>
 <p>The slot suffix on each --host entry is essential: mpirun's bare &quot;--host h0,h1&quot; advertises only one slot per host (a documented Open MPI default), so &quot;-n 4&quot; over two such hosts fails with &quot;not enough slots&quot; even inside a matching Slurm/PBS allocation, because an explicit --host overrides the resource manager's slot counts. Annotating each host with S slots (S = --procs-per-node when set, else ceil(procs / nhosts)) states the intended per-host capacity so the requested rank count fits. This is also what a plain SSH/none-scheduler cluster needs, where there is no resource manager to supply slots at all.</p>
-<p><p>Exception — Open MPI built with PBS TM integration (--with-tm): inside a PBS job Open MPI's tm RAS already knows the allocated nodes and their slot counts, and an explicit --host (with or without slot suffixes) conflicts with it — the mapper rejects the placement (&quot;requested more processes than the ppr ... can</p>
-<p>support&quot;, or &quot;not enough slots&quot;). So when $PBS_NODEFILE is set the --host flag is omitted entirely and the allocation is left to TM; -n / --npernode still control the rank count and per-node distribution. (Slurm's PLM, by contrast, tolerates the redundant --host and needs it to honour a strict host subset, so it is kept there.) A strict host</p>
-<em>subset</em> of a PBS allocation via --hostnames is therefore not expressible to this backend; use MPICH there.</p>
+<p><p>Exception — inside a PBS job ($PBS_NODEFILE set) placement goes through --hostfile, not --host. An explicit --host conflicts with the tm mapper of an Open MPI built --with-tm: the mapper rejects it (&quot;requested more processes than</p>
+<p>the ppr ... can support&quot;, or &quot;all nodes which are allocated for this job are</p>
+<p>already filled&quot;). --hostfile does not conflict — it filters the job's allocation down to the listed hosts, which is exactly the strict subset a pilot sub-job needs (its one assigned node). This was validated both ways: on a tm-integrated Open MPI (the integration PBS cluster, where --host fails and --hostfile places correctly) and on a tm-less site build (Improv, where a bare mpirun ignores the allocation and needs explicit placement). The hostfile is written per run — slot-annotated the same way as the --host path — and removed when the launch returns. (Slurm's PLM, by contrast, keeps the --host form, which it tolerates and needs to honour a strict subset.)</p>
+</p>
 <p>Placement is resolved and validated upstream by the run dispatcher; this backend only formats the resolved triple into an argument vector.</p>
 <p>Environment forwarding: unlike srun and MPICH's Hydra, which pass the launching environment to every rank, mpirun forwards nothing to ranks it starts on other nodes over SSH. The ranks on the launching node inherit the job's environment by fork, but the remote ranks would start with a bare login environment and lose the surrounding job's environment (KNIT_* variables and the setup env). So _knit_launch_openmpi_exec forwards the environment explicitly with mpirun's -x, skipping the variables that must stay per-rank or per-host (the launcher's own rank/PMI variables and shell-local values); see _knit_launch_openmpi_env_forward.</p>
 <p>Build the value of mpirun's --host flag from a comma-separated host list, annotating each host with a per-host slot count so the requested rank count fits (see the file header for why bare --host is not enough). The slot count is --procs-per-node when set; otherwise it is derived as ceil(procs / nhosts) so procs ranks spread across the hosts. When neither procs-per-node nor procs is known, the hosts are emitted unannotated (nothing to size them by).</p>
@@ -7302,6 +7305,35 @@ compatibility guarantee.</p>
 <li><p><strong>hosts</strong> -- <strong>[in]</strong> Comma-separated host list (the resolved --hostnames value). </p></li>
 <li><p><strong>ppn</strong> -- <strong>[in]</strong> Resolved --procs-per-node value (may be empty). </p></li>
 <li><p><strong>procs</strong> -- <strong>[in]</strong> Resolved --procs value (may be empty). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_launch_openmpi_hostfile_lines">
+<span class="target" id="launch__openmpi_8sh_1af0f0ddc2eb7f3c73e7a195566fe7709a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_launch_openmpi_hostfile_lines</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_launch_openmpi_hostfile_lines" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return, by nameref, the contents of an Open MPI hostfile (one &quot;host slots=N&quot; line per host) for the resolved host list, used by the --hostfile placement under PBS. The slot count is sized exactly as the --host path (_knit_launch_openmpi_host_slots): --procs-per-node when set, else ceil(procs / nhosts); when neither is known the hosts are emitted bare.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_lines</strong> -- <strong>[out]</strong> Nameref set to the newline-terminated hostfile text. </p></li>
+<li><p><strong>hosts</strong> -- <strong>[in]</strong> Comma-separated host list (the resolved --hostnames value). </p></li>
+<li><p><strong>ppn</strong> -- <strong>[in]</strong> Resolved --procs-per-node value (may be empty). </p></li>
+<li><p><strong>procs</strong> -- <strong>[in]</strong> Resolved --procs value (may be empty). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_launch_openmpi_hostfile_path">
+<span class="target" id="launch__openmpi_8sh_1a9711cc81068bb9e5ade64de0f98badfd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_launch_openmpi_hostfile_path</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_launch_openmpi_hostfile_path" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return, by nameref, the path of the per-run Open MPI hostfile used for the --hostfile placement under PBS. It is keyed on the launching shell's PID so the cmdline builder (which records the native command) and the exec function (which writes and later removes the file) agree on one path; $$ is stable across the launcher subshell that runs mpirun.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out_path</strong> -- <strong>[out]</strong> Nameref set to the hostfile path. </p></li>
 </ul>
 </dd>
 </dl>
@@ -12794,6 +12826,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_env_forward"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_env_forward()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_exec"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_exec()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_host_slots"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_host_slots()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_hostfile_lines"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_hostfile_lines()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_launch_openmpi_hostfile_path"><code class="docutils literal notranslate"><span class="pre">_knit_launch_openmpi_hostfile_path()</span></code></a></li>
 </ul>
 </li>
 </ul>
