@@ -2148,9 +2148,6 @@ Functions
 .. doxygenfunction:: _knit_resource_fetch_body
    :project: knit
 
-.. doxygenfunction:: _knit_resource_make_readonly
-   :project: knit
-
 .. doxygenfunction:: _knit_resource_param_type
    :project: knit
 

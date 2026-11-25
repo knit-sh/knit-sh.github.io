@@ -1354,7 +1354,6 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_dep_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_resource_dep_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_dep_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_resource_dep_before_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_fetch_body"><code class="docutils literal notranslate"><span class="pre">_knit_resource_fetch_body()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_make_readonly"><code class="docutils literal notranslate"><span class="pre">_knit_resource_make_readonly()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_param_type"><code class="docutils literal notranslate"><span class="pre">_knit_resource_param_type()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_resource_record_used_by_edge()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_require_registration"><code class="docutils literal notranslate"><span class="pre">_knit_resource_require_registration()</span></code></a></li>
@@ -9732,7 +9731,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_fetch_git">
 <span class="target" id="resource_8sh_1a6e83715adc8356c4442eb13731966645"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_fetch_git</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_fetch_git" title="Link to this definition">#</a><br /></dt>
-<dd><p>Git backend: clone &lt;url&gt; into &lt;dest&gt;, check out &lt;ref&gt;, and print the resolved commit SHA (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rev-parse</span> <span class="pre">HEAD</span></code>) to stdout so a mutable ref is pinned to the commit actually obtained. The clone and checkout write their progress to stderr (redirected here so stdout carries only the SHA), and the resulting tree is made read-only. Returns non-zero (leaving cleanup to the caller) if git is missing or any step fails.</p>
+<dd><p>Git backend: clone &lt;url&gt; into &lt;dest&gt;, check out &lt;ref&gt;, and print the resolved commit SHA (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rev-parse</span> <span class="pre">HEAD</span></code>) to stdout so a mutable ref is pinned to the commit actually obtained. The clone and checkout write their progress to stderr (redirected here so stdout carries only the SHA). Returns non-zero (leaving cleanup to the caller) if git is missing or any step fails.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -9747,13 +9746,13 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_fetch_local">
 <span class="target" id="resource_8sh_1a371b2dbb16c83c8a7615653c950aaecd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_fetch_local</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_fetch_local" title="Link to this definition">#</a><br /></dt>
-<dd><p>Local backend: materialize &lt;dest&gt; from a local source &lt;src&gt;. By default &lt;dest&gt; is a symlink to &lt;src&gt; (so a large already-staged dataset is not duplicated), left writable through its target. With &lt;copy&gt; = &quot;true&quot; the source is copied into a self-contained snapshot which is then made read-only. The source path is resolved to an absolute path first, so a symlink instance does not depend on the caller's working directory. When &lt;expected&gt; is a non-empty knit_with_checksum pin the instance's sha256 (of the file, or a recursive digest of a directory) is checked against it and a mismatch fails the fetch. Returns non-zero (leaving cleanup to the caller) if the source is missing or a step fails.</p>
+<dd><p>Local backend: materialize &lt;dest&gt; from a local source &lt;src&gt;. By default &lt;dest&gt; is a symlink to &lt;src&gt; (so a large already-staged dataset is not duplicated), left writable through its target. With &lt;copy&gt; = &quot;true&quot; the source is copied into a self-contained snapshot. The source path is resolved to an absolute path first, so a symlink instance does not depend on the caller's working directory. When &lt;expected&gt; is a non-empty knit_with_checksum pin the instance's sha256 (of the file, or a recursive digest of a directory) is checked against it and a mismatch fails the fetch. Returns non-zero (leaving cleanup to the caller) if the source is missing or a step fails.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dest</strong> -- <strong>[in]</strong> Path to create for the instance (must not already exist). </p></li>
 <li><p><strong>src</strong> -- <strong>[in]</strong> Local source path (file or directory) to link or copy. </p></li>
-<li><p><strong>copy</strong> -- <strong>[in]</strong> &quot;true&quot; to copy a read-only snapshot, &quot;false&quot; to symlink the source. </p></li>
+<li><p><strong>copy</strong> -- <strong>[in]</strong> &quot;true&quot; to copy a self-contained snapshot, &quot;false&quot; to symlink the source. </p></li>
 <li><p><strong>expected</strong> -- <strong>[in]</strong> Expected sha256 to verify, or &quot;&quot; to skip verification. </p></li>
 </ul>
 </dd>
@@ -9763,7 +9762,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_fetch_url">
 <span class="target" id="resource_8sh_1aceb5afe8383913890faed4b8b2c01932"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_fetch_url</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_fetch_url" title="Link to this definition">#</a><br /></dt>
-<dd><p>URL backend: download &lt;url&gt; with curl into &lt;dest&gt;, optionally unpacking it. The artifact is saved under its URL basename; when &lt;uncompress&gt; is &quot;true&quot; it is extracted with <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xf</span></code> (auto-detecting gzip/bzip2/xz) and the archive is then removed, so the instance holds the unpacked tree. curl uses -f so an HTTP error fails the fetch. When &lt;expected&gt; is a non-empty knit_with_checksum pin the downloaded archive's sha256 is checked against it (before it is unpacked or removed) and a mismatch fails the fetch. The resulting instance is made read-only. Returns non-zero (leaving cleanup to the caller) on any failed step.</p>
+<dd><p>URL backend: download &lt;url&gt; with curl into &lt;dest&gt;, optionally unpacking it. The artifact is saved under its URL basename; when &lt;uncompress&gt; is &quot;true&quot; it is extracted with <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xf</span></code> (auto-detecting gzip/bzip2/xz) and the archive is then removed, so the instance holds the unpacked tree. curl uses -f so an HTTP error fails the fetch. When &lt;expected&gt; is a non-empty knit_with_checksum pin the downloaded archive's sha256 is checked against it (before it is unpacked or removed) and a mismatch fails the fetch. Returns non-zero (leaving cleanup to the caller) on any failed step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -9807,7 +9806,7 @@ If the function has a return type:
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_resource_cleanup_dir">
 <span class="target" id="resource_8sh_1a0ff717c97cbf05550f6f06afd5229f47"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_resource_cleanup_dir</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_resource_cleanup_dir" title="Link to this definition">#</a><br /></dt>
-<dd><p>Remove a partial or failed instance at &lt;dir&gt;, restoring write permission first so a read-only tree (see _knit_resource_make_readonly) can be deleted. A symlink instance is unlinked without touching its target. A no-op when &lt;dir&gt; is empty or does not exist, so it is safe to call unconditionally on any failure path.</p>
+<dd><p>Remove a partial or failed instance at &lt;dir&gt;, restoring write permission first so any source files that arrived read-only (e.g. a git clone's pack objects) can be deleted. A symlink instance is unlinked without touching its target. A no-op when &lt;dir&gt; is empty or does not exist, so it is safe to call unconditionally on any failure path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -9872,19 +9871,6 @@ If the function has a return type:
 <span class="target" id="resource_8sh_1a2d819f57a1a079e67bfb9d14cfd8cf6f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_resource_fetch_body</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_resource_fetch_body" title="Link to this definition">#</a><br /></dt>
 <dd><p>Shared body registered for every resource type (the function every <code class="docutils literal notranslate"><span class="pre">fetch:&lt;type&gt;</span></code> command runs). It reads the type's declared download method from the per-command marker (<em>KNIT_CMD</em>&lt;cmd&gt;_fetch_method) and dispatches to the matching backend, materializing the instance at KNIT_RESOURCE_PREFIX (the target path the <code class="docutils literal notranslate"><a class="reference internal" href="public.html#main_8sh_1a729318cc83f92a48e5591a721e5b2b42"><span class="std std-ref"><span class="pre">knit</span></span></a> <span class="pre">fetch</span></code> dispatcher exports; it must not already exist, since each backend creates it). The git backend's resolved commit SHA is recorded as the &quot;commit&quot; output. On any backend failure the partial instance is removed and the body returns non-zero so the dispatcher aborts without recording a row.</p>
 <p>When the type declares knit_with_checksum and the pin still applies (the source defaults are unchanged), the dispatcher exports it as KNIT_RESOURCE_EXPECTED_- CHECKSUM; the body verifies it — the git commit SHA directly, and the url/local artifacts through their backends — unless the fetch bypassed it with --ignore-checksum (KNIT_IGNORE_CHECKSUM). A mismatch fails the fetch. </p>
-</dd></dl>
-
-<dl class="c function">
-<dt class="sig sig-object c" id="c._knit_resource_make_readonly">
-<span class="target" id="resource_8sh_1ae02953a3d9c3ca898ba528bbc5caa7f4"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_resource_make_readonly</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_resource_make_readonly" title="Link to this definition">#</a><br /></dt>
-<dd><p>Make a fetched instance tree read-only so consumers cannot mutate a shared input: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">-R</span> <span class="pre">a-w</span></code> clears the write bit for everyone while preserving the existing read and execute bits. Applied by the git and url backends and by the local backend's --copy path; a symlinked local instance is deliberately left alone (its target stays owned and writable by whoever staged it).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dir</strong> -- <strong>[in]</strong> Path to the instance tree (or file) to make read-only. </p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="c function">
@@ -13126,7 +13112,6 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_dep_after_cb"><code class="docutils literal notranslate"><span class="pre">_knit_resource_dep_after_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_dep_before_cb"><code class="docutils literal notranslate"><span class="pre">_knit_resource_dep_before_cb()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_fetch_body"><code class="docutils literal notranslate"><span class="pre">_knit_resource_fetch_body()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_make_readonly"><code class="docutils literal notranslate"><span class="pre">_knit_resource_make_readonly()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_param_type"><code class="docutils literal notranslate"><span class="pre">_knit_resource_param_type()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_record_used_by_edge"><code class="docutils literal notranslate"><span class="pre">_knit_resource_record_used_by_edge()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_resource_require_registration"><code class="docutils literal notranslate"><span class="pre">_knit_resource_require_registration()</span></code></a></li>

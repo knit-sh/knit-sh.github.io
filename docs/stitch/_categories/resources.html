@@ -523,10 +523,9 @@ everything after <code class="docutils literal notranslate"><span class="pre">--
 </div>
 <p>The instance lands at <code class="docutils literal notranslate"><span class="pre">resources/&lt;name&gt;</span></code> and is recorded in the type’s table for
 provenance. Fetching is idempotent by name: re-fetching <code class="docutils literal notranslate"><span class="pre">sample</span></code> from the same
-source does nothing, while a different source under the same name is refused. A
-downloaded or copied instance is made read-only so a shared input cannot be
-mutated. <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">fetch</span></code> prints the instance path on stdout (logging is on stderr),
-but commands normally consume a resource by name (see <em>Consume a resource in a
+source does nothing, while a different source under the same name is refused.
+<code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">fetch</span></code> prints the instance path on stdout (logging is on stderr), but
+commands normally consume a resource by name (see <em>Consume a resource in a
 command</em>).</p>
 </section>
 <section id="consume-a-resource-in-a-command">
