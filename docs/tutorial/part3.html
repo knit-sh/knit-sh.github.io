@@ -527,8 +527,9 @@ accuracy.</p>
 <p>Part I provisioned a C++ toolchain with the <strong>Spack</strong> plugin. An ML stack is a
 better fit for <strong>uv</strong>, so Part III imports that plugin instead and declares a
 uv-backed setup. The setup names one requirement — the <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span></code> package,
-installed directly from its Git repository — and has no body of its own; uv
-building and activating the environment is all it does:</p>
+installed directly from its Git repository and pinned to the immutable tag
+<code class="docutils literal notranslate"><span class="pre">&#64;v1.0.0</span></code> so every reproducer builds the same code — and has no body of its
+own; uv building and activating the environment is all it does:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
@@ -541,7 +542,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content"
 <span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
 <span class="c1"># all it does --- so @empty stands in for the body function.</span>
 <span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
-<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
 <span class="nd">@empty</span>
 <span class="nd">@done</span>
 </pre></div>
@@ -558,7 +559,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content"
 <span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
 <span class="c1"># all it does --- so @empty stands in for the body function.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
-<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
 <span class="nb">knit_done</span>
 </pre></div>
 </div>
@@ -1373,7 +1374,7 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content
 <span class="c1"># --- Setup ------------------------------------------------------------------</span>
 <span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
 <span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
-<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
 <span class="nd">@empty</span>
 <span class="nd">@done</span>
 
@@ -1544,7 +1545,7 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content
 <span class="c1"># --- Setup ------------------------------------------------------------------</span>
 <span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
 <span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
-<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git"</span>
+<span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
 <span class="nb">knit_done</span>
 
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
