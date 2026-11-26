@@ -102,6 +102,17 @@ Use the host's sqlite/jq instead of the bundled copies
 
 .. include:: /stitch/recipes/bootstrap-bundled-tools.rst
 
+.. _stitch-bootstrap-tool-cache:
+
+Reuse provisioned tools across bootstraps with the tool cache
+-------------------------------------------------------------
+
+*Cache the built sqlite/jq/transpiler/pilotd under ~/.cache/knit so re-bootstrapping is offline and free.*
+
+**APIs:** ``bootstrap``
+
+.. include:: /stitch/recipes/bootstrap-tool-cache.rst
+
 .. _stitch-bootstrap-pin-cypher-to-sql:
 
 Pin the knit-cypher-to-sql version

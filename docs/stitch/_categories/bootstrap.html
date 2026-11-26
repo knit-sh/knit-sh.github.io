@@ -461,6 +461,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-host-s-sqlite-jq-instead-of-the-bundled-copies">Use the host’s sqlite/jq instead of the bundled copies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-provisioned-tools-across-bootstraps-with-the-tool-cache">Reuse provisioned tools across bootstraps with the tool cache</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-knit-cypher-to-sql-version">Pin the knit-cypher-to-sql version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-configuration-by-re-running-bootstrap">Update configuration by re-running bootstrap</a></li>
 </ul>
@@ -662,6 +663,43 @@ falls back to the default build/download when it is not. Prefer the default on a
 cluster; reach for <code class="docutils literal notranslate"><span class="pre">--use-system-*</span></code> only when the same binary is guaranteed on
 every node your jobs run on.</p>
 </section>
+<section id="reuse-provisioned-tools-across-bootstraps-with-the-tool-cache">
+<span id="stitch-bootstrap-tool-cache"></span><h2>Reuse provisioned tools across bootstraps with the tool cache<a class="headerlink" href="#reuse-provisioned-tools-across-bootstraps-with-the-tool-cache" title="Link to this heading">#</a></h2>
+<p><em>Cache the built sqlite/jq/transpiler/pilotd under ~/.cache/knit so re-bootstrapping is offline and free.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> builds its own <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> from source and downloads
+<code class="docutils literal notranslate"><span class="pre">jq</span></code>, the <code class="docutils literal notranslate"><span class="pre">knit-cypher-to-sql</span></code> transpiler, and <code class="docutils literal notranslate"><span class="pre">knit-pilotd</span></code> (see <em>Use the
+host’s sqlite/jq instead of the bundled copies</em>). Doing that from scratch for
+every fresh <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> is slow, and a hard stop when the host is offline or
+rate-limited.</p>
+<p>Knit caches these four tools once, in a shared, per-user cache, and installs from
+it on every later bootstrap. The cache lives under
+<code class="docutils literal notranslate"><span class="pre">${XDG_CACHE_HOME:-~/.cache}/knit/tools</span></code> — a sibling of the plugin cache —
+and holds two layers: the downloaded sources (so a rebuild skips the download)
+and the built binaries (so a re-provision skips the compile and just copies the
+tree into <code class="docutils literal notranslate"><span class="pre">.knit/</span></code>). A built-binary entry is keyed by tool version, platform,
+and C toolchain, so it is only ever installed on a matching host; a cached binary
+that fails to run is discarded and rebuilt.</p>
+<p>The cache is automatic — the first bootstrap populates it, and the next one is
+fast:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w">          </span><span class="c1"># builds the tools, fills the cache</span>
+<span class="gp">$ </span>rm<span class="w"> </span>-rf<span class="w"> </span>.knit
+<span class="gp">$ </span><span class="nv">KNIT_OFFLINE</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./exp.sh<span class="w"> </span>bootstrap<span class="w">   </span><span class="c1"># reinstalls from the cache, no network</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">KNIT_OFFLINE=1</span></code> forbids every download, so the second bootstrap can only
+succeed by installing from the warm cache. This is the minimal re-provisioning a
+reproducer runs after extracting a bundle, whose pruned <code class="docutils literal notranslate"><span class="pre">.knit/</span></code> ships the
+database but not the tools.</p>
+<p>To bypass the cache — a host where <code class="docutils literal notranslate"><span class="pre">~/.cache</span></code> is unwritable, shared in a way
+you distrust, or holding a bad entry — set <code class="docutils literal notranslate"><span class="pre">KNIT_TOOL_CACHE=0</span></code>. Every tool is
+then downloaded and built fresh and nothing is cached. Combining
+<code class="docutils literal notranslate"><span class="pre">KNIT_TOOL_CACHE=0</span></code> with <code class="docutils literal notranslate"><span class="pre">KNIT_OFFLINE=1</span></code> is a contradiction (no cache and no
+network) and stops with an error.</p>
+<p>The cache is a provisioning accelerator, not part of <code class="docutils literal notranslate"><span class="pre">.knit/</span></code>: it is never
+bundled, and <code class="docutils literal notranslate"><span class="pre">--use-system-sqlite</span></code> / <code class="docutils literal notranslate"><span class="pre">--use-system-jq</span></code> still bypass it by
+symlinking the host’s binaries.</p>
+</section>
 <section id="pin-the-knit-cypher-to-sql-version">
 <span id="stitch-bootstrap-pin-cypher-to-sql"></span><h2>Pin the knit-cypher-to-sql version<a class="headerlink" href="#pin-the-knit-cypher-to-sql-version" title="Link to this heading">#</a></h2>
 <p><em>Provision a specific knit-cypher-to-sql release, or one from a custom URL.</em></p>
@@ -761,6 +799,7 @@ here: a typed tool option that differs from the stored value rebuilds that tool.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-host-s-sqlite-jq-instead-of-the-bundled-copies">Use the host’s sqlite/jq instead of the bundled copies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reuse-provisioned-tools-across-bootstraps-with-the-tool-cache">Reuse provisioned tools across bootstraps with the tool cache</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-knit-cypher-to-sql-version">Pin the knit-cypher-to-sql version</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-configuration-by-re-running-bootstrap">Update configuration by re-running bootstrap</a></li>
 </ul>

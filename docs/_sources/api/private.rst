@@ -2733,6 +2733,51 @@ Variables
 .. doxygenvariable:: _KNIT_SWEEPS_TABLE
    :project: knit
 
+tool_cache.sh
+-------------
+
+Functions
+~~~~~~~~~
+
+.. doxygenfunction:: _knit_tool_cache_built_path
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_cache_enabled
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_cache_fetch_source
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_cache_install
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_cache_publish_built
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_cache_source_path
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_download_curl
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_platform
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_smoke_test
+   :project: knit
+
+.. doxygenfunction:: _knit_tool_toolchain_id
+   :project: knit
+
+Variables
+~~~~~~~~~
+
+.. doxygenvariable:: _KNIT_TOOL_CACHE_ROOT
+   :project: knit
+
+.. doxygenvariable:: _KNIT_TOOL_SMOKE_TIMEOUT
+   :project: knit
+
 types.sh
 --------
 
