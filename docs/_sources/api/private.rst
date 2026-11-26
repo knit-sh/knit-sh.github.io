@@ -246,6 +246,9 @@ Functions
 .. doxygenfunction:: _knit_bootstrap_update
    :project: knit
 
+.. doxygenfunction:: _knit_bootstrap_update_db_journal
+   :project: knit
+
 .. doxygenfunction:: _knit_bootstrap_update_db_lock
    :project: knit
 
@@ -295,6 +298,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_bundle_is_glob
+   :project: knit
+
+.. doxygenfunction:: _knit_bundle_portable_db
    :project: knit
 
 .. doxygenfunction:: _knit_bundle_print_list
@@ -2631,6 +2637,12 @@ sqlite.sh
 Functions
 ~~~~~~~~~
 
+.. doxygenfunction:: _knit_db_apply_journal_mode
+   :project: knit
+
+.. doxygenfunction:: _knit_db_journal_mode
+   :project: knit
+
 .. doxygenfunction:: _knit_db_lock_mode
    :project: knit
 
@@ -2647,6 +2659,9 @@ Variables
 ~~~~~~~~~
 
 .. doxygenvariable:: _KNIT_DATABASE
+   :project: knit
+
+.. doxygenvariable:: _KNIT_DB_JOURNAL_MODE
    :project: knit
 
 .. doxygenvariable:: _KNIT_DB_LOCK_MODE

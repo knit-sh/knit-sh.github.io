@@ -568,7 +568,10 @@ do nothing. But some HPC filesystems do not — for example, NERSC
 Perlmutter’s compute-node <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> — and there a job that writes to the
 database fails. If your experiment sits on such a filesystem, put it on a
 lock-capable filesystem (for example <code class="docutils literal notranslate"><span class="pre">$PSCRATCH</span></code>) or bootstrap with
-<code class="docutils literal notranslate"><span class="pre">--db-lock</span> <span class="pre">mkdir</span></code>. See the <em>Run on a filesystem without flock</em> stitch.</p>
+<code class="docutils literal notranslate"><span class="pre">--db-lock</span> <span class="pre">mkdir</span></code>. See the <em>Run on a filesystem without flock</em> stitch.
+Separately, if a single host runs many jobs at once and a read fails with
+<code class="docutils literal notranslate"><span class="pre">database</span> <span class="pre">is</span> <span class="pre">locked</span></code>, bootstrap with <code class="docutils literal notranslate"><span class="pre">--db-journal</span> <span class="pre">wal</span></code>; see the <em>Avoid
+“database is locked” with WAL</em> stitch.</p>
 </div>
 <p>Now run the command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>hello

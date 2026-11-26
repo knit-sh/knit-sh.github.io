@@ -632,7 +632,9 @@ default. If this experiment is on a shared filesystem that does not support
 <code class="docutils literal notranslate"><span class="pre">flock</span></code> — such as a compute-node <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> at some HPC centers — run it
 from a lock-capable filesystem (for example <code class="docutils literal notranslate"><span class="pre">$PSCRATCH</span></code>), or add
 <code class="docutils literal notranslate"><span class="pre">--db-lock</span> <span class="pre">mkdir</span></code> to <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>. See the <em>Run on a filesystem without
-flock</em> stitch.</p>
+flock</em> stitch. For heavy single-host concurrency (a read failing with
+<code class="docutils literal notranslate"><span class="pre">database</span> <span class="pre">is</span> <span class="pre">locked</span></code>), <code class="docutils literal notranslate"><span class="pre">--db-journal</span> <span class="pre">wal</span></code> is the companion option; see the
+<em>Avoid “database is locked” with WAL</em> stitch.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

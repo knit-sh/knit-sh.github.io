@@ -457,6 +457,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-where-setups-and-jobs-live">Choose where setups and jobs live</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-batch-scheduler">Select the batch scheduler</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-a-filesystem-without-flock">Run on a filesystem without flock</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-database-is-locked-with-wal">Avoid “database is locked” with WAL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>
@@ -581,6 +582,61 @@ time.</p></li>
 <p>You set the mechanism once, at bootstrap. To change it later, run <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>
 again with a different <code class="docutils literal notranslate"><span class="pre">--db-lock</span></code>. Knit rewrites the stored choice. There is
 nothing to migrate.</p>
+</section>
+<section id="avoid-database-is-locked-with-wal">
+<span id="stitch-bootstrap-db-journal"></span><h2>Avoid “database is locked” with WAL<a class="headerlink" href="#avoid-database-is-locked-with-wal" title="Link to this heading">#</a></h2>
+<p><em>Choose the database journal mode; use WAL when many processes on one host read and write at once.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p>
+<p>Under heavy concurrency — many jobs finishing at once, or a pilot being
+cancelled while its workers and the login side all touch the database — a
+<em>read</em> can fail with <code class="docutils literal notranslate"><span class="pre">Error:</span> <span class="pre">database</span> <span class="pre">is</span> <span class="pre">locked</span></code>. Knit serializes writers with
+a lock, but in the default rollback-journal mode a reader is blocked while a
+writer holds the database, and under a burst of writers that wait can exceed the
+busy timeout.</p>
+<p>SQLite’s write-ahead log (WAL) mode fixes this: a reader never blocks on a
+writer, and a writer never blocks readers. Turn it on at bootstrap:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>bootstrap<span class="w"> </span>--db-journal<span class="w"> </span>wal
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--db-journal</span></code> has two values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">delete</span></code> (default): SQLite’s rollback journal. Works everywhere, including
+across nodes and on network filesystems.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wal</span></code>: the write-ahead log. Readers never block on a writer.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>WAL works only on a single host.</strong> It coordinates readers and the writer
+through a shared-memory file, so every process that touches the database must
+run on the same machine. Use <code class="docutils literal notranslate"><span class="pre">wal</span></code> for single-host contention — a login
+node, a single-node pilot, a busy CI runner. Never use it across nodes or on a
+network filesystem; keep <code class="docutils literal notranslate"><span class="pre">delete</span></code> there.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--db-journal</span></code> is independent of <code class="docutils literal notranslate"><span class="pre">--db-lock</span></code> (which chooses how <em>writers</em>
+serialize), and the two compose:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Where the experiment runs</p></th>
+<th class="head"><p>Bootstrap with</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>One host, heavy read/write</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--db-journal</span> <span class="pre">wal</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Across nodes / network FS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--db-journal</span> <span class="pre">delete</span></code> (default)</p></td>
+</tr>
+<tr class="row-even"><td><p>Filesystem without <code class="docutils literal notranslate"><span class="pre">flock</span></code></p></td>
+<td><p>add <code class="docutils literal notranslate"><span class="pre">--db-lock</span> <span class="pre">mkdir</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You set the mode once, at bootstrap. To change it later, run <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> again
+with a different <code class="docutils literal notranslate"><span class="pre">--db-journal</span></code>; Knit converts the database in place (and a
+<code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">bundle</span></code> always ships a portable rollback-journal copy, so switching to
+<code class="docutils literal notranslate"><span class="pre">wal</span></code> never makes a bundle unreadable elsewhere).</p>
 </section>
 <section id="select-the-mpi-launcher">
 <span id="stitch-bootstrap-select-launcher"></span><h2>Select the MPI launcher<a class="headerlink" href="#select-the-mpi-launcher" title="Link to this heading">#</a></h2>
@@ -795,6 +851,7 @@ here: a typed tool option that differs from the stored value rebuilds that tool.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-where-setups-and-jobs-live">Choose where setups and jobs live</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-batch-scheduler">Select the batch scheduler</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-on-a-filesystem-without-flock">Run on a filesystem without flock</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#avoid-database-is-locked-with-wal">Avoid “database is locked” with WAL</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#select-the-mpi-launcher">Select the MPI launcher</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-project-wide-job-defaults">Set project-wide job defaults</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pin-the-spack-version">Pin the Spack version</a></li>

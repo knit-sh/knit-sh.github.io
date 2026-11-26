@@ -58,6 +58,17 @@ Run on a filesystem without flock
 
 .. include:: /stitch/recipes/bootstrap-db-lock.rst
 
+.. _stitch-bootstrap-db-journal:
+
+Avoid "database is locked" with WAL
+-----------------------------------
+
+*Choose the database journal mode; use WAL when many processes on one host read and write at once.*
+
+**APIs:** ``bootstrap``
+
+.. include:: /stitch/recipes/bootstrap-db-journal.rst
+
 .. _stitch-bootstrap-select-launcher:
 
 Select the MPI launcher

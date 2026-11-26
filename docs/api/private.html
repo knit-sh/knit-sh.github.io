@@ -549,6 +549,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_on_exit"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_on_exit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_relocate_path"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_relocate_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_journal"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_journal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_lock"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_lock()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_meta"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_meta()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_profile"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_profile()</span></code></a></li>
@@ -572,6 +573,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_escapes_root"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_escapes_root()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_expand_requires"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_expand_requires()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_is_glob"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_is_glob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_portable_db"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_portable_db()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_print_list"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_print_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_print_tree"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_print_tree()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_prune_paths"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_prune_paths()</span></code></a></li>
@@ -1579,6 +1581,8 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_apply_journal_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_apply_journal_mode()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_journal_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_journal_mode()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_lock_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_lock_mode()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_flock"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_flock()</span></code></a></li>
@@ -1587,6 +1591,7 @@
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_JOURNAL_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_JOURNAL_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_LOCK_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_LOCK_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
@@ -2585,13 +2590,34 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_bootstrap_update">
 <span class="target" id="boostrap_8sh_1adb85a59b85b60e2df50eef5c322a3b30"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bootstrap_update</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bootstrap_update" title="Link to this definition">#</a><br /></dt>
 <dd><p>Run bootstrap in update mode on an experiment that is already bootstrapped. It changes only the options the user typed on this call and leaves the database and every other setting untouched; it installs no destructive exit trap. A .knit/ directory without a database is malformed and fatals with a hint to remove it.</p>
-<p>It handles the free-to-update options (project, platform, account, default walltime, default cpus-per-node, default nodefile, scheduler, launcher), the AI provider options (--ai-*), each written per key so one AI field can change without clearing the rest, and the path-root options (--setup-path, --job-path, --resource-path), which relocate only when the current root is empty of its kind. It also handles the environment-manager options (any imported manager's, e.g. the spack plugin's --spack/--spack-packages, via _knit_env_update_all: add a manager when absent, or re-provision on a changed ref only while no environment is built) and --profile (a changed profile is out of scope and fatals), and the tooling options: --use-system-sqlite/--use-system-jq (switch a from-source/ downloaded tool to a system symlink), --db-lock (switch the database write-lock mechanism — pure configuration, no migration) and --knit-cypher-to-sql-version/--knit-cypher-to-sql-url (re-provision knit-cypher-to-sql on a changed version or URL). When no handled option was typed, it reports that there is nothing to update and succeeds.</p>
+<p>It handles the free-to-update options (project, platform, account, default walltime, default cpus-per-node, default nodefile, scheduler, launcher), the AI provider options (--ai-*), each written per key so one AI field can change without clearing the rest, and the path-root options (--setup-path, --job-path, --resource-path), which relocate only when the current root is empty of its kind. It also handles the environment-manager options (any imported manager's, e.g. the spack plugin's --spack/--spack-packages, via _knit_env_update_all: add a manager when absent, or re-provision on a changed ref only while no environment is built) and --profile (a changed profile is out of scope and fatals), and the tooling options: --use-system-sqlite/--use-system-jq (switch a from-source/ downloaded tool to a system symlink), --db-lock (switch the database write-lock mechanism — pure configuration, no migration), --db-journal (switch the database journal mode, converting the live database between the rollback journal and WAL) and --knit-cypher-to-sql-version/--knit-cypher-to-sql-url (re-provision knit-cypher-to-sql on a changed version or URL). When no handled option was typed, it reports that there is nothing to update and succeeds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>raw_args</strong> -- <strong>[in]</strong> Name of an array holding the raw, pre-expansion argument tokens (the caller's copy of _KNIT_INVOCATION_RAW_ARGS). </p></li>
 <li><p><strong>...</strong> -- <strong>[in]</strong> The expanded argument list (defaults injected), as read with knit_get_parameter. </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_bootstrap_update_db_journal">
+<span class="target" id="boostrap_8sh_1a4fd382a7b5550fb18a5124e4660b2753"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bootstrap_update_db_journal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bootstrap_update_db_journal" title="Link to this definition">#</a><br /></dt>
+<dd><p>Update-mode handler for --db-journal. When the option is typed and its value differs from the stored one (read from the .knit/db-journal marker, the source of truth), rewrite the marker, mirror the new value to metadata, clear the process journal-mode cache, and convert the live database:<ul class="simple">
+<li><p>delete -&gt; wal: PRAGMA journal_mode=WAL (persists in the header).</p></li>
+<li><p>wal -&gt; delete: checkpoint the WAL back into the database, then switch to the rollback journal. Switching journal mode is pure configuration — there is nothing in the data to migrate — so it is allowed at any time (e.g. to enable WAL before a run with heavy single-host concurrency). It is a login-node, single-process operation, so no other connection is in flight. A typed value equal to the stored one, or an untyped option, is a no-op.</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> -- <strong>[in]</strong> Resolved value typed for --db-journal. </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> Raw argument tokens of this invocation (see _KNIT_INVOCATION_RAW_ARGS), used to tell a typed option from a defaulted one. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 when the mode was changed, 1 otherwise. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -2803,6 +2829,23 @@ compatibility guarantee.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>0 if the string is a glob pattern, 1 otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_bundle_portable_db">
+<span class="target" id="bundle_8sh_1a1fb03248d965c9c71d94f59f3ab38292"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_bundle_portable_db</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_bundle_portable_db" title="Link to this definition">#</a><br /></dt>
+<dd><p>When the database being bundled is in WAL journal mode, produce a portable rollback-journal snapshot of it in a fresh temporary directory and return that directory (nameref). The caller maps &quot;.knit/knit.db&quot; to &quot;&lt;dir&gt;/knit.db&quot; through the extern map so the snapshot is packed in place of the live database, then removes the directory after writing.</p>
+<p>WAL is a single-host-only mode: a WAL-mode database carries WAL in its header, so an extracted bundle would try to open a -wal/-shm shared-memory sidecar on the reproducer's filesystem, which fails where that filesystem is WAL-hostile (a network filesystem, or a different host). The snapshot is made with &quot;VACUUM INTO&quot;, which writes a consistent copy in the default rollback journal mode without touching the live database and without leaving any sidecar; the reproducer can re-enable WAL at their site with <code class="docutils literal notranslate"><span class="pre">bootstrap</span> <span class="pre">--db-journal</span> <span class="pre">wal</span></code>.</p>
+<p>Returns an empty string (no snapshot needed) when the database is not part of the bundle or is already in rollback-journal mode. Defined here, among the string-returning helpers, so the &quot;__knit_ret&quot; nameref it writes a string into is not seen as an array (the array-filling helpers below reuse that nameref name).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out</strong> -- <strong>[out]</strong> Name of the variable to receive the temp directory (or &quot;&quot;). </p></li>
+<li><p><strong>root</strong> -- <strong>[in]</strong> The absolute experiment root (unused; kept for symmetry). </p></li>
+<li><p><strong>...</strong> -- <strong>[in]</strong> The relative paths that will be packed. </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -11672,6 +11715,26 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <section id="id77">
 <h3>Functions<a class="headerlink" href="#id77" title="Link to this heading">#</a></h3>
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_db_apply_journal_mode">
+<span class="target" id="sqlite_8sh_1af62c01af74647732115777736554dc8c"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_apply_journal_mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_apply_journal_mode" title="Link to this definition">#</a><br /></dt>
+<dd><p>Apply the resolved database journal mode to the database. &quot;delete&quot; is SQLite's default rollback journal, so it is a no-op. &quot;wal&quot; is a persistent, database- level property: setting &quot;PRAGMA journal_mode=WAL&quot; once writes the database header, and every later connection then reads in WAL mode from that header, so it is applied here (at bootstrap, and when switched in update mode) rather than on every connection. The write is routed through _knit_sqlite3_write so it is serialized by the write lock like any other write.</p>
+<p>WAL requires that every process touching the database run on the same host (it coordinates readers and the writer through a memory-mapped shared-memory file), so &quot;wal&quot; is an explicit single-host opt-in, never the default. </p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_db_journal_mode">
+<span class="target" id="sqlite_8sh_1af5c13258269e55b7243fac034e7b3ae2"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_journal_mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_journal_mode" title="Link to this definition">#</a><br /></dt>
+<dd><p>Resolve the database journal mode chosen at bootstrap and cache it for the rest of the process. The mode is read from the plain marker file &quot;${_KNIT_PREFIX}/db-journal&quot; (written by bootstrap before the first database write, like the db-lock marker). A missing or unreadable marker resolves to &quot;delete&quot;, SQLite's default rollback journal, so a database created before this feature — or a .knit copied without the marker — keeps today's behavior. An unrecognized value warns and also falls back to &quot;delete&quot;.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>out</strong> -- <strong>[out]</strong> Name of the variable to receive the mode (nameref output). </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_db_lock_mode">
 <span class="target" id="sqlite_8sh_1a949a2b4ef97a14c386acbca0dc28ddf1"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_db_lock_mode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_db_lock_mode" title="Link to this definition">#</a><br /></dt>
 <dd><p>Resolve the database write-lock mechanism chosen at bootstrap and cache it for the rest of the process. The mode is read from the plain marker file &quot;${_KNIT_PREFIX}/db-lock&quot; (written by bootstrap before the first database write, so the mechanism is knowable without touching the database it guards). A missing or unreadable marker resolves to &quot;flock&quot;, the pre-feature default, so a database created before this feature — or a .knit copied without the marker — keeps working. An unrecognized value warns and also falls back to &quot;flock&quot;.</p>
@@ -11741,6 +11804,12 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </dd></dl>
 
 <dl class="c var">
+<dt class="sig sig-object c" id="c._KNIT_DB_JOURNAL_MODE">
+<span class="target" id="sqlite_8sh_1aa6584d763d0b28f1ebc55fb298d2a568"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DB_JOURNAL_MODE</span></span></span><a class="headerlink" href="#c._KNIT_DB_JOURNAL_MODE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Process-level cache for <a class="reference internal" href="#sqlite_8sh_1af5c13258269e55b7243fac034e7b3ae2"><span class="std std-ref">_knit_db_journal_mode()</span></a>: the resolved database journal mode (&quot;delete&quot; or &quot;wal&quot;). Empty means &quot;not yet resolved&quot;. </p>
+</dd></dl>
+
+<dl class="c var">
 <dt class="sig sig-object c" id="c._KNIT_DB_LOCK_MODE">
 <span class="target" id="sqlite_8sh_1a7b82cc8502537bbb9bf866b3ae6ac141"></span><span class="n"><span class="pre">String</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_KNIT_DB_LOCK_MODE</span></span></span><a class="headerlink" href="#c._KNIT_DB_LOCK_MODE" title="Link to this definition">#</a><br /></dt>
 <dd><p>Process-level cache for <a class="reference internal" href="#sqlite_8sh_1a949a2b4ef97a14c386acbca0dc28ddf1"><span class="std std-ref">_knit_db_lock_mode()</span></a>: the resolved database write-lock mechanism (&quot;flock&quot;, &quot;mkdir&quot;, or &quot;none&quot;). Empty means &quot;not yet resolved&quot;. </p>
@@ -11749,7 +11818,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <dl class="c var">
 <dt class="sig sig-object c">
 <span class="target" id="sqlite_8sh_1a3a38de4daa80f9c596f1062b4fe0ec3f"></span><span class="sig-name descname"><span class="pre">_KNIT_SQLITE_BUSY_TIMEOUT_MS</span></span></dt>
-<dd><p>Busy timeout (milliseconds) applied to every sqlite3 invocation. If another writer holds the database lock, sqlite retries for up to this long before giving up with &quot;database is locked&quot;. A second line of defence behind the write lock taken by _knit_sqlite3_write. </p>
+<dd><p>Busy timeout (milliseconds) applied to every sqlite3 invocation. If another writer holds the database lock, sqlite retries for up to this long before giving up with &quot;database is locked&quot;. A second line of defence behind the write lock taken by _knit_sqlite3_write. Honours an inherited value so a high-concurrency path (or a test) can raise it without editing this file. </p>
 </dd></dl>
 
 <dl class="c var">
@@ -12506,6 +12575,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_on_exit"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_on_exit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_relocate_path"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_relocate_path()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_journal"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_journal()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_db_lock"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_db_lock()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_meta"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_meta()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bootstrap_update_profile"><code class="docutils literal notranslate"><span class="pre">_knit_bootstrap_update_profile()</span></code></a></li>
@@ -12529,6 +12599,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_escapes_root"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_escapes_root()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_expand_requires"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_expand_requires()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_is_glob"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_is_glob()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_portable_db"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_portable_db()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_print_list"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_print_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_print_tree"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_print_tree()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_bundle_prune_paths"><code class="docutils literal notranslate"><span class="pre">_knit_bundle_prune_paths()</span></code></a></li>
@@ -13536,6 +13607,8 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sqlite-sh">sqlite.sh</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id77">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_apply_journal_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_apply_journal_mode()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_journal_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_journal_mode()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_db_lock_mode"><code class="docutils literal notranslate"><span class="pre">_knit_db_lock_mode()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sqlite3_write_flock"><code class="docutils literal notranslate"><span class="pre">_knit_sqlite3_write_flock()</span></code></a></li>
@@ -13544,6 +13617,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id78">Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DATABASE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DATABASE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_JOURNAL_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_JOURNAL_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_DB_LOCK_MODE"><code class="docutils literal notranslate"><span class="pre">_KNIT_DB_LOCK_MODE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_EXE"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_EXE</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._KNIT_SQLITE_SOURCE_NAME"><code class="docutils literal notranslate"><span class="pre">_KNIT_SQLITE_SOURCE_NAME</span></code></a></li>
