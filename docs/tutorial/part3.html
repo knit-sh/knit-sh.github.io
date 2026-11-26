@@ -528,8 +528,9 @@ accuracy.</p>
 better fit for <strong>uv</strong>, so Part III imports that plugin instead and declares a
 uv-backed setup. The setup names one requirement — the <code class="docutils literal notranslate"><span class="pre">cifar-cnn</span></code> package,
 installed directly from its Git repository and pinned to the immutable tag
-<code class="docutils literal notranslate"><span class="pre">&#64;v1.0.0</span></code> so every reproducer builds the same code — and has no body of its
-own; uv building and activating the environment is all it does:</p>
+<code class="docutils literal notranslate"><span class="pre">&#64;v1.0.0</span></code> so every reproducer builds the same code — and has a one-line body
+that pins <code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code> (see the note below); uv building and activating the
+environment is the rest of what it does:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label aria-controls="sd-tab-item-0-content" class="sd-tab-label" data-sync-group="tab" data-sync-id="knit-short" for="sd-tab-item-0">
@@ -539,11 +540,14 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content"
 <span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
 <span class="c1"># first step, so the `cifar-cnn` console script is on PATH before any job that</span>
 <span class="c1"># declares this setup runs. It captures the resolved pyproject.toml / uv.lock as</span>
-<span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
-<span class="c1"># all it does --- so @empty stands in for the body function.</span>
+<span class="c1"># provenance. The body does one more thing: it pins TMPDIR to the node-local /tmp</span>
+<span class="c1"># with knit_setup_env_set, which records the assignment into the setup's</span>
+<span class="c1"># .activate.sh so every job that uses the setup inherits it. This keeps PyTorch's</span>
+<span class="c1"># DataLoader worker sockets within the 108-byte AF_UNIX path limit; a long cluster</span>
+<span class="c1"># TMPDIR otherwise overflows it and the run stops with "AF_UNIX path too long".</span>
 <span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
 <span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
-<span class="nd">@empty</span>
+_cnnenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TMPDIR<span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span><span class="o">}</span>
 <span class="nd">@done</span>
 </pre></div>
 </div>
@@ -556,14 +560,29 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content"
 <span class="c1"># straight from its git repository; knit builds and activates it as the setup's</span>
 <span class="c1"># first step, so the `cifar-cnn` console script is on PATH before any job that</span>
 <span class="c1"># declares this setup runs. It captures the resolved pyproject.toml / uv.lock as</span>
-<span class="c1"># provenance. The setup needs no body of its own --- building the environment is</span>
-<span class="c1"># all it does --- so @empty stands in for the body function.</span>
-<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="c1"># provenance. The body does one more thing: it pins TMPDIR to the node-local /tmp</span>
+<span class="c1"># with knit_setup_env_set, which records the assignment into the setup's</span>
+<span class="c1"># .activate.sh so every job that uses the setup inherits it. This keeps PyTorch's</span>
+<span class="c1"># DataLoader worker sockets within the 108-byte AF_UNIX path limit; a long cluster</span>
+<span class="c1"># TMPDIR otherwise overflows it and the run stops with "AF_UNIX path too long".</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span>_cnnenv_setup<span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
 <span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
+_cnnenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TMPDIR<span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span><span class="o">}</span>
 <span class="nb">knit_done</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The setup’s body calls <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span> <span class="pre">TMPDIR</span> <span class="pre">/tmp</span></code>. PyTorch’s
+<code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> starts worker processes that pass tensors through an AF_UNIX
+socket under <code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code>. On some clusters (for example Aurora and Polaris)
+<code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code> is a long path, so the socket path goes past the 108-byte AF_UNIX
+limit and training stops with <code class="docutils literal notranslate"><span class="pre">AF_UNIX</span> <span class="pre">path</span> <span class="pre">too</span> <span class="pre">long</span></code>. The short, node-local
+<code class="docutils literal notranslate"><span class="pre">/tmp</span></code> keeps the socket path within the limit. <code class="docutils literal notranslate"><span class="pre">knit_setup_env_set</span></code> records
+the assignment into the setup’s <code class="docutils literal notranslate"><span class="pre">.activate.sh</span></code>, so every job that uses the
+setup inherits it.</p>
 </div>
 <p>Because a uv-backed setup is declared, <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> provisions a knit-private uv
 automatically. uv installs the program and pins the exact dependency set
@@ -1372,10 +1391,12 @@ Shorthand</label><div class="sd-tab-content docutils" id="sd-tab-item-12-content
 <span class="w">    </span><span class="s2">"Tune a CNN image classifier on CIFAR-10 with a sweep and Bayesian optimization."</span>
 
 <span class="c1"># --- Setup ------------------------------------------------------------------</span>
-<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
+<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo. Its</span>
+<span class="c1"># one-line body pins TMPDIR to /tmp so PyTorch's DataLoader worker sockets stay</span>
+<span class="c1"># within the 108-byte AF_UNIX path limit (a long cluster TMPDIR overflows it).</span>
 <span class="nd">@setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
 <span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
-<span class="nd">@empty</span>
+_cnnenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TMPDIR<span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span><span class="o">}</span>
 <span class="nd">@done</span>
 
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
@@ -1543,9 +1564,12 @@ Long form</label><div class="sd-tab-content docutils" id="sd-tab-item-13-content
 <span class="w">    </span><span class="s2">"Tune a CNN image classifier on CIFAR-10 with a sweep and Bayesian optimization."</span>
 
 <span class="c1"># --- Setup ------------------------------------------------------------------</span>
-<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo.</span>
-<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span><span class="nb">knit_empty</span><span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
+<span class="c1"># A uv environment with the cifar-cnn classifier installed from its git repo. Its</span>
+<span class="c1"># one-line body pins TMPDIR to /tmp so PyTorch's DataLoader worker sockets stay</span>
+<span class="c1"># within the 108-byte AF_UNIX path limit (a long cluster TMPDIR overflows it).</span>
+<span class="nb">knit_register_setup</span><span class="w"> </span><span class="s2">"cnnenv"</span><span class="w"> </span>_cnnenv_setup<span class="w"> </span><span class="s2">"A uv environment with the cifar-cnn classifier installed."</span>
 <span class="nd">@with_uv_specs</span><span class="w"> </span><span class="s2">"cifar-cnn @ git+https://github.com/knit-sh/image-classifier-example.git@v1.0.0"</span>
+_cnnenv_setup<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">knit_setup_env_set</span><span class="w"> </span>TMPDIR<span class="w"> </span>/tmp<span class="p">;</span><span class="w"> </span><span class="o">}</span>
 <span class="nb">knit_done</span>
 
 <span class="c1"># --- Resource ---------------------------------------------------------------</span>
