@@ -458,6 +458,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name-a-job-and-give-it-a-stable-alias">Name a job and give it a stable alias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-scheduler-account-project-and-queue">Set the scheduler account, project, and queue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-job-s-hosts-and-node-count">Find the job’s hosts and node count</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-each-job-and-prove-node-non-overlap">Time each job and prove node non-overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-results-into-the-job-s-directory">Write results into the job’s directory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-for-and-inspect-a-job">Wait for and inspect a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-job-s-output">Retrieve a job’s output</a></li>
@@ -806,6 +807,65 @@ local host and <code class="docutils literal notranslate"><span class="pre">knit
 (The <code class="docutils literal notranslate"><span class="pre">knit</span> <span class="pre">run</span></code> line above launches an MPI app across the allocation; that is
 covered in the Apps category.)</p>
 </section>
+<section id="time-each-job-and-prove-node-non-overlap">
+<span id="stitch-job-lifecycle-timing"></span><h2>Time each job and prove node non-overlap<a class="headerlink" href="#time-each-job-and-prove-node-non-overlap" title="Link to this heading">#</a></h2>
+<p><em>Read each job’s prepared/submitted/started/ended timestamps to compute run durations and prove no two jobs shared a node at the same time.</em></p>
+<p><strong>APIs:</strong> <code class="docutils literal notranslate"><span class="pre">submit</span></code>, <code class="docutils literal notranslate"><span class="pre">job:status</span></code>, <code class="docutils literal notranslate"><span class="pre">query:sql</span></code></p>
+<p>Every <code class="docutils literal notranslate"><span class="pre">jobs</span></code> row records four lifecycle timestamps, one per transition:
+<code class="docutils literal notranslate"><span class="pre">prepared_at</span></code> (the row was built), <code class="docutils literal notranslate"><span class="pre">submitted_at</span></code> (it was sent to the
+scheduler), <code class="docutils literal notranslate"><span class="pre">started_at</span></code> (its body began, on the compute node), and
+<code class="docutils literal notranslate"><span class="pre">ended_at</span></code> (it reached <code class="docutils literal notranslate"><span class="pre">completed</span></code> / <code class="docutils literal notranslate"><span class="pre">failed</span></code> / <code class="docutils literal notranslate"><span class="pre">killed</span></code>). Each stays
+<code class="docutils literal notranslate"><span class="pre">NULL</span></code> until its transition happens, so a job killed in the queue has a
+<code class="docutils literal notranslate"><span class="pre">started_at</span></code> of <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, and a still-<code class="docutils literal notranslate"><span class="pre">prepared</span></code> job has only
+<code class="docutils literal notranslate"><span class="pre">prepared_at</span></code>.</p>
+<p>The values are stored in <strong>UTC</strong> as <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM:SS.sss</span></code> strings — a
+form that sorts lexically in time order and parses in SQLite’s <code class="docutils literal notranslate"><span class="pre">datetime()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">julianday()</span></code> on any version. <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">status</span></code> renders them in your own local
+zone (see <em>Wait for and inspect a job</em>); a raw <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">sql</span></code> prints the stored
+column verbatim, so wrap any displayed timestamp in <code class="docutils literal notranslate"><span class="pre">datetime(col,</span> <span class="pre">'localtime')</span></code>
+to read it in local time:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT id, state,</span>
+<span class="go">            datetime(started_at, 'localtime') AS started,</span>
+<span class="go">            datetime(ended_at,   'localtime') AS ended</span>
+<span class="go">       FROM jobs ORDER BY id"</span>
+</pre></div>
+</div>
+<p><strong>Run duration.</strong> The arithmetic is zone-independent, so it runs on the stored
+UTC columns directly. <code class="docutils literal notranslate"><span class="pre">julianday</span></code> returns days; multiply by <code class="docutils literal notranslate"><span class="pre">86400</span></code> for
+seconds:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT id, hostnames,</span>
+<span class="go">            (julianday(ended_at) - julianday(started_at)) * 86400.0 AS seconds</span>
+<span class="go">       FROM jobs</span>
+<span class="go">      WHERE started_at IS NOT NULL AND ended_at IS NOT NULL"</span>
+</pre></div>
+</div>
+<p><strong>No two jobs on one node at once.</strong> This is the payoff for a pilot sweep: the
+<code class="docutils literal notranslate"><span class="pre">hostnames</span></code> column records the node each (sub-)job ran on, and the timestamps
+record its window. A self-join over same-node rows with overlapping
+<code class="docutils literal notranslate"><span class="pre">[started_at,</span> <span class="pre">ended_at]</span></code> intervals returns a row for every double-booking —
+so an <strong>empty result proves</strong> no two jobs shared a node at the same time. The
+comparison is on the stored UTC columns (correct and version-safe); only the
+displayed columns are localised:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>query<span class="w"> </span>sql<span class="w"> </span>--exec<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="s2">"SELECT a.id, b.id, a.hostnames,</span>
+<span class="go">            datetime(a.started_at, 'localtime') AS a_started,</span>
+<span class="go">            datetime(b.started_at, 'localtime') AS b_started</span>
+<span class="go">       FROM jobs a JOIN jobs b</span>
+<span class="go">         ON a.hostnames = b.hostnames</span>
+<span class="go">        AND a.id &lt; b.id</span>
+<span class="go">        AND a.started_at &lt; b.ended_at</span>
+<span class="go">        AND b.started_at &lt; a.ended_at"</span>
+</pre></div>
+</div>
+<p>Run every query through <code class="docutils literal notranslate"><span class="pre">query</span> <span class="pre">sql</span> <span class="pre">--exec</span></code> so it goes over the read-only lens;
+never reach for the bundled <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> by hand. <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reset</span></code> clears a retried
+job’s <code class="docutils literal notranslate"><span class="pre">submitted_at</span></code> / <code class="docutils literal notranslate"><span class="pre">started_at</span></code> / <code class="docutils literal notranslate"><span class="pre">ended_at</span></code> back to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (keeping
+the original <code class="docutils literal notranslate"><span class="pre">prepared_at</span></code>), and <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">reconcile</span></code> stamps <code class="docutils literal notranslate"><span class="pre">ended_at</span></code> when it
+drives a stuck row to a terminal state — see <em>Retry failed or killed jobs</em> and
+<em>Recover jobs stuck at running</em>.</p>
+</section>
 <section id="write-results-into-the-job-s-directory">
 <span id="stitch-job-working-directory"></span><h2>Write results into the job’s directory<a class="headerlink" href="#write-results-into-the-job-s-directory" title="Link to this heading">#</a></h2>
 <p><em>Use KNIT_JOB_PREFIX, the job’s own working directory, to place output files.</em></p>
@@ -913,12 +973,21 @@ non-zero if the job was killed:</p>
 <span class="go">completed</span>
 </pre></div>
 </div>
-<p>Check the current state without blocking with <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">status</span></code>, and see everything
-recorded for the job — its submission options and its own parameters — with
-<code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">show</span></code> (add <code class="docutils literal notranslate"><span class="pre">--json</span></code> for machine-readable output):</p>
+<p>Check the current state without blocking with <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">status</span></code>. It prints the
+state on the first line, then the four lifecycle timestamps
+(prepared/submitted/started/ended), each shown in your local time zone with an
+explicit offset (a stage not yet reached shows <code class="docutils literal notranslate"><span class="pre">-</span></code>):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>status<span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="nv">$id</span><span class="s2">"</span>
 <span class="go">running</span>
-<span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>show<span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="nv">$id</span><span class="s2">"</span>
+<span class="go">prepared_at:  2026-11-27 03:28:05 (-06:00)</span>
+<span class="go">submitted_at: 2026-11-27 03:28:06 (-06:00)</span>
+<span class="go">started_at:   2026-11-27 03:28:07 (-06:00)</span>
+<span class="go">ended_at:     -</span>
+</pre></div>
+</div>
+<p>See everything recorded for the job — its submission options and its own
+parameters — with <code class="docutils literal notranslate"><span class="pre">job</span> <span class="pre">show</span></code> (add <code class="docutils literal notranslate"><span class="pre">--json</span></code> for machine-readable output):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>show<span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="nv">$id</span><span class="s2">"</span>
 <span class="gp">$ </span>./exp.sh<span class="w"> </span>job<span class="w"> </span>show<span class="w"> </span>--id<span class="w"> </span><span class="s2">"</span><span class="nv">$id</span><span class="s2">"</span><span class="w"> </span>--json
 </pre></div>
 </div>
@@ -1752,6 +1821,7 @@ concurrency, recovery, and failure policy are drain’s.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#name-a-job-and-give-it-a-stable-alias">Name a job and give it a stable alias</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-the-scheduler-account-project-and-queue">Set the scheduler account, project, and queue</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-job-s-hosts-and-node-count">Find the job’s hosts and node count</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-each-job-and-prove-node-non-overlap">Time each job and prove node non-overlap</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-results-into-the-job-s-directory">Write results into the job’s directory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wait-for-and-inspect-a-job">Wait for and inspect a job</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-a-job-s-output">Retrieve a job’s output</a></li>

@@ -69,6 +69,17 @@ Find the job's hosts and node count
 
 .. include:: /stitch/recipes/job-hosts-and-nodes.rst
 
+.. _stitch-job-lifecycle-timing:
+
+Time each job and prove node non-overlap
+----------------------------------------
+
+*Read each job's prepared/submitted/started/ended timestamps to compute run durations and prove no two jobs shared a node at the same time.*
+
+**APIs:** ``submit``, ``job:status``, ``query:sql``
+
+.. include:: /stitch/recipes/job-lifecycle-timing.rst
+
 .. _stitch-job-working-directory:
 
 Write results into the job's directory

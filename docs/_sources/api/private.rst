@@ -1329,6 +1329,9 @@ Functions
 .. doxygenfunction:: _knit_job_follow_file
    :project: knit
 
+.. doxygenfunction:: _knit_job_format_localtime
+   :project: knit
+
 .. doxygenfunction:: _knit_job_in_clause
    :project: knit
 
@@ -2263,6 +2266,9 @@ Functions
    :project: knit
 
 .. doxygenfunction:: _knit_sched_write_jobscript
+   :project: knit
+
+.. doxygenfunction:: _knit_timestamp_now
    :project: knit
 
 .. doxygenfunction:: _knit_uuidv7

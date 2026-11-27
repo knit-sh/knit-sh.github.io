@@ -992,6 +992,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_dir"><code class="docutils literal notranslate"><span class="pre">_knit_job_dir()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_discover"><code class="docutils literal notranslate"><span class="pre">_knit_job_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_follow_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_follow_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_format_localtime"><code class="docutils literal notranslate"><span class="pre">_knit_job_format_localtime()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile()</span></code></a></li>
@@ -1403,6 +1404,7 @@
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_wait()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_write_jobscript"><code class="docutils literal notranslate"><span class="pre">_knit_sched_write_jobscript()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_timestamp_now"><code class="docutils literal notranslate"><span class="pre">_knit_timestamp_now()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_uuidv7"><code class="docutils literal notranslate"><span class="pre">_knit_uuidv7()</span></code></a></li>
 </ul>
 </li>
@@ -6687,6 +6689,7 @@ compatibility guarantee.</p>
 <dt class="sig sig-object c" id="c._knit_job_set_state">
 <span class="target" id="job_8sh_1a60f19ff432a977fb5083c95de000ad9e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_set_state</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_set_state" title="Link to this definition">#</a><br /></dt>
 <dd><p>Update the lifecycle state of the running job's jobs-table row. Called on the compute side, where the experiment's .knit is shared over the parallel file system, so the row inserted by knit submit on the login node can be updated in place. The row id is the job UUID, i.e. the basename of KNIT_JOB_PREFIX (the job directory). Best-effort: status tracking must never take down the job itself, so a failure is downgraded to a warning.</p>
+<p>A lifecycle timestamp is written in the same update as the state: &quot;running&quot; sets started_at, and any terminal state (completed/failed/killed) sets ended_at, so one function covers every terminal path (after-callback, kill trap, fatal recorder, pilot kill). Other states carry no timestamp.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6865,6 +6868,11 @@ compatibility guarantee.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._knit_job_format_localtime">
+<span class="target" id="job__cli_8sh_1a168776082cff017588edef336a7f3cb9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_format_localtime</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_format_localtime" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_in_clause">
@@ -7069,7 +7077,8 @@ compatibility guarantee.</p>
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_status">
 <span class="target" id="job__cli_8sh_1ae72ff134aa56536cee6cd6476ad89623"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_job_status</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_job_status" title="Link to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>Look up a job by its UUID in the jobs table and print its lifecycle state (e.g. submitted, running, completed, failed, killed) on the first line, followed by the four lifecycle timestamps (prepared/submitted/started/ended), each shown in local time with an explicit offset. The state stays on its own first line so a script that reads only it is unaffected. An unknown id is an error. </p>
+</dd></dl>
 
 <dl class="c function">
 <dt class="sig sig-object c" id="c._knit_job_wait">
@@ -10390,6 +10399,21 @@ If the function has a return type:
 </dd></dl>
 
 <dl class="c function">
+<dt class="sig sig-object c" id="c._knit_timestamp_now">
+<span class="target" id="sched_8sh_1a37bbeeba9b4aa5ee3264481bb0a98a1e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_timestamp_now</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_timestamp_now" title="Link to this definition">#</a><br /></dt>
+<dd><p>Return the current UTC date-time in SQLite's canonical form &quot;YYYY-MM-DD HH:MM:SS.sss&quot;: a space separator, millisecond precision, no &quot;Z&quot; suffix, always UTC by convention.</p>
+<p>This form is used for the job lifecycle timestamp columns (prepared_at, submitted_at, started_at, ended_at). It is fixed-width and zero-padded, so it sorts lexically in time order and compares byte-by-byte on any SQLite version; datetime()/julianday()/strftime() also parse it for duration arithmetic. The trailing &quot;Z&quot; is dropped on purpose: SQLite accepts it only since 3.42.0, and bootstrap --use-system-sqlite can symlink an older login-node sqlite where julianday('… Z') returns NULL.</p>
+<p>The millisecond clock falls back to whole-second precision when <code class="docutils literal notranslate"><span class="pre">date</span></code> lacks nanosecond (N) support, mirroring _knit_uuidv7.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__knit_ret</strong> -- <strong>[out]</strong> Name of the variable to hold the timestamp string. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="c function">
 <dt class="sig sig-object c" id="c._knit_uuidv7">
 <span class="target" id="sched_8sh_1a21719dd050d2e8543f5ab1e86d3ad43b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_knit_uuidv7</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c._knit_uuidv7" title="Link to this definition">#</a><br /></dt>
 <dd><p>Generate a version-7 UUID (RFC 9562) and print it to stdout.</p>
@@ -13018,6 +13042,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_dir"><code class="docutils literal notranslate"><span class="pre">_knit_job_dir()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_discover"><code class="docutils literal notranslate"><span class="pre">_knit_job_discover()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_follow_file"><code class="docutils literal notranslate"><span class="pre">_knit_job_follow_file()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_format_localtime"><code class="docutils literal notranslate"><span class="pre">_knit_job_format_localtime()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_in_clause"><code class="docutils literal notranslate"><span class="pre">_knit_job_in_clause()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_list"><code class="docutils literal notranslate"><span class="pre">_knit_job_list()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_job_reconcile"><code class="docutils literal notranslate"><span class="pre">_knit_job_reconcile()</span></code></a></li>
@@ -13429,6 +13454,7 @@ Fatal when the source is not a readable file (piped/eval'd script), and when nei
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_submit_cmdline"><code class="docutils literal notranslate"><span class="pre">_knit_sched_submit_cmdline()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_wait"><code class="docutils literal notranslate"><span class="pre">_knit_sched_wait()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_sched_write_jobscript"><code class="docutils literal notranslate"><span class="pre">_knit_sched_write_jobscript()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_timestamp_now"><code class="docutils literal notranslate"><span class="pre">_knit_timestamp_now()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c._knit_uuidv7"><code class="docutils literal notranslate"><span class="pre">_knit_uuidv7()</span></code></a></li>
 </ul>
 </li>
